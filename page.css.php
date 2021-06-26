@@ -1248,8 +1248,17 @@ aside.nav-documentation>div {
 }
 
 .documentation ul {
-  padding-left: 1.2em;
+  /*padding-left: 1.2em;*/
+  padding-left: 0;
   margin: 0 0 1em 0;
+}
+
+.documentation ul ul {
+  padding-left: 1.2em;
+}
+
+.documentation ul:last-child {
+  margin-bottom: 0;
 }
 
 .nav-rapide li + li {
@@ -1462,25 +1471,28 @@ article>pre:last-child {
 
 li {
   list-style-type: none;
-  border-left: .3rem solid var(--body-color);
-  padding-left: .6rem;
+  /*border-left: .3rem solid var(--body-color);
+  padding-left: .6rem;*/
   border-radius: .3rem;
+  border: 1px solid var(--body-color);
+  border-left-width: 3px;
+  padding: .3rem .6rem;
 }
 
 li:first-of-type {
-  border-radius: .6rem 0 0 .3rem;
+  border-radius: .6rem .6rem .3rem .3rem;
 }
 
 li:last-of-type {
-  border-radius: .3rem 0 0 .6rem;
+  border-radius: .3rem .3rem .6rem .6rem;
 }
 
 li:first-of-type:last-of-type {
-  border-radius: .6rem 0 0 .6rem;
+  border-radius: .6rem;
 }
 
 li:hover {
-  border-left-color: var(--h3-color);
+  border-color: var(--h3-color);
 }
 
 li li {
