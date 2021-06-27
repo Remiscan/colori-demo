@@ -177,7 +177,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
       <div class="groupe-langages">
         <button type="button" class="bouton-langage" lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</button>
         <button type="button" class="bouton-langage" lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</button>
-        <theme-selector position="bottom" icon="reverse"></theme-selector>
+        <theme-selector position="bottom"></theme-selector>
       </div>
     </header>
 
