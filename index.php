@@ -7,7 +7,8 @@ require_once $commonDir.'/php/version.php';
 require_once $commonDir.'/php/getStrings.php';
 $version = version(__DIR__);
 
-$lang = $_COOKIE['lang'] ?? httpLanguage() ?? 'en';
+$urlLang = substr(htmlspecialchars($_GET['lang']), 0, 2);
+$lang = $urlLang ?: $_COOKIE['lang'] ?: httpLanguage() ?: 'en';
 $Textes = new Textes('colori/demo', $lang);
 
 $progLanguage = $_COOKIE['prog-language'] ?? 'js';
