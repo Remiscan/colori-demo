@@ -327,32 +327,13 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
       <a id="documentation" aria-hidden="true"></a>
       <h1 data-string="titre-section-documentation"><?=$Textes->getString('titre-section-documentation')?></h1>
 
-      <fieldset class="tabs-container prog-language-choice" role="tablist">
-        <legend data-string="prog-language-choice-label"></legend>
+      <fieldset role="tablist" data-group="tabs-prog-language">
+        <legend data-string="tabs-group-language-label"></legend>
 
-        <input type="radio" role="tab" aria-controls="docu-js-fr" lang="fr"
-               name="prog-language-choice" id="prog-language-choice-js-fr" value="js"
-               <?= ($lang == 'fr' && $progLanguage == 'js') ? 'checked' : '' ?>
-        >
-        <label for="prog-language-choice-js-fr" lang="fr">.js</label>
-
-        <input type="radio" role="tab" aria-controls="docu-php-fr" lang="fr"
-               name="prog-language-choice" id="prog-language-choice-php-fr" value="php"
-               <?= ($lang == 'fr' && $progLanguage == 'php') ? 'checked' : '' ?>
-        >
-        <label for="prog-language-choice-php-fr" lang="fr">.php</label>
-
-        <input type="radio" role="tab" aria-controls="docu-js-en" lang="en"
-               name="prog-language-choice" id="prog-language-choice-js-en" value="js"
-               <?= ($lang == 'en' && $progLanguage == 'js') ? 'checked' : '' ?>
-        >
-        <label for="prog-language-choice-js-en" lang="en">.js</label>
-
-        <input type="radio" role="tab" aria-controls="docu-php-en" lang="en"
-               name="prog-language-choice" id="prog-language-choice-php-en" value="php"
-               <?= ($lang == 'en' && $progLanguage == 'php') ? 'checked' : '' ?>
-        >
-        <label for="prog-language-choice-php-en" lang="en">.php</label>
+        <tab-label controls="docu-js-fr" label=".js" lang="fr" <?=($lang == 'fr' ? 'active="true"' : '')?>></tab-label>
+        <tab-label controls="docu-php-fr" label=".php" lang="fr"></tab-label>
+        <tab-label controls="docu-js-en" label=".js" lang="en" <?=($lang == 'en' ? 'active="true"' : '')?>></tab-label>
+        <tab-label controls="docu-php-en" label=".php" lang="en"></tab-label>
       </fieldset>
 
       <!--<a class="exemple" href="#documentation">▲ Navigation rapide</a>-->

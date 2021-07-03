@@ -2,6 +2,7 @@
 /*<?php ob_start();?>*/
 
 import '/_common/components/theme-selector/theme-selector.js.php';
+import '/_common/components/tab-label/tab-label.js.php';
 import Cookie from '/colori/demo/modules/cookies.js.php';
 import { Traduction } from '/colori/demo/modules/traduction.js.php';
 import { updateCouleur } from '/colori/demo/modules/colorDetection.js.php';
