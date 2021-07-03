@@ -586,42 +586,29 @@ footer {
 
 
 /*
- * Switch JS / PHP
+ *Tabs
  */
 
-.tabs-container {
+[role="tablist"] {
   display: flex;
   align-items: flex-end;
   gap: 2px;
   margin: 0;
   padding: 0;
   border: none;
+  box-shadow: none;
   position: absolute;
   --height: 1.8rem;
   top: calc(-1 * var(--height));
   right: var(--section-padding);
 }
 
-.tabs-container>legend {
-  font-size: 0;
-  padding: 0;
-}
-
-.tabs-container>input[type=radio] {
-  height: 0;
-  width: 0;
-  position: absolute;
-  margin: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.tabs-container>input[type="radio"] + label {
+input[type="radio"][role="tab"] + label {
   all: unset;
   display: grid;
   place-items: center;
   box-sizing: border-box;
-  --decalage: .2rem;
+  --decalage: 0rem;
   height: calc(var(--height) - var(--decalage));
   padding-bottom: var(--decalage);
   font-size: .8rem;
@@ -632,74 +619,31 @@ footer {
   cursor: pointer;
 }
 
-.tabs-container>input[type="radio"] + label::before {
-  all: unset;
+input[type="radio"][role="tab"] + label::before {
+  display: none;
 }
 
-.tabs-container>input[type="radio"] + label:hover {
+input[type="radio"][role="tab"] + label:hover {
   background-color: var(--tab-hover-color);
 }
 
-.tabs-container>input[type="radio"]:focus + label {
+input[type="radio"][role="tab"]:focus + label {
   outline: 2px solid var(--link-color);
 }
 
-.tabs-container>input[type="radio"]:focus:not(:focus-visible) + label {
+input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
   outline-style: none;
 }
 
-.tabs-container>input[type="radio"]:active + label {
+input[type="radio"][role="tab"]:active + label {
   background-color: var(--tab-hover-color);
-  --decalage: 0rem;
+  --decalage: .1rem;
 }
 
-.tabs-container>input[type="radio"]:checked + label {
+input[type="radio"][role="tab"]:checked + label {
   background-color: var(--section-color);
-  --decalage: 0rem;
-}
-
-.prog-lang-changer {
-  display: flex;
-  position: absolute;
-  --height: 1.6rem;
-  top: calc(-1 * var(--height));
-  right: .7rem;
-}
-
-.switch-js-php {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  display: grid;
-  grid-template-columns: auto auto;
-  height: var(--height);
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.sw-span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-  user-select: none;
-  z-index: 1;
-  font-size: .8rem;
-  font-weight: 600;
   color: var(--h1-color);
-  padding: 0 .4rem;
-  height: 100%;
-}
-
-html[data-prog-language="js"] .switch-js-php>#sw-js,
-html[data-prog-language="php"] .switch-js-php>#sw-php {
-  background-color: var(--section-color);
-  border-radius: .6rem .6rem 0 0;
+  --decalage: 0rem;
 }
 
 
@@ -777,7 +721,7 @@ label[for=entree] {
   width: fit-content;
 }
 
-input {
+input[type="text"] {
   grid-row: auto;
   grid-column: 1 / 3;
   width: 100%;
@@ -793,11 +737,12 @@ input {
   box-shadow: 0 0 0 1px var(--body-color);
 }
 
-input:hover {
+input[type="text"]:hover {
   box-shadow: 0 0 0 2px var(--h3-color);
 }
 
-input:active, input:focus {
+input[type="text"]:active,
+input[type="text"]:focus {
   outline: none;
   background-color: var(--input-active-bg-color);
   box-shadow: 0 0 0 2px var(--h3-color);
@@ -865,6 +810,51 @@ input:active, input:focus {
   outline: none;
   border-color: var(--link-color);
   box-shadow: inset 0 0 0 1px var(--link-color);
+}
+
+
+
+/*
+ * Sélecteurs de couleurs
+ */
+
+#ranges {
+  grid-row: 1 / 2;
+  grid-column: 1 / 3;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: .6rem;
+}
+
+.choix-format {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+.choix-format input[type="radio"][name="choix-format"] + label {
+  padding: .3rem .4rem;
+  border-radius: 10px;
+}
+
+#ranges label[data-format] {
+  display: none;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto auto;
+  gap: .3rem;
+}
+
+#ranges[data-format="rgb"] label[data-format*="rgb"],
+#ranges[data-format="hsl"] label[data-format*="hsl"],
+#ranges[data-format="hwb"] label[data-format*="hwb"],
+#ranges[data-format="lab"] label[data-format*="lab"],
+#ranges[data-format="lch"] label[data-format*="lch"] {
+  display: grid;
+}
+
+label[data-format]>input[type="range"] {
+  grid-row: 2;
+  grid-column: 1 / -1;
 }
 
 
@@ -1620,6 +1610,11 @@ html[lang="fr"] :not([data-lang])[lang="en"][lang="en"],
 html[lang="en"] :not([data-lang])[lang="fr"][lang="fr"],
 html[data-prog-language="js"] [data-prog-language="php"],
 html[data-prog-language="php"] [data-prog-language="js"] {
+  display: none;
+}
+
+
+[hidden] {
   display: none;
 }
 

@@ -18,10 +18,46 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 const champ = document.getElementById('entree');
 champ.addEventListener('input', event => {
   let evt = event || window.event;
-  document.querySelector('.demo-conteneur').classList.remove('calced');
   updateCouleur(evt.target.value.replace(/'/g, ''), 50)
   .catch(error => {});
 });
+
+
+/////////////////////////////////////
+// Detect user choice of color format
+for (const input of [...document.querySelectorAll('input[name="choix-format"]')]) {
+  input.addEventListener('change', event => {
+    if (!input.checked) return;
+    document.querySelector('#ranges').dataset.format = input.value;
+  });
+}
+
+
+////////////////////////////////////
+// Detect user input on input ranges
+const rangeValue = prop => document.querySelector(`input[data-property="${prop}"]`).value;
+let lastChange = 0;
+for (const input of [...document.querySelectorAll('label[data-format]>input[type="range"]')]) {
+  input.addEventListener('change', event => {
+    /*const time = Date.now();
+    if (time - lastChange < 100) return;
+    lastChange = time;*/
+
+    const format = document.querySelector('#ranges').dataset.format;
+    let couleur;
+    const a = rangeValue('a') / 100;
+    switch (format) {
+      case 'rgb': couleur = `rgb(${rangeValue('r')}, ${rangeValue('g')}, ${rangeValue('b')}, ${a})`; break;
+      case 'hsl': couleur = `hsl(${rangeValue('h')}, ${rangeValue('s')}%, ${rangeValue('l')}%, ${a})`; break;
+      case 'hwb': couleur = `hwb(${rangeValue('h')} ${rangeValue('s')}% ${rangeValue('l')}% / ${a})`; break;
+      case 'lab': couleur = `lab(${rangeValue('ciel')}% ${rangeValue('ciea')} ${rangeValue('cieb')} / ${a})`; break;
+      case 'lch': couleur = `lch(${rangeValue('ciel')}% ${rangeValue('ciec')} ${rangeValue('cieh')} / ${a})`; break;
+    }
+
+    updateCouleur(couleur, 50)
+    .catch(error => console.error(error));
+  });
+}
 
 
 /////////////////////////////////////
@@ -35,11 +71,17 @@ docuButton.addEventListener('click', () => {
 
 ////////////////////////////////////////////////
 // Switch between js and php version of the page
-const progLangSwitch = document.querySelector('fieldset.prog-language-choice');
-progLangSwitch.addEventListener('change', event => {
-  switch (event.target.value) {
-    case 'php': document.documentElement.dataset.progLanguage = 'php'; break;
-    case 'js': document.documentElement.dataset.progLanguage = 'js'; break;
+window.addEventListener('tabchange', event => {
+  if (event.detail.group != 'tabs-prog-language') return;
+  switch (event.detail.value) {
+    case 'docu-js-fr':
+    case 'docu-js-en':
+      document.documentElement.dataset.progLanguage = 'js';
+      break;
+    case 'docu-php-fr':
+    case 'docu-php-en':
+      document.documentElement.dataset.progLanguage = 'php';
+      break;
   }
 });
 
@@ -49,9 +91,19 @@ progLangSwitch.addEventListener('change', event => {
 window.addEventListener('langchange', event => {
   // Check the correct prog-language-choice tab
   const lang = event.detail.lang;
-  new Cookie('lang', lang);
-  const progLang = document.querySelector('input[name="prog-language-choice"]:checked').value;
-  document.querySelector(`#prog-language-choice-${progLang}-${lang}`).checked = true;
+  let progLang;
+  switch (document.querySelector('input[name="tabs-prog-language"]:checked').value) {
+    case 'docu-js-fr':
+    case 'docu-js-en':
+      progLang = 'js';
+      break;
+    case 'docu-php-fr':
+    case 'docu-php-en':
+      progLang = 'php';
+      break;
+  }
+  console.log(progLang);
+  document.querySelector(`#input-for-docu-${progLang}-${lang}`).click();
 });
 
 

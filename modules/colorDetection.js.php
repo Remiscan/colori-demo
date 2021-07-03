@@ -212,45 +212,38 @@ export function colorInterface(couleur = entree) {
 //////////////////////////////////////////////////////
 // Adds data about the selected color to the interface
 export function populateColorData(couleur) {
-  let code;
-
-  code = document.querySelector('.hex>.format-donnee>code');
-  code.innerHTML = couleur.hex;
-  Prism.highlightElement(code);
-
-  code = document.querySelector('.rgb>.format-donnee>code');
-  code.innerHTML = couleur.rgb;
-  Prism.highlightElement(code);
-
-  code = document.querySelector('.hsl>.format-donnee>code');
-  code.innerHTML = couleur.hsl;
-  Prism.highlightElement(code);
-
-  code = document.querySelector('.hwb>.format-donnee>code');
-  code.innerHTML = couleur.hwb;
-  Prism.highlightElement(code);
-
-  code = document.querySelector('.lab>.format-donnee>code');
-  code.innerHTML = couleur.lab;
-  Prism.highlightElement(code);
-
-  code = document.querySelector('.lch>.format-donnee>code');
-  code.innerHTML = couleur.lch;
-  Prism.highlightElement(code);
-
-  code = document.querySelector('.name>.format-donnee>code');
-  if (couleur.name == null)
-  {
-    document.querySelector('.name').classList.remove('oui');
-    code.innerHTML = '';
+  // Populates results in all formats
+  for (const format of [...document.querySelectorAll('#donnees>[data-format]')]) {
+    const code = format.querySelector('code');
+    if (format.dataset.format == 'name') {
+      if (couleur.name == null) {
+        document.querySelector('.name').classList.remove('oui');
+        code.innerHTML = '';
+      } else {
+        document.querySelector('.name').classList.add('oui');
+        code.innerHTML = couleur.name;
+      }
+    } else {
+      code.innerHTML = couleur[format.dataset.format];
+    }
+    Prism.highlightElement(code);
   }
-  else
-  {
-    document.querySelector('.name').classList.add('oui');
-    code.innerHTML = couleur.name;
-  }
-  Prism.highlightElement(code);
 
+  // Changes the input field placeholder text
   const champ = document.getElementById('entree');
   champ.placeholder = couleur.name || couleur.hex;
+
+  // Changes the values of all input ranges
+  for (const range of [...document.querySelectorAll('input[data-property]')]) {
+    const prop = range.dataset.property;
+    let coeff = range.max;
+    switch (prop) {
+      case 'ciea':
+      case 'cieb':
+      case 'ciec':
+        coeff = 1;
+        break;
+    }
+    range.value = Math.round(coeff * couleur[prop]);
+  }
 }

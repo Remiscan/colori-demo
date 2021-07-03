@@ -199,6 +199,13 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
     <section id="demo">
       <h1 data-string="titre-section-demo"><?=$Textes->getString('titre-section-demo')?></h1>
 
+      <fieldset role="tablist" data-group="tabs-input-method">
+        <legend data-string="tabs-input-method-label"></legend>
+
+        <tab-label controls="saisie" label="Saisie manuelle" active="true"></tab-label>
+        <tab-label controls="ranges" label="Sélecteurs"></tab-label>
+      </fieldset>
+
       <div class="demo-inside">
         <div class="demo-conteneur calced">
           <div id="saisie">
@@ -224,6 +231,113 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                    placeholder="<?=$startColor->name()?>">
           </div>
+
+          <div id="ranges" data-format="rgb" hidden>
+            <h2 class="titre-partie-demo">Choisissez une couleur</h2>
+
+            <div class="choix-format">
+              <span>Format :</span>
+
+              <input type="radio" id="choix-format-rgb" name="choix-format" value="rgb" checked>
+              <label for="choix-format-rgb">RGB</label>
+
+              <input type="radio" id="choix-format-hsl" name="choix-format" value="hsl">
+              <label for="choix-format-hsl">HSL</label>
+
+              <input type="radio" id="choix-format-hwb" name="choix-format" value="hwb">
+              <label for="choix-format-hwb">HWB</label>
+
+              <input type="radio" id="choix-format-lab" name="choix-format" value="lab">
+              <label for="choix-format-lab">LAB</label>
+
+              <input type="radio" id="choix-format-lch" name="choix-format" value="lch">
+              <label for="choix-format-lch">LCH</label>
+            </div>
+
+            <label for="range-red" data-format="rgb">
+              <span>Red</span>
+              <span>[0 ; 255]</span>
+              <input type="range" id="range-red" data-property="r" min="0" max="255" step="1" value="<?=round(255 * $startColor->r)?>">
+            </label>
+
+            <label for="range-green" data-format="rgb">
+              <span>Green </span>
+              <span>[0 ; 255]</span>
+              <input type="range" id="range-green" data-property="g" min="0" max="255" step="1" value="<?=round(255 * $startColor->g)?>">
+            </label>
+
+            <label for="range-blue" data-format="rgb">
+              <span>Blue </span>
+              <span>[0 ; 255]</span>
+              <input type="range" id="range-blue" data-property="b" min="0" max="255" step="1" value="<?=round(255 * $startColor->b)?>">
+            </label>
+
+            <label for="range-hue" data-format="hsl,hwb">
+              <span>Hue </span>
+              <span>[0 ; 360]</span>
+              <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round(360 * $startColor->h)?>">
+            </label>
+
+            <label for="range-saturation" data-format="hsl">
+              <span>Saturation </span>
+              <span>[0 ; 100]</span>
+              <input type="range" id="range-saturation" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s)?>">
+            </label>
+
+            <label for="range-luminosity" data-format="hsl">
+              <span>Luminosity </span>
+              <span>[0 ; 100]</span>
+              <input type="range" id="range-luminosity" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l)?>">
+            </label>
+
+            <label for="range-whiteness" data-format="hwb">
+              <span>Whiteness </span>
+              <span>[0 ; 100]</span>
+              <input type="range" id="range-whiteness" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w)?>">
+            </label>
+
+            <label for="range-blackness" data-format="hwb">
+              <span>Blackness </span>
+              <span>[0 ; 100]</span>
+              <input type="range" id="range-blackness" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk)?>">
+            </label>
+
+            <label for="range-cie-lightness" data-format="lab,lch">
+              <span>CIE Lightness </span>
+              <span>[0 ; 100]</span>
+              <input type="range" id="range-cie-lightness" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel)?>">
+            </label>
+
+            <label for="range-cie-a-axis" data-format="lab">
+              <span>CIE A axis </span>
+              <span>[-160 ; 160]</span>
+              <input type="range" id="range-cie-a-axis" data-property="ciea" min="-160" max="160" step="1" value="<?=round($startColor->ciea)?>">
+            </label>
+
+            <label for="range-cie-b-axis" data-format="lab">
+              <span>CIE B axis </span>
+              <span>[-160 ; 160]</span>
+              <input type="range" id="range-cie-b-axis" data-property="cieb" min="-160" max="160" step="1" value="<?=round($startColor->cieb)?>">
+            </label>
+
+            <label for="range-cie-chroma" data-format="lch">
+              <span>CIE Chroma </span>
+              <span>[0 ; 230]</span>
+              <input type="range" id="range-cie-chroma" data-property="ciec" min="0" max="230" step="1" value="<?=round($startColor->ciec)?>">
+            </label>
+
+            <label for="range-cie-hue" data-format="lch">
+              <span>CIE Hue </span>
+              <span>[0 ; 360]</span>
+              <input type="range" id="range-cie-hue" data-property="cieh" min="0" max="360" step="1" value="<?=round(360 * $startColor->cieh)?>">
+            </label>
+
+            <label for="range-opacity" data-format="rgb,hsl,hwb,lab,lch">
+              <span>Opacity </span>
+              <span>[0 ; 100]</span>
+              <input type="range" id="range-opacity" data-property="a" min="0" max="100" step="1" value="<?=round(100 * $startColor->a)?>">
+            </label>
+          </div>
         </div>
 
         <h2 class="titre-partie-docu no-separator" data-string="demo-resultats-titre"><?=$Textes->getString('demo-resultats-titre')?></h2>
@@ -237,31 +351,31 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
             <pre class="format-donnee"><code class="language-css"></code></pre>
           </div>
 
-          <div class="format hex">
+          <div class="format hex" data-format="hex">
             <pre class="format-donnee language-css"><code class="language-css"><?=$startColor->hex()?></code></pre>
           </div>
 
-          <div class="format rgb">
+          <div class="format rgb" data-format="rgb">
             <pre class="format-donnee language-css"><code class="language-css"><?=$startColor->rgb()?></code></pre>
           </div>
 
-          <div class="format hsl">
+          <div class="format hsl" data-format="hsl">
             <pre class="format-donnee language-css"><code class="language-css"><?=$startColor->hsl()?></code></pre>
           </div>
 
-          <div class="format hwb">
+          <div class="format hwb" data-format="hwb">
             <pre class="format-donnee language-css"><code class="language-css"><?=$startColor->hwb()?></code></pre>
           </div>
 
-          <div class="format lab">
+          <div class="format lab" data-format="lab">
             <pre class="format-donnee language-css"><code class="language-css"><?=$startColor->lab()?></code></pre>
           </div>
 
-          <div class="format lch">
+          <div class="format lch" data-format="lch">
             <pre class="format-donnee language-css"><code class="language-css"><?=$startColor->lch()?></code></pre>
           </div>
 
-          <div class="format name oui">
+          <div class="format name oui" data-format="name">
             <pre class="format-donnee language-css"><code class="language-css"><?=$startColor->name()?></code></pre>
           </div>
         </div>
