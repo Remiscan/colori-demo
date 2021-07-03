@@ -113,20 +113,10 @@ html {
 /*<?php ob_start();?>*/
 html[data-theme="light"] {
   color-scheme: light;
-  /* Button colors */
-  --button-bg-color: rgba(255, 255, 255, .2);
-  --button-border-color: rgba(255, 255, 255, .5);
-  --button-hover-bg-color: rgba(255, 255, 255, .4);
-  --button-hover-border-color: white;
 }
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  /* Button colors */
-  --button-bg-color: rgba(255, 255, 255, .1);
-  --button-border-color: rgba(255, 255, 255, .3);
-  --button-hover-bg-color: rgba(255, 255, 255, .2);
-  --button-hover-border-color: rgba(255, 255, 255, .5);
 }
 /*<?php $body = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';
@@ -157,6 +147,28 @@ html[data-show-documentation="true"] body {
     grid-template-columns: .6rem calc(100% - 1.2rem) .6rem;
     grid-template-rows: repeat(4, auto) minmax(.9rem, 1fr) auto;
   }
+}
+
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--h1-color);
+  line-height: inherit;
+  margin: 0;
+  padding: .4em 1.2em;
+  border: 1px solid var(--button-border-color);
+  border-radius: 10px;
+  background: var(--button-bg-color);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+button:hover {
+  border-color: var(--button-hover-border-color);
+  background: var(--button-hover-bg-color);
 }
 
 
@@ -385,6 +397,11 @@ theme-selector .selector-cookie-notice {
   text-decoration: underline;
   text-decoration-skip-ink: auto;
   position: relative;
+}
+
+.bouton-langage:hover,
+theme-selector button:hover {
+  background-color: transparent;
 }
 
 .bouton-langage:disabled {
@@ -835,28 +852,16 @@ input:active, input:focus {
 }
 
 .exemple {
-  -webkit-appearance: none;
-  appearance: none;
   font-family: 'Fira Code';
   font-size: .8rem;
+  font-weight: normal;
   color: inherit;
-  line-height: inherit;
-  margin: 0;
   padding: .2em .6em;
-  border: 1px solid var(--button-border-color);
   border-radius: 4px;
-  background: var(--button-bg-color);
-  cursor: pointer;
-  white-space: nowrap;
-  text-decoration: none;
 }
 
-.exemple:hover {
-  border-color: var(--button-hover-border-color);
-  background: var(--button-hover-bg-color);
-}
-
-.exemple:focus {
+.exemple:focus,
+.show-documentation:focus {
   outline: none;
   border-color: var(--link-color);
   box-shadow: inset 0 0 0 1px var(--link-color);

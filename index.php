@@ -108,6 +108,11 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
         --token-string: <?= (new Couleur('lch(50% 70 '. ($cieh + 45) .')'))->hsl() ?>;
         --token-operator: <?= (new Couleur('lch(50% 70 '. ($cieh - 45) .')'))->hsl() ?>;
         --token-keyword: <?= (new Couleur('lch(50% 70 '. ($cieh + 135) .')'))->hsl() ?>;
+        /* Button colors */
+        --button-bg-color: <?= (new Couleur('lch(95% '. $ciec .' '. $cieh .' / .4)'))->hsl() ?>;
+        --button-border-color: <?= (new Couleur('lch(45% '. $ciec .' '. $cieh .' / .6)'))->hsl() ?>;
+        --button-hover-bg-color: <?= (new Couleur('lch(95% '. $ciec .' '. $cieh .' / .8)'))->hsl() ?>;
+        --button-hover-border-color: <?= (new Couleur('lch(45% '. $ciec .' '. $cieh .')'))->hsl() ?>;
       }
 
       <?php
@@ -138,6 +143,11 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
         --token-string: <?= (new Couleur('lch(80% 70 '. ($cieh + 45) .')'))->hsl() ?>;
         --token-operator: <?= (new Couleur('lch(80% 70 '. ($cieh - 45) .')'))->hsl() ?>;
         --token-keyword: <?= (new Couleur('lch(80% 70 '. ($cieh + 135) .')'))->hsl() ?>;
+        /* Button colors */
+        --button-bg-color: <?= (new Couleur('lch(80% '. (1.7 * $ciec) .' '. $cieh .' / .1)'))->hsl() ?>;
+        --button-border-color: <?= (new Couleur('lch(70% '. (1.7 * $ciec) .' '. $cieh .' / .5)'))->hsl() ?>;
+        --button-hover-bg-color: <?= (new Couleur('lch(80% '. (1.7 * $ciec) .' '. $cieh .' / .2)'))->hsl() ?>;
+        --button-hover-border-color: <?= (new Couleur('lch(70% '. (1.7 * $ciec) .' '. $cieh .')'))->hsl() ?>;
       }
       <?php $body = ob_get_clean();
       require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';
@@ -303,7 +313,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
     $quicknavPhpEn = prepareNav($docuPhpEn);
     ?>
 
-    <button type="button" class="show-documentation exemple" data-string="button-show-documentation"><?=$Textes->getString('button-show-documentation')?></button>
+    <button type="button" class="show-documentation" data-string="button-show-documentation"><?=$Textes->getString('button-show-documentation')?></button>
 
     <aside class="nav-documentation nav-rapide" data-label="nav-documentation">
       <h1 class="titre-nav-rapide" data-string="nav-documentation"><?=$Textes->getString('nav-documentation')?></h1>
