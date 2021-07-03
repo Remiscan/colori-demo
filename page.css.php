@@ -133,7 +133,7 @@ html.loaded {
 body { /* Desktop-like */
   display: grid;
   grid-template-columns: 1fr 42rem 1fr;
-  grid-template-rows: repeat(4, auto) minmax(1.2rem, 1fr) auto;
+  grid-template-rows: repeat(4, auto) 1fr auto;
   width: 100%;
   height: 100%;
   margin: 0;
