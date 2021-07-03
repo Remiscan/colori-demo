@@ -108,6 +108,10 @@ html {
   --user-saturation: 100%; 
   --text-strong-color: var(--h3-color);
   --section-padding: .9rem;
+
+  --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
+  linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
+  linear-gradient(to right, #ddd 0% 100%);
 }
 
 /*<?php ob_start();?>*/
@@ -159,7 +163,7 @@ button {
   margin: 0;
   padding: .4em 1.2em;
   border: 1px solid var(--button-border-color);
-  border-radius: 10px;
+  border-radius: .6rem;
   background: var(--button-bg-color);
   cursor: pointer;
   white-space: nowrap;
@@ -834,7 +838,7 @@ input[type="text"]:focus {
 
 .choix-format input[type="radio"][name="choix-format"] + label {
   padding: .3rem .4rem;
-  border-radius: 10px;
+  border-radius: .6rem;
 }
 
 #ranges label[data-format] {
@@ -855,6 +859,50 @@ input[type="text"]:focus {
 label[data-format]>input[type="range"] {
   grid-row: 2;
   grid-column: 1 / -1;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+	display: block;
+	width: calc(100% - 8px);
+  height: 2.4rem;
+  border: 4px solid var(--frame-color);
+  border-radius: .6rem;
+  --couleurs: white 0%, black 100%;
+	background: linear-gradient(to right, var(--couleurs)),
+              var(--echiquier-transparence);
+  background-size: 100% 100%, 16px 16px, 16px 16px;
+  background-position: 0 0, 0 0, 8px 8px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: .9rem;
+  height: calc(2.2rem + 8px);
+  background: transparent;
+	border: 2px solid var(--body-color);
+  border-radius: .6rem;
+  box-shadow: 0 0 0 2px var(--text-color);
+}
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: .9rem;
+  height: calc(2.2rem + 8px);
+  background: transparent;
+	border: 2px solid var(--body-color);
+  border-radius: .6rem;
+  box-shadow: 0 0 0 2px var(--text-color);
+}
+
+input[type="range"]::-moz-range-track {
+	background: none;
 }
 
 
@@ -920,11 +968,9 @@ pre[class*="language-"].format-donnee {
   height: calc(100% - 2 * var(--border-size));
   top: var(--border-size);
   left: var(--border-size);
-  background-image: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
-                    linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%);
+  background-image: var(--echiquier-transparence);
   background-size: 16px 16px;
   background-position: 0 0, 8px 8px;
-  background-color: #ddd;
   border-radius: .49rem;
   position: absolute;
 }
@@ -1615,7 +1661,7 @@ html[data-prog-language="php"] [data-prog-language="js"] {
 
 
 [hidden] {
-  display: none;
+  display: none !important;
 }
 
 
