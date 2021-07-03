@@ -209,7 +209,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
       <div class="demo-inside">
         <div class="demo-conteneur calced">
           <div id="saisie">
-            <label for="entree" class="h2 titre-partie-demo" data-string="demo-input-label"><?=$Textes->getString('demo-input-label')?></label>
+            <h2 class="titre-partie-demo"><label for="entree" data-string="demo-input-label"><?=$Textes->getString('demo-input-label')?></label></h2>
             <div class="exemples-saisie exemples-valeurs">
               <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
               <button type="button" class="exemple">pink</button>
