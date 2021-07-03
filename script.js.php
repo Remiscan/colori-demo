@@ -23,6 +23,15 @@ champ.addEventListener('input', event => {
 });
 
 
+/////////////////////////////////////
+// Show documentation on user request
+const docuButton = document.querySelector('.show-documentation');
+docuButton.addEventListener('click', () => {
+  document.documentElement.dataset.showDocumentation = 'true';
+  Prism.highlightAll(document.querySelector('.documentation'));
+});
+
+
 ////////////////////////////////////////////////
 // Switch between js and php version of the page
 const progLangSwitch = document.querySelector('fieldset.prog-language-choice');
@@ -69,7 +78,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   await Traduction.traduire();
 
   // Detect clicks on example buttons
-  for (const exemple of [...document.querySelectorAll('button.exemple')]) {
+  for (const exemple of [...document.querySelectorAll('#demo button.exemple')]) {
     exemple.addEventListener('click', () => {
       if (exemple.textContent == '+') {
         for (const hiddenElement of [...document.querySelectorAll('.inst-hidden')]) {
@@ -86,5 +95,5 @@ window.addEventListener('DOMContentLoaded', async () => {
   document.querySelector('theme-selector .selector-title').classList.add('h4');
   document.querySelector('theme-selector .selector-cookie-notice').classList.add('h6');
 
-  Prism.highlightAll();
+  Prism.highlightAll(document.querySelector('#demo'));
 });

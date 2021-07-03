@@ -303,6 +303,8 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
     $quicknavPhpEn = prepareNav($docuPhpEn);
     ?>
 
+    <button type="button" class="show-documentation exemple" data-string="button-show-documentation"><?=$Textes->getString('button-show-documentation')?></button>
+
     <aside class="nav-documentation nav-rapide" data-label="nav-documentation">
       <h1 class="titre-nav-rapide" data-string="nav-documentation"><?=$Textes->getString('nav-documentation')?></h1>
       <div lang="fr" data-prog-language="js"><?=$quicknavJsFr?></div>

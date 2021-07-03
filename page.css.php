@@ -96,7 +96,8 @@ h6, .h6 {
  */
 
 html {
-  width: 100%;
+  width: 100vw;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: var(--body-color);
@@ -137,25 +138,24 @@ html.loaded {
 
 body { /* Desktop-like */
   display: grid;
-  grid-template-columns: 1fr 42rem 4.2rem 42rem 1fr;
-  grid-row-gap: 1.2rem;
+  grid-template-columns: 1fr 42rem 1fr;
+  grid-template-rows: repeat(4, auto) minmax(1.2rem, 1fr) auto;
   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   background-color: var(--body-color);
   color: var(--text-color);
 }
 
-@media screen/*(max-width: 100rem)*/ { /* Narrow desktop-like */
-  body {
-    grid-template-columns: 1fr 42rem 1fr;
-  }
+html[data-show-documentation="true"] body {
+  grid-template-rows: repeat(4, auto) auto;
 }
 
 @media (max-width: 42rem) { /* Phone-like */
   body {
     grid-template-columns: .6rem calc(100% - 1.2rem) .6rem;
-    grid-row-gap: .9rem;
+    grid-template-rows: repeat(4, auto) minmax(.9rem, 1fr) auto;
   }
 }
 
@@ -491,6 +491,20 @@ footer {
   grid-column: 2;
 }
 
+header,
+section,
+.show-documentation {
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 42rem) { /* Phone-like */
+  header,
+  section,
+  .show-documentation {
+    margin-bottom: .9rem;
+  }
+}
+
 section {
   background-color: var(--section-color);
   border-radius: .6rem;
@@ -678,6 +692,7 @@ html[data-prog-language="php"] .switch-js-php>#sw-php {
  */
 
 footer {
+  grid-row: -2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -819,7 +834,7 @@ input:active, input:focus {
   font-size: .9em;
 }
 
-.exemple.exemple {
+.exemple {
   -webkit-appearance: none;
   appearance: none;
   font-family: 'Fira Code';
@@ -1057,7 +1072,7 @@ div + p {
 }
 
 li + li {
-  margin-top: .9em;
+  margin-top: .6em;
 }
 
 input + p {
@@ -1254,7 +1269,7 @@ aside.nav-documentation>div {
 }
 
 .documentation ul ul {
-  padding-left: 1.2em;
+  padding-left: .3em;
 }
 
 .documentation ul:last-child {
@@ -1475,7 +1490,7 @@ li {
   padding-left: .6rem;*/
   border-radius: .3rem;
   border: 1px solid var(--body-color);
-  border-left-width: 3px;
+  border-left-width: .3rem;
   padding: .3rem .6rem;
 }
 
@@ -1495,7 +1510,7 @@ li:hover {
   border-color: var(--h3-color);
 }
 
-li li {
+/*li li {
   list-style-type: disc;
 }
 
@@ -1508,7 +1523,7 @@ li li li {
   border: none;
   border-radius: 0;
   padding-left: revert;
-}
+}*/
 
 .nav-rapide li,
 .nav-rapide code[class*="language-"] {
@@ -1520,6 +1535,30 @@ li li li {
 
 .nav-rapide li>ul {
   margin: .3em 0;
+}
+
+
+/*
+ * Cacher la documentation
+ */
+
+.show-documentation {
+  grid-column: 2;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: .6rem;
+  padding: .4em 1.2em;
+  border-radius: 10px;
+}
+
+html:not([data-show-documentation="true"]) .nav-documentation,
+html:not([data-show-documentation="true"]) .documentation {
+  display: none;
+}
+
+html[data-show-documentation="true"] .show-documentation {
+  display: none;
 }
 
 
