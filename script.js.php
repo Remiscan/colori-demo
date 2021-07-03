@@ -5,7 +5,7 @@ import '/_common/components/theme-selector/theme-selector.js.php';
 import '/_common/components/tab-label/tab-label.js.php';
 import Cookie from '/colori/demo/modules/cookies.js.php';
 import { Traduction } from '/colori/demo/modules/traduction.js.php';
-import { updateCouleur } from '/colori/demo/modules/colorDetection.js.php';
+import { updateCouleur, updateSliders } from '/colori/demo/modules/colorDetection.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
@@ -36,20 +36,15 @@ for (const input of [...document.querySelectorAll('input[name="choix-format"]')]
 ////////////////////////////////////
 // Detect user input on input ranges
 const rangeValue = prop => document.querySelector(`input[data-property="${prop}"]`).value;
-let lastChange = 0;
 for (const input of [...document.querySelectorAll('label[data-format]>input[type="range"]')]) {
   input.addEventListener('change', event => {
-    /*const time = Date.now();
-    if (time - lastChange < 100) return;
-    lastChange = time;*/
-
     const format = document.querySelector('#ranges').dataset.format;
     let couleur;
     const a = rangeValue('a') / 100;
     switch (format) {
       case 'rgb': couleur = `rgb(${rangeValue('r')}, ${rangeValue('g')}, ${rangeValue('b')}, ${a})`; break;
       case 'hsl': couleur = `hsl(${rangeValue('h')}, ${rangeValue('s')}%, ${rangeValue('l')}%, ${a})`; break;
-      case 'hwb': couleur = `hwb(${rangeValue('h')} ${rangeValue('s')}% ${rangeValue('l')}% / ${a})`; break;
+      case 'hwb': couleur = `hwb(${rangeValue('h')} ${rangeValue('w')}% ${rangeValue('bk')}% / ${a})`; break;
       case 'lab': couleur = `lab(${rangeValue('ciel')}% ${rangeValue('ciea')} ${rangeValue('cieb')} / ${a})`; break;
       case 'lch': couleur = `lch(${rangeValue('ciel')}% ${rangeValue('ciec')} ${rangeValue('cieh')} / ${a})`; break;
     }
@@ -149,4 +144,5 @@ window.addEventListener('DOMContentLoaded', async () => {
   document.querySelector('theme-selector .selector-cookie-notice').classList.add('h6');
 
   Prism.highlightAll(document.querySelector('#demo'));
+  updateSliders(document.documentElement.dataset.startColor);
 });

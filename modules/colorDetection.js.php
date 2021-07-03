@@ -233,9 +233,21 @@ export function populateColorData(couleur) {
   const champ = document.getElementById('entree');
   champ.placeholder = couleur.name || couleur.hex;
 
-  // Changes the values of all input ranges
+  // Updates all input ranges
+  updateSliders(couleur);
+}
+
+
+
+///////////////////////////////////////////////////////////
+// Updates the color selection sliders to fit a given color
+export function updateSliders(_couleur) {
+  let couleur = Couleur.check(_couleur);
+
   for (const range of [...document.querySelectorAll('input[data-property]')]) {
     const prop = range.dataset.property;
+    
+    // Update value
     let coeff = range.max;
     switch (prop) {
       case 'ciea':
@@ -245,5 +257,91 @@ export function populateColorData(couleur) {
         break;
     }
     range.value = Math.round(coeff * couleur[prop]);
+
+    // Update background gradient
+    let gradient = [];
+    let start, end;
+    switch (prop) {
+      case 'r':
+        start = `rgb(0, ${255 * couleur.g}, ${255 * couleur.b}, ${couleur.a})`;
+        end = `rgb(255, ${255 * couleur.g}, ${255 * couleur.b}, ${couleur.a})`;
+        gradient = [start, end];
+        break;
+      case 'g':
+        start = `rgb(${255 * couleur.r}, 0, ${255 * couleur.b}, ${couleur.a})`;
+        end = `rgb(${255 * couleur.r}, 255, ${255 * couleur.b}, ${couleur.a})`;
+        gradient = [start, end];
+        break;
+      case 'b':
+        start = `rgb(${255 * couleur.r}, ${255 * couleur.g}, 0, ${couleur.a})`;
+        end = `rgb(${255 * couleur.r}, ${255 * couleur.g}, 255, ${couleur.a})`;
+        gradient = [start, end];
+        break;
+      case 'a':
+        start = `rgb(${255 * couleur.r}, ${255 * couleur.g}, ${255 * couleur.b}, 0)`;
+        end = `rgb(${255 * couleur.r}, ${255 * couleur.g}, ${255 * couleur.b}, 1)`;
+        gradient = [start, end];
+        break;
+      case 'h':
+        for (let i = 0; i <= 6; i ++) {
+          start = `hsl(${i * 60}, ${100 * couleur.s}%, ${100 * couleur.l}%, ${couleur.a})`;
+          gradient = [...gradient, start];
+        }
+        break;
+      case 's':
+        gradient = [
+          `hsl(${360 * couleur.h}, 0%, ${100 * couleur.l}%, ${couleur.a})`,
+          `hsl(${360 * couleur.h}, 100%, ${100 * couleur.l}%, ${couleur.a})`
+        ];
+        break;
+      case 'l':
+        gradient = [
+          `hsl(${360 * couleur.h}, ${100 * couleur.s}%, 0%, ${couleur.a})`,
+          `hsl(${360 * couleur.h}, ${100 * couleur.s}%, 50%, ${couleur.a})`,
+          `hsl(${360 * couleur.h}, ${100 * couleur.s}%, 100%, ${couleur.a})`
+        ];
+        break;
+      case 'w':
+        gradient = [
+          new Couleur(`hwb(${360 * couleur.h}, 0%, ${100 * couleur.bk}%, ${couleur.a})`),
+          new Couleur(`hwb(${360 * couleur.h}, 50%, ${100 * couleur.bk}%, ${couleur.a})`),
+          new Couleur(`hwb(${360 * couleur.h}, 100%, ${100 * couleur.bk}%, ${couleur.a})`)
+        ];
+        break;
+      case 'bk':
+        gradient = [
+          new Couleur(`hwb(${360 * couleur.h}, ${100 * couleur.w}%, 0%, ${couleur.a})`),
+          new Couleur(`hwb(${360 * couleur.h}, ${100 * couleur.w}%, 50%, ${couleur.a})`),
+          new Couleur(`hwb(${360 * couleur.h}, ${100 * couleur.w}%, 100%, ${couleur.a})`)
+        ];
+        break;
+      case 'ciel':
+        start = `lch(0% ${couleur.ciec} ${360 * couleur.cieh} / ${couleur.a})`;
+        end = `lch(100% ${couleur.ciec} ${360 * couleur.cieh} / ${couleur.a})`;
+        gradient = Couleur.gradient(start, end, 5);
+        break;
+      case 'ciec':
+        start = `lch(${100 * couleur.ciel}% 0 ${360 * couleur.cieh} / ${couleur.a})`;
+        end = `lch(${100 * couleur.ciel}% 230 ${360 * couleur.cieh} / ${couleur.a})`;
+        gradient = Couleur.gradient(start, end, 5);
+        break;
+      case 'cieh':
+        for (let i = 0; i <= 6; i ++) {
+          start = new Couleur(`lch(${100 * couleur.ciel}% ${couleur.ciec} ${60 * i} / ${couleur.a})`);
+          gradient = [...gradient, start];
+        }
+        break;
+      case 'ciea':
+        start = new Couleur(`lab(${100 * couleur.ciel}% -160 ${couleur.cieb} / ${couleur.a})`);
+        end = new Couleur(`lab(${100 * couleur.ciel}% 160 ${couleur.cieb} / ${couleur.a})`);
+        gradient = Couleur.gradient(start, end, 10, 'lab');
+        break;
+      case 'cieb':
+        start = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} -160 / ${couleur.a})`);
+        end = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} 160 / ${couleur.a})`);
+        gradient = Couleur.gradient(start, end, 10, 'lab');
+        break;
+    }
+    range.style.setProperty('--couleurs', gradient.map(c => c.rgb || c).join(', '));
   }
 }
