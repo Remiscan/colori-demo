@@ -238,20 +238,22 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
             <div class="choix-format">
               <span data-string="choix-format-titre"><?=$Textes->getString('choix-format-titre')?></span>
 
-              <input type="radio" id="choix-format-rgb" name="choix-format" value="rgb" checked>
-              <label for="choix-format-rgb">RGB</label>
+              <div class="liste-formats">
+                <input type="radio" id="choix-format-rgb" name="choix-format" value="rgb" checked>
+                <label for="choix-format-rgb">RGB</label>
 
-              <input type="radio" id="choix-format-hsl" name="choix-format" value="hsl">
-              <label for="choix-format-hsl">HSL</label>
+                <input type="radio" id="choix-format-hsl" name="choix-format" value="hsl">
+                <label for="choix-format-hsl">HSL</label>
 
-              <input type="radio" id="choix-format-hwb" name="choix-format" value="hwb">
-              <label for="choix-format-hwb">HWB</label>
+                <input type="radio" id="choix-format-hwb" name="choix-format" value="hwb">
+                <label for="choix-format-hwb">HWB</label>
 
-              <input type="radio" id="choix-format-lab" name="choix-format" value="lab">
-              <label for="choix-format-lab">LAB</label>
+                <input type="radio" id="choix-format-lab" name="choix-format" value="lab">
+                <label for="choix-format-lab">LAB</label>
 
-              <input type="radio" id="choix-format-lch" name="choix-format" value="lch">
-              <label for="choix-format-lch">LCH</label>
+                <input type="radio" id="choix-format-lch" name="choix-format" value="lch">
+                <label for="choix-format-lch">LCH</label>
+              </div>
             </div>
 
             <label for="range-red" data-format="rgb">
