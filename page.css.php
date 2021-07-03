@@ -895,25 +895,27 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: .9rem;
-  height: calc(2.2rem + 8px);
+  width: 12px;
+  height: 2.4rem;
   background: transparent;
-	border: 2px solid var(--body-color);
+  border: none;
   border-radius: .6rem;
-  box-shadow: 0 0 0 2px var(--text-color);
+  box-shadow: 0 0 0 2px var(--body-color),
+              0 0 0 4px var(--text-color);
 }
 
 input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: .9rem;
-  height: calc(2.2rem + 8px);
+  width: 12px;
+  height: 2.4rem;
   background: transparent;
-	border: 2px solid var(--body-color);
+	border: none;
   border-radius: .6rem;
   box-sizing: border-box;
-  box-shadow: 0 0 0 2px var(--text-color);
+  box-shadow: 0 0 0 2px var(--body-color),
+              0 0 0 4px var(--text-color);
 }
 
 input[type="range"]::-moz-range-track {

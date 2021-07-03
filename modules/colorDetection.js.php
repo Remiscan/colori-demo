@@ -326,9 +326,11 @@ export function updateSliders(_couleur) {
         gradient = Couleur.gradient(start, end, 5);
         break;
       case 'cieh':
-        for (let i = 0; i <= 6; i ++) {
-          start = new Couleur(`lch(${100 * couleur.ciel}% ${couleur.ciec} ${60 * i} / ${couleur.a})`);
-          gradient = [...gradient, start];
+        for (let i = 0; i < 6; i ++) {
+          gradient.pop();
+          start = `lch(${100 * couleur.ciel}% ${couleur.ciec} ${i * 360 / 6} / ${couleur.a})`;
+          end = `lch(${100 * couleur.ciel}% ${couleur.ciec} ${(i + 1) * 360 / 6} / ${couleur.a})`;
+          gradient = [...gradient, ...Couleur.gradient(start, end, 3)];
         }
         break;
       case 'ciea':
@@ -342,6 +344,12 @@ export function updateSliders(_couleur) {
         gradient = Couleur.gradient(start, end, 10, 'lab');
         break;
     }
-    range.style.setProperty('--couleurs', gradient.map(c => c.rgb || c).join(', '));
+    range.style.setProperty('--couleurs', gradient.map((c, k) => {
+      if (k == 0) {
+        return `${c.rgb || c} 0, ${c.rgb || c} 6px`;
+      } else if (k == gradient.length - 1) {
+        return `${c.rgb || c} calc(100% - 6px), ${c.rgb || c} 100%`;
+      } else return c.rgb || c
+    }).join(', '));
   }
 }
