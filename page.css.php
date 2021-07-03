@@ -149,7 +149,6 @@ html[data-show-documentation="true"] body {
 @media (max-width: 42rem) { /* Phone-like */
   body {
     grid-template-columns: .6rem calc(100% - 1.2rem) .6rem;
-    grid-template-rows: repeat(4, auto) minmax(.9rem, 1fr) auto;
   }
 }
 
