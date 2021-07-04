@@ -862,7 +862,7 @@ input[type="text"]:focus {
 }
 
 .choix-format input[type="radio"][name="choix-format"] + label {
-  padding: .3rem .4rem;
+  padding: .3rem;
   border-radius: .6rem;
 }
 
