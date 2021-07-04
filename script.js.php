@@ -13,14 +13,47 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 
 
 
-/////////////////////////////////////////////////
-// Detects user input in the "type a color" field
+// Prepare language buttons
+Traduction.initLanguageButtons();
+
+// Customize theme-selector
+const themeSelector = document.querySelector('theme-selector');
+themeSelector.querySelector('.selector-title').classList.add('h4');
+themeSelector.querySelector('.selector-cookie-notice').classList.add('h6');
+Traduction.traduire(themeSelector);
+
+// Syntax highlighting on start color formats
+Prism.highlightAll(document.querySelector('.donnees'));
+
+// Update sliders based on start color
+updateSliders(document.documentElement.dataset.startColor);
+
+
+
+////////////////////////////////////////////////
+// Detect user input in the "type a color" field
 const champ = document.getElementById('entree');
 champ.addEventListener('input', event => {
   let evt = event || window.event;
   updateCouleur(evt.target.value.replace(/'/g, ''), 50)
   .catch(error => {});
 });
+
+
+///////////////////////////////////
+// Detect clicks on example buttons
+for (const exemple of [...document.querySelectorAll('#demo button.exemple')]) {
+  exemple.addEventListener('click', () => {
+    if (exemple.textContent == '+') {
+      for (const hiddenElement of [...document.querySelectorAll('#saisie [data-hidden]')]) {
+        hiddenElement.classList.toggle('off');
+      }
+    } else {
+      champ.value = exemple.textContent;
+      champ.dispatchEvent(new Event('input'), { bubbles: true });
+    }
+  })
+}
 
 
 /////////////////////////////////////
@@ -142,32 +175,4 @@ window.addEventListener('themechange', event => {
     Cookie.delete('theme');
     Cookie.delete('resolvedTheme');
   }
-});
-
-
-///////////////
-// On page load
-window.addEventListener('DOMContentLoaded', async () => {
-  await Traduction.traduire();
-
-  // Detect clicks on example buttons
-  for (const exemple of [...document.querySelectorAll('#demo button.exemple')]) {
-    exemple.addEventListener('click', () => {
-      if (exemple.textContent == '+') {
-        for (const hiddenElement of [...document.querySelectorAll('.inst-hidden')]) {
-          hiddenElement.classList.toggle('off');
-        }
-      } else {
-        champ.value = exemple.textContent;
-        champ.dispatchEvent(new Event('input'), { bubbles: true });
-      }
-    })
-  }
-
-  // Customize theme-selector
-  document.querySelector('theme-selector .selector-title').classList.add('h4');
-  document.querySelector('theme-selector .selector-cookie-notice').classList.add('h6');
-
-  Prism.highlightAll(document.querySelector('#demo'));
-  updateSliders(document.documentElement.dataset.startColor);
 });

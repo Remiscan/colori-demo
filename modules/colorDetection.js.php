@@ -25,8 +25,8 @@ export async function updateCouleur(couleur, delai = 100) {
   if (lastTry != thisTry) return;
 
   // Hide the numerical result by default
-  const donnees = document.getElementById('donnees');
-  donnees.classList.remove('valeur', 'gradient');
+  const donnees = document.querySelector('.donnees');
+  donnees.removeAttribute('data-type');
   
   try {
     entree = resolveColor(couleur);
@@ -44,7 +44,7 @@ export async function updateCouleur(couleur, delai = 100) {
       // If the result is a number or a boolean, display it in the results
       if (typeof entree == 'number' || typeof entree == 'boolean') {
         valeur.innerHTML = entree;
-        donnees.classList.add('valeur');
+        donnees.dataset.type = 'valeur';
       }
 
       // If the result is an array of colors, display their gradient as the input background
@@ -56,7 +56,7 @@ export async function updateCouleur(couleur, delai = 100) {
           populateColorData(entree[0]);
           valeur.innerHTML = gradient;
           Prism.highlightElement(valeur);
-          donnees.classList.add('valeur', 'gradient');
+          donnees.dataset.type = 'valeur,gradient';
 
           document.querySelector('.format.gradient').style.setProperty('--gradient', gradient);
 
@@ -72,7 +72,7 @@ export async function updateCouleur(couleur, delai = 100) {
           populateColorData(entree[0]);
           valeur.innerHTML = array;
           Prism.highlightElement(valeur);
-          donnees.classList.add('valeur', 'gradient', 'whatToBlend');
+          donnees.dataset.type = 'valeur,gradient,whatToBlend';
 
           document.querySelector('.format.gradient').style.setProperty('--bg', input);
           document.querySelector('.format.gradient').style.setProperty('--gradient', gradient);
@@ -209,14 +209,14 @@ export function colorInterface(couleur = entree) {
 // Adds data about the selected color to the interface
 export function populateColorData(couleur) {
   // Populates results in all formats
-  for (const format of [...document.querySelectorAll('#donnees>[data-format]')]) {
+  for (const format of [...document.querySelectorAll('.donnees>[data-format]')]) {
     const code = format.querySelector('code');
     if (format.dataset.format == 'name') {
       if (couleur.name == null) {
-        document.querySelector('.name').classList.remove('oui');
+        document.querySelector('.name').setAttribute('hidden', 'true');
         code.innerHTML = '';
       } else {
-        document.querySelector('.name').classList.add('oui');
+        document.querySelector('.name').removeAttribute('hidden');
         code.innerHTML = couleur.name;
       }
     } else {
