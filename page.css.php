@@ -112,6 +112,9 @@ html {
   --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
   linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
   linear-gradient(to right, #ddd 0% 100%);
+
+  --button-border-color: var(--h3-color);
+  --button-hover-border-color: var(--h1-color);
 }
 
 /*<?php ob_start();?>*/

@@ -140,9 +140,7 @@ export function colorInterface(couleur = entree) {
       --token-keyword: ${(new Couleur(`lch(50% 70 ${cieh + 135})`)).hsl};
       /* Button colors */
       --button-bg-color: ${(new Couleur(`lch(95% ${ciec} ${cieh} / .4)`)).hsl};
-      --button-border-color: ${(new Couleur(`lch(45% ${ciec} ${cieh} / .6)`)).hsl};
       --button-hover-bg-color: ${(new Couleur(`lch(95% ${ciec} ${cieh} / .8)`)).hsl};
-      --button-hover-border-color: ${(new Couleur(`lch(45% ${ciec} ${cieh})`)).hsl};
     `;
   }
 
@@ -177,9 +175,7 @@ export function colorInterface(couleur = entree) {
       --token-keyword: ${(new Couleur(`lch(80% 70 ${cieh + 135})`)).hsl};
       /* Button colors */
       --button-bg-color: ${(new Couleur(`lch(80% ${1.7 * ciec} ${cieh} / .1)`)).hsl};
-      --button-border-color: ${(new Couleur(`lch(70% ${1.7 * ciec} ${cieh} / .5)`)).hsl};
       --button-hover-bg-color: ${(new Couleur(`lch(80% ${1.7 * ciec} ${cieh} / .2)`)).hsl};
-      --button-hover-border-color: ${(new Couleur(`lch(70% ${1.7 * ciec} ${cieh})`)).hsl};
     `;
   }
 
