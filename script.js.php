@@ -67,6 +67,7 @@ for (const input of [...document.querySelectorAll('input[type="range"][data-prop
   // Move numeric input on range drag
   input.addEventListener('input', event => {
     if (numericInput.value == input.value) return;
+    if (![input, numericInput].includes(document.activeElement)) input.focus();
     numericInput.value = input.value;
     numericInput.style.setProperty('--pos', (input.value - input.min) / (input.max - input.min));
   });
