@@ -167,7 +167,6 @@ button {
   border: 1px solid var(--button-border-color);
   border-radius: .6rem;
   background: var(--button-bg-color);
-  cursor: pointer;
   white-space: nowrap;
   text-decoration: none;
 }
@@ -641,7 +640,7 @@ input[type="radio"][role="tab"] + label {
   color: var(--h1-color);
   padding: 0 .6rem;
   border-radius: .6rem .6rem 0 0;
-  cursor: pointer;
+  cursor: default;
 }
 
 input[type="radio"][role="tab"] + label::before {
@@ -1402,23 +1401,6 @@ aside.nav-documentation>div {
   font-size: .9em;
 }
 
-.nav-documentation > input[type=checkbox] {
-  height: 0;
-  width: 0;
-  margin: 0;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-}
-
-.nav-documentation > input[type=checkbox] + label {
-  display: none;
-  place-items: center start;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
 @media (max-width: calc(.6rem + 20rem + .6rem + 42rem + .6rem + 20rem + .6rem + 2.4rem)) {
   aside.nav-documentation {
     display: none;
@@ -1452,10 +1434,6 @@ aside.nav-documentation>div {
   }
   .nav-documentation.on ul {
     display: block;
-  }
-
-  .nav-documentation > input[type=checkbox] + label {
-    display: grid;
   }
 }
 
