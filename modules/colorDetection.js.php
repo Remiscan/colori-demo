@@ -209,15 +209,16 @@ export function colorInterface(couleur = entree) {
 // Adds data about the selected color to the interface
 export function populateColorData(couleur) {
   // Populates results in all formats
+  const name = couleur.name;
   for (const format of [...document.querySelectorAll('.donnees>[data-format]')]) {
     const code = format.querySelector('code');
     if (format.dataset.format == 'name') {
-      if (couleur.name == null) {
+      if (name == null) {
         format.setAttribute('hidden', 'true');
         code.innerHTML = '';
       } else {
         format.removeAttribute('hidden');
-        code.innerHTML = couleur.name;
+        code.innerHTML = name;
       }
     } else {
       code.innerHTML = couleur[format.dataset.format];
@@ -227,7 +228,7 @@ export function populateColorData(couleur) {
 
   // Changes the input field placeholder text
   const champ = document.getElementById('entree');
-  champ.placeholder = couleur.name || couleur.hex;
+  champ.placeholder = name || couleur.hex;
 
   // Updates all input ranges
   updateSliders(couleur);
