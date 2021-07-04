@@ -10,35 +10,37 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 
 
 
-let entree;
-let lastTry;
-
-
-
 /////////////////////////////////////////////////////
 // Update the interface with the newly detected color
-export async function updateCouleur(couleur, delai = 100) {
+let lastTry;
+export async function updateInterface(couleur, delai = 20) {
   const thisTry = Date.now();
   lastTry = thisTry;
 
   await new Promise(resolve => setTimeout(resolve, delai));
   if (lastTry != thisTry) return;
 
-  // Hide the numerical result by default
+  // Hide non-format results by default
   const donnees = document.querySelector('.donnees');
   donnees.removeAttribute('data-type');
   
+  let entree;
   try {
+    // Resolve the user input (by detecting the typed colors or functions)
     entree = resolveColor(couleur);
     let methode, input;
     if (entree !== null && entree.length == 3) {
       [entree, methode, input] = entree;
     }
 
+    // If the user input resolves to a color, adapt the interface
     if (entree instanceof Couleur) {
-      colorInterface(entree);
+      computeCSS(entree);
       populateColorData(entree);
-    } else if (entree != null) {
+    }
+    
+    // If the user input resolves to another type of data...
+    else if (entree != null) {
       const valeur = document.querySelector('.format.valeur code');
 
       // If the result is a number or a boolean, display it in the results
@@ -49,34 +51,28 @@ export async function updateCouleur(couleur, delai = 100) {
 
       // If the result is an array of colors, display their gradient as the input background
       else if (Array.isArray(entree) && entree.length > 0 && entree.reduce((sum, e) => sum + (e instanceof Couleur), 0)) {
+        const gradient = `linear-gradient(to right, ${entree.map(c => c.name || c.rgb).join(', ')})`;
+        computeCSS(entree[0]);
+        populateColorData(entree[0]);
+
         if (methode == 'gradient') {
-          const gradient = `linear-gradient(to right, ${entree.map(c => c.name || c.rgb).join(', ')})`;
-          
-          colorInterface(entree[0]);
-          populateColorData(entree[0]);
           valeur.innerHTML = gradient;
-          Prism.highlightElement(valeur);
           donnees.dataset.type = 'valeur,gradient';
-
-          document.querySelector('.format.gradient').style.setProperty('--gradient', gradient);
-
-        } else if (methode == 'whatToBlend') {
-          const gradient = `linear-gradient(to right, ${entree.map(c => c.name || c.rgb).join(', ')})`;
+        }
+        else if (methode == 'whatToBlend') {
           let array = `[\n`;
           for (const c of entree) {
             array += `  ${c.name || c.rgb},\n`
           }
           array += `]`;
-          
-          colorInterface(entree[0]);
-          populateColorData(entree[0]);
-          valeur.innerHTML = array;
-          Prism.highlightElement(valeur);
-          donnees.dataset.type = 'valeur,gradient,whatToBlend';
 
+          valeur.innerHTML = array;
+          donnees.dataset.type = 'valeur,gradient,whatToBlend';
           document.querySelector('.format.gradient').style.setProperty('--bg', input);
-          document.querySelector('.format.gradient').style.setProperty('--gradient', gradient);
         }
+
+        Prism.highlightElement(valeur);
+        document.querySelector('.format.gradient').style.setProperty('--gradient', gradient);
       }
 
       // If not any of these, display the results in the console
@@ -93,7 +89,7 @@ export async function updateCouleur(couleur, delai = 100) {
 
 ///////////////////////
 // Colors the interface
-export function colorInterface(couleur = entree) {
+function computeCSS(couleur) {
   const element = document.documentElement;
   element.style.setProperty('--user-color', couleur.rgb);
   element.style.setProperty('--user-hue', Math.round(couleur.h * 360));
