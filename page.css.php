@@ -901,7 +901,7 @@ input[type="range"]::-webkit-slider-thumb {
   background: transparent;
   border: none;
   border-radius: .6rem;
-  box-shadow: 0 0 0 2px var(--body-color),
+  box-shadow: 0 0 0 2px var(--code-color),
               0 0 0 4px var(--text-color);
 }
 
@@ -915,7 +915,7 @@ input[type="range"]::-moz-range-thumb {
 	border: none;
   border-radius: .6rem;
   box-sizing: border-box;
-  box-shadow: 0 0 0 2px var(--body-color),
+  box-shadow: 0 0 0 2px var(--code-color),
               0 0 0 4px var(--text-color);
 }
 
