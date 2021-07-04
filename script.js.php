@@ -13,23 +13,6 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 
 
 
-// Prepare language buttons
-Traduction.initLanguageButtons();
-
-// Customize theme-selector
-const themeSelector = document.querySelector('theme-selector');
-themeSelector.querySelector('.selector-title').classList.add('h4');
-themeSelector.querySelector('.selector-cookie-notice').classList.add('h6');
-Traduction.traduire(themeSelector);
-
-// Syntax highlighting on start color formats
-Prism.highlightAll(document.querySelector('.donnees'));
-
-// Update sliders based on start color
-updateSliders(document.documentElement.dataset.startColor);
-
-
-
 ////////////////////////////////////////////////
 // Detect user input in the "type a color" field
 const champ = document.getElementById('entree');
@@ -176,3 +159,20 @@ window.addEventListener('themechange', event => {
     Cookie.delete('resolvedTheme');
   }
 });
+
+
+
+// Prepare language buttons
+Traduction.initLanguageButtons();
+
+// Customize theme-selector
+const themeSelector = document.querySelector('theme-selector');
+themeSelector.querySelector('.selector-title').classList.add('h4');
+themeSelector.querySelector('.selector-cookie-notice').classList.add('h6');
+Traduction.traduire(themeSelector);
+
+// Syntax highlighting on start color formats
+Prism.highlightAll(document.querySelector('.donnees'));
+
+// Update sliders based on start color
+updateSliders(document.documentElement.dataset.startColor);
