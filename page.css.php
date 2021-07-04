@@ -919,8 +919,17 @@ input[type="range"]::-moz-range-thumb {
               0 0 0 4px var(--text-color);
 }
 
+input[type="range"]:hover {
+  box-shadow: 0 0 0 2px var(--h3-color);
+}
+
 input[type="range"]::-moz-range-track {
 	background: none;
+}
+
+input[type=number][data-property]::-webkit-inner-spin-button, 
+input[type=number][data-property]::-webkit-outer-spin-button {  
+  opacity: 1;
 }
 
 input[type="number"][data-property] {
@@ -943,12 +952,8 @@ input[type="number"][data-property] {
   left: calc(4px + 6px + var(--pos, 0) * (100% - 2 * 10px));
   transform: translateX(-50%);
 
-  display: none;
-}
-
-input[type=number][data-property]::-webkit-inner-spin-button, 
-input[type=number][data-property]::-webkit-outer-spin-button {  
-  opacity: 1;
+  opacity: 0;
+  pointer-events: none;
 }
 
 input[type="range"][data-property]:hover + input[type="number"][data-property],
@@ -957,7 +962,8 @@ input[type="range"][data-property]:active + input[type="number"][data-property],
 input[type="number"][data-property]:hover,
 input[type="number"][data-property]:focus,
 input[type="number"][data-property]:active {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 
