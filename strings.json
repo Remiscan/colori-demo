@@ -40,6 +40,7 @@
     "nav-documentation": "Navigation rapide",
     "documentation-intro-p1": "<strong>colori.<span data-prog-language=\"js\">js</span><span data-prog-language=\"php\">php</span></strong> est un module <span data-prog-language=\"js\">JavaScript</span><span data-prog-language=\"php\">PHP</span> qui convertit une couleur entre les différents formats utilisables en CSS et fournit quelques fonctions pratiques pour manipuler les couleurs (fusionner deux couleurs, calculer leur contraste, etc.).",
     "documentation-intro-p2": "(Note&nbsp;: <em><strong>colori</strong></em> signifie <em><strong>couleurs</strong></em> en italien. Le singulier est <em><strong>colore</strong></em>.)",
+    "documentation-warning-js": "<strong>JavaScript doit être activé pour utiliser ce site de démonstration.</strong>",
     "syntax-highlighting-source": "Cette page utilise"
   },
   "en": {
@@ -83,6 +84,7 @@
     "nav-documentation": "Quick navigation",
     "documentation-intro-p1": "<strong>colori.<span data-prog-language=\"js\">js</span><span data-prog-language=\"php\">php</span></strong> is a <span data-prog-language=\"js\">JavaScript</span><span data-prog-language=\"php\">PHP</span> module to convert a color into its different CSS-supported formats and to manipulate colors with some useful functions (blend two colors, calculate their contrast, etc.).",
     "documentation-intro-p2": "(Note: <em><strong>colori</strong></em> means <em><strong>colors</strong></em> in Italian. The singular is <em><strong>colore</strong></em>.)",
+    "documentation-warning-js": "<strong>JavaScript must be enabled to use this demo website.</strong>",
     "syntax-highlighting-source": "This page uses"
   }
 }

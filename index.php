@@ -194,6 +194,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
 
     <section id="intro" class="no-titre">
       <p data-string="documentation-intro-p1"><?=$Textes->getString('documentation-intro-p1')?></p>
+      <p data-string="documentation-warning-js"><?=$Textes->getString('documentation-warning-js')?></p>
     </section>
 
     <section id="demo">

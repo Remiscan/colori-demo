@@ -604,6 +604,10 @@ footer {
   display: none;
 }
 
+p[data-string="documentation-warning-js"] {
+  display: none;
+}
+
 
 
 /*

@@ -5,6 +5,7 @@ html {
 .loading,
 #demo,
 .groupe-langages,
+.show-documentation,
 footer {
   display: none;
 }
@@ -22,4 +23,9 @@ pre {
 }
 pre, :not(pre) > code {
   background: rgba(0, 0, 0, .8);
+}
+
+p[data-string="documentation-warning-js"] {
+  display: block;
+  margin-top: .6rem;
 }
