@@ -13,10 +13,6 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 const vSep = '\\,(?: +)?';
 // RegExp des options d'une méthode
 const vOpt = 'true|false|\\{(?:.+)?\\}';
-// RegExp des arguments d'une méthode qui prend un nombre ou pourcentage et des options
-const vNPandOptions = `(${Couleur.vNP})(?:${vSep}(${vOpt}))?`;
-// RegExp des arguments d'une méthode qui prend un nom de propriété, une valeur (en pourcentage) et des options
-const vPropNPandOptions = `(${Couleur.vProp})${vSep}(${Couleur.vNP})(?:${vSep}(${vOpt}))?`;
 // RegExp des formats
 const vFormats = `rgb|hsl|hwb|lab|lch`;
 
@@ -24,22 +20,22 @@ const vFormats = `rgb|hsl|hwb|lab|lch`;
 const methodes = [
   {
     name: 'change',
-    args: new RegExp(vPropNPandOptions)
+    args: [
+      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})${vSep}(${vOpt})`),
+      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})`)
+    ]
   }, {
     name: 'replace',
-    args: new RegExp(vPropNPandOptions)
+    args: [
+      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})${vSep}(${vOpt})`),
+      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})`)
+    ]
   }, {
     name: 'scale',
-    args: new RegExp(vPropNPandOptions)
-  }, {
-    name: 'complement',
-    args: null
-  }, {
-    name: 'negative',
-    args: null
-  }, {
-    name: 'invert',
-    args: null
+    args: [
+      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})${vSep}(${vOpt})`),
+      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})`)
+    ]
   }, {
     name: 'greyscale',
     args: null
@@ -50,17 +46,28 @@ const methodes = [
     name: 'sepia',
     args: null
   }, {
-    name: 'blend',
-    args: [
-      new RegExp(`^(.+)${vSep}(${Couleur.vNP})$`),
-      new RegExp(`^(.+)$`)
-    ],
-    argIsColor: [true, false]
+    name: 'complement',
+    args: null
   }, {
-    name: 'improveContrast',
+    name: 'negative',
+    args: null
+  }, {
+    name: 'invert',
+    args: null
+  }, {
+    name: 'blend',
+    args: new RegExp(`^(.+)$`),
+    argIsColor: [true]
+  }, {
+    name: 'unblend',
+    args: new RegExp(`^(.+)$`),
+    argIsColor: [true]
+  }, {
+    name: 'whatToBlend',
     args: [
       new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${Couleur.vNum})$`),
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`)
+      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
+      new RegExp(`^(.+)$`)
     ],
     argIsColor: [true, false, false]
   }, {
@@ -71,13 +78,12 @@ const methodes = [
     name: 'contrastedText',
     args: null
   }, {
-    name: 'gradient',
+    name: 'improveContrast',
     args: [
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${vFormats})$`),
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
-      new RegExp(`^(.+)$`)
+      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${Couleur.vNum})$`),
+      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`)
     ],
-    argIsColor: [true, false]
+    argIsColor: [true, false, false]
   }, {
     name: 'distance',
     args: [
@@ -93,17 +99,9 @@ const methodes = [
     ],
     argIsColor: [true, false]
   }, {
-    name: 'unblend',
+    name: 'gradient',
     args: [
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${Couleur.vNum})$`),
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
-      new RegExp(`^(.+)$`)
-    ],
-    argIsColor: [true, false, false]
-  }, {
-    name: 'whatToBlend',
-    args: [
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${Couleur.vNum})$`),
+      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${vFormats})$`),
       new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
       new RegExp(`^(.+)$`)
     ],

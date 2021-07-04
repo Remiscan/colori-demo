@@ -226,7 +226,6 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
           <button type="button" class="exemple">black.contrast(white)</button>
           <button type="button" class="exemple">orchid.gradient(palegreen, 5)</button>
           <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
-          <!--<button type="button" class="exemple">aqua.blend(red.replace(a, .5), white.scale(l, .2).replace(a, .8))</button>-->
         </div>
 
         <input id="entree" class="h4" type="text" data-abbr="<?=$Textes->getString('exemple-abbr')?>"
