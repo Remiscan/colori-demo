@@ -244,7 +244,7 @@ export function populateColorData(couleur) {
 export function updateSliders(_couleur) {
   let couleur = Couleur.check(_couleur);
 
-  for (const range of [...document.querySelectorAll('input[data-property]')]) {
+  for (const range of [...document.querySelectorAll('input[type="range"][data-property]')]) {
     const prop = range.dataset.property;
     
     // Update value
@@ -257,6 +257,10 @@ export function updateSliders(_couleur) {
         break;
     }
     range.value = Math.round(coeff * couleur[prop]);
+
+    // Update corresponding numeric input value
+    const numericInput = document.querySelector(`input[type="number"][data-property="${prop}"]`);
+    if (numericInput) numericInput.style.setProperty('--pos', (range.value - range.min) / (range.max - range.min));
 
     // Update background gradient
     let gradient = [];

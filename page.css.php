@@ -853,6 +853,7 @@ input[type="text"]:focus {
   grid-template-columns: auto auto 1fr;
   grid-template-rows: auto auto;
   gap: .3rem;
+  position: relative;
 }
 
 #ranges[data-format="rgb"] label[data-format*="rgb"],
@@ -920,6 +921,40 @@ input[type="range"]::-moz-range-thumb {
 
 input[type="range"]::-moz-range-track {
 	background: none;
+}
+
+input[type="number"][data-property] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+	width: 6ch;
+  height: 1.8rem;
+  padding: .15rem .3rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  border: none;
+  border-radius: .6rem;
+	background: var(--body-color);
+  border: 1px solid var(--section-color);
+  text-align: center;
+
+  position: absolute;
+  top: -.6rem;
+  left: calc(4px + 6px + var(--pos, 0) * (100% - 2 * 10px));
+  transform: translateX(-50%);
+
+  display: none;
+}
+
+input[type=number][data-property]::-webkit-inner-spin-button, 
+input[type=number][data-property]::-webkit-outer-spin-button {  
+  opacity: 1;
+}
+
+input[type="range"][data-property]:hover + input[type="number"][data-property],
+input[type="range"][data-property]:focus + input[type="number"][data-property],
+input[type="range"][data-property]:active + input[type="number"][data-property] {
+  display: block;
 }
 
 

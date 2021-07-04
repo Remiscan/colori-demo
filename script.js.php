@@ -35,8 +35,19 @@ for (const input of [...document.querySelectorAll('input[name="choix-format"]')]
 
 ////////////////////////////////////
 // Detect user input on input ranges
-const rangeValue = prop => document.querySelector(`input[data-property="${prop}"]`).value;
-for (const input of [...document.querySelectorAll('label[data-format]>input[type="range"]')]) {
+const rangeValue = prop => document.querySelector(`input[type="range"][data-property="${prop}"]`).value;
+for (const input of [...document.querySelectorAll('input[type="range"][data-property]')]) {
+  // Create corresponding numeric input
+  const numericInput = document.createElement('input');
+  numericInput.type = "number";
+  numericInput.dataset.property = input.dataset.property;
+  numericInput.min = input.min;
+  numericInput.max = input.max;
+  numericInput.step = 1;
+  numericInput.value = input.value;
+  input.parentElement.appendChild(numericInput);
+
+  // Update interface color on range change
   input.addEventListener('change', event => {
     const format = document.querySelector('#ranges').dataset.format;
     let couleur;
@@ -51,6 +62,20 @@ for (const input of [...document.querySelectorAll('label[data-format]>input[type
 
     updateCouleur(couleur, 50)
     .catch(error => console.error(error));
+  });
+
+  // Move numeric input on range drag
+  input.addEventListener('input', event => {
+    if (numericInput.value == input.value) return;
+    numericInput.value = input.value;
+    numericInput.style.setProperty('--pos', (input.value - input.min) / (input.max - input.min));
+  });
+
+  // Move numeric input and update range input value on range change
+  numericInput.addEventListener('change', event => {
+    input.value = numericInput.value;
+    numericInput.style.setProperty('--pos', (input.value - input.min) / (input.max - input.min));
+    input.dispatchEvent(new Event('change'));
   });
 }
 
