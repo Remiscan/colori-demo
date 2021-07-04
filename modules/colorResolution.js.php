@@ -130,7 +130,10 @@ export function resolveColor(input) {
   let premCouleur = input;
   const methodesAppliquees = [];
 
-  while (true) {
+  let loop = 0;
+  while (loop < 100) {
+    loop++;
+
     // On vérifie si la valeur de l'input est de la forme couleur.methodeRecursive() ou couleur.methodeNonRecursive()
     const match = premCouleur.match(regexps.recursive) || premCouleur.match(regexps.simple);
 
