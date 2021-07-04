@@ -202,8 +202,8 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
       <fieldset role="tablist" data-group="tabs-input-method">
         <legend data-string="tabs-input-method-label"></legend>
 
-        <tab-label controls="saisie" label="Saisie manuelle" active="true"></tab-label>
-        <tab-label controls="ranges" label="Sélecteurs"></tab-label>
+        <tab-label controls="saisie" data-label-id="tab-label-manuel" label="<?=$Textes->getString('tab-label-manuel')?>" active="true"></tab-label>
+        <tab-label controls="ranges" data-label-id="tab-label-selecteurs" label="<?=$Textes->getString('tab-label-selecteurs')?>"></tab-label>
       </fieldset>
 
       <div class="demo-inside">

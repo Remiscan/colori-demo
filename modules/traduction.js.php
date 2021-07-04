@@ -22,6 +22,10 @@ class ExtTraduction extends DefTraduction {
     if (element.contains(themeSelector)) {
       document.querySelector('theme-selector').dataset.tolabel = getString('change-theme');
     }
+
+    for (const e of [...element.querySelectorAll('[data-label-id]')]) {
+      e.setAttribute('label', getString(e.dataset.labelId));
+    }
     return;
   }
 }
