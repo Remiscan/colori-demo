@@ -363,6 +363,7 @@ html {
 
   --button-border-color: var(--h3-color);
   --button-hover-border-color: var(--h1-color);
+  --button-hover-bg-color: var(--input-bg-color);
 }
 
 /*<?php ob_start();?>*/
