@@ -377,6 +377,21 @@ theme-selector .selector-cookie-notice {
   hyphens: auto;
 }
 
+input[type="radio"]:focus + label {
+  outline: 2px solid var(--link-color);
+}
+input[type="radio"]:focus:not(:focus-visible) + label {
+  outline: none;
+}
+
+theme-selector input[type="radio"]:focus + label {
+  box-shadow: inset 0 0 0 2px var(--link-color);
+  outline: none;
+}
+theme-selector input[type="radio"]:focus:not(:focus-visible) + label {
+  box-shadow: none;
+}
+
 .groupe-langages {
   grid-column: options-start / options-end;
   grid-row: 1;
