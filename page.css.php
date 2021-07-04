@@ -1100,6 +1100,10 @@ pre[class*="language-"].format-donnee {
   #saisie {
     grid-column: 1 / 2;
   }
+
+  .choix-format {
+    grid-template-columns: 100%;
+  }
 }
 
 @media (max-width: 30rem) {
