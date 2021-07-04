@@ -213,10 +213,10 @@ export function populateColorData(couleur) {
     const code = format.querySelector('code');
     if (format.dataset.format == 'name') {
       if (couleur.name == null) {
-        document.querySelector('.name').setAttribute('hidden', 'true');
+        format.setAttribute('hidden', 'true');
         code.innerHTML = '';
       } else {
-        document.querySelector('.name').removeAttribute('hidden');
+        format.removeAttribute('hidden');
         code.innerHTML = couleur.name;
       }
     } else {
