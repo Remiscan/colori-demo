@@ -953,7 +953,10 @@ input[type=number][data-property]::-webkit-outer-spin-button {
 
 input[type="range"][data-property]:hover + input[type="number"][data-property],
 input[type="range"][data-property]:focus + input[type="number"][data-property],
-input[type="range"][data-property]:active + input[type="number"][data-property] {
+input[type="range"][data-property]:active + input[type="number"][data-property],
+input[type="number"][data-property]:hover,
+input[type="number"][data-property]:focus,
+input[type="number"][data-property]:active {
   display: block;
 }
 
