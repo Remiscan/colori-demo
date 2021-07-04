@@ -123,7 +123,6 @@ window.addEventListener('langchange', event => {
       progLang = 'php';
       break;
   }
-  console.log(progLang);
   document.querySelector(`#input-for-docu-${progLang}-${lang}`).click();
 });
 
