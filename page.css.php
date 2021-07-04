@@ -919,10 +919,6 @@ input[type="range"]::-moz-range-thumb {
               0 0 0 4px var(--text-color);
 }
 
-input[type="range"]:hover {
-  box-shadow: 0 0 0 2px var(--h3-color);
-}
-
 input[type="range"]::-moz-range-track {
 	background: none;
 }
