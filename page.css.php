@@ -673,7 +673,7 @@ footer {
   position: relative;
   background: var(--section-color);
   border-radius: .6rem .6rem 0 0;
-  padding: var(--section-padding);
+  padding: calc(.5 * var(--section-padding)) var(--section-padding);
 }
 
 
