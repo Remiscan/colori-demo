@@ -429,7 +429,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
     $quicknavPhpEn = prepareNav($docuPhpEn);
     ?>
 
-    <button type="button" class="show-documentation" data-string="button-show-documentation"><a id="show-documentation" aria-hidden="true"></a><?=$Textes->getString('button-show-documentation')?></button>
+    <button type="button" class="show-documentation" data-string="button-show-documentation"><?=$Textes->getString('button-show-documentation')?></button>
 
     <aside class="nav-documentation nav-rapide" data-label="nav-documentation">
       <h1 class="titre-nav-rapide" data-string="nav-documentation"><?=$Textes->getString('nav-documentation')?></h1>
@@ -439,8 +439,8 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
       <div lang="en" data-prog-language="php"><?=$quicknavPhpEn?></div>
     </aside>
 
+    <a id="documentation" aria-hidden="true"></a>
     <section class="documentation">
-      <a id="documentation" aria-hidden="true"></a>
       <h1 data-string="titre-section-documentation"><?=$Textes->getString('titre-section-documentation')?></h1>
 
       <fieldset role="tablist" data-group="tabs-prog-language">

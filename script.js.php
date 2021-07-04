@@ -87,7 +87,6 @@ const docuButton = document.querySelector('.show-documentation');
 docuButton.addEventListener('click', () => {
   document.documentElement.dataset.showDocumentation = 'true';
   Prism.highlightAll(document.querySelector('.documentation'));
-  document.querySelector('a[href="#show-documentation"]').href = '#documentation';
 });
 
 

@@ -1250,11 +1250,6 @@ h2 + a.anchor-dest + .documenation h3::after {
   border-color: transparent;
 }
 
-a#documentation {
-  position: absolute;
-  top: -3rem;
-}
-
 
 
 /*
@@ -1297,6 +1292,14 @@ strong, em {
 /*
  * Menu de navigation rapide
  */
+
+a#documentation {
+  grid-row: 4;
+  grid-column: 3;
+  width: 1px;
+  height: 1px;
+  margin: 0 0 -1px -1px;
+}
 
 aside.nav-documentation {
   grid-row: 4;
