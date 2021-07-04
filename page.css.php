@@ -138,7 +138,7 @@ body { /* Desktop-like */
   grid-template-columns: 1fr 42rem 1fr;
   grid-template-rows: repeat(4, auto) 1fr auto;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   background-color: var(--body-color);
