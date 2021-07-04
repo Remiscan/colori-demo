@@ -17,6 +17,8 @@ const vOpt = 'true|false|\\{(?:.+)?\\}';
 const vNPandOptions = `(${Couleur.vNP})(?:${vSep}(${vOpt}))?`;
 // RegExp des arguments d'une méthode qui prend un nom de propriété, une valeur (en pourcentage) et des options
 const vPropNPandOptions = `(${Couleur.vProp})${vSep}(${Couleur.vNP})(?:${vSep}(${vOpt}))?`;
+// RegExp des formats
+const vFormats = `rgb|hsl|hwb|lab|lch`;
 
 // Liste des méthodes supportées par le champ
 const methodes = [
@@ -71,6 +73,7 @@ const methodes = [
   }, {
     name: 'gradient',
     args: [
+      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${vFormats})$`),
       new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
       new RegExp(`^(.+)$`)
     ],
