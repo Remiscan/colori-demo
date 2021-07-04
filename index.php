@@ -313,20 +313,20 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
 
         <label for="range-cie-a-axis" data-format="lab">
           <span data-string="prop-ciea-nom"><?=$Textes->getString('prop-ciea-nom')?></span>
-          <span>[-160 ; 160]</span>
-          <input type="range" id="range-cie-a-axis" data-property="ciea" min="-160" max="160" step="1" value="<?=round($startColor->ciea)?>">
+          <span>[-94 ; 94]</span>
+          <input type="range" id="range-cie-a-axis" data-property="ciea" min="-94" max="94" step="1" value="<?=round($startColor->ciea)?>">
         </label>
 
         <label for="range-cie-b-axis" data-format="lab">
           <span data-string="prop-cieb-nom"><?=$Textes->getString('prop-cieb-nom')?></span>
-          <span>[-160 ; 160]</span>
-          <input type="range" id="range-cie-b-axis" data-property="cieb" min="-160" max="160" step="1" value="<?=round($startColor->cieb)?>">
+          <span>[-94 ; 94]</span>
+          <input type="range" id="range-cie-b-axis" data-property="cieb" min="-94" max="94" step="1" value="<?=round($startColor->cieb)?>">
         </label>
 
         <label for="range-cie-chroma" data-format="lch">
           <span data-string="prop-ciec-nom"><?=$Textes->getString('prop-ciec-nom')?></span>
-          <span>[0 ; 230]</span>
-          <input type="range" id="range-cie-chroma" data-property="ciec" min="0" max="230" step="1" value="<?=round($startColor->ciec)?>">
+          <span>[0 ; 132]</span>
+          <input type="range" id="range-cie-chroma" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec)?>">
         </label>
 
         <label for="range-cie-hue" data-format="lch">

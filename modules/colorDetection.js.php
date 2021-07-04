@@ -322,7 +322,7 @@ export function updateSliders(_couleur) {
         break;
       case 'ciec':
         start = `lch(${100 * couleur.ciel}% 0 ${360 * couleur.cieh} / ${couleur.a})`;
-        end = `lch(${100 * couleur.ciel}% 230 ${360 * couleur.cieh} / ${couleur.a})`;
+        end = `lch(${100 * couleur.ciel}% 132 ${360 * couleur.cieh} / ${couleur.a})`;
         gradient = Couleur.gradient(start, end, 5);
         break;
       case 'cieh':
@@ -334,13 +334,13 @@ export function updateSliders(_couleur) {
         }
         break;
       case 'ciea':
-        start = new Couleur(`lab(${100 * couleur.ciel}% -160 ${couleur.cieb} / ${couleur.a})`);
-        end = new Couleur(`lab(${100 * couleur.ciel}% 160 ${couleur.cieb} / ${couleur.a})`);
+        start = new Couleur(`lab(${100 * couleur.ciel}% -94 ${couleur.cieb} / ${couleur.a})`);
+        end = new Couleur(`lab(${100 * couleur.ciel}% 94 ${couleur.cieb} / ${couleur.a})`);
         gradient = Couleur.gradient(start, end, 10, 'lab');
         break;
       case 'cieb':
-        start = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} -160 / ${couleur.a})`);
-        end = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} 160 / ${couleur.a})`);
+        start = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} -94 / ${couleur.a})`);
+        end = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} 94 / ${couleur.a})`);
         gradient = Couleur.gradient(start, end, 10, 'lab');
         break;
     }
