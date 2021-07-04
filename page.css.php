@@ -1379,20 +1379,9 @@ aside.nav-documentation>div {
   line-height: normal;
 }
 
-.nav-rapide ul {
-  padding-left: 1.2em;
-  margin: 0;
-  font-size: .9em;
-}
-
 .documentation ul {
-  /*padding-left: 1.2em;*/
-  padding-left: 0;
+  padding-left: 1.2rem;
   margin: 0 0 1em 0;
-}
-
-.documentation ul ul {
-  padding-left: .3em;
 }
 
 .documentation ul:last-child {
@@ -1403,10 +1392,11 @@ aside.nav-documentation>div {
   margin-top: 0;
 }
 
-/*.nav-rapide a {
-  text-decoration: none;
-  box-shadow: none;
-}*/
+.nav-rapide ul {
+  padding-left: 1.2em;
+  margin: 0;
+  font-size: .9em;
+}
 
 .nav-documentation > input[type=checkbox] {
   height: 0;
@@ -1423,12 +1413,6 @@ aside.nav-documentation>div {
   width: 100%;
   height: 100%;
   cursor: pointer;
-}
-
-@media (max-width: 30rem) {
-  .documentation :not(.nav-rapide)>ul {
-    padding-left: .6em;
-  }
 }
 
 @media (max-width: calc(.6rem + 20rem + .6rem + 42rem + .6rem + 20rem + .6rem + 2.4rem)) {
@@ -1606,47 +1590,6 @@ blockquote>pre:last-child,
 article>pre:last-child {
   margin-bottom: 0;
 }
-
-li {
-  list-style-type: none;
-  /*border-left: .3rem solid var(--body-color);
-  padding-left: .6rem;*/
-  border-radius: .3rem;
-  border: 1px solid var(--body-color);
-  border-left-width: .3rem;
-  padding: .3rem .6rem;
-}
-
-li:first-of-type {
-  border-radius: .6rem .6rem .3rem .3rem;
-}
-
-li:last-of-type {
-  border-radius: .3rem .3rem .6rem .6rem;
-}
-
-li:first-of-type:last-of-type {
-  border-radius: .6rem;
-}
-
-li:hover {
-  border-color: var(--h3-color);
-}
-
-/*li li {
-  list-style-type: disc;
-}
-
-li li li {
-  list-style-type: circle;
-}
-
-li li,
-li li li {
-  border: none;
-  border-radius: 0;
-  padding-left: revert;
-}*/
 
 .nav-rapide li,
 .nav-rapide code[class*="language-"] {
