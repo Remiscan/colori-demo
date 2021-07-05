@@ -113,6 +113,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
         --token-keyword: <?= (new Couleur('lch(50% 70 '. ($cieh + 135) .')'))->hsl() ?>;
         /* Button colors */
         --button-bg-color: <?= (new Couleur('lch(90% '. (0.6 * $ciec) .' '. $cieh .')'))->hsl() ?>;
+        --button-active-bg-color: <?= (new Couleur('lch(98% '. (0.3 * $ciec) .' '. $cieh .')'))->hsl() ?>;
       }
 
       <?php
@@ -145,6 +146,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
         --token-keyword: <?= (new Couleur('lch(80% 70 '. ($cieh + 135) .')'))->hsl() ?>;
         /* Button colors */
         --button-bg-color: <?= (new Couleur('lch(25% '. (.75 * $ciec) .' '. $cieh .')'))->hsl() ?>;
+        --button-active-bg-color: <?= (new Couleur('lch(35% '. (1.5 * $ciec) .' '. $cieh .')'))->hsl() ?>;
       }
       <?php $body = ob_get_clean();
       require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';

@@ -121,9 +121,19 @@ button {
   text-decoration: none;
 }
 
-button:hover {
+button:hover,
+button:focus,
+button:active {
   border-color: var(--button-hover-border-color);
   background: var(--button-hover-bg-color);
+}
+
+button:active {
+  background: var(--button-active-bg-color);
+}
+
+button:focus-visible {
+  border-radius: 0;
 }
 
 
@@ -799,7 +809,7 @@ input[type="text"]:focus {
 
 .exemples-valeurs,
 .exemples-fonctions {
-  padding: 0 1px; /* pour éviter de couper le bord */
+  padding: 2px; /* pour éviter de couper le bord et l'outline de focus */
 }
 
 .instructions-exemples-fonctions,
@@ -819,13 +829,6 @@ input[type="text"]:focus {
   color: inherit;
   padding: .4em .6em;
   border-radius: 4px;
-}
-
-.exemple:focus,
-.show-documentation:focus {
-  outline: none;
-  border-color: var(--link-color);
-  box-shadow: inset 0 0 0 1px var(--link-color);
 }
 
 

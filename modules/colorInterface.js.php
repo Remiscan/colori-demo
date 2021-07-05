@@ -136,6 +136,7 @@ function computeCSS(couleur) {
       --token-keyword: ${(new Couleur(`lch(50% 70 ${cieh + 135})`)).hsl};
       /* Button colors */
       --button-bg-color: ${(new Couleur(`lch(90% ${.6 * ciec} ${cieh})`)).hsl};
+      --button-active-bg-color: ${(new Couleur(`lch(98% ${.3 * ciec} ${cieh})`)).hsl};
     `;
   }
 
@@ -170,6 +171,7 @@ function computeCSS(couleur) {
       --token-keyword: ${(new Couleur(`lch(80% 70 ${cieh + 135})`)).hsl};
       /* Button colors */
       --button-bg-color: ${(new Couleur(`lch(25% ${.75 * ciec} ${cieh} / .25)`)).hsl};
+      --button-active-bg-color: ${(new Couleur(`lch(35% ${1.5 * ciec} ${cieh})`)).hsl};
     `;
   }
 
