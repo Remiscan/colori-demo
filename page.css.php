@@ -499,6 +499,11 @@ theme-selector .selector-title {
   place-self: center;
 }
 
+theme-selector>.selector>label {
+  min-height: var(--tap-safe-size);
+  box-sizing: border-box;
+}
+
 theme-selector>.selector>label[for="theme-light"],
 theme-selector>.selector>label[for="theme-dark"] {
   grid-template-columns: auto 1fr auto;
