@@ -771,11 +771,10 @@ input[type="text"]:focus {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: .6rem;
-  align-items: center;
+  align-items: flex-end;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
-  min-height: var(--tap-safe-size);
 }
 
 .exemples-saisie>span {
@@ -811,7 +810,7 @@ input[type="text"]:focus {
   font-size: .8rem;
   font-weight: normal;
   color: inherit;
-  padding: .2em .6em;
+  padding: .4em .6em;
   border-radius: 4px;
 }
 
@@ -1089,16 +1088,10 @@ input[type="number"][data-property]:active {
   .choix-format {
     grid-template-columns: 100%;
   }
-}
 
-@media (max-width: 30rem) {
   #saisie {
     grid-template-columns: 1fr;
     column-gap: 0;
-  }
-
-  .exemples-saisie {
-    gap: .3rem;
   }
 
   #entree {
