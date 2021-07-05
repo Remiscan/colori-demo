@@ -837,7 +837,6 @@ input[type="text"]:focus {
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: .3rem;
-  min-height: var(--tap-safe-size);
 }
 
 .liste-formats {
@@ -845,6 +844,7 @@ input[type="text"]:focus {
   align-items: center;
   gap: .3rem;
   flex-wrap: wrap;
+  min-height: var(--tap-safe-size);
 }
 
 .choix-format input[type="radio"][name="choix-format"] + label {
