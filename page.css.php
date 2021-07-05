@@ -734,6 +734,7 @@ input[type="text"] {
   grid-column: 1 / 3;
   width: 100%;
   height: 100%;
+  min-height: var(--tap-safe-size);
   border: none;
   box-sizing: border-box;
   padding: .4em .6em;
