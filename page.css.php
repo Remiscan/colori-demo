@@ -423,6 +423,8 @@ body { /* Desktop-like */
   min-height: 100%;
   margin: 0;
   padding: 0;
+  padding-right: env(safe-area-inset-right, 0);
+  padding-left: env(safe-area-inset-left, 0);
   background-color: var(--body-color);
   color: var(--text-color);
 }
@@ -448,6 +450,7 @@ header {
   background: var(--section-color);
   border-radius: 0 0 .6rem .6rem;
   padding: 0 var(--section-padding);
+  padding-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
 }
 
@@ -719,6 +722,7 @@ footer {
   background: var(--section-color);
   border-radius: .6rem .6rem 0 0;
   padding: calc(.5 * var(--section-padding)) var(--section-padding);
+  padding-bottom: calc(.5 * var(--section-padding) + env(safe-area-inset-bottom, 0));
 }
 
 
