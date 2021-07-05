@@ -8,6 +8,23 @@
 *:focus:not(:focus-visible) { outline-style: none; }
 ::-moz-focus-inner { border: 0; }
 
+:root { --tap-safe-size: 44px; }
+[data-tappable] { position: relative; z-index: 1; }
+[data-tappable]:not([data-tappable="after"])::before,
+[data-tappable][data-tappable="after"]::after {
+  content: '';
+  display: block;
+  width: 100%;
+  min-width: 44px;
+  height: 100%;
+  min-height: 44px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
 
 
 
@@ -129,6 +146,7 @@ input[type="radio"] + label {
   grid-template-columns: auto 1fr;
   gap: .6rem;
   padding: .6rem .6rem;
+  min-width: var(--tap-safe-size);
 }
 
 input[type="radio"] + label:hover,
@@ -190,8 +208,9 @@ input[type="radio"]:focus:not(:focus-visible) + label {
 }
 
 input[type="radio"][role="tab"] + label {
-  all: unset;
+  border: none;
   display: grid;
+  grid-template: unset;
   place-items: center;
   box-sizing: border-box;
   --decalage: 0rem;
@@ -203,10 +222,16 @@ input[type="radio"][role="tab"] + label {
   padding: 0 .6rem;
   border-radius: .6rem .6rem 0 0;
   cursor: default;
+  min-width: var(--tap-safe-size);
 }
 
 input[type="radio"][role="tab"] + label::before {
-  display: none;
+  background: none;
+  box-shadow: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  grid-area: unset;
 }
 
 input[type="radio"][role="tab"] + label:hover {
@@ -411,6 +436,7 @@ header {
   background: var(--section-color);
   border-radius: 0 0 .6rem .6rem;
   padding: 0 var(--section-padding);
+  min-height: var(--tap-safe-size);
 }
 
 header>h1 {
@@ -506,6 +532,7 @@ theme-selector input[type="radio"]:focus:not(:focus-visible) + label {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: .3rem;
   height: 100%;
 }
 
@@ -744,9 +771,11 @@ input[type="text"]:focus {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: .6rem;
-  align-items: flex-end;
+  align-items: center;
   overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: thin;
+  min-height: var(--tap-safe-size);
 }
 
 .exemples-saisie>span {
@@ -806,8 +835,9 @@ input[type="text"]:focus {
 .choix-format {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: baseline;
+  align-items: center;
   gap: .3rem;
+  min-height: var(--tap-safe-size);
 }
 
 .liste-formats {
@@ -855,7 +885,7 @@ input[type="range"] {
   appearance: none;
 	display: block;
 	width: calc(100% - 8px);
-  height: 2.4rem;
+  height: var(--tap-safe-size);
   border: 4px solid var(--frame-color);
   border-radius: .6rem;
   --couleurs: white 0%, black 100%;
@@ -918,7 +948,7 @@ input[type="number"][data-property] {
   text-align: center;
 
   position: absolute;
-  top: -.6rem;
+  bottom: calc(var(--tap-safe-size) + 10px);
   left: calc(4px + 6px + var(--pos, 0) * (100% - 2 * 10px));
   transform: translateX(-50%);
 
@@ -1453,6 +1483,7 @@ article>pre:last-child {
   margin-top: .6rem;
   padding: .4em 1.2em;
   border-radius: 10px;
+  min-height: var(--tap-safe-size);
 }
 
 html:not([data-show-documentation="true"]) .nav-documentation,

@@ -173,3 +173,8 @@ Prism.highlightAll(document.querySelector('.donnees'));
 
 // Update sliders based on start color
 updateSliders(document.documentElement.dataset.startColor);
+
+// Mark tappable custom elements as such
+for (const e of [...document.querySelectorAll('theme-selector button, tab-label label')]) {
+  e.dataset.tappable = '';
+}

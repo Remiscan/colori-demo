@@ -169,7 +169,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
     <header>
       <h1>colori.<span data-prog-language="js">js</span><span data-prog-language="php">php</span></h1>
 
-      <a href="https://github.com/Remiscan/colori" class="lien-github"
+      <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable
          data-label="github" aria-label="<?=$Textes->getString('github')?>">
         <svg viewBox="0 0 16 16" class="github-cat"><use href="#github-cat" /></svg>
         <span data-string="github"><?=$Textes->getString('github')?></span>
@@ -177,8 +177,8 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
       </a>
 
       <div class="groupe-langages">
-        <button type="button" class="bouton-langage" lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</button>
-        <button type="button" class="bouton-langage" lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</button>
+        <button type="button" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</button>
+        <button type="button" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</button>
         <theme-selector position="bottom"></theme-selector>
       </div>
     </header>
@@ -205,24 +205,24 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
 
         <div class="exemples-saisie exemples-valeurs">
           <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
-          <button type="button" class="exemple">pink</button>
-          <button type="button" class="exemple">#4169E1</button>
-          <button type="button" class="exemple">rgb(255, 127, 80)</button>
-          <button type="button" class="exemple" data-label="more-examples" aria-label="<?=$Textes->getString('more-examples')?>">+</button>
+          <button type="button" class="exemple" data-tappable>pink</button>
+          <button type="button" class="exemple" data-tappable>#4169E1</button>
+          <button type="button" class="exemple" data-tappable>rgb(255, 127, 80)</button>
+          <button type="button" class="exemple" data-tappable data-label="more-examples" aria-label="<?=$Textes->getString('more-examples')?>">+</button>
         </div>
 
         <p class="instructions-exemples-fonctions off" data-hidden="true" data-string="instructions-demo"><?=$Textes->getString('instructions-demo')?></p>
 
         <div class="exemples-saisie exemples-fonctions off" data-hidden="true">
           <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
-          <button type="button" class="exemple">pink.invert()</button>
-          <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
-          <button type="button" class="exemple">black.contrast(white)</button>
-          <button type="button" class="exemple">orchid.gradient(palegreen, 5)</button>
-          <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
+          <button type="button" class="exemple" data-tappable>pink.invert()</button>
+          <button type="button" class="exemple" data-tappable>#4169E1.scale(l, .5)</button>
+          <button type="button" class="exemple" data-tappable>black.contrast(white)</button>
+          <button type="button" class="exemple" data-tappable>orchid.gradient(palegreen, 5)</button>
+          <button type="button" class="exemple" data-tappable>rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
         </div>
 
-        <input id="entree" class="h4" type="text" data-abbr="<?=$Textes->getString('exemple-abbr')?>"
+        <input id="entree" class="h4" data-tappable type="text" data-abbr="<?=$Textes->getString('exemple-abbr')?>"
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 placeholder="<?=$startColor->name()?>">
       </div>
@@ -235,19 +235,19 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
 
           <div class="liste-formats">
             <input type="radio" id="choix-format-rgb" name="choix-format" value="rgb" checked>
-            <label for="choix-format-rgb">RGB</label>
+            <label for="choix-format-rgb" data-tappable="after">RGB</label>
 
             <input type="radio" id="choix-format-hsl" name="choix-format" value="hsl">
-            <label for="choix-format-hsl">HSL</label>
+            <label for="choix-format-hsl" data-tappable="after">HSL</label>
 
             <input type="radio" id="choix-format-hwb" name="choix-format" value="hwb">
-            <label for="choix-format-hwb">HWB</label>
+            <label for="choix-format-hwb" data-tappable="after">HWB</label>
 
             <input type="radio" id="choix-format-lab" name="choix-format" value="lab">
-            <label for="choix-format-lab">LAB</label>
+            <label for="choix-format-lab" data-tappable="after">LAB</label>
 
             <input type="radio" id="choix-format-lch" name="choix-format" value="lch">
-            <label for="choix-format-lch">LCH</label>
+            <label for="choix-format-lch" data-tappable="after">LCH</label>
           </div>
         </div>
 
