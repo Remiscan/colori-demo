@@ -248,12 +248,14 @@ input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
 
 input[type="radio"][role="tab"]:active + label {
   background-color: var(--tab-hover-color);
+  box-shadow: -1px 0 0 0 var(--body-color), 1px 0 0 0 var(--body-color);
   --decalage: .1rem;
 }
 
 input[type="radio"][role="tab"]:checked + label {
   background-color: var(--section-color);
   color: var(--h1-color);
+  box-shadow: -1px 0 0 0 var(--body-color), 1px 0 0 0 var(--body-color);
   --decalage: 0rem;
 }
 
@@ -738,7 +740,6 @@ input[type="text"] {
   border: none;
   box-sizing: border-box;
   padding: .4em .6em;
-  padding-right: calc(.6em + var(--padding-right, 0));
   font-family: 'Fira Code';
   color: var(--text-color);
   background-color: var(--input-bg-color);
@@ -771,7 +772,7 @@ input[type="text"]:focus {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: .6rem;
+  gap: .3rem;
   align-items: flex-end;
   overflow-x: auto;
   overflow-y: hidden;
@@ -901,7 +902,7 @@ input[type="range"]::-webkit-slider-thumb {
   -moz-appearance: none;
   appearance: none;
   width: 12px;
-  height: 2.4rem;
+  height: var(--tap-safe-size);
   background: transparent;
   border: none;
   border-radius: .6rem;
@@ -914,11 +915,10 @@ input[type="range"]::-moz-range-thumb {
   -moz-appearance: none;
   appearance: none;
   width: 12px;
-  height: 2.4rem;
+  height: var(--tap-safe-size);
   background: transparent;
 	border: none;
   border-radius: .6rem;
-  box-sizing: border-box;
   box-shadow: 0 0 0 2px var(--code-color),
               0 0 0 4px var(--text-color);
 }

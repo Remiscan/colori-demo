@@ -205,24 +205,24 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
 
         <div class="exemples-saisie exemples-valeurs">
           <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
-          <button type="button" class="exemple" data-tappable>pink</button>
-          <button type="button" class="exemple" data-tappable>#4169E1</button>
-          <button type="button" class="exemple" data-tappable>rgb(255, 127, 80)</button>
-          <button type="button" class="exemple" data-tappable data-label="more-examples" aria-label="<?=$Textes->getString('more-examples')?>">+</button>
+          <button type="button" class="exemple">pink</button>
+          <button type="button" class="exemple">#4169E1</button>
+          <button type="button" class="exemple">rgb(255, 127, 80)</button>
+          <button type="button" class="exemple" data-label="more-examples" aria-label="<?=$Textes->getString('more-examples')?>">&nbsp;+&nbsp;</button>
         </div>
 
         <p class="instructions-exemples-fonctions off" data-hidden="true" data-string="instructions-demo"><?=$Textes->getString('instructions-demo')?></p>
 
         <div class="exemples-saisie exemples-fonctions off" data-hidden="true">
           <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
-          <button type="button" class="exemple" data-tappable>pink.invert()</button>
-          <button type="button" class="exemple" data-tappable>#4169E1.scale(l, .5)</button>
-          <button type="button" class="exemple" data-tappable>black.contrast(white)</button>
-          <button type="button" class="exemple" data-tappable>orchid.gradient(palegreen, 5)</button>
-          <button type="button" class="exemple" data-tappable>rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
+          <button type="button" class="exemple">pink.invert()</button>
+          <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
+          <button type="button" class="exemple">black.contrast(white)</button>
+          <button type="button" class="exemple">orchid.gradient(palegreen, 5)</button>
+          <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
         </div>
 
-        <input id="entree" class="h4" data-tappable type="text" data-abbr="<?=$Textes->getString('exemple-abbr')?>"
+        <input id="entree" class="h4" type="text" data-abbr="<?=$Textes->getString('exemple-abbr')?>"
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 placeholder="<?=$startColor->name()?>">
       </div>
