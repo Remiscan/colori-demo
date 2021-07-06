@@ -72,7 +72,10 @@ const methodes = [
     argIsColor: [true, false, false]
   }, {
     name: 'contrast',
-    args: new RegExp(`^(.+)$`),
+    args: [
+      new RegExp(`^(.+)${vSep}([A-Za-z0-9]+?)$`),
+      new RegExp(`^(.+)$`)
+    ],
     argIsColor: [true]
   }, {
     name: 'contrastedText',
