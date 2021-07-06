@@ -249,11 +249,12 @@ export function updateSliders(_couleur) {
         coeff = 1;
         break;
     }
-    range.value = Math.round(coeff * couleur[prop]);
+    range.value = Math.max(range.min, Math.min(Math.round(coeff * couleur[prop]), range.max));
 
     // Update corresponding numeric input value
     const numericInput = document.querySelector(`input[type="number"][data-property="${prop}"]`);
     if (numericInput) numericInput.style.setProperty('--pos', (range.value - range.min) / (range.max - range.min));
+    numericInput.value = range.value;
 
     // Update background gradient
     let gradient = [];
@@ -319,7 +320,7 @@ export function updateSliders(_couleur) {
         break;
       case 'ciec':
         start = `lch(${100 * couleur.ciel}% 0 ${360 * couleur.cieh} / ${couleur.a})`;
-        end = `lch(${100 * couleur.ciel}% 132 ${360 * couleur.cieh} / ${couleur.a})`;
+        end = `lch(${100 * couleur.ciel}% ${range.max} ${360 * couleur.cieh} / ${couleur.a})`;
         gradient = Couleur.gradient(start, end, 5);
         break;
       case 'cieh':
@@ -331,13 +332,13 @@ export function updateSliders(_couleur) {
         }
         break;
       case 'ciea':
-        start = new Couleur(`lab(${100 * couleur.ciel}% -94 ${couleur.cieb} / ${couleur.a})`);
-        end = new Couleur(`lab(${100 * couleur.ciel}% 94 ${couleur.cieb} / ${couleur.a})`);
+        start = new Couleur(`lab(${100 * couleur.ciel}% ${range.min} ${couleur.cieb} / ${couleur.a})`);
+        end = new Couleur(`lab(${100 * couleur.ciel}% ${range.max} ${couleur.cieb} / ${couleur.a})`);
         gradient = Couleur.gradient(start, end, 10, 'lab');
         break;
       case 'cieb':
-        start = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} -94 / ${couleur.a})`);
-        end = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} 94 / ${couleur.a})`);
+        start = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} ${range.min} / ${couleur.a})`);
+        end = new Couleur(`lab(${100 * couleur.ciel}% ${couleur.ciea} ${range.max} / ${couleur.a})`);
         gradient = Couleur.gradient(start, end, 10, 'lab');
         break;
     }
