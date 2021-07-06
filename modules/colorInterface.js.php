@@ -239,10 +239,11 @@ export function updateSliders(_couleur, source = 'text') {
 
   const ranges = [...document.querySelectorAll('input[type="range"][data-property]')];
   const getRange = prop => ranges.find(r => r.dataset.property == prop);
+
+  // First loop: update the values of each slider if needed
   for (const range of ranges) {
     const prop = range.dataset.property;
     
-    // Update value
     let coeff = range.max;
     switch (prop) {
       case 'ciea':
@@ -255,15 +256,16 @@ export function updateSliders(_couleur, source = 'text') {
     }
 
     const newValue = Math.max(range.min, Math.min(Math.round(coeff * couleur[prop]), range.max));
-    let oldValue;
-    switch (prop) {
-      case 'r': case 'g': case 'b':                         oldValue = 255 * range.value; break;
-      case 's': case 'l': case 'w': case 'bk': case 'ciel': oldValue = `${range.value}%`; break;
-      default:                                              oldValue = range.value;
+
+    let shouldUpdate = true;
+    if (source.substring(0, 5) == 'range') {
+      const visibleFormat = document.querySelector('#ranges').dataset.format;
+      const isVisible = Couleur.propertiesOf(visibleFormat).includes(prop);
+      shouldUpdate = !isVisible;
     }
 
-    // Only update a slider value if its old value doesn't make the same color
-    if (!Couleur.same(couleur, couleur.replace(prop, oldValue))) {
+    // Only update sliders that are not being used
+    if (shouldUpdate) {
       // Update slider value
       range.value = newValue;
 
@@ -272,106 +274,104 @@ export function updateSliders(_couleur, source = 'text') {
       if (numericInput) numericInput.style.setProperty('--pos', (range.value - range.min) / (range.max - range.min));
       numericInput.value = range.value;
     }
+  }
 
-    // Update background gradient
+  // Second loop: update the background gradients
+  for (const range of ranges) {
+    const prop = range.dataset.property;
+
     let gradient = [];
-    let start, end;
+    let steps, min, max;
     let h, s, l, w, bk, ciel, ciea, cieb, ciec, cieh;
     switch (prop) {
       case 'r':
-        start = `rgb(0, ${255 * couleur.g}, ${255 * couleur.b}, ${couleur.a})`;
-        end = `rgb(255, ${255 * couleur.g}, ${255 * couleur.b}, ${couleur.a})`;
-        gradient = [start, end];
+        gradient.push(`rgb(0, ${255 * couleur.g}, ${255 * couleur.b}, ${couleur.a})`);
+        gradient.push(`rgb(255, ${255 * couleur.g}, ${255 * couleur.b}, ${couleur.a})`);
         break;
       case 'g':
-        start = `rgb(${255 * couleur.r}, 0, ${255 * couleur.b}, ${couleur.a})`;
-        end = `rgb(${255 * couleur.r}, 255, ${255 * couleur.b}, ${couleur.a})`;
-        gradient = [start, end];
+        gradient.push(`rgb(${255 * couleur.r}, 0, ${255 * couleur.b}, ${couleur.a})`);
+        gradient.push(`rgb(${255 * couleur.r}, 255, ${255 * couleur.b}, ${couleur.a})`);
         break;
       case 'b':
-        start = `rgb(${255 * couleur.r}, ${255 * couleur.g}, 0, ${couleur.a})`;
-        end = `rgb(${255 * couleur.r}, ${255 * couleur.g}, 255, ${couleur.a})`;
-        gradient = [start, end];
+        gradient.push(`rgb(${255 * couleur.r}, ${255 * couleur.g}, 0, ${couleur.a})`);
+        gradient.push(`rgb(${255 * couleur.r}, ${255 * couleur.g}, 255, ${couleur.a})`);
         break;
       case 'a':
-        start = `rgb(${255 * couleur.r}, ${255 * couleur.g}, ${255 * couleur.b}, 0)`;
-        end = `rgb(${255 * couleur.r}, ${255 * couleur.g}, ${255 * couleur.b}, 1)`;
-        gradient = [start, end];
+        gradient.push(`rgb(${255 * couleur.r}, ${255 * couleur.g}, ${255 * couleur.b}, 0)`);
+        gradient.push(`rgb(${255 * couleur.r}, ${255 * couleur.g}, ${255 * couleur.b}, 1)`);
         break;
       case 'h':
         s = getRange('s').value, l = getRange('l').value;
-        for (let i = 0; i <= 6; i ++) {
-          start = `hsl(${i * 60}, ${s}%, ${l}%, ${couleur.a})`;
-          gradient = [...gradient, start];
+        steps = 6;
+        for (let i = 0; i <= steps; i ++) {
+          gradient.push(`hsl(${i * 360 / steps}, ${s}%, ${l}%, ${couleur.a})`);
         }
         break;
       case 's':
         h = getRange('h').value, l = getRange('l').value;
-        gradient = [
-          `hsl(${h}, 0%, ${l}%, ${couleur.a})`,
-          `hsl(${h}, 50%, ${l}%, ${couleur.a})`,
-          `hsl(${h}, 100%, ${l}%, ${couleur.a})`
-        ];
+        steps = 5;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push(`hsl(${h}, ${i * 100 / steps}%, ${l}%, ${couleur.a})`)
+        }
         break;
       case 'l':
         h = getRange('h').value, s = getRange('s').value;
-        gradient = [
-          `hsl(${h}, ${s}%, 0%, ${couleur.a})`,
-          `hsl(${h}, ${s}%, 50%, ${couleur.a})`,
-          `hsl(${h}, ${s}%, 100%, ${couleur.a})`
-        ];
+        steps = 5;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push(`hsl(${h}, ${s}%, ${i * 100 / steps}%, ${couleur.a})`)
+        }
         break;
       case 'w':
         h = getRange('h').value, bk = getRange('bk').value;
-        gradient = [
-          new Couleur(`hwb(${h}, 0%, ${bk}%, ${couleur.a})`),
-          new Couleur(`hwb(${h}, 50%, ${bk}%, ${couleur.a})`),
-          new Couleur(`hwb(${h}, 100%, ${bk}%, ${couleur.a})`)
-        ];
+        steps = 5;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`hwb(${h} ${i * 100 / steps}% ${bk}% / ${couleur.a})`)).rgb)
+        }
         break;
       case 'bk':
         h = getRange('h').value, w = getRange('w').value;
-        gradient = [
-          new Couleur(`hwb(${h}, ${w}%, 0%, ${couleur.a})`),
-          new Couleur(`hwb(${h}, ${w}%, 50%, ${couleur.a})`),
-          new Couleur(`hwb(${h}, ${w}%, 100%, ${couleur.a})`)
-        ];
+        steps = 5;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`hwb(${h} ${w}% ${i * 100 / steps}% / ${couleur.a})`)).rgb)
+        }
         break;
       case 'ciel':
         ciec = getRange('ciec').value, cieh = getRange('cieh').value;
-        for (let i = 0; i < 2; i ++) {
-          gradient.pop();
-          start = `lch(${i * 50}% ${ciec} ${cieh} / ${couleur.a})`;
-          end = `lch(${(i + 1) * 50}% ${ciec} ${cieh} / ${couleur.a})`;
-          gradient = [...gradient, ...Couleur.gradient(start, end, 5)];
+        steps = 20;
+        for (let i = 0; i <= steps; i ++) {
+          gradient.push((new Couleur(`lch(${i * 100 / steps}% ${ciec} ${cieh} / ${couleur.a})`)).rgb)
         }
         break;
       case 'ciec':
         ciel = getRange('ciel').value, cieh = getRange('cieh').value;
-        start = `lch(${ciel}% 0 ${cieh} / ${couleur.a})`;
-        end = `lch(${ciel}% ${range.max} ${cieh} / ${couleur.a})`;
-        gradient = Couleur.gradient(start, end, 5);
+        max = Number(range.max);
+        steps = 20;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`lch(${ciel}% ${i * max / steps} ${cieh} / ${couleur.a})`)).rgb);
+        }
         break;
       case 'cieh':
         ciel = getRange('ciel').value, ciec = getRange('ciec').value;
-        for (let i = 0; i < 6; i ++) {
-          gradient.pop();
-          start = `lch(${ciel}% ${ciec} ${i / 6} / ${couleur.a})`;
-          end = `lch(${ciel}% ${ciec} ${(i + 1) / 6} / ${couleur.a})`;
-          gradient = [...gradient, ...Couleur.gradient(start, end, 3)];
+        steps = 20;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`lch(${ciel}% ${ciec} ${i * 360 / steps} / ${couleur.a})`)).rgb);
         }
         break;
       case 'ciea':
         ciel = getRange('ciel').value, cieb = getRange('cieb').value;
-        start = new Couleur(`lab(${ciel}% ${range.min} ${cieb} / ${couleur.a})`);
-        end = new Couleur(`lab(${ciel}% ${range.max} ${cieb} / ${couleur.a})`);
-        gradient = Couleur.gradient(start, end, 10, 'lab');
+        min = Number(range.min), max = Number(range.max);
+        steps = 20;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`lab(${ciel}% ${min + i * (max - min) / steps} ${cieb} / ${couleur.a})`)).rgb);
+        }
         break;
       case 'cieb':
         ciel = getRange('ciel').value, ciea = getRange('ciea').value;
-        start = new Couleur(`lab(${ciel}% ${ciea} ${range.min} / ${couleur.a})`);
-        end = new Couleur(`lab(${ciel}% ${ciea} ${range.max} / ${couleur.a})`);
-        gradient = Couleur.gradient(start, end, 10, 'lab');
+        min = Number(range.min), max = Number(range.max);
+        steps = 20;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`lab(${ciel}% ${ciea} ${min + i * (max - min) / steps} / ${couleur.a})`)).rgb);
+        }
         break;
     }
     range.style.setProperty('--couleurs', gradient.map((c, k) => {

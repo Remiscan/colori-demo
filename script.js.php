@@ -74,7 +74,7 @@ for (const input of [...document.querySelectorAll('input[type="range"][data-prop
       case 'lab': couleur = `lab(${rangeValue('ciel')}% ${rangeValue('ciea')} ${rangeValue('cieb')} / ${a})`; break;
       case 'lch': couleur = `lch(${rangeValue('ciel')}% ${rangeValue('ciec')} ${rangeValue('cieh')} / ${a})`; break;
     }
-    updateInterface(couleur);
+    updateInterface(couleur, `range-${input.dataset.property}`);
   });
 
   // Move numeric input on range drag
