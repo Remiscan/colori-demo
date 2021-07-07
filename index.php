@@ -21,8 +21,9 @@ $r = mt_rand(0, count($namedColors) - 1);
 $startColor = new Couleur($namedColors[$r]);
 
 // Adapte l'interface (en attendant que JavaScript s'en charge)
-$bodyColor = new Couleur("lch(75% $startColor->ciec ".round($startColor->cieh * 360).")");
-$bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." ".round($startColor->cieh * 360).")");
+$ciel = round(100 * $startColor->ciel()); $ciec = round($startColor->ciec()); $cieh = round($startColor->cieh());
+$bodyColor = new Couleur("lch(75% $ciec $cieh)");
+$bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
 ?>
 <!doctype html>
 <html lang="<?=$lang?>"
@@ -31,9 +32,9 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
       data-theme="<?=$_COOKIE['theme'] ?? 'auto'?>"
       data-resolved-theme="<?=$_COOKIE['resolvedTheme'] ?? 'light'?>"
       data-start-color="<?=$startColor->name()?>"
-      style="--user-hue: <?=round($startColor->h*360)?>;
+      style="--user-hue: <?=round($startColor->h())?>;
              --user-color: <?=$startColor->name()?>;
-             --user-saturation: <?=round($startColor->s*360)?>;
+             --user-saturation: <?=round($startColor->s())?>;
             ">
   <head>
     <meta charset="utf-8">
@@ -82,12 +83,11 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
     <style id="theme-variables">
       <?php ob_start();?>
       <?php
-      $cieh = $startColor->cieh * 360;
       $colorPreview = Couleur::blend('white', $startColor);
       /* Définition des couleurs du thème clair */
-      $ciec = min($startColor->ciec, 60);
-      $sectionColor = new Couleur('lch(85% '. (0.6 * $ciec) .' '. $cieh .')');
-      $codeColor = new Couleur('lch(90% '. (0.3 * $ciec) .' '. $cieh .')');
+      $ciec = min($startColor->ciec(), 60);
+      $sectionColor = new Couleur("lch(85% ". (0.6 * $ciec) ." $cieh)");
+      $codeColor = new Couleur("lch(90% ". (0.3 * $ciec) ." $cieh)");
       ?>
       :root[data-theme="light"] {
         /* Background colors */
@@ -97,29 +97,29 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
         --code-color: <?=$codeColor->hsl()?>;
         --tab-hover-color: <?=$sectionColor->replace('a', .7)->hsl()?>;
         /* Text colors */
-        --h1-color: <?= (new Couleur('lch(30% '. (0.6 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --h3-color: <?= (new Couleur('lch(45% '. $ciec .' '. $cieh .')'))->hsl() ?>;
+        --h1-color: <?= (new Couleur("lch(30% ". (0.6 * $ciec) ." $cieh)"))->hsl() ?>;
+        --h3-color: <?= (new Couleur("lch(45% $ciec $cieh)"))->hsl() ?>;
         --text-color: black;
-        --link-color: <?= (new Couleur('lch(30% '. $ciec .' '. $cieh .')'))->hsl() ?>;
-        --link-underline-color: <?= (new Couleur('lch(30% '. (2 * $ciec) .' '. $cieh .' / .5)'))->hsl() ?>;
+        --link-color: <?= (new Couleur("lch(30% $ciec $cieh)"))->hsl() ?>;
+        --link-underline-color: <?= (new Couleur("lch(30% ". (2 * $ciec) ." $cieh / .5)"))->hsl() ?>;
         /* Input colors */
-        --input-bg-color: <?= (new Couleur('lch(95% '. (0.3 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --input-active-bg-color: <?= (new Couleur('lch(99% '. (0.1 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --input-placeholder-color: <?= (new Couleur('lch(25% '. (0.5 * $ciec) .' '. $cieh .' / .5)'))->hsl() ?>;
+        --input-bg-color: <?= (new Couleur("lch(95% ". (0.3 * $ciec) ." $cieh)"))->hsl() ?>;
+        --input-active-bg-color: <?= (new Couleur("lch(99% ". (0.1 * $ciec) ." $cieh)"))->hsl() ?>;
+        --input-placeholder-color: <?= (new Couleur("lch(25% ". (0.5 * $ciec) ." $cieh / .5)"))->hsl() ?>;
         /* Syntax coloring colors */
-        --token-number: <?= (new Couleur('lch(50% 70 '. ($cieh - 90) .')'))->hsl() ?>;
-        --token-string: <?= (new Couleur('lch(50% 70 '. ($cieh + 45) .')'))->hsl() ?>;
-        --token-operator: <?= (new Couleur('lch(50% 70 '. ($cieh - 45) .')'))->hsl() ?>;
-        --token-keyword: <?= (new Couleur('lch(50% 70 '. ($cieh + 135) .')'))->hsl() ?>;
+        --token-number: <?= (new Couleur("lch(50% 70 ". ($cieh - 90) .")"))->hsl() ?>;
+        --token-string: <?= (new Couleur("lch(50% 70 ". ($cieh + 45) .")"))->hsl() ?>;
+        --token-operator: <?= (new Couleur("lch(50% 70 ". ($cieh - 45) .")"))->hsl() ?>;
+        --token-keyword: <?= (new Couleur("lch(50% 70 ". ($cieh + 135) .")"))->hsl() ?>;
         /* Button colors */
-        --button-bg-color: <?= (new Couleur('lch(90% '. (0.6 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --button-active-bg-color: <?= (new Couleur('lch(98% '. (0.3 * $ciec) .' '. $cieh .')'))->hsl() ?>;
+        --button-bg-color: <?= (new Couleur("lch(90% ". (0.6 * $ciec) ." $cieh)"))->hsl() ?>;
+        --button-active-bg-color: <?= (new Couleur("lch(98% ". (0.3 * $ciec) ." $cieh)"))->hsl() ?>;
       }
 
       <?php
       /* Définition des couleurs du thème sombre */
-      $ciec = min(.3 * $startColor->ciec, 10);
-      $sectionColor = new Couleur('lch(20% '. $ciec .' '. $cieh .')');
+      $ciec = min(.3 * $startColor->ciec(), 10);
+      $sectionColor = new Couleur("lch(20% $ciec $cieh)");
       $codeColor = $bodyColorDark;
       ?>
       :root[data-theme="dark"] {
@@ -130,23 +130,23 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
         --code-color: <?=$codeColor->hsl()?>;
         --tab-hover-color: <?=$sectionColor->replace('a', .7)->hsl()?>;
         /* Text colors */
-        --h1-color: <?= (new Couleur('lch(80% '. $ciec .' '. $cieh .')'))->hsl() ?>;
-        --h3-color: <?= (new Couleur('lch(70% '. (1.7 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --text-color: <?= (new Couleur('lch(90% '. (0.2 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --link-color: <?= (new Couleur('lch(80% '. (1.7 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --link-underline-color: <?= (new Couleur('lch(80% '. (2 * 1.7 * $ciec) .' '. $cieh .' / .5)'))->hsl() ?>;
+        --h1-color: <?= (new Couleur("lch(80% $ciec $cieh)"))->hsl() ?>;
+        --h3-color: <?= (new Couleur("lch(70% ". (1.7 * $ciec) ." $cieh)"))->hsl() ?>;
+        --text-color: <?= (new Couleur("lch(90% ". (0.2 * $ciec) ." $cieh)"))->hsl() ?>;
+        --link-color: <?= (new Couleur("lch(80% ". (1.7 * $ciec) ." $cieh)"))->hsl() ?>;
+        --link-underline-color: <?= (new Couleur("lch(80% ". (2 * 1.7 * $ciec) ." $cieh / .5)"))->hsl() ?>;
         /* Input colors */
-        --input-bg-color: <?= (new Couleur('lch(30% '. (1.5 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --input-active-bg-color: <?= (new Couleur('lch(10% '. (0.6 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --input-placeholder-color: <?= (new Couleur('lch(90% '. (0.5 * $ciec) .' '. $cieh .' / .5)'))->hsl() ?>;
+        --input-bg-color: <?= (new Couleur("lch(30% ". (1.5 * $ciec) ." $cieh)"))->hsl() ?>;
+        --input-active-bg-color: <?= (new Couleur("lch(10% ". (0.6 * $ciec) ." $cieh)"))->hsl() ?>;
+        --input-placeholder-color: <?= (new Couleur("lch(90% ". (0.5 * $ciec) ." $cieh / .5)"))->hsl() ?>;
         /* Syntax coloring colors */
-        --token-number: <?= (new Couleur('lch(80% 70 '. ($cieh - 90) .')'))->hsl() ?>;
-        --token-string: <?= (new Couleur('lch(80% 70 '. ($cieh + 45) .')'))->hsl() ?>;
-        --token-operator: <?= (new Couleur('lch(80% 70 '. ($cieh - 45) .')'))->hsl() ?>;
-        --token-keyword: <?= (new Couleur('lch(80% 70 '. ($cieh + 135) .')'))->hsl() ?>;
+        --token-number: <?= (new Couleur("lch(80% 70 ". ($cieh - 90) .")"))->hsl() ?>;
+        --token-string: <?= (new Couleur("lch(80% 70 ". ($cieh + 45) .")"))->hsl() ?>;
+        --token-operator: <?= (new Couleur("lch(80% 70 ". ($cieh - 45) .")"))->hsl() ?>;
+        --token-keyword: <?= (new Couleur("lch(80% 70 ". ($cieh + 135) .")"))->hsl() ?>;
         /* Button colors */
-        --button-bg-color: <?= (new Couleur('lch(25% '. (.75 * $ciec) .' '. $cieh .')'))->hsl() ?>;
-        --button-active-bg-color: <?= (new Couleur('lch(35% '. (1.5 * $ciec) .' '. $cieh .')'))->hsl() ?>;
+        --button-bg-color: <?= (new Couleur("lch(25% ". (.75 * $ciec) ." $cieh)"))->hsl() ?>;
+        --button-active-bg-color: <?= (new Couleur("lch(35% ". (1.5 * $ciec) ." $cieh)"))->hsl() ?>;
       }
       <?php $body = ob_get_clean();
       require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';
@@ -274,61 +274,61 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $startColor->ciec, 10))." 
         <label for="range-hue" data-format="hsl,hwb">
           <span data-string="prop-h-nom"><?=$Textes->getString('prop-h-nom')?></span>
           <span>[0 ; 360]</span>
-          <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round(360 * $startColor->h)?>">
+          <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round(360 * $startColor->h())?>">
         </label>
 
         <label for="range-saturation" data-format="hsl">
           <span data-string="prop-s-nom"><?=$Textes->getString('prop-s-nom')?></span>
           <span>[0 ; 100]</span>
-          <input type="range" id="range-saturation" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s)?>">
+          <input type="range" id="range-saturation" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s())?>">
         </label>
 
         <label for="range-luminosity" data-format="hsl">
           <span data-string="prop-l-nom"><?=$Textes->getString('prop-l-nom')?></span>
           <span>[0 ; 100]</span>
-          <input type="range" id="range-luminosity" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l)?>">
+          <input type="range" id="range-luminosity" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l())?>">
         </label>
 
         <label for="range-whiteness" data-format="hwb">
           <span data-string="prop-w-nom"><?=$Textes->getString('prop-w-nom')?></span>
           <span>[0 ; 100]</span>
-          <input type="range" id="range-whiteness" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w)?>">
+          <input type="range" id="range-whiteness" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w())?>">
         </label>
 
         <label for="range-blackness" data-format="hwb">
           <span data-string="prop-bk-nom"><?=$Textes->getString('prop-bk-nom')?></span>
           <span>[0 ; 100]</span>
-          <input type="range" id="range-blackness" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk)?>">
+          <input type="range" id="range-blackness" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk())?>">
         </label>
 
         <label for="range-cie-lightness" data-format="lab,lch">
           <span data-string="prop-ciel-nom"><?=$Textes->getString('prop-ciel-nom')?></span>
           <span>[0 ; 100]</span>
-          <input type="range" id="range-cie-lightness" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel)?>">
+          <input type="range" id="range-cie-lightness" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel())?>">
         </label>
 
         <label for="range-cie-a-axis" data-format="lab">
           <span data-string="prop-ciea-nom"><?=$Textes->getString('prop-ciea-nom')?></span>
           <span>[-80 ; 94]</span>
-          <input type="range" id="range-cie-a-axis" data-property="ciea" min="-80" max="94" step="1" value="<?=round($startColor->ciea)?>">
+          <input type="range" id="range-cie-a-axis" data-property="ciea" min="-80" max="94" step="1" value="<?=round($startColor->ciea())?>">
         </label>
 
         <label for="range-cie-b-axis" data-format="lab">
           <span data-string="prop-cieb-nom"><?=$Textes->getString('prop-cieb-nom')?></span>
           <span>[-112 ; 94]</span>
-          <input type="range" id="range-cie-b-axis" data-property="cieb" min="-112" max="94" step="1" value="<?=round($startColor->cieb)?>">
+          <input type="range" id="range-cie-b-axis" data-property="cieb" min="-112" max="94" step="1" value="<?=round($startColor->cieb())?>">
         </label>
 
         <label for="range-cie-chroma" data-format="lch">
           <span data-string="prop-ciec-nom"><?=$Textes->getString('prop-ciec-nom')?></span>
           <span>[0 ; 132]</span>
-          <input type="range" id="range-cie-chroma" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec)?>">
+          <input type="range" id="range-cie-chroma" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec())?>">
         </label>
 
         <label for="range-cie-hue" data-format="lch">
           <span data-string="prop-cieh-nom"><?=$Textes->getString('prop-cieh-nom')?></span>
           <span>[0 ; 360]</span>
-          <input type="range" id="range-cie-hue" data-property="cieh" min="0" max="360" step="1" value="<?=round(360 * $startColor->cieh)?>">
+          <input type="range" id="range-cie-hue" data-property="cieh" min="0" max="360" step="1" value="<?=round(360 * $startColor->cieh())?>">
         </label>
 
         <label for="range-opacity" data-format="rgb,hsl,hwb,lab,lch">
