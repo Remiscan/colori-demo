@@ -1448,18 +1448,18 @@ pre[class*="language-"],
   font-size: .9em;
 }
 
-blockquote {
+.note {
   border-right: none;
   border-bottom: none;
   border-radius: .6rem;
-  background-color: var(--blockquote-color);
+  background-color: var(--note-color);
   padding: .6em;
   margin: 1em 0;
   overflow: auto;
   box-shadow: none;
 }
 
-blockquote>pre:last-child,
+.note>pre:last-child,
 article>pre:last-child {
   margin-bottom: 0;
 }
