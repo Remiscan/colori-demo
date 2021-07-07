@@ -96,6 +96,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
         --frame-color: <?=$codeColor->improveContrast($colorPreview, 2.5)->hsl()?>;
         --code-color: <?=$codeColor->hsl()?>;
         --tab-hover-color: <?=$sectionColor->replace('a', .7)->hsl()?>;
+        --blockquote-color: <?=Couleur::blend($sectionColor, $bodyColor->replace('a', .3))->hsl()?>;
         /* Text colors */
         --h1-color: <?= (new Couleur("lch(30% ". (0.6 * $ciec) ." $cieh)"))->hsl() ?>;
         --h3-color: <?= (new Couleur("lch(45% $ciec $cieh)"))->hsl() ?>;
@@ -129,6 +130,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
         --frame-color: <?=$codeColor->improveContrast($colorPreview, 2.5)->hsl()?>;
         --code-color: <?=$codeColor->hsl()?>;
         --tab-hover-color: <?=$sectionColor->replace('a', .7)->hsl()?>;
+        --blockquote-color: <?=Couleur::blend($sectionColor, $bodyColorDark->replace('a', .5))->hsl()?>;
         /* Text colors */
         --h1-color: <?= (new Couleur("lch(80% $ciec $cieh)"))->hsl() ?>;
         --h3-color: <?= (new Couleur("lch(70% ". (1.7 * $ciec) ." $cieh)"))->hsl() ?>;

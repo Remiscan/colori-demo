@@ -1449,11 +1449,11 @@ pre[class*="language-"],
 }
 
 blockquote {
-  border: .3rem solid var(--body-color);
   border-right: none;
   border-bottom: none;
   border-radius: .6rem;
-  padding: .2em .6em;
+  background-color: var(--blockquote-color);
+  padding: .6em;
   margin: 1em 0;
   overflow: auto;
   box-shadow: none;
