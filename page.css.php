@@ -1088,6 +1088,7 @@ input[type="number"][data-property]:active {
   margin-top: .6rem;
   margin-left: .6rem;
   align-self: center;
+  max-width: calc(100% - .6rem);
 }
 
 .format>pre[class*="language-"] {
