@@ -351,6 +351,10 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
           <pre><code class="language-css"></code></pre>
         </div>
 
+        <div class="format" data-format="name">
+          <pre class="language-css"><code class="language-css"><?=$startColor->name()?></code></pre>
+        </div>
+
         <div class="format" data-format="hex">
           <pre class="language-css"><code class="language-css"><?=$startColor->hex()?></code></pre>
         </div>
@@ -373,10 +377,6 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
 
         <div class="format" data-format="lch">
           <pre class="language-css"><code class="language-css"><?=$startColor->lch()?></code></pre>
-        </div>
-
-        <div class="format" data-format="name">
-          <pre class="language-css"><code class="language-css"><?=$startColor->name()?></code></pre>
         </div>
 
         <div class="format" data-format="color-srgb">
