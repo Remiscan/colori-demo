@@ -390,7 +390,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
           </div>
         </div>
 
-        <div class="donnees" id="results-color-spaces">
+        <div class="donnees" id="results-color-spaces" hidden>
           <div class="format couleur" data-string="apercu-couleur"><?=$Textes->getString('apercu-couleur')?></div>
 
           <div class="format" data-format="color-srgb">
