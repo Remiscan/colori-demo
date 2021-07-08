@@ -379,9 +379,9 @@ export function updateSliders(_couleur, source = 'text') {
     }
     range.style.setProperty('--couleurs', gradient.map((c, k) => {
       if (k == 0) {
-        return `${c.rgb || c} 0, ${c.rgb || c} 6px`;
+        return `${c.rgb || c} 0, ${c.rgb || c} 7px`;
       } else if (k == gradient.length - 1) {
-        return `${c.rgb || c} calc(100% - 6px), ${c.rgb || c} 100%`;
+        return `${c.rgb || c} calc(100% - 7px), ${c.rgb || c} 100%`;
       } else return c.rgb || c
     }).join(', '));
   }

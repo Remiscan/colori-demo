@@ -913,26 +913,26 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 12px;
+  width: 14px;
   height: var(--tap-safe-size);
   background: transparent;
   border: none;
   border-radius: .6rem;
-  box-shadow: 0 0 0 2px var(--code-color),
-              0 0 0 4px var(--text-color);
+  box-shadow: inset 0 0 0 2px var(--input-active-bg-color),
+              0 0 0 2px var(--text-color);
 }
 
 input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 12px;
+  width: 14px;
   height: var(--tap-safe-size);
   background: transparent;
 	border: none;
   border-radius: .6rem;
-  box-shadow: 0 0 0 2px var(--code-color),
-              0 0 0 4px var(--text-color);
+  box-shadow: inset 0 0 0 2px var(--input-active-bg-color),
+              0 0 0 2px var(--text-color);
 }
 
 input[type="range"]::-moz-range-track {
