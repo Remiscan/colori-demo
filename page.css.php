@@ -229,8 +229,7 @@ input[type="radio"][role="tab"] + label {
   place-items: center;
   box-sizing: border-box;
   --decalage: 0rem;
-  height: calc(var(--height) - var(--decalage));
-  padding-bottom: var(--decalage);
+  height: var(--height);
   font-size: .8rem;
   font-weight: 600;
   color: var(--h1-color);
@@ -238,6 +237,8 @@ input[type="radio"][role="tab"] + label {
   border-radius: .6rem .6rem 0 0;
   cursor: default;
   min-width: var(--tap-safe-size);
+  position: relative;
+  bottom: calc(-1 * var(--decalage));
 }
 
 .choix-format input[type="radio"][name="choix-format"] + label::before,
@@ -271,7 +272,7 @@ input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
 input[type="radio"][role="tab"]:active + label {
   background-color: var(--tab-hover-color);
   box-shadow: -1px 0 0 0 var(--body-color), 1px 0 0 0 var(--body-color);
-  --decalage: .1rem;
+  --decalage: .05rem;
 }
 
 .choix-format input[type="radio"][name="choix-format"]:checked + label,
