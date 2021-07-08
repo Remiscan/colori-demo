@@ -428,6 +428,12 @@ html {
   --button-hover-bg-color: var(--input-bg-color);
 }
 
+@media (max-width: 42rem) {
+  html {
+    --section-padding: .6rem;
+  }
+}
+
 /*<?php ob_start();?>*/
 html[data-theme="light"] {
   color-scheme: light;
@@ -746,8 +752,8 @@ footer {
   position: relative;
   background: var(--section-color);
   border-radius: .6rem .6rem 0 0;
-  padding: calc(.5 * var(--section-padding)) var(--section-padding);
-  padding-bottom: calc(.5 * var(--section-padding) + env(safe-area-inset-bottom, 0));
+  padding: var(--section-padding);
+  padding-bottom: calc(var(--section-padding) + env(safe-area-inset-bottom, 0));
 }
 
 
@@ -931,7 +937,6 @@ input[type="range"] {
   -moz-appearance: none;
   appearance: none;
 	display: block;
-	width: calc(100% - 8px);
   height: var(--tap-safe-size);
   border: 4px solid var(--frame-color);
   border-radius: .6rem;
