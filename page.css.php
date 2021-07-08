@@ -368,6 +368,17 @@ strong, em {
   font-weight: 600;
 }
 
+abbr[title] {
+  text-decoration: none;
+}
+
+@media (any-pointer: fine) {
+  abbr[title] {
+    border-bottom: 2px dotted var(--text-strong-color);
+    position: relative;
+  }
+}
+
 
 
 
