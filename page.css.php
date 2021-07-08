@@ -221,6 +221,7 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   right: var(--section-padding);
 }
 
+.choix-format input[type="radio"][name="choix-format"] + label,
 input[type="radio"][role="tab"] + label {
   border: none;
   display: grid;
@@ -239,6 +240,7 @@ input[type="radio"][role="tab"] + label {
   min-width: var(--tap-safe-size);
 }
 
+.choix-format input[type="radio"][name="choix-format"] + label::before,
 input[type="radio"][role="tab"] + label::before {
   background: none;
   box-shadow: none;
@@ -248,26 +250,31 @@ input[type="radio"][role="tab"] + label::before {
   grid-area: unset;
 }
 
+.choix-format input[type="radio"][name="choix-format"] + label:hover,
 input[type="radio"][role="tab"] + label:hover {
   background-color: var(--tab-hover-color);
 }
 
+.choix-format input[type="radio"][name="choix-format"]:focus + label,
 input[type="radio"][role="tab"]:focus + label {
   outline: 2px solid var(--link-color);
   border-radius: 0;
 }
 
+.choix-format input[type="radio"][name="choix-format"]:focus:not(:focus-visible) + label,
 input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
   outline-style: none;
   border-radius: .6rem .6rem 0 0;
 }
 
+.choix-format input[type="radio"][name="choix-format"]:active + label,
 input[type="radio"][role="tab"]:active + label {
   background-color: var(--tab-hover-color);
   box-shadow: -1px 0 0 0 var(--body-color), 1px 0 0 0 var(--body-color);
   --decalage: .1rem;
 }
 
+.choix-format input[type="radio"][name="choix-format"]:checked + label,
 input[type="radio"][role="tab"]:checked + label {
   background-color: var(--section-color);
   color: var(--h1-color);
@@ -866,7 +873,7 @@ input[type="text"]:focus {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  gap: .3rem;
+  gap: .3rem .6rem;
 }
 
 .liste-formats {
@@ -878,8 +885,17 @@ input[type="text"]:focus {
 }
 
 .choix-format input[type="radio"][name="choix-format"] + label {
-  padding: .3rem;
   border-radius: .6rem;
+  grid-template-columns: 1fr;
+  gap: 0;
+  place-items: center;
+  height: 1.8rem;
+  font-size: .9rem
+  
+}
+
+input[type="radio"][name="choix-format"] + label::before {
+  display: none;
 }
 
 #ranges label[data-format] {
@@ -1018,29 +1034,35 @@ input[type="number"][data-property]:active {
   align-items: center;
 }
 
+.choix-format input[type="radio"][name="choix-format"] + label,
 #resultats input[type="radio"][role="tab"] + label {
   box-shadow: none;
   border-radius: .6rem;
 }
 
+.choix-format input[type="radio"][name="choix-format"] + label:hover,
 #resultats input[type="radio"][role="tab"] + label:hover {
   background-color: var(--button-hover-bg-color);
 }
 
+.choix-format input[type="radio"][name="choix-format"]:focus + label,
 #resultats input[type="radio"][role="tab"]:focus + label {
   border-radius: 0;
 }
 
+.choix-format input[type="radio"][name="choix-format"]:focus:not(:focus-visible) + label,
 #resultats input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
   border-radius: .6rem;
 }
 
+.choix-format input[type="radio"][name="choix-format"]:active + label,
 #resultats input[type="radio"][role="tab"]:active + label {
   background-color: var(--button-active-bg-color);
   box-shadow: none;
   --decalage: 0rem;
 }
 
+.choix-format input[type="radio"][name="choix-format"]:checked + label,
 #resultats input[type="radio"][role="tab"]:checked + label {
   background-color: var(--button-hover-bg-color);
   box-shadow: none;
