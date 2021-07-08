@@ -21,7 +21,7 @@ export async function updateInterface(couleur, source = 'text', delai = 20) {
   if (lastTry != thisTry) return;
 
   // Hide non-format results by default
-  const donnees = document.querySelector('.donnees');
+  const donnees = document.querySelector('#resultats');
   donnees.removeAttribute('data-type');
   
   let entree;

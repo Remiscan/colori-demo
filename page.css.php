@@ -161,7 +161,11 @@ input[type="radio"] + label {
 
 input[type="radio"] + label:hover,
 input[type="radio"]:checked + label {
-  background: var(--input-bg-color);
+  background: var(--button-hover-bg-color);
+}
+
+input[type="radio"]:active + label {
+  background: var(--button-active-bg-color);
 }
 
 input[type="radio"] + label::before {
@@ -250,10 +254,12 @@ input[type="radio"][role="tab"] + label:hover {
 
 input[type="radio"][role="tab"]:focus + label {
   outline: 2px solid var(--link-color);
+  border-radius: 0;
 }
 
 input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
   outline-style: none;
+  border-radius: .6rem .6rem 0 0;
 }
 
 input[type="radio"][role="tab"]:active + label {
@@ -995,7 +1001,58 @@ input[type="number"][data-property]:active {
  * Résultats
  */
 
+#resultats {
+  margin-top: .9rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: .6rem;
+}
+
+#resultats [role="tablist"] {
+  grid-column: 2;
+  position: relative;
+  top: unset;
+  right: unset;
+  gap: .3rem;
+  align-items: center;
+}
+
+#resultats input[type="radio"][role="tab"] + label {
+  box-shadow: none;
+  border-radius: .6rem;
+}
+
+#resultats input[type="radio"][role="tab"] + label:hover {
+  background-color: var(--button-hover-bg-color);
+}
+
+#resultats input[type="radio"][role="tab"]:focus + label {
+  border-radius: 0;
+}
+
+#resultats input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
+  border-radius: .6rem;
+}
+
+#resultats input[type="radio"][role="tab"]:active + label {
+  background-color: var(--button-active-bg-color);
+  box-shadow: none;
+  --decalage: 0rem;
+}
+
+#resultats input[type="radio"][role="tab"]:checked + label {
+  background-color: var(--button-hover-bg-color);
+  box-shadow: none;
+  --decalage: 0rem;
+}
+
+#resultats h2 {
+  grid-column: 1;
+}
+
 .donnees {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -1069,9 +1126,11 @@ input[type="number"][data-property]:active {
   background-image: var(--gradient);
 }
 
-:not([data-type*="valeur"])>.format.valeur,
-:not([data-type*="gradient"])>.format.gradient,
-[data-type*="valeur"]>.format:not(.valeur):not(.gradient) {
+#resultats:not([data-type*="valeur"]):not([data-type*="gradient"]) .donnees#results-values,
+#resultats:not([data-type*="valeur"]) .format.valeur,
+#resultats:not([data-type*="gradient"]) .format.gradient,
+#resultats[data-type*="valeur"] .donnees#named-formats,
+#resultats[data-type*="valeur"] .donnees#color-spaces {
   display: none;
 }
 

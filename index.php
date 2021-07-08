@@ -340,51 +340,82 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
         </label>
       </div>
 
-      <h2 class="no-separator" data-string="demo-resultats-titre"><?=$Textes->getString('demo-resultats-titre')?></h2>
+      <div id="resultats">
+        <h2 class="no-separator" data-string="demo-resultats-titre"><?=$Textes->getString('demo-resultats-titre')?></h2>
 
-      <div class="donnees">
-        <div class="format couleur" data-string="apercu-couleur"><?=$Textes->getString('apercu-couleur')?></div>
+        <fieldset role="tablist" data-group="tabs-results">
+          <legend data-string="tabs-results-label"></legend>
 
+          <tab-label controls="results-named-formats" data-label-id="tab-label-named-formats" label="<?=$Textes->getString('tab-label-named-formats')?>" active="true"></tab-label>
+          <tab-label controls="results-color-spaces" data-label-id="tab-label-color-spaces" label="<?=$Textes->getString('tab-label-color-spaces')?>"></tab-label>
+        </fieldset>
+
+        <div class="donnees" id="results-values">
         <div class="format gradient" data-string="apercu-gradient"><?=$Textes->getString('apercu-gradient')?></div>
 
-        <div class="format valeur">
-          <pre><code class="language-css"></code></pre>
+          <div class="format valeur">
+            <pre><code class="language-css"></code></pre>
+          </div>
         </div>
 
-        <div class="format" data-format="name">
-          <pre class="language-css"><code class="language-css"><?=$startColor->name()?></code></pre>
+        <div class="donnees" id="results-named-formats">
+          <div class="format couleur" data-string="apercu-couleur"><?=$Textes->getString('apercu-couleur')?></div>
+
+          <div class="format" data-format="name">
+            <pre class="language-css"><code class="language-css"><?=$startColor->name()?></code></pre>
+          </div>
+
+          <div class="format" data-format="hex">
+            <pre class="language-css"><code class="language-css"><?=$startColor->hex()?></code></pre>
+          </div>
+
+          <div class="format" data-format="rgb">
+            <pre class="language-css"><code class="language-css"><?=$startColor->rgb()?></code></pre>
+          </div>
+
+          <div class="format" data-format="hsl">
+            <pre class="language-css"><code class="language-css"><?=$startColor->hsl()?></code></pre>
+          </div>
+
+          <div class="format" data-format="hwb">
+            <pre class="language-css"><code class="language-css"><?=$startColor->hwb()?></code></pre>
+          </div>
+
+          <div class="format" data-format="lab">
+            <pre class="language-css"><code class="language-css"><?=$startColor->lab()?></code></pre>
+          </div>
+
+          <div class="format" data-format="lch">
+            <pre class="language-css"><code class="language-css"><?=$startColor->lch()?></code></pre>
+          </div>
         </div>
 
-        <div class="format" data-format="hex">
-          <pre class="language-css"><code class="language-css"><?=$startColor->hex()?></code></pre>
-        </div>
+        <div class="donnees" id="results-color-spaces">
+          <div class="format couleur" data-string="apercu-couleur"><?=$Textes->getString('apercu-couleur')?></div>
 
-        <div class="format" data-format="rgb">
-          <pre class="language-css"><code class="language-css"><?=$startColor->rgb()?></code></pre>
-        </div>
+          <div class="format" data-format="color-srgb">
+            <pre class="language-css"><code class="language-css"></code></pre>
+          </div>
 
-        <div class="format" data-format="hsl">
-          <pre class="language-css"><code class="language-css"><?=$startColor->hsl()?></code></pre>
-        </div>
+          <div class="format" data-format="color-display-p3">
+            <pre class="language-css"><code class="language-css"></code></pre>
+          </div>
 
-        <div class="format" data-format="hwb">
-          <pre class="language-css"><code class="language-css"><?=$startColor->hwb()?></code></pre>
-        </div>
+          <div class="format" data-format="color-a98-rgb">
+            <pre class="language-css"><code class="language-css"></code></pre>
+          </div>
 
-        <div class="format" data-format="lab">
-          <pre class="language-css"><code class="language-css"><?=$startColor->lab()?></code></pre>
-        </div>
+          <div class="format" data-format="color-prophoto-rgb">
+            <pre class="language-css"><code class="language-css"></code></pre>
+          </div>
 
-        <div class="format" data-format="lch">
-          <pre class="language-css"><code class="language-css"><?=$startColor->lch()?></code></pre>
-        </div>
+          <div class="format" data-format="color-rec2020">
+            <pre class="language-css"><code class="language-css"></code></pre>
+          </div>
 
-        <div class="format" data-format="color-srgb">
-          <pre class="language-css"><code class="language-css"></code></pre>
-        </div>
-
-        <div class="format" data-format="color-display-p3">
-          <pre class="language-css"><code class="language-css"></code></pre>
+          <div class="format" data-format="color-xyz">
+            <pre class="language-css"><code class="language-css"></code></pre>
+          </div>
         </div>
       </div>
     </section>
