@@ -1191,10 +1191,6 @@ input[type="number"][data-property]:active {
 
 
 @media (max-width: 42rem) {
-  .choix-format {
-    grid-template-columns: 100%;
-  }
-
   #saisie {
     grid-template-columns: 1fr;
     column-gap: 0;
