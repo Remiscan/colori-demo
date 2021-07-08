@@ -216,6 +216,9 @@ export function populateColorData(couleur, source = 'text') {
         format.removeAttribute('hidden');
         code.innerHTML = name;
       }
+    } else if (format.dataset.format.slice(0, 5) === 'color') {
+      const space = format.dataset.format.replace('color-', '');
+      code.innerHTML = couleur.color(space);
     } else {
       code.innerHTML = couleur[format.dataset.format];
     }
