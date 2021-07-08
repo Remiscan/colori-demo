@@ -97,7 +97,7 @@ function computeCSS(couleur) {
 
   let cssBoth, cssLight, cssDark;
   const meta = document.querySelector('meta[name=theme-color]');
-  const colorPreview = (new Couleur('white')).blend(couleur);
+  const colorPreview = Couleur.blend('white', couleur);
 
   // Calculate colors that are the same for both light and dark themes
   const cieh = couleur.cieh;
@@ -208,8 +208,8 @@ export function populateColorData(couleur, source = 'text') {
   const name = couleur.name;
   for (const format of [...document.querySelectorAll('.donnees>[data-format]')]) {
     const code = format.querySelector('code');
-    if (format.dataset.format == 'name') {
-      if (name == null) {
+    if (format.dataset.format === 'name') {
+      if (name === null) {
         format.setAttribute('hidden', 'true');
         code.innerHTML = '';
       } else {
