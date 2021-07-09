@@ -1158,8 +1158,8 @@ input[type="number"][data-property]:active {
 #resultats:not([data-type*="valeur"]):not([data-type*="gradient"]) .donnees#results-values,
 #resultats:not([data-type*="valeur"]) .format.valeur,
 #resultats:not([data-type*="gradient"]) .format.gradient,
-#resultats[data-type*="valeur"] .donnees#named-formats,
-#resultats[data-type*="valeur"] .donnees#color-spaces {
+#resultats[data-type*="valeur"] .donnees#results-named-formats,
+#resultats[data-type*="valeur"] .donnees#results-color-spaces {
   display: none;
 }
 
