@@ -87,7 +87,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
       /* Définition des couleurs du thème clair */
       $ciec = min($startColor->ciec(), 60);
       $sectionColor = new Couleur("lch(85% ". (0.6 * $ciec) ." $cieh)");
-      $codeColor = new Couleur("lch(90% ". (0.3 * $ciec) ." $cieh)");
+      $codeColor = new Couleur("lch(92% ". (0.3 * $ciec) ." $cieh)");
       ?>
       :root[data-theme="light"] {
         /* Background colors */

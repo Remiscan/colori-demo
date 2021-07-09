@@ -111,7 +111,7 @@ function computeCSS(couleur) {
     const bodyColor = new Couleur(`lch(75% ${ciec} ${cieh})`);
     meta.dataset.light = bodyColor.hsl;
     const sectionColor = new Couleur(`lch(85% ${.6 * ciec} ${cieh})`);
-    const codeColor = new Couleur(`lch(90% ${.3 * ciec} ${cieh})`);
+    const codeColor = new Couleur(`lch(92% ${.3 * ciec} ${cieh})`);
     cssLight = `
       /* Background colors */
       --body-color: ${bodyColor.hsl};
