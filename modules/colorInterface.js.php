@@ -51,21 +51,16 @@ export async function updateInterface(couleur, source = 'text', delai = 20) {
 
       // If the result is an array of colors, display their gradient as the input background
       else if (Array.isArray(entree) && entree.length > 0 && entree.reduce((sum, e) => sum + (e instanceof Couleur), 0)) {
-        const gradient = `linear-gradient(to right, ${entree.map(c => c.name || c.rgb).join(', ')})`;
+        const gradient = `linear-gradient(to right,\n  ${entree.map(c => c.name || c.rgb).join(',\n  ')}\n)`;
         computeCSS(entree[0]);
         populateColorData(entree[0]);
 
-        if (methode == 'gradient') {
+        if (methode == 'gradientTo') {
           valeur.innerHTML = gradient;
           donnees.dataset.type = 'valeur,gradient';
         }
         else if (methode == 'whatToBlend') {
-          let array = `[\n`;
-          for (const c of entree) {
-            array += `  ${c.name || c.rgb},\n`
-          }
-          array += `]`;
-
+          let array = `[\n  ${entree.map(c => c.name || c.rgb).join(',\n  ')}\n]`;
           valeur.innerHTML = array;
           donnees.dataset.type = 'valeur,gradient,whatToBlend';
           document.querySelector('.format.gradient').style.setProperty('--bg', input);
@@ -219,7 +214,7 @@ export function populateColorData(couleur, source = 'text') {
         code.innerHTML = name;
       }
     } else if (format.dataset.format.slice(0, 5) === 'color') {
-      code.innerHTML = couleur.expr(format.dataset.format);
+      code.innerHTML = couleur.expr(format.dataset.format, { precision: 4 });
     } else {
       code.innerHTML = couleur[format.dataset.format];
     }

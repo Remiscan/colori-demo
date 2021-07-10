@@ -1163,29 +1163,30 @@ input[type="number"][data-property]:active {
   display: none;
 }
 
-.format.valeur code.language-css {
+.format.valeur code {
   white-space: normal;
 }
 
-[data-type*="valeur"][data-type*="whatToBlend"]>.format.valeur code {
+[data-type*="valeur"][data-type*="gradient"] .format.valeur code {
   white-space: pre-wrap;
 }
-[data-type*="valeur"][data-type*="whatToBlend"]>.format.gradient {
+[data-type*="valeur"][data-type*="whatToBlend"] .format.gradient {
   height: 4rem;
 }
-[data-type*="valeur"][data-type*="whatToBlend"]>.format.gradient::after {
+[data-type*="valeur"][data-type*="whatToBlend"] .format.gradient::after {
   background-image: var(--gradient),
                     linear-gradient(to bottom, transparent 0 50%, var(--bg) 50% 100%);
   background-position: top center, bottom center;
   background-size: 100% 100%;
   background-repeat-y: no-repeat;
-  animation: moveBlend linear 4s infinite alternate;
+  animation: moveBlend var(--easing-standard) 3s infinite alternate;
 }
 
 @keyframes moveBlend {
-  0%    { background-position: top center, bottom center; }
-  25%   { background-position: top center, bottom center; }
-  100%  { background-position: center calc(-4rem + var(--border-size)), bottom center; }
+  0%   { background-position: top center, bottom center; }
+  10%  { background-position: top center, bottom center; }
+  90%  { background-position: center calc(-4rem + var(--border-size)), bottom center; }
+  100% { background-position: center calc(-4rem + var(--border-size)), bottom center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
