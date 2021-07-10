@@ -116,7 +116,7 @@ function computeCSS(couleur) {
       /* Background colors */
       --body-color: ${bodyColor.hsl};
       --section-color: ${sectionColor.hsl};
-      --frame-color: ${codeColor.improveContrast(colorPreview, 2.5).hsl};
+      --frame-color: ${codeColor.improveContrastWith(colorPreview, 2.5).hsl};
       --code-color: ${codeColor.hsl};
       --tab-hover-color: ${sectionColor.replace('a', .7).hsl};
       --note-color: ${Couleur.blend(sectionColor, bodyColor.replace('a', .3)).hsl};
@@ -152,7 +152,7 @@ function computeCSS(couleur) {
       /* Background colors */
       --body-color: ${bodyColor.hsl};
       --section-color: ${sectionColor.hsl};
-      --frame-color: ${codeColor.improveContrast(colorPreview, 2.5).hsl};
+      --frame-color: ${codeColor.improveContrastWith(colorPreview, 2.5).hsl};
       --code-color: ${codeColor.hsl};
       --tab-hover-color: ${sectionColor.replace('a', .7).hsl};
       --note-color: ${Couleur.blend(bodyColor, sectionColor.replace('a', .5)).hsl};
@@ -219,8 +219,7 @@ export function populateColorData(couleur, source = 'text') {
         code.innerHTML = name;
       }
     } else if (format.dataset.format.slice(0, 5) === 'color') {
-      const space = format.dataset.format.replace('color-', '');
-      code.innerHTML = couleur.color(space);
+      code.innerHTML = couleur.expr(format.dataset.format);
     } else {
       code.innerHTML = couleur[format.dataset.format];
     }
@@ -240,7 +239,7 @@ export function populateColorData(couleur, source = 'text') {
 ///////////////////////////////////////////////////////////
 // Updates the color selection sliders to fit a given color
 export function updateSliders(_couleur, source = 'text') {
-  let couleur = Couleur.check(_couleur);
+  let couleur = new Couleur(_couleur);
 
   const ranges = [...document.querySelectorAll('input[type="range"][data-property]')];
   const getRange = prop => ranges.find(r => r.dataset.property == prop);
