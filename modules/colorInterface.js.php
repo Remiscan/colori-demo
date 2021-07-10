@@ -55,7 +55,7 @@ export async function updateInterface(couleur, source = 'text', delai = 20) {
         computeCSS(entree[0]);
         populateColorData(entree[0]);
 
-        if (methode == 'gradientTo') {
+        if (methode == 'gradient') {
           valeur.innerHTML = gradient;
           donnees.dataset.type = 'valeur,gradient';
         }

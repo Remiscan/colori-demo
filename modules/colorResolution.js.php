@@ -71,7 +71,7 @@ const methodes = [
     ],
     argIsColor: [true, false, false]
   }, {
-    name: 'contrastWith',
+    name: 'contrast',
     args: [
       new RegExp(`^(.+)${vSep}([A-Za-z0-9]+?)$`),
       new RegExp(`^(.+)$`)
@@ -81,28 +81,28 @@ const methodes = [
     name: 'contrastedText',
     args: null
   }, {
-    name: 'improveContrastWith',
+    name: 'improveContrast',
     args: [
       new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${Couleur.vNum})$`),
       new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`)
     ],
     argIsColor: [true, false, false]
   }, {
-    name: 'distanceTo',
+    name: 'distance',
     args: [
       new RegExp(`^(.+)${vSep}(.+)$`),
       new RegExp(`^(.+)$`)
     ],
     argIsColor: [true, false]
   }, {
-    name: 'sameAs',
+    name: 'same',
     args: [
       new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
       new RegExp(`^(.+)$`)
     ],
     argIsColor: [true, false]
   }, {
-    name: 'gradientTo',
+    name: 'gradient',
     args: [
       new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${vFormats})$`),
       new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),

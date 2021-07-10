@@ -215,8 +215,8 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
           <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
           <button type="button" class="exemple">pink.invert()</button>
           <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
-          <button type="button" class="exemple">black.contrastWith(white)</button>
-          <button type="button" class="exemple">orchid.gradientTo(palegreen, 5)</button>
+          <button type="button" class="exemple">black.contrast(white)</button>
+          <button type="button" class="exemple">orchid.gradient(palegreen, 5)</button>
           <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
         </div>
 
