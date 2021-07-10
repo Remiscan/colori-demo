@@ -61,17 +61,11 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     <!--<?php ob_start();?>-->
 
     <script defer src="/colori/demo/ext/prism.js" data-manual></script>
-    <script defer src="/colori/demo/script.js.php" type="module"></script>
+    <script src="/colori/demo/script.js.php" type="module"></script>
 
     <link rel="preload" as="script" href="/colori/colori.js" crossorigin>
     <link rel="preload" as="fetch" href="/colori/demo/strings.json" crossorigin
           id="strings" data-version="<?=version(__DIR__, 'strings.json')?>">
-    <!-- Préchargement des modules -->
-    <link rel="modulepreload" href="/_common/js/traduction.js">
-    <?php $mods = preg_filter('/(.+)\.(js\.php)/', '$1', scandir(__DIR__.'/modules'));
-    foreach($mods as $mod) { ?>
-    <link rel="modulepreload" href="/colori/demo/modules/<?=$mod?>.js.php">
-    <?php } ?>
 
     <link rel="stylesheet" href="/colori/demo/ext/prism.css">
     <link rel="stylesheet" href="/colori/demo/page.css.php">
@@ -193,7 +187,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     </section>
 
     <section id="demo">
-      <h1 data-string="titre-section-demo"><?=$Textes->getString('titre-section-demo')?></h1>
+      <h2 data-string="titre-section-demo"><?=$Textes->getString('titre-section-demo')?></h2>
 
       <fieldset role="tablist" data-group="tabs-input-method">
         <legend data-string="tabs-input-method-label"></legend>
@@ -203,9 +197,9 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
       </fieldset>
       
       <div id="saisie">
-        <h2 class="no-separator">
+        <h3 class="no-separator">
           <label for="entree" data-string="demo-input-label"><?=$Textes->getString('demo-input-label')?></label>
-        </h2>
+        </h3>
 
         <div class="exemples-saisie exemples-valeurs">
           <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
@@ -232,7 +226,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
       </div>
 
       <div id="ranges" data-format="rgb" hidden>
-        <h2 class="no-separator" data-string="demo-selectors-title"><?=$Textes->getString('demo-selectors-title')?></h2>
+        <h3 class="no-separator" data-string="demo-selectors-title"><?=$Textes->getString('demo-selectors-title')?></h3>
 
         <div class="choix-format">
           <span data-string="choix-format-titre"><?=$Textes->getString('choix-format-titre')?></span>
@@ -341,7 +335,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
       </div>
 
       <div id="resultats">
-        <h2 class="no-separator" data-string="demo-resultats-titre"><?=$Textes->getString('demo-resultats-titre')?></h2>
+        <h3 class="no-separator" data-string="demo-resultats-titre"><?=$Textes->getString('demo-resultats-titre')?></h3>
 
         <fieldset role="tablist" data-group="tabs-results">
           <legend data-string="tabs-results-label"></legend>
@@ -433,7 +427,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     }
 
     function prepareDocumentation($docu, $lang, $progLang) {
-      $docu = str_replace(['h3', 'h2', 'h1', '<code>', '<pre>'], ['h4', 'h3', 'h2', '<code class="language-javascript">', '<pre class="language-javascript">'], $docu);
+      $docu = str_replace(['h3', 'h2', 'h1', '<code>', '<pre>'], ['h5', 'h4', 'h3', '<code class="language-javascript">', '<pre class="language-javascript">'], $docu);
       $docu = preg_replace('/\<ul\>/', '<div class="nav-rapide"><ul>', $docu, 1);
       $docu = preg_replace('/\<\/ul\>\n\<p\>/', '</ul></div><p>', $docu, 1);
       $docu = preg_replace_callback('/\<h(2|3)\>(.+)?\<\/h(?:2|3)\>/', 'anchorLink', $docu);
@@ -470,7 +464,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     <button type="button" class="show-documentation" data-string="button-show-documentation"><?=$Textes->getString('button-show-documentation')?></button>
 
     <aside class="nav-documentation nav-rapide" data-label="nav-documentation">
-      <h1 class="titre-nav-rapide" data-string="nav-documentation"><?=$Textes->getString('nav-documentation')?></h1>
+      <h2 class="titre-nav-rapide" data-string="nav-documentation"><?=$Textes->getString('nav-documentation')?></h2>
       <div lang="fr" data-prog-language="js"><?=$quicknavJsFr?></div>
       <div lang="en" data-prog-language="js"><?=$quicknavJsEn?></div>
       <div lang="fr" data-prog-language="php"><?=$quicknavPhpFr?></div>

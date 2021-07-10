@@ -76,19 +76,19 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: 400;
 }
-h1, .h1 {
+h1, .h1, h2 {
   font-size: calc(var(--mod) * var(--mod) * var(--mod) * var(--mod) * 1rem);
 }
-h2, .h2 {
+h3, .h2 {
   font-size: calc(var(--mod) * var(--mod) * 1rem);
 }
-h3, .h3, h4, .h4 {
+h4, .h3, h5, .h4 {
   font-size: calc(var(--mod) * 1rem);
 }
-h5, .h5 {
+/*h5, .h5 {
   font-size: 1rem;
   line-height: 1.6em;
-}
+}*/
 h6, .h6 {
   font-size: calc(1rem / var(--mod));
 }
@@ -291,7 +291,7 @@ input[type="radio"][role="tab"]:checked + label {
 
 /* H1 - Titres de sections */
 
-h1 {
+h1, h2 {
   display: block;
   color: var(--h1-color);
   font-family: 'Lato';
@@ -308,7 +308,7 @@ h1 {
 
 /* H2 - Titres des sous-parties de sections */
 
-h2 {
+h3 {
   color: var(--h3-color);
   font-family: 'Lato';
   display: block;
@@ -319,7 +319,7 @@ h2 {
   --separator-width: 100%;
 }
 
-h2::before { 
+h3::before { 
   content: '';
   display: block;
   width: var(--separator-width);
@@ -333,12 +333,12 @@ h2::before {
   opacity: .15;
 }
 
-h2.no-separator {
+h3.no-separator {
   --margin-top: .6em;
   --separator-width: 0;
 }
 
-h2.no-separator:first-child {
+h3.no-separator:first-child {
   --margin-top: 0;
 }
 
@@ -1075,7 +1075,7 @@ input[type="number"][data-property]:active {
   --decalage: 0rem;
 }
 
-#resultats h2 {
+#resultats h3 {
   grid-column: 1;
 }
 
@@ -1228,7 +1228,7 @@ input[type="number"][data-property]:active {
  * Espacement des paragraphes
  */
 
-h1[data-string=titre-section-documentation] {
+h2[data-string=titre-section-documentation] {
   max-width: calc(100vw - 2 * .6rem - 1.2rem - .7rem - 4rem - 1.2rem);
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -1254,7 +1254,7 @@ p, li {
   margin: 0;
 }
 
-.documentation h2 + p,
+.documentation h3 + p,
 .titre-partie-docu + p,
 div + p {
   margin-top: 1.2em;
@@ -1268,22 +1268,22 @@ input + p {
   margin-bottom: 0;
 }
 
-div + p.h3,
-ul + p.h3,
-p + p.h3 {
+div + p.h4,
+ul + p.h4,
+p + p.h4 {
   margin-top: 2.4rem;
 }
 
-a.anchor-dest + p.h3 {
+a.anchor-dest + p.h4 {
   margin-top: 2em;
 }
 
-h2 + a.anchor-dest + p.h3 {
+h3 + a.anchor-dest + p.h4 {
   margin-top: 1em;
 }
 
-.documentation h4,
-.documentation h3 {
+.documentation h5,
+.documentation h4 {
   display: flex;
   gap: .3rem;
   justify-content: baseline;
@@ -1293,8 +1293,8 @@ h2 + a.anchor-dest + p.h3 {
   font-weight: 400;
 }
 
-.documentation h3::before,
-.documentation h3::after {
+.documentation h4::before,
+.documentation h4::after {
   content: '';
   display: flex;
   height: 0;
@@ -1303,7 +1303,7 @@ h2 + a.anchor-dest + p.h3 {
   align-self: center;
 }
 
-.documentation h3::before {
+.documentation h4::before {
   width: .9rem;
 }
 
@@ -1311,35 +1311,35 @@ h2 + a.anchor-dest + p.h3 {
   width: .9rem;
 }
 
-.documentation h4::after,
-.documentation h3::after {
+.documentation h5::after,
+.documentation h4::after {
   flex-grow: 1;
   border-top-style: dashed;
 }
 
-.documentation h4::before,
-.documentation h4::after {
+.documentation h5::before,
+.documentation h5::after {
   opacity: 0;
 }
 
-.documentation h4 {
+.documentation h5 {
   margin: 1.2em 0 .9em;
   gap: 0;
 }
 
-.documentation h2 + h4,
-.documentation h2 + a:not([href]) + h4,
-.documentation h2 + a:not([href]) + h3,
-.documentation h2 + h3 {
+.documentation h3 + h5,
+.documentation h3 + a:not([href]) + h5,
+.documentation h3 + a:not([href]) + h4,
+.documentation h3 + h4 {
   margin-top: 1.2em;
 }
 
-.documentation h2 + a:not([href]) + h3::after,
-.documentation h2 + h3::after {
+.documentation h3 + a:not([href]) + h4::after,
+.documentation h3 + h4::after {
   opacity: 0;
 }
 
-h2 + a.anchor-dest + .documenation h3::after {
+h3 + a.anchor-dest + .documenation h4::after {
   border-color: transparent;
 }
 
