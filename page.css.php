@@ -235,6 +235,8 @@ input[type="radio"][role="tab"] + label {
   color: var(--h1-color);
   padding: 0 .6rem;
   border-radius: .6rem .6rem 0 0;
+  border: 1px solid var(--tab-hover-color);
+  border-bottom: 0;
   cursor: default;
   min-width: var(--tap-safe-size);
   position: relative;
@@ -271,7 +273,7 @@ input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
 .choix-format input[type="radio"][name="choix-format"]:active + label,
 input[type="radio"][role="tab"]:active + label {
   background-color: var(--tab-hover-color);
-  box-shadow: -1px 0 0 0 var(--body-color), 1px 0 0 0 var(--body-color);
+  box-shadow: -1px -.05rem 0 0 var(--body-color), 1px -.05rem 0 0 var(--body-color);
   --decalage: .05rem;
 }
 
@@ -1044,6 +1046,7 @@ input[type="number"][data-property]:active {
 #resultats input[type="radio"][role="tab"] + label {
   box-shadow: none;
   border-radius: .6rem;
+  border: 1px solid var(--input-bg-color);
 }
 
 .choix-format input[type="radio"][name="choix-format"] + label:hover,
