@@ -7,11 +7,14 @@ require_once $commonDir.'/php/version.php';
 require_once $commonDir.'/php/getStrings.php';
 $version = version(__DIR__);
 
-$urlLang = substr(htmlspecialchars($_GET['lang']), 0, 2);
-$lang = $urlLang ?: $_COOKIE['lang'] ?: httpLanguage() ?: 'en';
+$urlLang = isset($_GET['lang']) ? substr(htmlspecialchars($_GET['lang']), 0, 2) : null;
+$cookieLang = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : null;
+$lang = $urlLang ?: $cookieLang ?: httpLanguage() ?: 'en';
 $Textes = new Textes('colori/demo', $lang);
 
-$progLanguage = $_COOKIE['prog-language'] ?? 'js';
+$progLanguage = isset($_COOKIE['prog-language']) ? $_COOKIE['prog-language'] : 'js';
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'auto';
+$resolvedTheme = isset($_COOKIE['resolvedTheme']) ? $_COOKIE['resolvedTheme'] : 'light';
 
 require_once './ext/Parsedown.php';
 $Parsedown = new Parsedown();
@@ -28,9 +31,9 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
 <!doctype html>
 <html lang="<?=$lang?>"
       data-version="<?=$version?>"
-      data-prog-language="<?=$_COOKIE['progLang'] ?? 'js'?>"
-      data-theme="<?=$_COOKIE['theme'] ?? 'auto'?>"
-      data-resolved-theme="<?=$_COOKIE['resolvedTheme'] ?? 'light'?>"
+      data-prog-language="<?=$progLanguage?>"
+      data-theme="<?=$theme?>"
+      data-resolved-theme="<?=$resolvedTheme?>"
       data-start-color="<?=$startColor->name()?>"
       style="--user-hue: <?=round($startColor->h())?>;
              --user-color: <?=$startColor->name()?>;
@@ -50,7 +53,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0">
-    <meta name="theme-color" content="<?=($_COOKIE['resolvedTheme'] == 'dark' ? $bodyColorDark->hsl() : $bodyColor->hsl())?>" data-light="<?=$bodyColor->hsl()?>" data-dark="<?=$bodyColorDark->hsl()?>">
+    <meta name="theme-color" content="<?=($resolvedTheme == 'dark' ? $bodyColorDark->hsl() : $bodyColor->hsl())?>" data-light="<?=$bodyColor->hsl()?>" data-dark="<?=$bodyColorDark->hsl()?>">
     <meta name="color-scheme" content="light dark">
 
     <link rel="icon" type="image/png" href="/colori/demo/icons/icon-192.png">
@@ -388,27 +391,27 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
           <div class="format couleur" data-string="apercu-couleur"><?=$Textes->getString('apercu-couleur')?></div>
 
           <div class="format" data-format="color-srgb">
-            <pre class="language-css"><code class="language-css"></code></pre>
+            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-srgb', precision: 4)?></code></pre>
           </div>
 
           <div class="format" data-format="color-display-p3">
-            <pre class="language-css"><code class="language-css"></code></pre>
+            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-display-p3', precision: 4)?></code></pre>
           </div>
 
           <div class="format" data-format="color-a98-rgb">
-            <pre class="language-css"><code class="language-css"></code></pre>
+            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-a98-rgb', precision: 4)?></code></pre>
           </div>
 
           <div class="format" data-format="color-prophoto-rgb">
-            <pre class="language-css"><code class="language-css"></code></pre>
+            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-prophoto-rgb', precision: 4)?></code></pre>
           </div>
 
           <div class="format" data-format="color-rec2020">
-            <pre class="language-css"><code class="language-css"></code></pre>
+            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-rec2020', precision: 4)?></code></pre>
           </div>
 
           <div class="format" data-format="color-xyz">
-            <pre class="language-css"><code class="language-css"></code></pre>
+            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-xyz', precision: 4)?></code></pre>
           </div>
         </div>
       </div>
