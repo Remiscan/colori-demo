@@ -97,9 +97,14 @@ for (const input of [...document.querySelectorAll('input[type="range"][data-prop
 /////////////////////////////////////
 // Show documentation on user request
 const docuButton = document.querySelector('.show-documentation');
+const documentation = document.querySelector('.documentation');
 docuButton.addEventListener('click', () => {
   document.documentElement.dataset.showDocumentation = 'true';
-  Prism.highlightAll(document.querySelector('.documentation'));
+  const visibleArticle = documentation.querySelector('article:not([hidden]');
+  if (visibleArticle.dataset.highlighted !== 'true') {
+    visibleArticle.dataset.highlighted = 'true';
+    Prism.highlightAllUnder(documentation.querySelector('article:not([hidden]'));
+  }
 });
 
 
@@ -116,6 +121,12 @@ window.addEventListener('tabchange', event => {
     case 'docu-php-en':
       document.documentElement.dataset.progLanguage = 'php';
       break;
+  }
+
+  const visibleArticle = documentation.querySelector('article:not([hidden]');
+  if (visibleArticle.dataset.highlighted !== 'true') {
+    visibleArticle.dataset.highlighted = 'true';
+    Prism.highlightAllUnder(documentation.querySelector('article:not([hidden]'));
   }
 });
 
