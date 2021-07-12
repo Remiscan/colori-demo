@@ -1162,6 +1162,7 @@ input[type="number"][data-property]:active {
 #resultats:not([data-type*="value"]):not([data-type*="gradient"]) .donnees#results-values,
 #resultats:not([data-type*="value"]) .format.valeur,
 #resultats:not([data-type*="gradient"]) .format.gradient,
+#resultats[data-type*="value"] [role="tablist"],
 #resultats[data-type*="value"] .donnees#results-named-formats,
 #resultats[data-type*="value"] .donnees#results-color-spaces {
   display: none;
