@@ -1159,11 +1159,11 @@ input[type="number"][data-property]:active {
   background-image: var(--gradient);
 }
 
-#resultats:not([data-type*="valeur"]):not([data-type*="gradient"]) .donnees#results-values,
-#resultats:not([data-type*="valeur"]) .format.valeur,
+#resultats:not([data-type*="value"]):not([data-type*="gradient"]) .donnees#results-values,
+#resultats:not([data-type*="value"]) .format.valeur,
 #resultats:not([data-type*="gradient"]) .format.gradient,
-#resultats[data-type*="valeur"] .donnees#results-named-formats,
-#resultats[data-type*="valeur"] .donnees#results-color-spaces {
+#resultats[data-type*="value"] .donnees#results-named-formats,
+#resultats[data-type*="value"] .donnees#results-color-spaces {
   display: none;
 }
 
@@ -1171,13 +1171,13 @@ input[type="number"][data-property]:active {
   white-space: normal;
 }
 
-[data-type*="valeur"][data-type*="gradient"] .format.valeur code {
+[data-type*="value"][data-type*="gradient"] .format.valeur code {
   white-space: pre-wrap;
 }
-[data-type*="valeur"][data-type*="whatToBlend"] .format.gradient {
+[data-type*="value"][data-type*="whatToBlend"] .format.gradient {
   height: 4rem;
 }
-[data-type*="valeur"][data-type*="whatToBlend"] .format.gradient::after {
+[data-type*="value"][data-type*="whatToBlend"] .format.gradient::after {
   background-image: var(--gradient),
                     linear-gradient(to bottom, transparent 0 50%, var(--bg) 50% 100%);
   background-position: top center, bottom center;
@@ -1194,7 +1194,7 @@ input[type="number"][data-property]:active {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-type*="valeur"][data-type*="whatToBlend"]>.format.gradient::after {
+  [data-type*="value"][data-type*="whatToBlend"]>.format.gradient::after {
     animation: none;
   }
 }
