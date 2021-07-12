@@ -66,7 +66,6 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     <script defer src="/colori/demo/ext/prism.js" data-manual></script>
     <script src="/colori/demo/script.js.php" type="module"></script>
 
-    <link rel="preload" as="script" href="/colori/colori.js" crossorigin>
     <link rel="preload" as="fetch" href="/colori/demo/strings.json" crossorigin
           id="strings" data-version="<?=version(__DIR__, 'strings.json')?>">
 
