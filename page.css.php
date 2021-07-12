@@ -1002,8 +1002,9 @@ input[type="number"][data-property] {
 
   position: absolute;
   bottom: calc(var(--tap-safe-size) + 10px);
-  left: calc(4px + 6px + var(--pos, 0) * (100% - 2 * 10px));
-  transform: translateX(-50%);
+  left: calc(var(--pos, 0) * (100% - 24px) - 3ch + .3rem); /* 7px half-cursor + 4px range border each side + 1px input[number] border each side
+                                                              + compensate for width and padding */
+  margin: 0 -6ch 0 0;
 
   opacity: 0;
   pointer-events: none;
