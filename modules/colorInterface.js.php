@@ -23,7 +23,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   const formats = [...document.querySelectorAll('.donnees>[data-format]')];
 
   // Send all the data to the worker and wait for its response
-  const response = await messageWorker('resolve-color', {
+  const response = await messageWorker('compute-interface', {
     colorString: couleur,
     formatsData: formats.map(format => {
       return {
@@ -109,7 +109,7 @@ export async function updateSliders(couleur, source = 'text') {
   const visibleFormat = document.querySelector('#ranges').dataset.format;
   let visibleProps;
 
-  [rangeData, visibleProps] = await messageWorker('make-range-gradients', {
+  [rangeData, visibleProps] = await messageWorker('compute-sliders', {
     rangeData,
     couleur,
     visibleFormat
