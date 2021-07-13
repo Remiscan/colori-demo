@@ -84,10 +84,6 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
     meta.dataset.light = response.metaLight;
     meta.dataset.dark = response.metaDark;
 
-    const element = document.documentElement;
-    element.style.setProperty('--user-hue', response.hue);
-    element.style.setProperty('--user-saturation', response.saturation);
-
     const style = document.getElementById('theme-variables');
     style.innerHTML = response.css;
   }
