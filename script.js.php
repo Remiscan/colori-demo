@@ -53,14 +53,8 @@ for (const input of [...document.querySelectorAll('input[name="choix-format"]')]
 const rangeValue = prop => document.querySelector(`input[type="range"][data-property="${prop}"]`).value;
 for (const input of [...document.querySelectorAll('input[type="range"][data-property]')]) {
   // Create corresponding numeric input
-  const numericInput = document.createElement('input');
-  numericInput.type = "number";
-  numericInput.dataset.property = input.dataset.property;
-  numericInput.min = input.min;
-  numericInput.max = input.max;
-  numericInput.step = 1;
-  numericInput.value = input.value;
-  input.parentElement.appendChild(numericInput);
+  const numericInput = document.querySelector(`input[type="number"][data-property="${input.dataset.property}"]`);
+  numericInput.style.setProperty('--pos', (input.value - input.min) / (input.max - input.min));
 
   // Update interface color on range change
   input.addEventListener('change', event => {
@@ -183,7 +177,7 @@ Traduction.traduire(themeSelector);
 Prism.highlightAll(document.querySelector('.donnees'));
 
 // Update sliders based on start color
-updateSliders(document.documentElement.dataset.startColor);
+updateSliders(document.documentElement.dataset.startColor, 'init');
 
 // Mark tappable custom elements as such
 for (const e of [...document.querySelectorAll('theme-selector button, tab-label label')]) {

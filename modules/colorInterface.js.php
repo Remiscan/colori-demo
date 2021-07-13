@@ -126,7 +126,7 @@ export async function updateSliders(couleur, source = 'text') {
     }
 
     // Only update sliders that are not being used
-    if (shouldUpdate) {
+    if (shouldUpdate && source !== 'init') {
       // Update slider value
       range.value = rangeData[k].newValue;
 

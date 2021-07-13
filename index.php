@@ -255,84 +255,98 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
           <span data-string="prop-r-nom"><?=$Textes->getString('prop-r-nom')?></span>
           <span>[0 ; 255]</span>
           <input type="range" id="range-red" data-property="r" min="0" max="255" step="1" value="<?=round(255 * $startColor->r)?>">
+          <input type="number" data-property="r" min="0" max="255" step="1" value="<?=round(255 * $startColor->r)?>">
         </label>
 
         <label for="range-green" data-format="rgb">
           <span data-string="prop-g-nom"><?=$Textes->getString('prop-g-nom')?></span>
           <span>[0 ; 255]</span>
           <input type="range" id="range-green" data-property="g" min="0" max="255" step="1" value="<?=round(255 * $startColor->g)?>">
+          <input type="number" data-property="g" min="0" max="255" step="1" value="<?=round(255 * $startColor->g)?>">
         </label>
 
         <label for="range-blue" data-format="rgb">
           <span data-string="prop-b-nom"><?=$Textes->getString('prop-b-nom')?></span>
           <span>[0 ; 255]</span>
           <input type="range" id="range-blue" data-property="b" min="0" max="255" step="1" value="<?=round(255 * $startColor->b)?>">
+          <input type="number" data-property="b" min="0" max="255" step="1" value="<?=round(255 * $startColor->b)?>">
         </label>
 
         <label for="range-hue" data-format="hsl,hwb">
           <span data-string="prop-h-nom"><?=$Textes->getString('prop-h-nom')?></span>
           <span>[0 ; 360]</span>
           <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round(360 * $startColor->h())?>">
+          <input type="number" data-property="h" min="0" max="360" step="1" value="<?=round(360 * $startColor->h())?>">
         </label>
 
         <label for="range-saturation" data-format="hsl">
           <span data-string="prop-s-nom"><?=$Textes->getString('prop-s-nom')?></span>
           <span>[0 ; 100]</span>
           <input type="range" id="range-saturation" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s())?>">
+          <input type="number" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s())?>">
         </label>
 
         <label for="range-luminosity" data-format="hsl">
           <span data-string="prop-l-nom"><?=$Textes->getString('prop-l-nom')?></span>
           <span>[0 ; 100]</span>
           <input type="range" id="range-luminosity" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l())?>">
+          <input type="number" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l())?>">
         </label>
 
         <label for="range-whiteness" data-format="hwb">
           <span data-string="prop-w-nom"><?=$Textes->getString('prop-w-nom')?></span>
           <span>[0 ; 100]</span>
           <input type="range" id="range-whiteness" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w())?>">
+          <input type="number" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w())?>">
         </label>
 
         <label for="range-blackness" data-format="hwb">
           <span data-string="prop-bk-nom"><?=$Textes->getString('prop-bk-nom')?></span>
           <span>[0 ; 100]</span>
           <input type="range" id="range-blackness" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk())?>">
+          <input type="number" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk())?>">
         </label>
 
         <label for="range-cie-lightness" data-format="lab,lch">
           <span data-string="prop-ciel-nom"><?=$Textes->getString('prop-ciel-nom')?></span>
           <span>[0 ; 100]</span>
           <input type="range" id="range-cie-lightness" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel())?>">
+          <input type="number" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel())?>">
         </label>
 
         <label for="range-cie-a-axis" data-format="lab">
           <span data-string="prop-ciea-nom"><?=$Textes->getString('prop-ciea-nom')?></span>
           <span>[-80 ; 94]</span>
           <input type="range" id="range-cie-a-axis" data-property="ciea" min="-80" max="94" step="1" value="<?=round($startColor->ciea())?>">
+          <input type="number" data-property="ciea" min="-80" max="94" step="1" value="<?=round($startColor->ciea())?>">
         </label>
 
         <label for="range-cie-b-axis" data-format="lab">
           <span data-string="prop-cieb-nom"><?=$Textes->getString('prop-cieb-nom')?></span>
           <span>[-112 ; 94]</span>
           <input type="range" id="range-cie-b-axis" data-property="cieb" min="-112" max="94" step="1" value="<?=round($startColor->cieb())?>">
+          <input type="number" data-property="cieb" min="-112" max="94" step="1" value="<?=round($startColor->cieb())?>">
         </label>
 
         <label for="range-cie-chroma" data-format="lch">
           <span data-string="prop-ciec-nom"><?=$Textes->getString('prop-ciec-nom')?></span>
           <span>[0 ; 132]</span>
           <input type="range" id="range-cie-chroma" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec())?>">
+          <input type="number" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec())?>">
         </label>
 
         <label for="range-cie-hue" data-format="lch">
           <span data-string="prop-cieh-nom"><?=$Textes->getString('prop-cieh-nom')?></span>
           <span>[0 ; 360]</span>
           <input type="range" id="range-cie-hue" data-property="cieh" min="0" max="360" step="1" value="<?=round(360 * $startColor->cieh())?>">
+          <input type="number" data-property="cieh" min="0" max="360" step="1" value="<?=round(360 * $startColor->cieh())?>">
         </label>
 
         <label for="range-opacity" data-format="rgb,hsl,hwb,lab,lch">
           <span data-string="prop-a-nom"><?=$Textes->getString('prop-a-nom')?></span>
           <span>[0 ; 100]</span>
           <input type="range" id="range-opacity" data-property="a" min="0" max="100" step="1" value="<?=round(100 * $startColor->a)?>">
+          <input type="number" data-property="a" min="0" max="100" step="1" value="<?=round(100 * $startColor->a)?>">
         </label>
       </div>
 
