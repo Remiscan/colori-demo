@@ -349,12 +349,22 @@ a:visited {
 a:hover,
 a:focus,
 a:active {
-  background-color: var(--link-color);
-  box-shadow: 0 0.1em 0 0 var(--link-color);
-  color: var(--section-color);
   text-decoration: none;
   border-radius: .2em;
 }
+
+a:hover,
+a:focus {
+  background-color: var(--button-hover-bg-color);
+  box-shadow: 0 0.1em 0 0 var(--button-hover-bg-color);
+}
+
+a:active {
+  background-color: var(--button-active-bg-color);
+  box-shadow: 0 0.1em 0 0 var(--button-active-bg-color);
+}
+
+
 
 a:focus-visible {
   box-shadow: none;
@@ -462,7 +472,7 @@ header {
   grid-row: 1 / 2;
   grid-column: 2 / 5;
   display: grid;
-  grid-template-columns: auto 1fr [github-start] auto [github-end] 1fr [options-start] auto [options-end];
+  grid-template-columns: [github-start] 1fr [github-end logo-start] auto [logo-end options-start] 1fr [options-end];
   justify-content: center;
   align-items: start;
   position: relative;
@@ -474,7 +484,7 @@ header {
 }
 
 header>h1 {
-  grid-column: 1 / 2;
+  grid-column: logo-start / logo-end;
   grid-row: 1 / 2;
   justify-self: start;
   align-self: end;
@@ -482,7 +492,6 @@ header>h1 {
   position: relative;
   text-align: center;
   transform: translateY(17.7%);
-  margin-right: .9rem;
   z-index: 0;
   font-size: calc(1.2 * var(--mod) * var(--mod) * 1rem);
   --shadow-color: var(--body-color);
@@ -576,32 +585,18 @@ theme-selector input[type="radio"]:focus:not(:focus-visible) + label {
 }
 
 .bouton-langage {
-  border: none;
-  background-color: transparent;
-  -webkit-appearance: none;
-  appearance: none;
-  color: var(--h1-color);
-  font-family: inherit;
-  font-weight: 600;
-  font-size: .8em;
+  font-size: .9em;
   width: fit-content;
-  cursor: pointer;
-  padding: .3rem;
-  text-decoration: underline;
-  text-decoration-skip-ink: auto;
   position: relative;
 }
 
-.bouton-langage:hover,
-theme-selector button:hover {
-  background-color: transparent;
-}
-
-.bouton-langage:disabled {
+.bouton-langage[disabled] {
   background-color: transparent;
   text-decoration: none;
   opacity: .5;
   cursor: auto;
+  pointer-events: none;
+  display: none;
 }
 
 
@@ -610,37 +605,23 @@ theme-selector button:hover {
 .lien-github {
   grid-column: github-start / github-end;
   grid-row: 1;
-  justify-self: end;
+  justify-self: start;
   align-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: .6rem;
   padding: .2rem;
   font-size: inherit;
 }
 
-.lien-github:link,
-.lien-github:visited {
-  text-decoration: none;
-  box-shadow: none;
-  color: var(--h1-color);
-}
-
-.lien-github:hover,
+/*.lien-github:hover,
 .lien-github:focus,
 .lien-github:active {
   color: var(--section-color);
-}
+}*/
 
 .lien-github svg {
   fill: var(--h1-color);
-}
-
-.lien-github:hover svg,
-.lien-github:focus svg,
-.lien-github:active svg {
-  fill: var(--section-color);
 }
 
 span[data-string=github] {
@@ -656,23 +637,7 @@ span[data-string=github] {
 
 
 @media (max-width: 30rem) {
-  header {
-    grid-template-columns: auto 0 [github-start] auto [github-end] 1fr [options-start] auto [options-end];
-  }
-  
-  .lien-github {
-    margin: 0 .6rem;
-  }
-
   span[data-string=github] {
-    display: none;
-  }
-
-  .groupe-langages {
-    justify-self: center;
-  }
-
-  .bouton-langage:disabled {
     display: none;
   }
 }

@@ -177,8 +177,8 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
       </a>
 
       <div class="groupe-langages">
-        <button type="button" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</button>
-        <button type="button" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</button>
+        <a href="?lang=fr" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</a>
+        <a href="?lang=en" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</a>
         <theme-selector position="bottom"></theme-selector>
       </div>
     </header>
