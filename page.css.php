@@ -315,33 +315,20 @@ h3 {
   font-family: 'Lato';
   display: block;
   position: relative;
-  margin-top: var(--margin-top);
-
-  --margin-top: 3.6em;
-  --separator-width: 100%;
 }
 
-h3::before { 
-  content: '';
-  display: block;
-  width: var(--separator-width);
-  height: 4px;
+
+/*
+ * Séparateur
+ */
+
+hr {
+  border: none;
   border-radius: 6px;
-  position: absolute;
-  top: calc(-0.5 * var(--margin-top));
-  left: 50%;
-  transform: translate(-50%, 50%);
-  background: var(--h3-color);
+  background-color: var(--h3-color);
+  height: 4px;
+  margin: 3.6rem 0;
   opacity: .15;
-}
-
-h3.no-separator {
-  --margin-top: .6em;
-  --separator-width: 0;
-}
-
-h3.no-separator:first-child {
-  --margin-top: 0;
 }
 
 
@@ -1265,6 +1252,11 @@ p:last-child,
 
 p, li {
   line-height: 1.6em;
+}
+
+.documentation>article>*:not(.nav-rapide):not(a) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 100px;
 }
 
 .documentation p:last-child,

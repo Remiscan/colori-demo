@@ -432,11 +432,12 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
       $docu = str_replace(['h3', 'h2', 'h1', '<code>', '<pre>'], ['h5', 'h4', 'h3', '<code class="language-javascript">', '<pre class="language-javascript">'], $docu);
       $docu = preg_replace('/\<ul\>/', '<div class="nav-rapide"><ul>', $docu, 1);
       $docu = preg_replace('/\<\/ul\>\n\<p\>/', '</ul></div><p>', $docu, 1);
-      $docu = preg_replace_callback('/\<h(2|3)\>(.+)?\<\/h(?:2|3)\>/', 'anchorLink', $docu);
+      $docu = preg_replace_callback('/\<h(3|4)\>(.+)?\<\/h(?:3|4)\>/', 'anchorLink', $docu);
       $docu = preg_replace('/\<a id=\"(.+?)\">/', "<a id=\"$1-$lang-$progLang\">", $docu);
       $docu = preg_replace('/\<a href=\"(.+?)\">/', "<a href=\"$1-$lang-$progLang\">", $docu);
       $docu = preg_replace('/\<blockquote\>/', '<div class="note">', $docu);
       $docu = preg_replace('/\<\/blockquote\>/', '</div>', $docu);
+      $docu = preg_replace('/\<h3\>/', '<hr><h3>', $docu);
       return $docu;
     }
 
