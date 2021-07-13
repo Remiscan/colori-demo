@@ -1,7 +1,7 @@
 // ▼ ES modules cache-busted grâce à PHP
 /*<?php ob_start();?>*/
 
-import Couleur from '/colori/colori.js';
+import Couleur from '/colori/colori.min.js';
 import { resolveColor } from './colorResolution.js.php';
 
 /*<?php $imports = ob_get_clean();
