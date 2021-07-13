@@ -629,9 +629,9 @@ span[data-string=github] {
 }
 
 .github-cat {
-  width: 1.2rem;
-  height: 1.2rem;
-  margin-right: .3rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: -.6rem .3rem -.6rem 0;
 }
 
 
