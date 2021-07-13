@@ -6,17 +6,22 @@ let supports = false;
 const tester = { get type() { supports = true; }};
 try { const w = new Worker('blob://', tester); } catch (e) {}
 
+// ▼ ES modules cache-busted grâce à PHP
+/*<?php ob_start();?>*/
+
 if (supports) {
   /*<?php echo '*'.'/';
-  $version = version(__DIR__, 'worker.js.php');
-  echo "worker = new Worker('/colori/demo/modules/worker--$version.js.php', { type: 'module' });";
+  echo "worker = new Worker('/colori/demo/modules/worker.js.php', { type: 'module' });";
   echo '/'.'*'; ?>*/
 } else {
   /*<?php echo '*'.'/';
-  $version = version(__DIR__, 'worker-nomodule.js.php');
-  echo "worker = new Worker('/colori/demo/modules/worker-nomodule--$version.js.php');";
+  echo "worker = new Worker('/colori/demo/modules/worker-nomodule.js.php');";
   echo '/'.'*'; ?>*/
 }
+
+/*<?php $imports = ob_get_clean();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
+echo versionizeFiles($imports, __DIR__); ?>*/
 
 export async function messageWorker(instruction, data) {
   const chan = new MessageChannel();
