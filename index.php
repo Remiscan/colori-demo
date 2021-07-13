@@ -169,14 +169,13 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     <header>
       <h1>colori.<span data-prog-language="js">js</span><span data-prog-language="php">php</span></h1>
 
-      <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable
-         data-label="github" aria-label="<?=$Textes->getString('github')?>">
-        <svg viewBox="0 0 16 16" class="github-cat"><use href="#github-cat" /></svg>
-        <span data-string="github"><?=$Textes->getString('github')?></span>
-        <span>GitHub</span>
-      </a>
-
       <div class="groupe-langages">
+        <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable
+          data-label="github" aria-label="<?=$Textes->getString('github')?>">
+          <svg viewBox="0 0 16 16" class="github-cat"><use href="#github-cat" /></svg>
+          <span data-string="github"><?=$Textes->getString('github')?></span>
+          <span>GitHub</span>
+        </a>
         <a href="?lang=fr" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</a>
         <a href="?lang=en" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</a>
         <theme-selector position="bottom"></theme-selector>

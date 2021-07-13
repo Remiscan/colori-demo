@@ -472,7 +472,7 @@ header {
   grid-row: 1 / 2;
   grid-column: 2 / 5;
   display: grid;
-  grid-template-columns: [github-start] 1fr [github-end logo-start] auto [logo-end options-start] 1fr [options-end];
+  grid-template-columns: [logo-start] 1fr [logo-end github-start] auto [github-end] 1.2rem [options-start] auto [options-end];
   justify-content: center;
   align-items: start;
   position: relative;
@@ -481,6 +481,7 @@ header {
   padding: 0 var(--section-padding);
   padding-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
+  font-size: .9rem;
 }
 
 header>h1 {
@@ -503,7 +504,6 @@ header>h1 {
 theme-selector {
   width: 1.8em;
   height: 1.8em;
-  margin: .3rem;
   --margin-right: 0;
   margin-right: var(--margin-right);
   --primary-color: var(--h1-color);
@@ -580,12 +580,11 @@ theme-selector input[type="radio"]:focus:not(:focus-visible) + label {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: .3rem;
+  gap: .9rem;
   height: 100%;
 }
 
 .bouton-langage {
-  font-size: .9em;
   width: fit-content;
   position: relative;
 }
