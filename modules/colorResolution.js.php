@@ -78,8 +78,11 @@ const methodes = [
     ],
     argIsColor: [true]
   }, {
-    name: 'contrastedText',
-    args: null
+    name: 'bestColorScheme',
+    args: [
+      new RegExp(`^([A-Za-z]+?)$`),
+      new RegExp('^$')
+    ]
   }, {
     name: 'improveContrast',
     args: [

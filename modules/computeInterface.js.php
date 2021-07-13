@@ -30,7 +30,7 @@ export function computeInterface({ colorString, formatsData }) {
     interfaceColor = userColor;
   }
 
-  else if (typeof userColor == 'number' || typeof userColor == 'boolean') {
+  else if (typeof userColor === 'number' || typeof userColor === 'boolean' || typeof userColor === 'string') {
     responseType = 'value';
     value = userColor;
   }
@@ -47,6 +47,10 @@ export function computeInterface({ colorString, formatsData }) {
       responseType += ',gradient,whatToBlend';
       value = `[\n  ${userColor.map(c => c.name || c.rgb).join(',\n  ')}\n]`;
     }
+  }
+
+  else {
+    console.log(`${colorString} == ${userColor}`);
   }
 
   const response = {
