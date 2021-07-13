@@ -8,12 +8,12 @@ try { const w = new Worker('blob://', tester); } catch (e) {}
 
 if (supports) {
   /*<?php echo '*'.'/';
-  $version = version(dirname(__DIR__, 1), 'worker.js.php');
+  $version = version(__DIR__, 'worker.js.php');
   echo "worker = new Worker('/colori/demo/modules/worker--$version.js.php', { type: 'module' });";
   echo '/'.'*'; ?>*/
 } else {
   /*<?php echo '*'.'/';
-  $version = version(dirname(__DIR__, 1), 'worker-nomodule.js.php');
+  $version = version(__DIR__, 'worker-nomodule.js.php');
   echo "worker = new Worker('/colori/demo/modules/worker-nomodule--$version.js.php');";
   echo '/'.'*'; ?>*/
 }
