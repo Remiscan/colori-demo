@@ -877,6 +877,11 @@ input[type="text"]:focus {
   grid-template-columns: 100%;
 }
 
+#ranges,
+#resultats {
+  --preview-border-width: 4px;
+}
+
 .choix-format {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -912,6 +917,7 @@ input[type="radio"][name="choix-format"] + label::before {
   grid-template-rows: auto auto;
   gap: .3rem;
   position: relative;
+  --cursor-width: 14px;
 }
 
 #ranges[data-format="rgb"] label[data-format*="rgb"],
@@ -939,7 +945,7 @@ input[type="range"] {
   appearance: none;
 	display: block;
   height: var(--tap-safe-size);
-  border: 4px solid var(--frame-color);
+  border: var(--preview-border-width) solid var(--frame-color);
   border-radius: .6rem;
   --couleurs: white 0%, black 100%;
 	background: linear-gradient(to right, var(--couleurs)),
@@ -953,7 +959,7 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 14px;
+  width: var(--cursor-width);
   height: var(--tap-safe-size);
   background: transparent;
   border: none;
@@ -966,7 +972,7 @@ input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 14px;
+  width: var(--cursor-width);
   height: var(--tap-safe-size);
   background: transparent;
 	border: none;
@@ -998,15 +1004,17 @@ input[type="number"][data-property] {
   border: none;
   border-radius: .6rem;
 	background: var(--body-color);
-  border: 1px solid var(--section-color);
+  --border-width: 1px;
+  border: var(--border-width) solid var(--section-color);
   text-align: center;
 
   position: absolute;
+  --compensation: calc(.5 * var(--cursor-width) + 2 * var(--preview-border-width) + 2 * var(--border-width));
   bottom: calc(var(--tap-safe-size) + 10px);
   left: clamp(
     0px,
-    var(--pos, 0) * (100% - 24px) - 0.5 * var(--width) + var(--padding-side), /* 7px half-cursor + (4px range border + 1px input[number] border)*2 */
-    100% - 24px - var(--width) + 2 * var(--padding-side) /* same but compensate full width and padding */
+    var(--pos, 0) * (100% - var(--compensation)) - 0.5 * var(--width) + var(--padding-side),
+    100% - 24px - var(--width) + 2 * var(--padding-side)
   ); 
   margin: 0 -6ch 0 0;
 
@@ -1117,7 +1125,7 @@ input[type="number"][data-property]:active {
   display: flex;
   flex-basis: 100%;
   height: 3rem;
-  --border-size: 4px;
+  --border-size: var(--preview-border-width);
   align-self: stretch;
   background-color: var(--frame-color);
   border-radius: .6rem;
