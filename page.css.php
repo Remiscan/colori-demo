@@ -1009,7 +1009,7 @@ input[type="number"][data-property] {
   text-align: center;
 
   position: absolute;
-  --compensation: calc(.5 * var(--cursor-width) + 2 * var(--preview-border-width) + 2 * var(--border-width));
+  --compensation: calc(var(--cursor-width) + 2 * var(--preview-border-width) + 2 * var(--border-width));
   bottom: calc(var(--tap-safe-size) + 10px);
   left: clamp(
     0px,
