@@ -988,9 +988,11 @@ input[type="number"][data-property] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-	width: 6ch;
+  --width: 6ch;
+	width: var(--width);
   height: 1.8rem;
-  padding: .15rem .3rem;
+  --padding-side: .3rem;
+  padding: .15rem var(--padding-side);
   font-size: 1rem;
   color: var(--text-color);
   border: none;
@@ -1001,8 +1003,11 @@ input[type="number"][data-property] {
 
   position: absolute;
   bottom: calc(var(--tap-safe-size) + 10px);
-  left: calc(var(--pos, 0) * (100% - 24px) - 3ch + .3rem); /* 7px half-cursor + 4px range border each side + 1px input[number] border each side
-                                                              + compensate for width and padding */
+  left: clamp(
+    0px,
+    var(--pos, 0) * (100% - 24px) - 0.5 * var(--width) + var(--padding-side), /* 7px half-cursor + (4px range border + 1px input[number] border)*2 */
+    100% - 24px - var(--width) + 2 * var(--padding-side) /* same but compensate full width and padding */
+  ); 
   margin: 0 -6ch 0 0;
 
   opacity: 0;
