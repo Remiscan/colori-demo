@@ -174,7 +174,7 @@ themeSelector.querySelector('.selector-cookie-notice').classList.add('h6');
 Traduction.traduire(themeSelector);
 
 // Syntax highlighting on start color formats
-Prism.highlightAll(document.querySelector('.donnees'));
+Prism.highlightAllUnder(document.querySelector('#resultats'));
 
 // Update sliders based on start color
 updateSliders(document.documentElement.dataset.startColor, 'init');
