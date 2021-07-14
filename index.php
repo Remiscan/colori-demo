@@ -47,12 +47,12 @@ $startColor = new Couleur($namedColors[$r]);
     <meta name="viewport" content="initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
 
+    <!-- ▼ Fichiers cache-busted grâce à PHP -->
+    <!--<?php ob_start();?>-->
+
     <link rel="icon" type="image/png" href="/colori/demo/icons/icon-192.png">
     <link rel="apple-touch-icon" href="/colori/demo/icons/apple-touch-icon.png">
     <link rel="manifest" href="/colori/demo/manifest.json">
-
-    <!-- ▼ Fichiers cache-busted grâce à PHP -->
-    <!--<?php ob_start();?>-->
 
     <script defer src="/colori/demo/ext/prism.js" data-manual></script>
     <script src="/colori/demo/script.js.php" type="module"></script>
