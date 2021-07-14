@@ -17,10 +17,9 @@ export function computeInterface({ colorString, formatsData }) {
   if (Array.isArray(colorData) && colorData.length === 3) {
     [userColor, method, input] = colorData;
   }
-  if (userColor == null) return;
 
   // If the user input resolves to a color, adapt the interface
-  let responseType = null;
+  let responseType;
   let interfaceColor = null;
   let value = null;
   let gradient = null;
@@ -49,7 +48,7 @@ export function computeInterface({ colorString, formatsData }) {
     }
   }
 
-  else {
+  else if (typeof userColor !== 'undefined') {
     console.log(`${colorString} == ${userColor}`);
   }
 

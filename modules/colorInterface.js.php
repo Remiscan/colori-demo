@@ -33,7 +33,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
     })
   });
 
-  if (typeof response === 'undefined') return;
+  if (typeof response.type === 'undefined') return;
   updateSliders(response.colorArray, source);
 
   // Hide non-format results by default
