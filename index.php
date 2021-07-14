@@ -70,7 +70,10 @@ $startColor = new Couleur($namedColors[$r]);
     <style id="theme-variables">
       <?php ob_start();
       $colorPreview = Couleur::blend('white', $startColor);
+      $cieh = round($startColor->cieh());
+
       /* Définition des couleurs du thème clair */
+      $ciec = min($startColor->ciec(), 75/sqrt(3));
       $bodyColor = new Couleur("lch(75% $ciec $cieh)");
       $sectionColor = new Couleur("lch(85% ". (0.6 * $ciec) ." $cieh)");
       $codeColor = new Couleur("lch(92% ". (0.3 * $ciec) ." $cieh)");
@@ -105,6 +108,7 @@ $startColor = new Couleur($namedColors[$r]);
 
       <?php
       /* Définition des couleurs du thème sombre */
+      $ciec = min($startColor->ciec(), 8/sqrt(1.040816));
       $bodyColorDark = new Couleur("lch(8% ".(.6 * $ciec)." $cieh)");
       $sectionColor = new Couleur("lch(20% $ciec $cieh)");
       $codeColor = $bodyColorDark;

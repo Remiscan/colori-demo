@@ -96,7 +96,7 @@ function makeCSS(userColor) {
 
   // Calculate colors for light theme
   light: {
-    const ciec = Math.min(userColor.ciec, 60);
+    const ciec = Math.min(userColor.ciec, 75/Math.sqrt(3));
     const bodyColor = new Couleur(`lch(75% ${ciec} ${cieh})`);
     metaLight = bodyColor.rgb;
     const sectionColor = new Couleur(`lch(85% ${.6 * ciec} ${cieh})`);
@@ -132,7 +132,8 @@ function makeCSS(userColor) {
 
   // Calculate colors for dark theme
   dark: {
-    const ciec = Math.min(.3 * userColor.ciec, 10);
+    //const ciec = Math.min(.3 * userColor.ciec, 10);
+    const ciec = Math.min(userColor.ciec, 8/Math.sqrt(1.040816));
     const bodyColor = new Couleur(`lch(8% ${.6 * ciec} ${cieh})`);
     metaDark = bodyColor.rgb;
     const sectionColor = new Couleur(`lch(20% ${ciec} ${cieh})`);
@@ -161,7 +162,7 @@ function makeCSS(userColor) {
       --token-operator: ${(new Couleur(`lch(80% 70 ${cieh - 45})`)).hsl};
       --token-keyword: ${(new Couleur(`lch(80% 70 ${cieh + 135})`)).hsl};
       /* Button colors */
-      --button-bg-color: ${(new Couleur(`lch(25% ${.75 * ciec} ${cieh} / .25)`)).hsl};
+      --button-bg-color: ${(new Couleur(`lch(25% ${.75 * ciec} ${cieh})`)).hsl};
       --button-active-bg-color: ${(new Couleur(`lch(35% ${1.5 * ciec} ${cieh})`)).hsl};
     `;
   }
