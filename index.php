@@ -77,11 +77,10 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     echo versionizeFiles($imports, __DIR__); ?>-->
 
     <style id="theme-variables">
-      <?php ob_start();?>
-      <?php
+      <?php ob_start();
       $colorPreview = Couleur::blend('white', $startColor);
       /* Définition des couleurs du thème clair */
-      $ciec = min($startColor->ciec(), 60);
+      $bodyColor = new Couleur("lch(75% $ciec $cieh)");
       $sectionColor = new Couleur("lch(85% ". (0.6 * $ciec) ." $cieh)");
       $codeColor = new Couleur("lch(92% ". (0.3 * $ciec) ." $cieh)");
       ?>
@@ -115,7 +114,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
 
       <?php
       /* Définition des couleurs du thème sombre */
-      $ciec = min(.3 * $startColor->ciec(), 10);
+      $bodyColorDark = new Couleur("lch(8% ".(.6 * $ciec)." $cieh)");
       $sectionColor = new Couleur("lch(20% $ciec $cieh)");
       $codeColor = $bodyColorDark;
       ?>
@@ -150,6 +149,8 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
       require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';
       echo buildThemesStylesheet($body); ?>
     </style>
+
+    <meta name="theme-color" content="<?=($resolvedTheme == 'dark' ? $bodyColorDark->hsl() : $bodyColor->hsl())?>" data-light="<?=$bodyColor->hsl()?>" data-dark="<?=$bodyColorDark->hsl()?>">
 
     <noscript>
       <link rel="stylesheet" href="/colori/demo/style-noscript.css">
