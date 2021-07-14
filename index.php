@@ -22,11 +22,6 @@ $Parsedown = new Parsedown();
 $namedColors = array_keys(Couleur::COULEURS_NOMMEES);
 $r = mt_rand(0, count($namedColors) - 1);
 $startColor = new Couleur($namedColors[$r]);
-
-// Adapte l'interface (en attendant que JavaScript s'en charge)
-$ciel = round(100 * $startColor->ciel()); $ciec = round($startColor->ciec()); $cieh = round($startColor->cieh());
-$bodyColor = new Couleur("lch(75% $ciec $cieh)");
-$bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
 ?>
 <!doctype html>
 <html lang="<?=$lang?>"
@@ -35,10 +30,7 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
       data-theme="<?=$theme?>"
       data-resolved-theme="<?=$resolvedTheme?>"
       data-start-color="<?=$startColor->name()?>"
-      style="--user-hue: <?=round($startColor->h())?>;
-             --user-color: <?=$startColor->name()?>;
-             --user-saturation: <?=round($startColor->s())?>;
-            ">
+      style="--user-color: <?=$startColor->name()?>;">
   <head>
     <meta charset="utf-8">
     <title>Colori</title>
@@ -53,7 +45,6 @@ $bodyColorDark = new Couleur("lch(8% ".(.6 * min(.3 * $ciec, 10))." $cieh)");
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0">
-    <meta name="theme-color" content="<?=($resolvedTheme == 'dark' ? $bodyColorDark->hsl() : $bodyColor->hsl())?>" data-light="<?=$bodyColor->hsl()?>" data-dark="<?=$bodyColorDark->hsl()?>">
     <meta name="color-scheme" content="light dark">
 
     <link rel="icon" type="image/png" href="/colori/demo/icons/icon-192.png">
