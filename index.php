@@ -5,7 +5,6 @@ $commonDir = dirname(__DIR__, 2).'/_common';
 require_once $commonDir.'/php/httpLanguage.php';
 require_once $commonDir.'/php/version.php';
 require_once $commonDir.'/php/getStrings.php';
-$version = version(__DIR__);
 
 $urlLang = isset($_GET['lang']) ? substr(htmlspecialchars($_GET['lang']), 0, 2) : null;
 $cookieLang = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : null;
@@ -25,7 +24,6 @@ $startColor = new Couleur($namedColors[$r]);
 ?>
 <!doctype html>
 <html lang="<?=$lang?>"
-      data-version="<?=$version?>"
       data-prog-language="<?=$progLanguage?>"
       data-theme="<?=$theme?>"
       data-resolved-theme="<?=$resolvedTheme?>"
