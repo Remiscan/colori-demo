@@ -494,7 +494,7 @@ header>h1 {
   text-align: center;
   transform: translateY(17.7%);
   z-index: 0;
-  font-size: calc(1.2 * var(--mod) * var(--mod) * 1rem);
+  font-size: calc(var(--mod) * var(--mod) * var(--mod) * 1rem);
   --shadow-color: var(--body-color);
 }
 
