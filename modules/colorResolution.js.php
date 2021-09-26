@@ -112,6 +112,10 @@ const methodes = [
       new RegExp(`^(.+)$`)
     ],
     argIsColor: [true, false, false]
+  }, {
+    name: 'valuesTo',
+    args: new RegExp(`^(.+)$`),
+    argIsColor: [false]
   }
 ];
 
