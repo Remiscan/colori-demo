@@ -14,7 +14,7 @@ const vSep = '\\,(?: +)?';
 // RegExp des options d'une méthode
 const vOpt = 'true|false|\\{(?:.+)?\\}';
 // RegExp des formats
-const vFormats = `rgb|hsl|hwb|lab|lch`;
+const vFormats = `rgb|hsl|hwb|lab|lch|oklab|oklch`;
 
 // Liste des méthodes supportées par le champ
 const methodes = [
