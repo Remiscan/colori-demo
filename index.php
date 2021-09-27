@@ -54,24 +54,7 @@ $startColor = new Couleur($namedColors[$r]);
 
     <!-- Import map -->
     <script defer src="/_common/polyfills/es-module-shims.js"></script>
-    <script type="importmap">
-      {
-        "imports": {
-          "colorInterface": "/colori/demo/modules/colorInterface.js",
-          "colorResolution": "/colori/demo/modules/colorResolution.js",
-          "computeInterface": "/colori/demo/modules/computeInterface.js",
-          "cookies": "/colori/demo/modules/cookies.js",
-          "messageWorker": "/colori/demo/modules/messageWorker.js.php",
-          "traduction": "/colori/demo/modules/traduction.js",
-
-          "colori": "/colori/colori.min.js",
-          "theme-selector": "/_common/components/theme-selector/theme-selector.js.php",
-          "tab-label": "/_common/components/tab-label/tab-label.js.php",
-          "default-cookies": "/_common/js/cookies.js",
-          "default-traduction": "/_common/js/traduction.js"
-        }
-      }
-    </script>
+    <script type="importmap"><?php include 'importMap.json'; ?></script>
     <link rel="modulepreload" href="/colori/demo/modules/worker.js">
 
     <script defer src="/colori/demo/ext/prism.js" data-manual></script>
