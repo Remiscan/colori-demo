@@ -1,5 +1,5 @@
 let worker;
-let supports = false;
+let supports = false; // module workers don't work with import maps yet :(
 /*const tester = { get type() { supports = true; }};
 try { const w = new Worker('blob://', tester); } catch (e) {}*/
 
@@ -7,13 +7,9 @@ try { const w = new Worker('blob://', tester); } catch (e) {}*/
 /*<?php ob_start();?>*/
 
 if (supports) {
-  /*<?php echo '*'.'/';
-  echo "worker = new Worker('/colori/demo/modules/worker.js', { type: 'module' });";
-  echo '/'.'*'; ?>*/
+  worker = new Worker('/colori/demo/modules/worker.js', { type: 'module' });
 } else {
-  /*<?php echo '*'.'/';
-  echo "worker = new Worker('/colori/demo/modules/worker-nomodule.js.php');";
-  echo '/'.'*'; ?>*/
+  worker = new Worker('/colori/demo/modules/worker-nomodule.js.php');
 }
 
 /*<?php $imports = ob_get_clean();
