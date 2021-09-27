@@ -3,18 +3,17 @@ echo "*"."/";
 ob_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/colori/colori.min.js';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/colori/demo/modules/colorResolution.js.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/colori/demo/modules/computeInterface.js.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/colori/demo/modules/colorResolution.js';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/colori/demo/modules/computeInterface.js';
+require_once 'worker.js';
 
 $imports = ob_get_clean();
 echo preg_replace([
-  '/export default /',
-  '/export /',
-  '/import (.+?);/' ,
-  '/\{ Utils, Graph \}/'
+  '/export default ?/',
+  '/export ?/',
+  '/import(.+?);/',
+  '/\{Utils,Palette,Graph\}/'
 ], '', $imports);
-
-require_once 'worker.js.php';
 
 echo "/"."*";
 ?>*/

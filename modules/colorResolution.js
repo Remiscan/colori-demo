@@ -1,11 +1,4 @@
-// ▼ ES modules cache-busted grâce à PHP
-/*<?php ob_start();?>*/
-
-import Couleur from '/colori/colori.min.js';
-
-/*<?php $imports = ob_get_clean();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
-echo versionizeFiles($imports, __DIR__); ?>*/
+import Couleur from 'colori';
 
 
 

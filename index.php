@@ -52,8 +52,30 @@ $startColor = new Couleur($namedColors[$r]);
     <link rel="apple-touch-icon" href="/colori/demo/icons/apple-touch-icon.png">
     <link rel="manifest" href="/colori/demo/manifest.json">
 
+    <!-- Import map -->
+    <script defer src="/_common/polyfills/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "colorInterface": "/colori/demo/modules/colorInterface.js",
+          "colorResolution": "/colori/demo/modules/colorResolution.js",
+          "computeInterface": "/colori/demo/modules/computeInterface.js",
+          "cookies": "/colori/demo/modules/cookies.js",
+          "messageWorker": "/colori/demo/modules/messageWorker.js.php",
+          "traduction": "/colori/demo/modules/traduction.js",
+
+          "colori": "/colori/colori.min.js",
+          "theme-selector": "/_common/components/theme-selector/theme-selector.js.php",
+          "tab-label": "/_common/components/tab-label/tab-label.js.php",
+          "default-cookies": "/_common/js/cookies.js",
+          "default-traduction": "/_common/js/traduction.js"
+        }
+      }
+    </script>
+    <link rel="modulepreload" href="/colori/demo/modules/worker.js">
+
     <script defer src="/colori/demo/ext/prism.js" data-manual></script>
-    <script src="/colori/demo/script.js.php" type="module"></script>
+    <script src="/colori/demo/script.js" type="module"></script>
 
     <link rel="preload" as="fetch" href="/colori/demo/strings.json" crossorigin
           id="strings" data-version="<?=version(__DIR__, 'strings.json')?>">

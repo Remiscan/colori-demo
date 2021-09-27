@@ -3,15 +3,15 @@ require_once $commonDir.'/php/version.php'; ?>*/
 
 let worker;
 let supports = false;
-const tester = { get type() { supports = true; }};
-try { const w = new Worker('blob://', tester); } catch (e) {}
+/*const tester = { get type() { supports = true; }};
+try { const w = new Worker('blob://', tester); } catch (e) {}*/
 
 // ▼ ES modules cache-busted grâce à PHP
 /*<?php ob_start();?>*/
 
 if (supports) {
   /*<?php echo '*'.'/';
-  echo "worker = new Worker('/colori/demo/modules/worker.js.php', { type: 'module' });";
+  echo "worker = new Worker('/colori/demo/modules/worker.js', { type: 'module' });";
   echo '/'.'*'; ?>*/
 } else {
   /*<?php echo '*'.'/';

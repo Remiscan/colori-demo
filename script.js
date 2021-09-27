@@ -1,15 +1,8 @@
-// ▼ ES modules cache-busted grâce à PHP
-/*<?php ob_start();?>*/
-
-import '/_common/components/theme-selector/theme-selector.js.php';
-import '/_common/components/tab-label/tab-label.js.php';
-import Cookie from '/colori/demo/modules/cookies.js.php';
-import { Traduction } from '/colori/demo/modules/traduction.js.php';
-import { updateInterface, updateSliders } from '/colori/demo/modules/colorInterface.js.php';
-
-/*<?php $imports = ob_get_clean();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
-echo versionizeFiles($imports, __DIR__); ?>*/
+import 'theme-selector';
+import 'tab-label';
+import Cookie from 'cookies';
+import { Traduction } from 'traduction';
+import { updateInterface, updateSliders } from 'colorInterface';
 
 
 
