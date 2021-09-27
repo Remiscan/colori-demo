@@ -1,6 +1,3 @@
-/*<?php $commonDir = dirname(__DIR__, 3).'/_common';
-require_once $commonDir.'/php/version.php'; ?>*/
-
 let worker;
 let supports = false;
 /*const tester = { get type() { supports = true; }};
