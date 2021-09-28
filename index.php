@@ -1,5 +1,5 @@
 <?php
-require_once '../colori.php';
+require_once '../dist/colori.php';
 
 $commonDir = dirname(__DIR__, 2).'/_common';
 require_once $commonDir.'/php/httpLanguage.php';
@@ -55,7 +55,6 @@ $startColor = new Couleur($namedColors[$r]);
     <!-- Import map -->
     <script defer src="/_common/polyfills/es-module-shims.js"></script>
     <script type="importmap"><?php include 'importMap.json'; ?></script>
-    <link rel="modulepreload" href="/colori/demo/modules/worker.js">
 
     <script defer src="/colori/demo/ext/prism.js" data-manual></script>
     <script src="/colori/demo/script.js" type="module"></script>
