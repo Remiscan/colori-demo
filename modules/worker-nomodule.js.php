@@ -9,10 +9,9 @@ require_once 'worker.js';
 
 $imports = ob_get_clean();
 echo preg_replace([
-  '/export default ?/',
+  '/export(.+?);/',
   '/export ?/',
-  '/import(.+?);/',
-  '/\{Utils,Palette,Graph\}/'
+  '/import(.+?);/'
 ], '', $imports);
 
 echo "/"."*";

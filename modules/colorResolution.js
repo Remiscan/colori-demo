@@ -1,4 +1,5 @@
 import Couleur from 'colori';
+import { RegExps } from 'css-formats';
 
 
 
@@ -8,26 +9,28 @@ const vSep = '\\,(?: +)?';
 const vOpt = 'true|false|\\{(?:.+)?\\}';
 // RegExp des formats
 const vFormats = `rgb|hsl|hwb|lab|lch|oklab|oklch`;
+// RegExp des propriétés
+const vProp = Couleur.properties.join('|');
 
 // Liste des méthodes supportées par le champ
 const methodes = [
   {
     name: 'change',
     args: [
-      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})${vSep}(${vOpt})`),
-      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})`)
+      new RegExp(`(${vProp})${vSep}(${RegExps.numberOrPercentage})${vSep}(${vOpt})`),
+      new RegExp(`(${vProp})${vSep}(${RegExps.numberOrPercentage})`)
     ]
   }, {
     name: 'replace',
     args: [
-      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})${vSep}(${vOpt})`),
-      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})`)
+      new RegExp(`(${vProp})${vSep}(${RegExps.numberOrPercentage})${vSep}(${vOpt})`),
+      new RegExp(`(${vProp})${vSep}(${RegExps.numberOrPercentage})`)
     ]
   }, {
     name: 'scale',
     args: [
-      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})${vSep}(${vOpt})`),
-      new RegExp(`(${Couleur.vProp})${vSep}(${Couleur.vNP})`)
+      new RegExp(`(${vProp})${vSep}(${RegExps.numberOrPercentage})${vSep}(${vOpt})`),
+      new RegExp(`(${vProp})${vSep}(${RegExps.numberOrPercentage})`)
     ]
   }, {
     name: 'greyscale',
@@ -58,8 +61,8 @@ const methodes = [
   }, {
     name: 'whatToBlend',
     args: [
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${Couleur.vNum})$`),
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
+      new RegExp(`^(.+)${vSep}(${RegExps.number})${vSep}(${RegExps.number})$`),
+      new RegExp(`^(.+)${vSep}(${RegExps.number})$`),
       new RegExp(`^(.+)$`)
     ],
     argIsColor: [true, false, false]
@@ -79,8 +82,8 @@ const methodes = [
   }, {
     name: 'improveContrast',
     args: [
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${Couleur.vNum})$`),
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`)
+      new RegExp(`^(.+)${vSep}(${RegExps.number})${vSep}(${RegExps.number})$`),
+      new RegExp(`^(.+)${vSep}(${RegExps.number})$`)
     ],
     argIsColor: [true, false, false]
   }, {
@@ -93,15 +96,15 @@ const methodes = [
   }, {
     name: 'same',
     args: [
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
+      new RegExp(`^(.+)${vSep}(${RegExps.number})$`),
       new RegExp(`^(.+)$`)
     ],
     argIsColor: [true, false]
   }, {
     name: 'gradient',
     args: [
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})${vSep}(${vFormats})$`),
-      new RegExp(`^(.+)${vSep}(${Couleur.vNum})$`),
+      new RegExp(`^(.+)${vSep}(${RegExps.number})${vSep}(${vFormats})$`),
+      new RegExp(`^(.+)${vSep}(${RegExps.number})$`),
       new RegExp(`^(.+)$`)
     ],
     argIsColor: [true, false, false]

@@ -8,6 +8,7 @@
     "traduction": "/colori/demo/modules/traduction.js",
 
     "colori": "/colori/colori.min.js",
+    "css-formats": "/colori/src/css-formats.js",
     "theme-selector": "/_common/components/theme-selector/theme-selector.js.php",
     "tab-label": "/_common/components/tab-label/tab-label.js.php",
     "default-cookies": "/_common/js/cookies.js",
