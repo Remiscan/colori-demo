@@ -18,4 +18,4 @@ onmessage = event => {
   }
 
   if (time === lastMessageTime) port.postMessage(JSON.stringify(returnData));
-}
+};
