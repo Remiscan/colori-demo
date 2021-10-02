@@ -17,6 +17,10 @@ echo unModule($colori);
 
 // Let's find colori's exports and name them properly.
 
+preg_match('/export default (.*?);/', $colori, $exportDefaultMatches);
+$exportDefaultString = $exportDefaultMatches[1];
+echo "const Couleur = $exportDefaultString;";
+
 preg_match('/export ?{(.*?)};?/', $colori, $exportMatches);
 $exportString = $exportMatches[1];
 
