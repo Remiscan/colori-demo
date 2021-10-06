@@ -395,6 +395,14 @@ $startColor = new Couleur($namedColors[$r]);
           <div class="format" data-format="lch">
             <pre class="language-css"><code class="language-css"><?=$startColor->lch()?></code></pre>
           </div>
+
+          <div class="format" data-format="oklab">
+            <pre class="language-css"><code class="language-css"><?=$startColor->oklab()?></code></pre>
+          </div>
+
+          <div class="format" data-format="oklch">
+            <pre class="language-css"><code class="language-css"><?=$startColor->oklch()?></code></pre>
+          </div>
         </div>
 
         <div class="donnees" id="results-color-spaces" hidden>
