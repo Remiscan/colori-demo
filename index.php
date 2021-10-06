@@ -18,7 +18,7 @@ $resolvedTheme = isset($_COOKIE['resolvedTheme']) ? $_COOKIE['resolvedTheme'] : 
 require_once './ext/Parsedown.php';
 $Parsedown = new Parsedown();
 
-$namedColors = array_keys(Couleur::COULEURS_NOMMEES);
+$namedColors = array_keys(Couleur::NAMED_COLORS);
 $r = mt_rand(0, count($namedColors) - 1);
 $startColor = new Couleur($namedColors[$r]);
 ?>
