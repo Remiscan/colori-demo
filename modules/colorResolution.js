@@ -52,12 +52,18 @@ const methodes = [
     args: null
   }, {
     name: 'blend',
-    args: new RegExp(`^(.+)$`),
-    argIsColor: [true]
+    args: [
+      new RegExp(`^(.+)${vSep}(${RegExps.number})$`),
+      new RegExp(`^(.+)$`),
+    ],
+    argIsColor: [true, false]
   }, {
     name: 'unblend',
-    args: new RegExp(`^(.+)$`),
-    argIsColor: [true]
+    args: [
+      new RegExp(`^(.+)${vSep}(${RegExps.number})$`),
+      new RegExp(`^(.+)$`),
+    ],
+    argIsColor: [true, false]
   }, {
     name: 'whatToBlend',
     args: [
