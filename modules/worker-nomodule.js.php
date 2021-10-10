@@ -18,17 +18,20 @@ echo unModule($colori);
 // Let's find colori's exports and name them properly.
 
 preg_match('/export default (.*?);/', $colori, $exportDefaultMatches);
-$exportDefaultString = $exportDefaultMatches[1];
-echo "const Couleur = $exportDefaultString;";
+if (!empty($exportDefaultMatches[1])) {
+  $exportDefaultString = $exportDefaultMatches[1];
+  echo "const Couleur = $exportDefaultString;";
+}
 
 preg_match('/export ?{(.*?)};?/', $colori, $exportMatches);
-$exportString = $exportMatches[1];
-
-$couples = explode(',', $exportString);
-foreach ($couples as $couple) {
-  [$short, $long] = explode(' as ', $couple);
-  if ($long === 'default') $long = 'Couleur';
-  echo "const $long = $short;";
+if (!empty($exportMatches[1])) {
+  $exportString = $exportMatches[1];
+  $couples = explode(',', $exportString);
+  foreach ($couples as $couple) {
+    [$short, $long] = explode(' as ', $couple);
+    if ($long === 'default') $long = 'Couleur';
+    echo "const $long = $short;";
+  }
 }
 
 ob_start();
