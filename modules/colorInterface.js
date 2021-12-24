@@ -98,7 +98,8 @@ export async function updateSliders(couleur, source = 'text') {
     };
   });
 
-  const visibleFormat = document.querySelector('#ranges').dataset.format;
+  const rangesContainer = document.querySelector('#ranges');
+  const visibleFormat = rangesContainer.getAttribute('hidden') !== 'hidden' ? rangesContainer.dataset.format : '';
   let visibleProps;
 
   [rangeData, visibleProps] = await messageWorker('compute-sliders', {
