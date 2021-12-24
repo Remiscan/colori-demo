@@ -174,6 +174,10 @@ $startColor = new Couleur($namedColors[$r]);
           <span data-string="github"><?=$Textes->getString('github')?></span>
           <span>GitHub</span>
         </a>
+        <!--<a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-JavaScript-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="js"><?=$Textes->getString('titre-section-documentation')?></a>
+        <a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-PHP-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="php"><?=$Textes->getString('titre-section-documentation')?></a>
+        <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-JavaScript-%28English%29" data-tappable lang="en" data-prog-language="js"><?=$Textes->getString('titre-section-documentation')?></a>
+        <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-PHP-%28English%29" data-tappable lang="en" data-prog-language="php"><?=$Textes->getString('titre-section-documentation')?></a>-->
         <a href="?lang=fr" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</a>
         <a href="?lang=en" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</a>
         <theme-selector position="bottom"></theme-selector>
