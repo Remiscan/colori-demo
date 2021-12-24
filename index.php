@@ -282,8 +282,8 @@ $startColor = new Couleur($namedColors[$r]);
         <label for="range-hue" data-format="hsl hwb">
           <span data-string="prop-h-nom"><?=$Textes->getString('prop-h-nom')?></span>
           <span>[0 ; 360]</span>
-          <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round(360 * $startColor->h())?>">
-          <input type="number" data-property="h" min="0" max="360" step="1" value="<?=round(360 * $startColor->h())?>">
+          <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round($startColor->h())?>">
+          <input type="number" data-property="h" min="0" max="360" step="1" value="<?=round($startColor->h())?>">
         </label>
 
         <label for="range-saturation" data-format="hsl">
@@ -345,8 +345,8 @@ $startColor = new Couleur($namedColors[$r]);
         <label for="range-cie-hue" data-format="lch">
           <span data-string="prop-cieh-nom"><?=$Textes->getString('prop-cieh-nom')?></span>
           <span>[0 ; 360]</span>
-          <input type="range" id="range-cie-hue" data-property="cieh" min="0" max="360" step="1" value="<?=round(360 * $startColor->cieh())?>">
-          <input type="number" data-property="cieh" min="0" max="360" step="1" value="<?=round(360 * $startColor->cieh())?>">
+          <input type="range" id="range-cie-hue" data-property="cieh" min="0" max="360" step="1" value="<?=round($startColor->cieh())?>">
+          <input type="number" data-property="cieh" min="0" max="360" step="1" value="<?=round($startColor->cieh())?>">
         </label>
 
         <label for="range-ok-lightness" data-format="oklab oklch">
@@ -380,8 +380,8 @@ $startColor = new Couleur($namedColors[$r]);
         <label for="range-cie-hue" data-format="oklch">
           <span data-string="prop-okh-nom"><?=$Textes->getString('prop-okh-nom')?></span>
           <span>[0 ; 360]</span>
-          <input type="range" id="range-ok-hue" data-property="okh" min="0" max="360" step="1" value="<?=round(360 * $startColor->okh())?>">
-          <input type="number" data-property="okh" min="0" max="360" step="1" value="<?=round(360 * $startColor->okh())?>">
+          <input type="range" id="range-ok-hue" data-property="okh" min="0" max="360" step="1" value="<?=round($startColor->okh())?>">
+          <input type="number" data-property="okh" min="0" max="360" step="1" value="<?=round($startColor->okh())?>">
         </label>
 
         <label for="range-opacity" data-format="rgb hsl hwb lab lch oklab oklch">
