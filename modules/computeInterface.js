@@ -208,7 +208,13 @@ export function computeSliders({ rangeData, couleur, visibleFormat }) {
       case 'ciec':
       case 'h':
       case 'cieh':
+      case 'okh':
         coeff = 1;
+        break;
+      case 'oka':
+      case 'okb':
+      case 'okc':
+        coeff = 100;
         break;
     }
 
@@ -223,7 +229,7 @@ export function computeSliders({ rangeData, couleur, visibleFormat }) {
 
     let gradient = [];
     let steps, min, max;
-    let h, s, l, w, bk, ciel, ciea, cieb, ciec, cieh;
+    let h, s, l, w, bk, ciel, ciea, cieb, ciec, cieh, okl, oka, okb, okc, okh;
     switch (prop) {
       case 'r':
         gradient.push(`rgb(0, ${255 * userColor.g}, ${255 * userColor.b}, ${userColor.a})`);
@@ -312,6 +318,44 @@ export function computeSliders({ rangeData, couleur, visibleFormat }) {
         steps = 20;
         for (let i = 0; i <= steps; i++) {
           gradient.push((new Couleur(`lab(${ciel}% ${ciea} ${min + i * (max - min) / steps} / ${userColor.a})`)).rgb);
+        }
+        break;
+      case 'okl':
+        okc = getRangeValue('okc'), okh = getRangeValue('okh');
+        steps = 20;
+        for (let i = 0; i <= steps; i ++) {
+          gradient.push((new Couleur(`oklch(${i * 100 / steps}% ${okc} ${okh} / ${userColor.a})`)).rgb)
+        }
+        break;
+      case 'okc':
+        okl = getRangeValue('okl'), okh = getRangeValue('okh');
+        max = Number(range.max);
+        steps = 20;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`oklch(${okl}% ${i * max / steps} ${okh} / ${userColor.a})`)).rgb);
+        }
+        break;
+      case 'okh':
+        okl = getRangeValue('okl'), okc = getRangeValue('okc');
+        steps = 20;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`oklch(${okl}% ${okc} ${i * 360 / steps} / ${userColor.a})`)).rgb);
+        }
+        break;
+      case 'oka':
+        okl = getRangeValue('okl'), okb = getRangeValue('okb');
+        min = Number(range.min), max = Number(range.max);
+        steps = 20;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`oklab(${okl}% ${min + i * (max - min) / steps} ${okb} / ${userColor.a})`)).rgb);
+        }
+        break;
+      case 'okb':
+        okl = getRangeValue('okl'), oka = getRangeValue('oka');
+        min = Number(range.min), max = Number(range.max);
+        steps = 20;
+        for (let i = 0; i <= steps; i++) {
+          gradient.push((new Couleur(`oklab(${okl}% ${oka} ${min + i * (max - min) / steps} / ${userColor.a})`)).rgb);
         }
         break;
     }

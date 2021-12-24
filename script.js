@@ -1,8 +1,8 @@
-import 'theme-selector';
-import 'tab-label';
-import Cookie from 'cookies';
-import { Traduction } from 'traduction';
 import { updateInterface, updateSliders } from 'colorInterface';
+import Cookie from 'cookies';
+import 'tab-label';
+import 'theme-selector';
+import { Traduction } from 'traduction';
 
 
 
@@ -60,6 +60,8 @@ for (const input of [...document.querySelectorAll('input[type="range"][data-prop
       case 'hwb': couleur = `hwb(${rangeValue('h')} ${rangeValue('w')}% ${rangeValue('bk')}% / ${a})`; break;
       case 'lab': couleur = `lab(${rangeValue('ciel')}% ${rangeValue('ciea')} ${rangeValue('cieb')} / ${a})`; break;
       case 'lch': couleur = `lch(${rangeValue('ciel')}% ${rangeValue('ciec')} ${rangeValue('cieh')} / ${a})`; break;
+      case 'oklab': couleur = `oklab(${rangeValue('okl')}% ${rangeValue('oka')} ${rangeValue('okb')} / ${a})`; break;
+      case 'oklch': couleur = `oklch(${rangeValue('okl')}% ${rangeValue('okc')} ${rangeValue('okh')} / ${a})`; break;
     }
     updateInterface(couleur, `range-${input.dataset.property}`);
   });

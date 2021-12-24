@@ -871,11 +871,13 @@ input[type="radio"][name="choix-format"] + label::before {
   --cursor-width: 14px;
 }
 
-#ranges[data-format="rgb"] label[data-format*="rgb"],
-#ranges[data-format="hsl"] label[data-format*="hsl"],
-#ranges[data-format="hwb"] label[data-format*="hwb"],
-#ranges[data-format="lab"] label[data-format*="lab"],
-#ranges[data-format="lch"] label[data-format*="lch"] {
+#ranges[data-format="rgb"] label[data-format~="rgb"],
+#ranges[data-format="hsl"] label[data-format~="hsl"],
+#ranges[data-format="hwb"] label[data-format~="hwb"],
+#ranges[data-format="lab"] label[data-format~="lab"],
+#ranges[data-format="lch"] label[data-format~="lch"],
+#ranges[data-format="oklab"] label[data-format~="oklab"],
+#ranges[data-format="oklch"] label[data-format~="oklch"] {
   display: grid;
 }
 

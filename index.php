@@ -245,6 +245,12 @@ $startColor = new Couleur($namedColors[$r]);
 
             <input type="radio" id="choix-format-lch" name="choix-format" value="lch">
             <label for="choix-format-lch" data-tappable="after">LCH</label>
+
+            <input type="radio" id="choix-format-oklab" name="choix-format" value="oklab">
+            <label for="choix-format-oklab" data-tappable="after">OKLAB</label>
+
+            <input type="radio" id="choix-format-oklch" name="choix-format" value="oklch">
+            <label for="choix-format-oklch" data-tappable="after">OKLCH</label>
           </div>
         </div>
 
@@ -269,7 +275,7 @@ $startColor = new Couleur($namedColors[$r]);
           <input type="number" data-property="b" min="0" max="255" step="1" value="<?=round(255 * $startColor->b)?>">
         </label>
 
-        <label for="range-hue" data-format="hsl,hwb">
+        <label for="range-hue" data-format="hsl hwb">
           <span data-string="prop-h-nom"><?=$Textes->getString('prop-h-nom')?></span>
           <span>[0 ; 360]</span>
           <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round(360 * $startColor->h())?>">
@@ -304,7 +310,7 @@ $startColor = new Couleur($namedColors[$r]);
           <input type="number" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk())?>">
         </label>
 
-        <label for="range-cie-lightness" data-format="lab,lch">
+        <label for="range-cie-lightness" data-format="lab lch">
           <span data-string="prop-ciel-nom"><?=$Textes->getString('prop-ciel-nom')?></span>
           <span>[0 ; 100]</span>
           <input type="range" id="range-cie-lightness" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel())?>">
@@ -339,7 +345,42 @@ $startColor = new Couleur($namedColors[$r]);
           <input type="number" data-property="cieh" min="0" max="360" step="1" value="<?=round(360 * $startColor->cieh())?>">
         </label>
 
-        <label for="range-opacity" data-format="rgb,hsl,hwb,lab,lch">
+        <label for="range-ok-lightness" data-format="oklab oklch">
+          <span data-string="prop-okl-nom"><?=$Textes->getString('prop-okl-nom')?></span>
+          <span>[0 ; 100]</span>
+          <input type="range" id="range-ok-lightness" data-property="okl" min="0" max="100" step="1" value="<?=round(100 * $startColor->okl())?>">
+          <input type="number" data-property="okl" min="0" max="100" step="1" value="<?=round(100 * $startColor->okl())?>">
+        </label>
+
+        <label for="range-ok-a-axis" data-format="oklab">
+          <span data-string="prop-oka-nom"><?=$Textes->getString('prop-oka-nom')?></span>
+          <span>[-24 ; 28]</span>
+          <input type="range" id="range-ok-a-axis" data-property="oka" min="-24" max="28" step="0.5" value="<?=round(100 * $startColor->oka())?>">
+          <input type="number" data-property="oka" min="-24" max="28" step="0.5" value="<?=round(100 * $startColor->oka())?>">
+        </label>
+
+        <label for="range-ok-b-axis" data-format="oklab">
+          <span data-string="prop-okb-nom"><?=$Textes->getString('prop-okb-nom')?></span>
+          <span>[-32 ; 20]</span>
+          <input type="range" id="range-ok-b-axis" data-property="okb" min="-32" max="20" step="0.5" value="<?=round(100 * $startColor->okb())?>">
+          <input type="number" data-property="okb" min="-32" max="20" step="0.5" value="<?=round(100 * $startColor->okb())?>">
+        </label>
+
+        <label for="range-ok-chroma" data-format="oklch">
+          <span data-string="prop-okc-nom"><?=$Textes->getString('prop-okc-nom')?></span>
+          <span>[0 ; 32]</span>
+          <input type="range" id="range-ok-chroma" data-property="okc" min="0" max="32" step="0.5" value="<?=round(100 * $startColor->okc())?>">
+          <input type="number" data-property="okc" min="0" max="32" step="0.5" value="<?=round(100 * $startColor->okc())?>">
+        </label>
+
+        <label for="range-cie-hue" data-format="oklch">
+          <span data-string="prop-okh-nom"><?=$Textes->getString('prop-okh-nom')?></span>
+          <span>[0 ; 360]</span>
+          <input type="range" id="range-ok-hue" data-property="okh" min="0" max="360" step="1" value="<?=round(360 * $startColor->okh())?>">
+          <input type="number" data-property="okh" min="0" max="360" step="1" value="<?=round(360 * $startColor->okh())?>">
+        </label>
+
+        <label for="range-opacity" data-format="rgb hsl hwb lab lch oklab oklch">
           <span data-string="prop-a-nom"><?=$Textes->getString('prop-a-nom')?></span>
           <span>[0 ; 100]</span>
           <input type="range" id="range-opacity" data-property="a" min="0" max="100" step="1" value="<?=round(100 * $startColor->a)?>">
