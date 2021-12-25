@@ -19,7 +19,7 @@ export function computeInterface({ colorString, formatsData }) {
 
   if (userColor instanceof Couleur) {
     responseType = 'Couleur';
-    interfaceColor = userColor;
+    interfaceColor = userColor.toGamut('srgb');
   }
 
   else if (typeof userColor === 'number' || typeof userColor === 'boolean' || typeof userColor === 'string') {
@@ -29,7 +29,7 @@ export function computeInterface({ colorString, formatsData }) {
 
   else if (Array.isArray(userColor) && userColor.length > 0 && userColor.reduce((sum, e) => sum + (e instanceof Couleur), 0)) {
     responseType = 'array,value';
-    interfaceColor = userColor[0];
+    interfaceColor = userColor[0].toGamut('srgb');
     gradient = `linear-gradient(to right,  ${userColor.map(c => c.name || c.rgb).join(',  ')})`;
     if (method === 'gradient') {
       responseType += ',gradient';
@@ -194,7 +194,7 @@ function makeCSS(userColor) {
 /** Computes all sliders data and background-gradients. */
 export function computeSliders({ rangeData, couleur, visibleFormat }) {
   const userColor = Couleur.makeInstance(couleur);
-  const visibleProps = Couleur.propertiesOf(visibleFormat);
+  const visibleProps = [...Couleur.propertiesOf(visibleFormat), 'a'];
   const getRangeValue = prop => rangeData.find(r => r.prop == prop)[visibleProps.includes(prop) ? 'value' : 'newValue'];
 
   // Loop 1: compute new range values
