@@ -201,6 +201,7 @@ export function computeSliders({ rangeData, couleur, visibleFormat }) {
   for (const range of rangeData) {
     const prop = range.prop;
     
+    const precision = 1 / range.step;
     let coeff = range.max;
     switch (prop) {
       case 'ciea':
@@ -209,16 +210,14 @@ export function computeSliders({ rangeData, couleur, visibleFormat }) {
       case 'h':
       case 'cieh':
       case 'okh':
-        coeff = 1;
-        break;
       case 'oka':
       case 'okb':
       case 'okc':
-        coeff = 100;
+        coeff = 1;
         break;
     }
 
-    const newValue = Math.max(range.min, Math.min(Math.round(coeff * userColor[prop]), range.max));
+    const newValue = Math.max(range.min, Math.min(Math.round(precision * coeff * userColor[prop]) / precision, range.max));
     range.newValue = newValue;
     range.numericInputPos = (range.newValue - range.min) / (range.max - range.min);
   }

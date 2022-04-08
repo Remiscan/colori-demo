@@ -359,22 +359,22 @@ $startColor = new Couleur($namedColors[$r]);
         <label for="range-ok-a-axis" data-format="oklab">
           <span data-string="prop-oka-nom"><?=$Textes->getString('prop-oka-nom')?></span>
           <span>[-24 ; 28]</span>
-          <input type="range" id="range-ok-a-axis" data-property="oka" min="-24" max="28" step="0.5" value="<?=round(100 * $startColor->oka())?>">
-          <input type="number" data-property="oka" min="-24" max="28" step="0.5" value="<?=round(100 * $startColor->oka())?>">
+          <input type="range" id="range-ok-a-axis" data-property="oka" min="-0.24" max="0.28" step="0.001" value="<?=round(10**3 * $startColor->oka()) / 10**3?>">
+          <input type="number" data-property="oka" min="-0.24" max="0.28" step="0.001" value="<?=round(10**3 * $startColor->oka()) / 10**3?>">
         </label>
 
         <label for="range-ok-b-axis" data-format="oklab">
           <span data-string="prop-okb-nom"><?=$Textes->getString('prop-okb-nom')?></span>
           <span>[-32 ; 20]</span>
-          <input type="range" id="range-ok-b-axis" data-property="okb" min="-32" max="20" step="0.5" value="<?=round(100 * $startColor->okb())?>">
-          <input type="number" data-property="okb" min="-32" max="20" step="0.5" value="<?=round(100 * $startColor->okb())?>">
+          <input type="range" id="range-ok-b-axis" data-property="okb" min="-0.32" max="0.20" step="0.001" value="<?=round(10**3 * $startColor->okb()) / 10**3?>">
+          <input type="number" data-property="okb" min="-0.32" max="0.20" step="0.001" value="<?=round(10**3 * $startColor->okb()) / 10**3?>">
         </label>
 
         <label for="range-ok-chroma" data-format="oklch">
           <span data-string="prop-okc-nom"><?=$Textes->getString('prop-okc-nom')?></span>
           <span>[0 ; 32]</span>
-          <input type="range" id="range-ok-chroma" data-property="okc" min="0" max="32" step="0.5" value="<?=round(100 * $startColor->okc())?>">
-          <input type="number" data-property="okc" min="0" max="32" step="0.5" value="<?=round(100 * $startColor->okc())?>">
+          <input type="range" id="range-ok-chroma" data-property="okc" min="0" max="0.32" step="0.001" value="<?=round(10**3 * $startColor->okc()) / 10**3?>">
+          <input type="number" data-property="okc" min="0" max="0.32" step="0.001" value="<?=round(10**3 * $startColor->okc()) / 10**3?>">
         </label>
 
         <label for="range-ok-hue" data-format="oklch">

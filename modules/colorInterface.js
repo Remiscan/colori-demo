@@ -92,6 +92,7 @@ export async function updateSliders(couleur, source = 'text') {
       prop: range.dataset.property,
       min: range.min,
       max: range.max,
+      step: range.step,
       value: range.value,
       numericInputPos: null,
       gradient: null
