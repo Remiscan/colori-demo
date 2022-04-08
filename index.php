@@ -377,7 +377,7 @@ $startColor = new Couleur($namedColors[$r]);
           <input type="number" data-property="okc" min="0" max="32" step="0.5" value="<?=round(100 * $startColor->okc())?>">
         </label>
 
-        <label for="range-cie-hue" data-format="oklch">
+        <label for="range-ok-hue" data-format="oklch">
           <span data-string="prop-okh-nom"><?=$Textes->getString('prop-okh-nom')?></span>
           <span>[0 ; 360]</span>
           <input type="range" id="range-ok-hue" data-property="okh" min="0" max="360" step="1" value="<?=round($startColor->okh())?>">
