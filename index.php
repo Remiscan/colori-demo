@@ -395,88 +395,134 @@ $startColor = new Couleur($namedColors[$r]);
       <div id="resultats">
         <h3 class="no-separator" data-string="demo-resultats-titre"><?=$Textes->getString('demo-resultats-titre')?></h3>
 
-        <fieldset role="tablist" data-group="tabs-results">
-          <legend data-string="tabs-results-label"></legend>
-
-          <tab-label controls="results-named-formats" data-label-id="tab-label-named-formats" label="<?=$Textes->getString('tab-label-named-formats')?>" active="true"></tab-label>
-          <tab-label controls="results-color-spaces" data-label-id="tab-label-color-spaces" label="<?=$Textes->getString('tab-label-color-spaces')?>"></tab-label>
-        </fieldset>
-
         <div class="donnees" id="results-values">
-        <div class="format gradient" data-string="apercu-gradient"><?=$Textes->getString('apercu-gradient')?></div>
+          <div class="format gradient" data-string="apercu-gradient"><?=$Textes->getString('apercu-gradient')?></div>
 
           <div class="format valeur">
             <pre><code class="language-css"></code></pre>
           </div>
         </div>
 
-        <div class="donnees" id="results-named-formats">
-          <div class="format couleur" data-string="apercu-couleur"><?=$Textes->getString('apercu-couleur')?></div>
+        <table class="donnees" id="results-named-formats">
+          <tr>
+            <th scope="col">Format</th>
+            <th scope="col">Expression de la couleur</th>
+          </tr>
 
-          <div class="format" data-format="name">
-            <pre class="language-css"><code class="language-css"><?=$startColor->name()?></code></pre>
-          </div>
+          <tr>
+            <td>Nom</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="name">
+                  <?=$startColor->name()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-          <div class="format" data-format="hex">
-            <pre class="language-css"><code class="language-css"><?=$startColor->hex()?></code></pre>
-          </div>
+          <tr>
+            <td>RGB (hexadécimal)</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="hex">
+                  <?=$startColor->hex()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-          <div class="format" data-format="rgb">
-            <pre class="language-css"><code class="language-css"><?=$startColor->rgb()?></code></pre>
-          </div>
+          <tr>
+            <td>RGB (fonctionnel)</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="rgb">
+                  <?=$startColor->rgb()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-          <div class="format" data-format="hsl">
-            <pre class="language-css"><code class="language-css"><?=$startColor->hsl()?></code></pre>
-          </div>
+          <tr>
+            <td>HSL</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="hsl">
+                  <?=$startColor->hsl()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-          <div class="format" data-format="hwb">
-            <pre class="language-css"><code class="language-css"><?=$startColor->hwb()?></code></pre>
-          </div>
+          <tr>
+            <td>HWB</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="hwb">
+                  <?=$startColor->hwb()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-          <div class="format" data-format="lab">
-            <pre class="language-css"><code class="language-css"><?=$startColor->lab()?></code></pre>
-          </div>
+          <tr>
+            <td>CIELAB</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="lab">
+                  <?=$startColor->lab()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-          <div class="format" data-format="lch">
-            <pre class="language-css"><code class="language-css"><?=$startColor->lch()?></code></pre>
-          </div>
+          <tr>
+            <td>CIELCH</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="lch">
+                  <?=$startColor->lch()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-          <div class="format" data-format="oklab">
-            <pre class="language-css"><code class="language-css"><?=$startColor->oklab()?></code></pre>
-          </div>
+          <tr>
+            <td>OKLAB</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="oklab">
+                  <?=$startColor->oklab()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-          <div class="format" data-format="oklch">
-            <pre class="language-css"><code class="language-css"><?=$startColor->oklch()?></code></pre>
-          </div>
-        </div>
+          <tr>
+            <td>OKLCH</td>
+            <td>
+              <pre>
+                <code class="language-css" data-format="oklch">
+                  <?=$startColor->oklch()?>
+                </code>
+              </pre>
+            </td>
+          </tr>
 
-        <div class="donnees" id="results-color-spaces" hidden>
-          <div class="format couleur" data-string="apercu-couleur"><?=$Textes->getString('apercu-couleur')?></div>
+          <tr>
+            <td>Fonction color()</td>
+            <td>
+              <pre><code class="language-css" data-format="color-srgb"><?=$startColor->expr('color-srgb', precision: 4)?></code></pre>
+              <pre><code class="language-css" data-format="color-srgb-linear"><?=$startColor->expr('color-srgb-linear', precision: 4)?></code></pre>
+              <pre><code class="language-css" data-format="color-display-p3"><?=$startColor->expr('color-display-p3', precision: 4)?></code></pre>
+              <pre><code class="language-css" data-format="color-a98-rgb"><?=$startColor->expr('color-a98-rgb', precision: 4)?></code></pre>
+              <pre><code class="language-css" data-format="color-prophoto-rgb"><?=$startColor->expr('color-prophoto-rgb', precision: 4)?></code></pre>
+              <pre><code class="language-css" data-format="color-rec2020"><?=$startColor->expr('color-rec2020', precision: 4)?></code></pre>
+              <pre><code class="language-css" data-format="color-xyz-d50"><?=$startColor->expr('color-xyz-d50', precision: 4)?></code></pre>
+              <pre><code class="language-css" data-format="color-xyz-d65"><?=$startColor->expr('color-xyz-d65', precision: 4)?></code></pre>
+            </td>
+          </tr>
+        </table>
 
-          <div class="format" data-format="color-srgb">
-            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-srgb', precision: 4)?></code></pre>
-          </div>
-
-          <div class="format" data-format="color-display-p3">
-            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-display-p3', precision: 4)?></code></pre>
-          </div>
-
-          <div class="format" data-format="color-a98-rgb">
-            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-a98-rgb', precision: 4)?></code></pre>
-          </div>
-
-          <div class="format" data-format="color-prophoto-rgb">
-            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-prophoto-rgb', precision: 4)?></code></pre>
-          </div>
-
-          <div class="format" data-format="color-rec2020">
-            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-rec2020', precision: 4)?></code></pre>
-          </div>
-
-          <div class="format" data-format="color-xyz">
-            <pre class="language-css"><code class="language-css"><?=$startColor->expr('color-xyz', precision: 4)?></code></pre>
-          </div>
-        </div>
       </div>
     </section>
 

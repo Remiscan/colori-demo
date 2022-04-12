@@ -12,7 +12,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   await new Promise(resolve => setTimeout(resolve, delai));
   if (lastTry != thisTry) return;
 
-  const formats = [...document.querySelectorAll('.donnees>[data-format]')];
+  const formats = [...document.querySelectorAll('.donnees [data-format]')];
 
   // Send all the data to the worker and wait for its response
   const response = await messageWorker('compute-interface', {
@@ -48,7 +48,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   let name, hex;
   if (!!response.formatsData) {
     for (const [k, formatElement] of Object.entries(formats)) {
-      const code = formatElement.querySelector('code');
+      const code = formatElement;
       const format = response.formatsData[k];
 
       code.innerHTML = format.value;
@@ -63,7 +63,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
         case 'rgb': document.documentElement.style.setProperty('--user-color', format.value); break;
       }
 
-      Prism.highlightElement(code);
+      //Prism.highlightElement(code);
     }
 
     // Changes the input field placeholder text
