@@ -16,10 +16,6 @@ color-swatch > .color-swatch-expression.clipped {
   color: red;
 }
 
-color-swatch > .color-swatch-copy {
-  all: unset;
-}
-
 color-swatch > .color-swatch-copy > svg {
   width: 1em;
   height: 1em;
