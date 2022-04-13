@@ -17,16 +17,10 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   // Send all the data to the worker and wait for its response
   const response = await messageWorker('compute-interface', {
     colorString: couleur,
-    formatsData: formats.map(format => {
-      return {
-        prop: format.dataset.format,
-        value: null
-      };
-    })
   });
 
   if (typeof response.type === 'undefined') return;
-  updateSliders(response.colorArray, source);
+  updateSliders(response.colorValues, source);
 
   // Hide non-format results by default
   const donnees = document.querySelector('#resultats');
@@ -45,13 +39,27 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   if (response.type === null) console.log(`${couleur} == ${entree}`);
 
   // Populate results in all formats
-  let name, hex;
+  const colorSwatches = [...document.querySelectorAll('table#results-named-formats color-swatch')];
+  if (response.type === 'Couleur') {
+    const vals = response.colorValues;
+    for (const swatch of colorSwatches) {
+      swatch.setAttribute('color', `color(srgb ${vals[0]} ${vals[1]} ${vals[2]} / ${vals[3]})`);
+    }
+
+    // Changes the input field placeholder text
+    const champ = document.getElementById('entree');
+    champ.placeholder = response.colorName || response.colorHex;
+  }
+
+  /*let name, hex;
   if (!!response.formatsData) {
     for (const [k, formatElement] of Object.entries(formats)) {
       const code = formatElement;
       const format = response.formatsData[k];
 
-      code.innerHTML = format.value;
+      if (code.tagName === 'COLOR-SWATCH') code.setAttribute('color', couleur);
+      else                                 code.innerHTML = format.value;
+      
       switch (format.prop) {
         case 'name': {
           name = format.value;
@@ -69,7 +77,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
     // Changes the input field placeholder text
     const champ = document.getElementById('entree');
     champ.placeholder = name || hex;
-  }
+  }*/
 
   if (!!response.css) {
     const meta = document.querySelector('meta[name=theme-color]');

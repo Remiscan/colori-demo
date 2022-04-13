@@ -1,0 +1,31 @@
+color-swatch {
+  display: inline-grid;
+  grid-template-columns: 3em auto 1em;
+  gap: 1ch;
+  align-items: center;
+  height: 2em;
+}
+
+color-swatch > .color-swatch-preview {
+  background-color: var(--color);
+  width: 100%;
+  height: 100%;
+}
+
+color-swatch > .color-swatch-expression.clipped {
+  color: red;
+}
+
+color-swatch > .color-swatch-copy {
+  all: unset;
+}
+
+color-swatch > .color-swatch-copy > svg {
+  width: 1em;
+  height: 1em;
+}
+
+color-swatch[mini] > .color-swatch-expression,
+color-swatch[mini] > .color-swatch-copy {
+  display: none;
+}

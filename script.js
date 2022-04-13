@@ -1,3 +1,4 @@
+import 'color-swatch';
 import { updateInterface, updateSliders } from 'colorInterface';
 import Cookie from 'cookies';
 import 'tab-label';

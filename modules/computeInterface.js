@@ -4,7 +4,7 @@ import { resolveColor } from 'colorResolution';
 
 
 /** Compute all color data from the new user input color. */
-export function computeInterface({ colorString, formatsData }) {
+export function computeInterface({ colorString }) {
   const colorData = resolveColor(colorString);
   let userColor, method, input;
   if (Array.isArray(colorData) && colorData.length === 3) {
@@ -14,12 +14,15 @@ export function computeInterface({ colorString, formatsData }) {
   // If the user input resolves to a color, adapt the interface
   let responseType;
   let interfaceColor = null;
+  let interfaceColorClipped = null;
   let value = null;
   let gradient = null;
+  let name, hex;
 
   if (userColor instanceof Couleur) {
     responseType = 'Couleur';
-    interfaceColor = userColor.toGamut('srgb');
+    interfaceColor = userColor;
+    interfaceColorClipped = userColor.toGamut('srgb');
   }
 
   else if (typeof userColor === 'number' || typeof userColor === 'boolean' || typeof userColor === 'string') {
@@ -29,7 +32,8 @@ export function computeInterface({ colorString, formatsData }) {
 
   else if (Array.isArray(userColor) && userColor.length > 0 && userColor.reduce((sum, e) => sum + (e instanceof Couleur), 0)) {
     responseType = 'array,value';
-    interfaceColor = userColor[0].toGamut('srgb');
+    interfaceColor = userColor[0];
+    interfaceColorClipped = userColor[0].toGamut('srgb');
     gradient = `linear-gradient(to right,  ${userColor.map(c => c.name || c.rgb).join(',  ')})`;
     if (method === 'gradient') {
       responseType += ',gradient';
@@ -47,26 +51,19 @@ export function computeInterface({ colorString, formatsData }) {
 
   const response = {
     type: responseType,
-    colorArray: Object.values(interfaceColor || {}),
+    colorValues: interfaceColor instanceof Couleur ? [...interfaceColor.values, interfaceColor.a] : [],
+    colorValuesClipped: interfaceColorClipped instanceof Couleur ? [...interfaceColorClipped.values, interfaceColorClipped.a] : [],
+    colorName: interfaceColor instanceof Couleur ? interfaceColor.name : '',
+    colorHex: interfaceColor instanceof Couleur ? interfaceColor.hex : '',
     value,
     input,
     gradient,
-    formatsData,
     css: null,
     metaLight: null,
     metaDark: null,
   };
 
-  if (interfaceColor instanceof Couleur) {
-    for (const format of formatsData) {
-      if (format.prop.slice(0, 5) === 'color')
-        format.value = interfaceColor.expr(format.prop, { precision: 4 });
-      else {
-        format.value = interfaceColor[format.prop];
-        if (format.prop === 'name') name = format.value;
-      }
-    }
-    
+  if (interfaceColor instanceof Couleur) {   
     [response.css, response.metaLight, response.metaDark] = makeCSS(interfaceColor);
   }
 

@@ -6,6 +6,7 @@
     "cookies": "/colori/demo/modules/cookies.js",
     "messageWorker": "/colori/demo/modules/messageWorker.js.php",
     "traduction": "/colori/demo/modules/traduction.js",
+    "color-swatch": "/colori/demo/modules/color-swatch/colorSwatch.js",
 
     "colori": "/colori/dist/colori.min.js",
 

@@ -53,8 +53,10 @@ $startColor = new Couleur($namedColors[$r]);
     <link rel="manifest" href="/colori/demo/manifest.json">
 
     <!-- Import map -->
+    <script defer src="/_common/polyfills/adoptedStyleSheets.min.js"></script>
+    <script>window.esmsInitOptions = { polyfillEnable: ['css-modules', 'json-modules'] }</script>
     <script defer src="/_common/polyfills/es-module-shims.js"></script>
-    <script type="importmap"><?php include 'importMap.json'; ?></script>
+    <script type="importmap"><?php include 'import-map.json'; ?></script>
 
     <script defer src="/colori/demo/ext/prism.js" data-manual></script>
     <script src="/colori/demo/script.js" type="module"></script>
@@ -412,113 +414,77 @@ $startColor = new Couleur($namedColors[$r]);
           <tr>
             <td>Nom</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="name">
-                  <?=$startColor->name()?>
-                </code>
-              </pre>
+              <color-swatch format="name" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>RGB (hexadécimal)</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="hex">
-                  <?=$startColor->hex()?>
-                </code>
-              </pre>
+              <color-swatch format="hex" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>RGB (fonctionnel)</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="rgb">
-                  <?=$startColor->rgb()?>
-                </code>
-              </pre>
+              <color-swatch format="rgb" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>HSL</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="hsl">
-                  <?=$startColor->hsl()?>
-                </code>
-              </pre>
+              <color-swatch format="hsl" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>HWB</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="hwb">
-                  <?=$startColor->hwb()?>
-                </code>
-              </pre>
+              <color-swatch format="hwb" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>CIELAB</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="lab">
-                  <?=$startColor->lab()?>
-                </code>
-              </pre>
+              <color-swatch format="lab" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>CIELCH</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="lch">
-                  <?=$startColor->lch()?>
-                </code>
-              </pre>
+              <color-swatch format="lch" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>OKLAB</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="oklab">
-                  <?=$startColor->oklab()?>
-                </code>
-              </pre>
+              <color-swatch format="oklab" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>OKLCH</td>
             <td>
-              <pre>
-                <code class="language-css" data-format="oklch">
-                  <?=$startColor->oklch()?>
-                </code>
-              </pre>
+              <color-swatch format="oklch" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
             <td>Fonction color()</td>
             <td>
-              <pre><code class="language-css" data-format="color-srgb"><?=$startColor->expr('color-srgb', precision: 4)?></code></pre>
-              <pre><code class="language-css" data-format="color-srgb-linear"><?=$startColor->expr('color-srgb-linear', precision: 4)?></code></pre>
-              <pre><code class="language-css" data-format="color-display-p3"><?=$startColor->expr('color-display-p3', precision: 4)?></code></pre>
-              <pre><code class="language-css" data-format="color-a98-rgb"><?=$startColor->expr('color-a98-rgb', precision: 4)?></code></pre>
-              <pre><code class="language-css" data-format="color-prophoto-rgb"><?=$startColor->expr('color-prophoto-rgb', precision: 4)?></code></pre>
-              <pre><code class="language-css" data-format="color-rec2020"><?=$startColor->expr('color-rec2020', precision: 4)?></code></pre>
-              <pre><code class="language-css" data-format="color-xyz-d50"><?=$startColor->expr('color-xyz-d50', precision: 4)?></code></pre>
-              <pre><code class="language-css" data-format="color-xyz-d65"><?=$startColor->expr('color-xyz-d65', precision: 4)?></code></pre>
+              <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
+              <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>
+              <color-swatch format="color-display-p3" color="<?=$startColor->name()?>"></color-swatch>
+              <color-swatch format="color-a98-rgb" color="<?=$startColor->name()?>"></color-swatch>
+              <color-swatch format="color-prophoto-rgb" color="<?=$startColor->name()?>"></color-swatch>
+              <color-swatch format="color-rec2020" color="<?=$startColor->name()?>"></color-swatch>
+              <color-swatch format="color-xyz-d50" color="<?=$startColor->name()?>"></color-swatch>
+              <color-swatch format="color-xyz-d65" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
         </table>
