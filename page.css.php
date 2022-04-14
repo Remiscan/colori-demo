@@ -992,11 +992,11 @@ input[type="number"][data-property]:active {
  */
 
 #resultats {
-  margin-top: .9rem;
+  margin-top: 1.8rem;
   position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
-  column-gap: .6rem;
+  gap: .6rem;
 }
 
 #resultats [role="tablist"] {
@@ -1055,7 +1055,7 @@ input[type="number"][data-property]:active {
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin-left: -.6rem;
+  gap: .3rem;
 }
 
 table.donnees {
@@ -1074,19 +1074,18 @@ table.donnees th {
   border-radius: .6rem;
 }
 
-.donnees color-swatch + color-swatch {
-  margin-top: var(--preview-border-width);
-}
-
 .donnees color-swatch > .color-swatch-preview {
   border-radius: .4em;
 }
 
 .donnees color-swatch > .color-swatch-copy {
   padding: var(--preview-border-width);
-  /*background-color: transparent;
-  border: none;*/
+  border: none;
   border-radius: .4em;
+}
+
+.donnees color-swatch > .color-swatch-copy:not(:hover, :focus, :active) {
+  background: none;
 }
 
 .color-function-row-title {
@@ -1094,8 +1093,6 @@ table.donnees th {
 }
 
 .format {
-  margin-top: .6rem;
-  margin-left: .6rem;
   align-self: center;
   max-width: calc(100% - .6rem);
 }

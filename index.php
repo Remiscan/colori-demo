@@ -397,6 +397,13 @@ $startColor = new Couleur($namedColors[$r]);
       <div id="resultats">
         <h3 class="no-separator" data-string="demo-resultats-titre"><?=$Textes->getString('demo-resultats-titre')?></h3>
 
+        <fieldset role="tablist" data-group="tabs-results">
+          <legend data-string="tabs-results-label"></legend>
+
+          <tab-label controls="results-named-formats" data-label-id="tab-label-named-formats" label="<?=$Textes->getString('tab-label-named-formats')?>" active="true"></tab-label>
+          <tab-label controls="results-color-spaces" data-label-id="tab-label-color-spaces" label="<?=$Textes->getString('tab-label-color-spaces')?>"></tab-label>
+        </fieldset>
+
         <div class="donnees" id="results-values">
           <div class="format gradient" data-string="apercu-gradient"><?=$Textes->getString('apercu-gradient')?></div>
 
@@ -405,89 +412,28 @@ $startColor = new Couleur($namedColors[$r]);
           </div>
         </div>
 
-        <table class="donnees" id="results-named-formats">
-          <tr>
-            <th scope="col">Format</th>
-            <th scope="col">Expression de la couleur</th>
-          </tr>
+        <div class="donnees" id="results-named-formats">
+          <color-swatch format="name" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="hex" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="rgb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="hsl" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="hwb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="lab" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="lch" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="oklab" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="oklch" color="<?=$startColor->name()?>"></color-swatch>
+        </div>
 
-          <tr>
-            <td>Nom</td>
-            <td>
-              <color-swatch format="name" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td>RGB&nbsp;(hex)</td>
-            <td>
-              <color-swatch format="hex" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td>RGB</td>
-            <td>
-              <color-swatch format="rgb" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td>HSL</td>
-            <td>
-              <color-swatch format="hsl" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td>HWB</td>
-            <td>
-              <color-swatch format="hwb" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td>CIELAB</td>
-            <td>
-              <color-swatch format="lab" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td>CIELCH</td>
-            <td>
-              <color-swatch format="lch" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td>OKLAB</td>
-            <td>
-              <color-swatch format="oklab" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td>OKLCH</td>
-            <td>
-              <color-swatch format="oklch" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="color-function-row-title">Fonction color()</td>
-            <td>
-              <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
-              <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>
-              <color-swatch format="color-display-p3" color="<?=$startColor->name()?>"></color-swatch>
-              <color-swatch format="color-a98-rgb" color="<?=$startColor->name()?>"></color-swatch>
-              <color-swatch format="color-prophoto-rgb" color="<?=$startColor->name()?>"></color-swatch>
-              <color-swatch format="color-rec2020" color="<?=$startColor->name()?>"></color-swatch>
-              <color-swatch format="color-xyz-d50" color="<?=$startColor->name()?>"></color-swatch>
-              <color-swatch format="color-xyz-d65" color="<?=$startColor->name()?>"></color-swatch>
-            </td>
-          </tr>
-        </table>
+        <div class="donnees" id="results-color-spaces" hidden>
+          <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-display-p3" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-a98-rgb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-prophoto-rgb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-rec2020" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-xyz-d50" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-xyz-d65" color="<?=$startColor->name()?>"></color-swatch>
+        </div>
 
       </div>
     </section>

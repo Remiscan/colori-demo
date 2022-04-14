@@ -39,7 +39,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   if (response.type === null) console.log(`${couleur} == ${entree}`);
 
   // Populate results in all formats
-  const colorSwatches = [...document.querySelectorAll('table#results-named-formats color-swatch')];
+  const colorSwatches = [...document.querySelectorAll('.donnees color-swatch')];
   if (response.type === 'Couleur') {
     const vals = response.colorValues;
     for (const swatch of colorSwatches) {
@@ -51,37 +51,9 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
     champ.placeholder = response.colorName || response.colorHex;
   }
 
-  const nameSwatchRow = document.querySelector('table#results-named-formats color-swatch[format="name"]').parentElement.parentElement;
+  const nameSwatchRow = document.querySelector('#results-named-formats color-swatch[format="name"]');
   if (response.colorName) nameSwatchRow.classList.remove('off');
   else                    nameSwatchRow.classList.add('off');
-
-  /*let name, hex;
-  if (!!response.formatsData) {
-    for (const [k, formatElement] of Object.entries(formats)) {
-      const code = formatElement;
-      const format = response.formatsData[k];
-
-      if (code.tagName === 'COLOR-SWATCH') code.setAttribute('color', couleur);
-      else                                 code.innerHTML = format.value;
-      
-      switch (format.prop) {
-        case 'name': {
-          name = format.value;
-          if (!name) formatElement.setAttribute('hidden', 'true');
-          else       formatElement.removeAttribute('hidden');
-          break;
-        }
-        case 'hex': hex = format.value; break;
-        case 'rgb': document.documentElement.style.setProperty('--user-color', format.value); break;
-      }
-
-      //Prism.highlightElement(code);
-    }
-
-    // Changes the input field placeholder text
-    const champ = document.getElementById('entree');
-    champ.placeholder = name || hex;
-  }*/
 
   if (!!response.css) {
     const meta = document.querySelector('meta[name=theme-color]');
