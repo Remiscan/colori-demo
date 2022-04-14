@@ -1,4 +1,4 @@
-import { default as Couleur, CSSFormats } from 'colori';
+import { CSSFormats, default as Couleur } from 'colori';
 
 
 
@@ -8,7 +8,7 @@ const vSep = '\\,(?: +)?';
 // RegExp des options d'une méthode
 const vOpt = 'true|false|\\{(?:.+)?\\}';
 // RegExp des formats
-const vFormats = `rgb|hsl|hwb|lab|lch|oklab|oklch`;
+const vFormats = `srgb|rgb|hsl|hwb|lab|lch|oklab|oklch`;
 // RegExp des propriétés
 const vProp = Couleur.properties.join('|');
 
@@ -107,11 +107,9 @@ const methodes = [
     ],
     argIsColor: [true, false]
   }, {
-    name: 'gradient',
+    name: 'interpolate',
     args: [
-      new RegExp(`^(.+)${vSep}(${RegExps.number})${vSep}(${vFormats})$`),
-      new RegExp(`^(.+)${vSep}(${RegExps.number})$`),
-      new RegExp(`^(.+)$`)
+      new RegExp(`^(.+)${vSep}(${RegExps.number})${vSep}(${vFormats})$`)
     ],
     argIsColor: [true, false, false]
   }, {

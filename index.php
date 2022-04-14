@@ -221,7 +221,7 @@ $startColor = new Couleur($namedColors[$r]);
           <button type="button" class="exemple">pink.invert()</button>
           <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
           <button type="button" class="exemple">black.contrast(white)</button>
-          <button type="button" class="exemple">orchid.gradient(palegreen, 5)</button>
+          <button type="button" class="exemple">orchid.interpolate(palegreen, 4, oklch)</button>
           <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
         </div>
 

@@ -35,7 +35,7 @@ export function computeInterface({ colorString }) {
     interfaceColor = userColor[0];
     interfaceColorClipped = userColor[0].toGamut('srgb');
     gradient = `linear-gradient(to right,  ${userColor.map(c => c.name || c.rgb).join(',  ')})`;
-    if (method === 'gradient') {
+    if (method === 'interpolate') {
       responseType += ',gradient';
       value = `linear-gradient(to right,\n  ${userColor.map(c => c.name || c.rgb).join(',\n  ')}\n)`;;
     }
