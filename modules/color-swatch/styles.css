@@ -31,6 +31,11 @@ color-swatch > .color-swatch-expression.clipped {
   color: red;
 }
 
+color-swatch > .color-swatch-copy {
+  display: inline-grid;
+  place-items: center;
+}
+
 color-swatch > .color-swatch-copy > svg {
   width: 1.5em;
   height: 1.5em;
