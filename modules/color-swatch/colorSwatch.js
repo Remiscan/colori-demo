@@ -33,13 +33,13 @@ class ColorSwatch extends HTMLElement {
           case 'hex':  value = this.color.hex; break;
           default:     value = this.color.expr(this.getAttribute('format'), {
             precision: format.startsWith('color-') ? 4 : 2,
-            clamp: true
+            clamp: format.startsWith('color-') ? false : true
           });
         }
         expression.innerHTML = value;
         
         preview.style.setProperty('--color', this.color.rgb);
-        if (!inGamut) {
+        if (!inGamut && !format.startsWith('color-')) {
           expression.classList.add('clipped');
         }
       } break;
