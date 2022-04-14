@@ -419,14 +419,14 @@ $startColor = new Couleur($namedColors[$r]);
           </tr>
 
           <tr>
-            <td>RGB (hexadécimal)</td>
+            <td>RGB&nbsp;(hex)</td>
             <td>
               <color-swatch format="hex" color="<?=$startColor->name()?>"></color-swatch>
             </td>
           </tr>
 
           <tr>
-            <td>RGB (fonctionnel)</td>
+            <td>RGB</td>
             <td>
               <color-swatch format="rgb" color="<?=$startColor->name()?>"></color-swatch>
             </td>
@@ -475,7 +475,7 @@ $startColor = new Couleur($namedColors[$r]);
           </tr>
 
           <tr>
-            <td>Fonction color()</td>
+            <td class="color-function-row-title">Fonction color()</td>
             <td>
               <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
               <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>

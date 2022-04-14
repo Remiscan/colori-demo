@@ -51,6 +51,10 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
     champ.placeholder = response.colorName || response.colorHex;
   }
 
+  const nameSwatchRow = document.querySelector('table#results-named-formats color-swatch[format="name"]').parentElement.parentElement;
+  if (response.colorName) nameSwatchRow.classList.remove('off');
+  else                    nameSwatchRow.classList.add('off');
+
   /*let name, hex;
   if (!!response.formatsData) {
     for (const [k, formatElement] of Object.entries(formats)) {

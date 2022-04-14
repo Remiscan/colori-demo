@@ -1,15 +1,30 @@
 color-swatch {
   display: inline-grid;
-  grid-template-columns: 3em auto 1em;
+  grid-template-columns: 3em auto auto;
   gap: 1ch;
   align-items: center;
   height: 2em;
+
+  --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
+  linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
+  linear-gradient(to right, #ddd 0% 100%);
 }
 
 color-swatch > .color-swatch-preview {
-  background-color: var(--color);
+  background: linear-gradient(to right, var(--color) 0% 100%),
+              var(--echiquier-transparence);
+  background-size: 100% 100%, 16px 16px, 16px 16px;
+  background-position: 0 0, 0 0, 8px 8px;
+  background-repeat: no-repeat, repeat, repeat;
   width: 100%;
   height: 100%;
+}
+
+color-swatch > .color-swatch-expression {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  white-space: nowrap;
 }
 
 color-swatch > .color-swatch-expression.clipped {
@@ -17,8 +32,8 @@ color-swatch > .color-swatch-expression.clipped {
 }
 
 color-swatch > .color-swatch-copy > svg {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 color-swatch[mini] > .color-swatch-expression,

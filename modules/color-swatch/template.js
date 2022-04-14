@@ -1,7 +1,7 @@
 const template = document.createElement('template');
 template.innerHTML = `
   <div class="color-swatch-preview"></div>
-  <span class="color-swatch-expression"></span>
+  <code class="color-swatch-expression"></code>
   <button type="button" class="color-swatch-copy">
     <svg viewBox="0 0 24 24">
       <style>.copy-icon { fill: currentColor; }</style>

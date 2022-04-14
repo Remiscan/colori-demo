@@ -376,7 +376,7 @@ a:focus-visible {
  * Autres
  */
 
-strong, em {
+strong, em, th {
   color: var(--text-strong-color);
   font-weight: 600;
 }
@@ -1056,6 +1056,41 @@ input[type="number"][data-property]:active {
   align-items: flex-start;
   flex-wrap: wrap;
   margin-left: -.6rem;
+}
+
+table.donnees {
+  margin-left: 0;
+}
+
+table.donnees th {
+  text-align: left;
+  padding: .4rem 0;
+}
+
+.donnees color-swatch {
+  background-color: var(--frame-color);
+  gap: calc(2 * var(--preview-border-width));
+  padding: var(--preview-border-width);
+  border-radius: .6rem;
+}
+
+.donnees color-swatch + color-swatch {
+  margin-top: var(--preview-border-width);
+}
+
+.donnees color-swatch > .color-swatch-preview {
+  border-radius: .4em;
+}
+
+.donnees color-swatch > .color-swatch-copy {
+  padding: var(--preview-border-width);
+  /*background-color: transparent;
+  border: none;*/
+  border-radius: .4em;
+}
+
+.color-function-row-title {
+  vertical-align: top;
 }
 
 .format {

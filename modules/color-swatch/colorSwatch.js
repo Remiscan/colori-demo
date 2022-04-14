@@ -43,6 +43,22 @@ class ColorSwatch extends HTMLElement {
           expression.classList.add('clipped');
         }
       } break;
+
+      case 'format': {
+        const expression = this.querySelector('.color-swatch-expression');
+        const format = newValue;
+
+        let value = '';
+        switch (format) {
+          case 'name': value = this.color.name; break;
+          case 'hex':  value = this.color.hex; break;
+          default:     value = this.color.expr(this.getAttribute('format'), {
+            precision: format.startsWith('color-') ? 4 : 2,
+            clamp: true
+          });
+        }
+        expression.innerHTML = value;
+      } break;
     }
   }
 
