@@ -1090,8 +1090,8 @@ table.donnees th {
   background: none;
 }
 
-.donnees color-swatch[clipped] > .color-swatch-expression.in-gamut {
-  color: var(--error-color);
+.donnees color-swatch {
+  --warning-color: var(--error-color);
 }
 
 .color-function-row-title {

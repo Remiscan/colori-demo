@@ -48,6 +48,20 @@ class ColorSwatch extends HTMLElement {
             precision: format.startsWith('color-') ? 4 : 2,
             clamp: false
           });
+
+          let gamut = space.replace('color-', '');
+          switch (gamut) {
+            case 'rgb':
+            case 'hex':
+            case 'name':
+            case 'hsl':
+            case 'hwb':
+              gamut = 'srgb';
+              break;
+          }
+          for (const e of [...this.querySelectorAll('.color-swatch-format')]) {
+            e.innerHTML = gamut.toUpperCase();
+          }
         }
       } break;
 
