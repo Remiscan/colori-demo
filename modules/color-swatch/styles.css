@@ -10,7 +10,7 @@ color-swatch {
   linear-gradient(to right, #ddd 0% 100%);
 }
 
-color-swatch[clipped] {
+color-swatch[clipped]:not([format="name"]):not([format="hex"]) {
   grid-template-columns: 3em auto auto auto;
 }
 
@@ -46,6 +46,7 @@ color-swatch > button > svg {
 }
 
 color-swatch:not([clipped]) > .color-swatch-see-alt,
+color-swatch[clipped]:is([format="name"], [format="hex"]) > .color-swatch-see-alt,
 color-swatch[alt] > .color-swatch-expression.in-gamut,
 color-swatch:not([alt]) .color-swatch-expression.out-of-gamut {
   display: none;
