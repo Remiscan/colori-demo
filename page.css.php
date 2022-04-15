@@ -1055,7 +1055,7 @@ input[type="number"][data-property]:active {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: stretch;
   flex-wrap: wrap;
   gap: .3rem;
 }

@@ -3,7 +3,7 @@ color-swatch {
   grid-template-columns: 3em auto auto;
   gap: 1ch;
   align-items: center;
-  height: 2em;
+  min-height: 2em;
 
   --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
   linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
