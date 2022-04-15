@@ -20,7 +20,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   });
 
   if (typeof response.type === 'undefined') return;
-  updateSliders(response.colorValues, source);
+  updateSliders(response.colorValuesClipped, source);
 
   // Hide non-format results by default
   const donnees = document.querySelector('#resultats');
