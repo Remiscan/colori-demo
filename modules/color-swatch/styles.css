@@ -23,6 +23,10 @@ color-swatch[clipped] {
   row-gap: 0;
 }
 
+color-swatch[mini] {
+  grid-template-columns: 3em;
+}
+
 color-swatch[clipped]:is([format="name"], [format="hex"]) {
   grid-template-columns: 3em auto auto;
 }
