@@ -38,6 +38,7 @@ class ColorSwatch extends HTMLElement {
         }
         expression.innerHTML = value;
         preview.style.setProperty('--color', CSS.supports(`color: ${value}`) ? value : this.color.rgb);
+        preview.style.removeProperty('--alt-color');
 
         const space = ['name', 'hex'].includes(format) ? 'srgb' : format;
         const inGamut = this.color.inGamut(space.replace('color-', ''));
