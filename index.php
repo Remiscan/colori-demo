@@ -146,7 +146,7 @@ $startColor = new Couleur($namedColors[$r]);
       }
       <?php $body = ob_get_clean();
       require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';
-      echo buildThemesStylesheet($body); ?>
+      echo buildThemesStylesheet($body, closeComment: false); ?>
     </style>
 
     <meta name="theme-color" content="<?=($resolvedTheme == 'dark' ? $bodyColorDark->hsl() : $bodyColor->hsl())?>" data-light="<?=$bodyColor->hsl()?>" data-dark="<?=$bodyColorDark->hsl()?>">
