@@ -435,7 +435,7 @@ html {
 /*<?php ob_start();?>*/
 html[data-theme="light"] {
   color-scheme: light;
-  --error-color: #410819;
+  --error-color: darkred;
 }
 
 html[data-theme="dark"] {

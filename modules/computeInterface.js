@@ -76,7 +76,7 @@ export function computeInterface({ colorString }) {
 function makeCSS(userColor) {
   let cssBoth, cssLight, cssDark;
   let metaLight, metaDark;
-  const colorPreview = Couleur.blend('white', userColor);
+  const colorPreview = Couleur.blend('white', userColor.toGamut('srgb'));
 
   // Calculate colors that are the same for both light and dark themes
   const cieh = userColor.cieh;
