@@ -83,11 +83,12 @@ color-swatch > button > span {
 }
 
 color-swatch > .color-swatch-see-alt > svg {
+  transform: scale(-1, 1);
   transition: transform .1s ease;
 }
 
 color-swatch[alt] > .color-swatch-see-alt > svg {
-  transform: rotate(-90deg);
+  transform: scale(-1, 1) rotate(-90deg);
 }
 
 color-swatch:not([clipped]) > .color-swatch-see-alt,
