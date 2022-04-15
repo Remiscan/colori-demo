@@ -33,22 +33,21 @@ class ColorSwatch extends HTMLElement {
           case 'hex':  value = this.color.hex; break;
           default:     value = this.color.expr(this.getAttribute('format'), {
             precision: format.startsWith('color-') ? 4 : 2,
-            clamp: format.startsWith('color-') ? false : true
+            clamp: true
           });
         }
         expression.innerHTML = value;
         preview.style.setProperty('--color', this.color.rgb);
 
-        if (!['name', 'hex'].includes(format)) {
-          const inGamut = this.color.inGamut(format.replace('color-', ''));
-          if (!inGamut && !format.startsWith('color-')) {
-            this.setAttribute('clipped', '');
-            const expressionAlt = this.querySelector('.color-swatch-expression.out-of-gamut');
-            expressionAlt.innerHTML = this.color.expr(this.getAttribute('format'), {
-              precision: format.startsWith('color-') ? 4 : 2,
-              clamp: false
-            });
-          }
+        const space = ['name', 'hex'].includes(format) ? 'srgb' : format;
+        const inGamut = this.color.inGamut(space.replace('color-', ''));
+        if (!inGamut) {
+          this.setAttribute('clipped', '');
+          const expressionAlt = this.querySelector('.color-swatch-expression.out-of-gamut');
+          expressionAlt.innerHTML = this.color.expr(space, {
+            precision: format.startsWith('color-') ? 4 : 2,
+            clamp: false
+          });
         }
       } break;
 
