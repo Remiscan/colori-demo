@@ -37,17 +37,18 @@ class ColorSwatch extends HTMLElement {
           });
         }
         expression.innerHTML = value;
-        preview.style.setProperty('--color', this.color.rgb);
+        preview.style.setProperty('--color', CSS.supports(`color: ${value}`) ? value : this.color.rgb);
 
         const space = ['name', 'hex'].includes(format) ? 'srgb' : format;
         const inGamut = this.color.inGamut(space.replace('color-', ''));
         if (!inGamut) {
           this.setAttribute('clipped', '');
           const expressionAlt = this.querySelector('.color-swatch-expression.out-of-gamut');
-          expressionAlt.innerHTML = this.color.expr(space, {
+          const value = this.color.expr(space, {
             precision: format.startsWith('color-') ? 4 : 2,
             clamp: false
           });
+          expressionAlt.innerHTML = value;
 
           let gamut = space.replace('color-', '');
           switch (gamut) {
@@ -58,6 +59,9 @@ class ColorSwatch extends HTMLElement {
             case 'hwb':
               gamut = 'srgb';
               break;
+
+            default:
+              preview.style.setProperty('--alt-color', CSS.supports(`color: ${value}`) ? value : this.color.rgb);
           }
           for (const e of [...this.querySelectorAll('.color-swatch-format')]) {
             e.innerHTML = gamut.toUpperCase();
