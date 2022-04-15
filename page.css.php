@@ -435,10 +435,12 @@ html {
 /*<?php ob_start();?>*/
 html[data-theme="light"] {
   color-scheme: light;
+  --error-color: #410819;
 }
 
 html[data-theme="dark"] {
   color-scheme: dark;
+  --error-color: lightpink;
 }
 /*<?php $body = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';
@@ -1078,14 +1080,18 @@ table.donnees th {
   border-radius: .4em;
 }
 
-.donnees color-swatch > .color-swatch-copy {
+.donnees color-swatch > button {
   padding: var(--preview-border-width);
   border: none;
   border-radius: .4em;
 }
 
-.donnees color-swatch > .color-swatch-copy:not(:hover, :focus, :active) {
+.donnees color-swatch > button:not(:hover, :focus, :active) {
   background: none;
+}
+
+.donnees color-swatch[clipped] > .color-swatch-expression.in-gamut {
+  color: var(--error-color);
 }
 
 .color-function-row-title {

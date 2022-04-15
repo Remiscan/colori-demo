@@ -10,6 +10,10 @@ color-swatch {
   linear-gradient(to right, #ddd 0% 100%);
 }
 
+color-swatch[clipped] {
+  grid-template-columns: 3em auto auto auto;
+}
+
 color-swatch > .color-swatch-preview {
   background: linear-gradient(to right, var(--color) 0% 100%),
               var(--echiquier-transparence);
@@ -27,21 +31,27 @@ color-swatch > .color-swatch-expression {
   white-space: nowrap;
 }
 
-color-swatch > .color-swatch-expression.clipped {
+color-swatch[clipped] > .color-swatch-expression.in-gamut {
   color: red;
 }
 
-color-swatch > .color-swatch-copy {
+color-swatch > button {
   display: inline-grid;
   place-items: center;
 }
 
-color-swatch > .color-swatch-copy > svg {
+color-swatch > button > svg {
   width: 1.5em;
   height: 1.5em;
 }
 
+color-swatch:not([clipped]) > .color-swatch-see-alt,
+color-swatch[alt] > .color-swatch-expression.in-gamut,
+color-swatch:not([alt]) .color-swatch-expression.out-of-gamut {
+  display: none;
+}
+
 color-swatch[mini] > .color-swatch-expression,
-color-swatch[mini] > .color-swatch-copy {
+color-swatch[mini] > button {
   display: none;
 }

@@ -11,6 +11,7 @@ class ColorSwatch extends HTMLElement {
     this.ready = false;
     this.color = null;
     this.copyHandle = () => {};
+    this.altHandle = () => {};
   }
 
 
@@ -20,11 +21,10 @@ class ColorSwatch extends HTMLElement {
     switch (attr) {
       case 'color': {
         this.color = new Couleur(newValue);
-        const inGamut = this.color.inGamut('srgb');
 
         const preview = this.querySelector('.color-swatch-preview');
-        const expression = this.querySelector('.color-swatch-expression');
-        expression.classList.remove('clipped');
+        const expression = this.querySelector('.color-swatch-expression.in-gamut');
+        this.removeAttribute('clipped');
         
         const format = this.getAttribute('format');
         let value = '';
@@ -37,27 +37,23 @@ class ColorSwatch extends HTMLElement {
           });
         }
         expression.innerHTML = value;
-        
         preview.style.setProperty('--color', this.color.rgb);
-        if (!inGamut && !format.startsWith('color-')) {
-          expression.classList.add('clipped');
+
+        if (!['name', 'hex'].includes(format)) {
+          const inGamut = this.color.inGamut(format.replace('color-', ''));
+          if (!inGamut && !format.startsWith('color-')) {
+            this.setAttribute('clipped', '');
+            const expressionAlt = this.querySelector('.color-swatch-expression.out-of-gamut');
+            expressionAlt.innerHTML = this.color.expr(this.getAttribute('format'), {
+              precision: format.startsWith('color-') ? 4 : 2,
+              clamp: false
+            });
+          }
         }
       } break;
 
       case 'format': {
-        const expression = this.querySelector('.color-swatch-expression');
-        const format = newValue;
-
-        let value = '';
-        switch (format) {
-          case 'name': value = this.color.name; break;
-          case 'hex':  value = this.color.hex; break;
-          default:     value = this.color.expr(this.getAttribute('format'), {
-            precision: format.startsWith('color-') ? 4 : 2,
-            clamp: true
-          });
-        }
-        expression.innerHTML = value;
+        this.update('color', '', this.getAttribute('color'));
       } break;
     }
   }
@@ -72,7 +68,8 @@ class ColorSwatch extends HTMLElement {
     // Copy the color expression by clicking the copy button
     const copyButton = this.querySelector('.color-swatch-copy');
     copyButton.addEventListener('click', this.copyHandle = event => {
-      const expression = this.querySelector('.color-swatch-expression');
+      const expression = this.getAttribute('alt') != null ? this.querySelector('.color-swatch-expression.out-of-gamut')
+                                                          : this.querySelector('.color-swatch-expression.in-gamut');
       const valueToCopy = expression.innerText;
 
       try {
@@ -82,6 +79,13 @@ class ColorSwatch extends HTMLElement {
           }
         });
       } catch {}
+    });
+
+    // Switch to the out-of-gamut expression by clicking the warning button
+    const altButton = this.querySelector('.color-swatch-see-alt');
+    altButton.addEventListener('click', this.altHandle = event => {
+      if (this.getAttribute('alt') == null) this.setAttribute('alt', '');
+      else                                  this.removeAttribute('alt'); 
     });
 
     this.ready = true;
@@ -94,6 +98,9 @@ class ColorSwatch extends HTMLElement {
   disconnectedCallback() {
     const copyButton = this.querySelector('.color-swatch-copy');
     copyButton.removeEventListener('click', this.copyHandle);
+
+    const altButton = this.querySelector('.color-swatch-see-alt');
+    altButton.removeEventListener('click', this.altHandle);
   }
 
 
