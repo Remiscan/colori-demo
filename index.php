@@ -517,9 +517,8 @@ $startColor = new Couleur($namedColors[$r]);
     </section>
 
     <footer>
-      <span>
-        <span data-string="syntax-highlighting-source"><?=$Textes->getString('syntax-highlighting-source')?></span> <a href="https://parsedown.org/">Parsedown</a> & <a href="https://prismjs.com/">Prism.js</a>
-      </span>
+      <span data-string="made-by"><?=$Textes->getString('made-by')?></span>
+      <remiscan-logo></remiscan-logo>
     </footer>
 
   </body>

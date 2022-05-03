@@ -19,6 +19,10 @@
     "theme-selector": "/_common/components/theme-selector/theme-selector.js",
     "theme-selector-styles": "/_common/components/theme-selector/styles.css.php",
     "theme-selector-strings": "/_common/components/theme-selector/strings.json",
-    "theme-selector-template": "/_common/components/theme-selector/template.js"
+    "theme-selector-template": "/_common/components/theme-selector/template.js",
+
+    "remiscan-logo": "/_common/components/remiscan-logo/remiscan-logo.js",
+    "remiscan-logo-styles": "/_common/components/remiscan-logo/styles.css",
+    "remiscan-logo-template": "/_common/components/remiscan-logo/template.js.php"
   }
 }

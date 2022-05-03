@@ -1,6 +1,7 @@
 import 'color-swatch';
 import { updateInterface, updateSliders } from 'colorInterface';
 import Cookie from 'cookies';
+import 'remiscan-logo';
 import 'tab-label';
 import 'theme-selector';
 

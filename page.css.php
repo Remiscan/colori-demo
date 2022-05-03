@@ -479,7 +479,6 @@ header {
   align-items: start;
   position: relative;
   background: var(--section-color);
-  border-radius: 0 0 .6rem .6rem;
   padding: 0 var(--section-padding);
   padding-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
@@ -647,12 +646,21 @@ header,
 section,
 footer {
   grid-column: 2;
+  border-radius: .6rem;
 }
 
 header,
 section,
 .show-documentation {
   margin-bottom: 1.2rem;
+}
+
+header {
+  margin-top: .6rem;
+}
+
+footer {
+  margin-bottom: .6rem;
 }
 
 @media (max-width: 42rem) { /* Phone-like */
@@ -665,7 +673,6 @@ section,
 
 section {
   background-color: var(--section-color);
-  border-radius: .6rem;
   padding: var(--section-padding);
   padding-top: 1.2rem;
   margin-top: calc(0.71625 * var(--mod) * var(--mod) * var(--mod) * var(--mod) * 1rem + .6rem);
@@ -699,9 +706,12 @@ footer {
   align-items: center;
   position: relative;
   background: var(--section-color);
-  border-radius: .6rem .6rem 0 0;
   padding: var(--section-padding);
   padding-bottom: calc(var(--section-padding) + env(safe-area-inset-bottom, 0));
+}
+
+remiscan-logo {
+  margin: -5rem 0;
 }
 
 

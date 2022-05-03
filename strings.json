@@ -48,7 +48,8 @@
     "documentation-intro-p1": "<strong>colori</strong> est un module JavaScript (ou PHP) pour manipuler les couleurs : convertir entre les formats supportés par CSS (RGB, HSL, LAB, etc.), dé/fusionner des couleurs, calculer ou améliorer leur contraste, etc.",
     "documentation-intro-p2": "(Note&nbsp;: <em><strong>colori</strong></em> signifie <em><strong>couleurs</strong></em> en italien. Le singulier est <em><strong>colore</strong></em>.)",
     "documentation-warning-js": "<strong>JavaScript doit être activé pour utiliser ce site de démonstration.</strong>",
-    "syntax-highlighting-source": "Cette page utilise"
+    "syntax-highlighting-source": "Cette page utilise",
+    "made-by": "Créé par"
   },
   "en": {
     "description-site": "JS module to manipulate colours (also available in PHP)",
@@ -99,6 +100,7 @@
     "documentation-intro-p1": "<strong>colori</strong> is a JavaScript (or PHP) module to manipulate colors: convert between CSS-supported formats (RGB, HSL, LAB, etc.), mix or unmix colors, calculate or improve their contrast, etc.",
     "documentation-intro-p2": "(Note: <em><strong>colori</strong></em> means <em><strong>colors</strong></em> in Italian. The singular is <em><strong>colore</strong></em>.)",
     "documentation-warning-js": "<strong>JavaScript must be enabled to use this demo website.</strong>",
-    "syntax-highlighting-source": "This page uses"
+    "syntax-highlighting-source": "This page uses",
+    "made-by": "Made by"
   }
 }
