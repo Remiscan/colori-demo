@@ -1,5 +1,6 @@
-import sheet from './styles.css' assert { type: 'css' };
-import template from './template.js';
+import strings from 'color-swatch-strings' assert { type: 'json' };
+import sheet from 'color-swatch-styles' assert { type: 'css' };
+import template from 'color-swatch-template';
 
 import Couleur from 'colori';
 
@@ -82,6 +83,16 @@ class ColorSwatch extends HTMLElement {
     if (!document.adoptedStyleSheets.includes(sheet))
       document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
     this.appendChild(template.content.cloneNode(true));
+
+    // Translate element content
+    const lang = document.documentElement.lang || 'en';
+    for (const e of [...this.querySelectorAll('[data-string]')]) {
+      if (e.tagName == 'IMG') e.alt = strings[lang][e.dataset.string];
+      else                    e.innerHTML = strings[lang][e.dataset.string];
+    }
+    for (const e of [...this.querySelectorAll('[data-label]')]) {
+      e.setAttribute('aria-label', strings[lang][e.dataset.label]);
+    }
     
     // Copy the color expression by clicking the copy button
     const copyButton = this.querySelector('.color-swatch-copy');

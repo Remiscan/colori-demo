@@ -5,14 +5,20 @@
     "computeInterface": "/colori/demo/modules/computeInterface.js",
     "cookies": "/colori/demo/modules/cookies.js",
     "messageWorker": "/colori/demo/modules/messageWorker.js.php",
-    "traduction": "/colori/demo/modules/traduction.js",
+
     "color-swatch": "/colori/demo/modules/color-swatch/colorSwatch.js",
+    "color-swatch-styles": "/colori/demo/modules/color-swatch/styles.css",
+    "color-swatch-strings": "/colori/demo/modules/color-swatch/strings.json",
+    "color-swatch-template": "/colori/demo/modules/color-swatch/template.js",
 
     "colori": "/colori/dist/colori.min.js",
 
     "default-cookies": "/_common/js/cookies.js",
-    "default-traduction": "/_common/js/traduction.js",
     "tab-label": "/_common/components/tab-label/tab-label.js.php",
-    "theme-selector": "/_common/components/theme-selector/theme-selector.js.php"
+
+    "theme-selector": "/_common/components/theme-selector/theme-selector.js",
+    "theme-selector-styles": "/_common/components/theme-selector/styles.css.php",
+    "theme-selector-strings": "/_common/components/theme-selector/strings.json",
+    "theme-selector-template": "/_common/components/theme-selector/template.js"
   }
 }

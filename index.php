@@ -59,10 +59,7 @@ $startColor = new Couleur($namedColors[$r]);
     <script type="importmap"><?php include 'import-map.json'; ?></script>
 
     <script defer src="/colori/demo/ext/prism.js" data-manual></script>
-    <script src="/colori/demo/script.js" type="module"></script>
-
-    <link rel="preload" as="fetch" href="/colori/demo/strings.json" crossorigin
-          id="strings" data-version="<?=version(__DIR__, 'strings.json')?>">
+    <script src="/colori/demo/modules/main.js" type="module"></script>
 
     <link rel="stylesheet" href="/colori/demo/ext/prism.css">
     <link rel="stylesheet" href="/colori/demo/page.css.php">

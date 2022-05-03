@@ -3,7 +3,6 @@ import { updateInterface, updateSliders } from 'colorInterface';
 import Cookie from 'cookies';
 import 'tab-label';
 import 'theme-selector';
-import { Traduction } from 'traduction';
 
 
 
@@ -160,14 +159,10 @@ window.addEventListener('themechange', event => {
 
 
 
-// Prepare language buttons
-Traduction.initLanguageButtons();
-
 // Customize theme-selector
 const themeSelector = document.querySelector('theme-selector');
 themeSelector.querySelector('.selector-title').classList.add('h4');
 themeSelector.querySelector('.selector-cookie-notice').classList.add('h6');
-Traduction.traduire(themeSelector);
 
 // Syntax highlighting on start color formats
 Prism.highlightAllUnder(document.querySelector('#resultats'));
