@@ -4,7 +4,9 @@
   /* Empêche le font scaling auto moche sous chrome Android */
   max-height: 1000000px;
 }
+remiscan-logo::part(link):focus,
 *:focus { outline: 2px solid var(--link-color); }
+remiscan-logo::part(link):focus:not(:focus-visible),
 *:focus:not(:focus-visible) { outline-style: none; }
 ::-moz-focus-inner { border: 0; }
 
@@ -364,8 +366,6 @@ a:active {
   box-shadow: 0 0.1em 0 0 var(--button-active-bg-color);
 }
 
-
-
 a:focus-visible {
   box-shadow: none;
 }
@@ -480,7 +480,7 @@ header {
   position: relative;
   background: var(--section-color);
   padding: 0 var(--section-padding);
-  padding-top: env(safe-area-inset-top, 0);
+  margin-top: calc(.6rem + env(safe-area-inset-top, 0));
   min-height: var(--tap-safe-size);
   font-size: .9rem;
 }
@@ -655,14 +655,6 @@ section,
   margin-bottom: 1.2rem;
 }
 
-header {
-  margin-top: .6rem;
-}
-
-footer {
-  margin-bottom: .6rem;
-}
-
 @media (max-width: 42rem) { /* Phone-like */
   header,
   section,
@@ -706,12 +698,26 @@ footer {
   align-items: center;
   position: relative;
   background: var(--section-color);
-  padding: var(--section-padding);
-  padding-bottom: calc(var(--section-padding) + env(safe-area-inset-bottom, 0));
+  padding: 0 var(--section-padding);
+  margin-bottom: calc(.6rem + env(safe-area-inset-bottom, 0));
 }
 
 remiscan-logo {
-  margin: -5rem 0;
+  margin: 4px;
+}
+
+remiscan-logo::part(link) {
+  --text-color: var(--link-color);
+  border-radius: .2em;
+}
+
+remiscan-logo::part(link):hover,
+remiscan-logo::part(link):focus {
+  background-color: var(--button-hover-bg-color);
+}
+
+remiscan-logo::part(link):active {
+  background-color: var(--button-active-bg-color);
 }
 
 
