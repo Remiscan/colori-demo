@@ -532,13 +532,7 @@ theme-selector[open="true"]>.selector {
 
 theme-selector .selector-title {
   color: var(--h3-color);
-}
-
-.selector-title {
   padding: .6rem .6rem;
-}
-
-.selector-title {
   place-self: center;
 }
 
