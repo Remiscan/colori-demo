@@ -37,7 +37,8 @@ export function computeInterface({ colorString }) {
     gradient = `linear-gradient(to right,  ${userColor.map(c => c.name || c.rgb).join(',  ')})`;
     if (method === 'interpolate') {
       responseType += ',gradient';
-      value = `linear-gradient(to right,\n  ${userColor.map(c => c.name || c.rgb).join(',\n  ')}\n)`;;
+      //value = `linear-gradient(to right,\n  ${userColor.map(c => c.name || c.rgb).join(',\n  ')}\n)`;
+      value = `[\n  ${userColor.map(c => c.name || c.rgb).join(',\n  ')}\n]`;
     }
     else if (method === 'whatToBlend') {
       responseType += ',gradient,whatToBlend';
