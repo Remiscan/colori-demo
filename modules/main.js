@@ -86,7 +86,7 @@ for (const input of [...document.querySelectorAll('input[type="range"][data-prop
 
 /////////////////////////////////////
 // Show documentation on user request
-const docuButton = document.querySelector('.show-documentation');
+/*const docuButton = document.querySelector('.show-documentation');
 const documentation = document.querySelector('.documentation');
 docuButton.addEventListener('click', () => {
   document.documentElement.dataset.showDocumentation = 'true';
@@ -95,7 +95,7 @@ docuButton.addEventListener('click', () => {
     visibleArticle.dataset.highlighted = 'true';
     Prism.highlightAllUnder(documentation.querySelector('article:not([hidden]'));
   }
-});
+});*/
 
 
 ////////////////////////////////////////////////
@@ -166,7 +166,7 @@ themeSelector.querySelector('.selector-title').classList.add('h4');
 themeSelector.querySelector('.selector-cookie-notice').classList.add('h6');
 
 // Syntax highlighting on start color formats
-Prism.highlightAllUnder(document.querySelector('#resultats'));
+//Prism.highlightAllUnder(document.querySelector('#resultats'));
 
 // Update sliders based on start color
 updateSliders(document.documentElement.dataset.startColor, 'init');

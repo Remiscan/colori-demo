@@ -96,7 +96,7 @@ function makeCSS(userColor) {
       /* Background colors */
       --body-color: ${bodyColor.hsl};
       --section-color: ${sectionColor.hsl};
-      --frame-color: ${codeColor.improveContrast(colorPreview, 2.5).hsl};
+      --frame-color: ${codeColor.improveContrast(colorPreview, 2.5, { as: 'background' }).hsl};
       --code-color: ${codeColor.hsl};
       --tab-hover-color: ${sectionColor.replace('a', .7).hsl};
       --note-color: ${Couleur.blend(sectionColor, bodyColor.replace('a', .3)).hsl};
@@ -133,7 +133,7 @@ function makeCSS(userColor) {
       /* Background colors */
       --body-color: ${bodyColor.hsl};
       --section-color: ${sectionColor.hsl};
-      --frame-color: ${codeColor.improveContrast(colorPreview, 2.5).hsl};
+      --frame-color: ${codeColor.improveContrast(colorPreview, 2.5, { as: 'background' }).hsl};
       --code-color: ${codeColor.hsl};
       --tab-hover-color: ${sectionColor.replace('a', .7).hsl};
       --note-color: ${Couleur.blend(bodyColor, sectionColor.replace('a', .5)).hsl};

@@ -78,8 +78,11 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: 400;
 }
-h1, .h1, h2 {
+h1, .h1 {
   font-size: calc(var(--mod) * var(--mod) * var(--mod) * var(--mod) * 1rem);
+}
+h2 {
+  font-size: calc(var(--mod) * var(--mod) * var(--mod) * 1rem);
 }
 h3, .h2 {
   font-size: calc(var(--mod) * var(--mod) * 1rem);
@@ -305,8 +308,9 @@ h1, h2 {
   left: 0;
   transform: translate(var(--section-padding), calc(-100% + 17.71%));
   user-select: none;
-  --shadow-color: var(--section-color);
+  --shadow-color: var(--body-color);
   text-shadow: 0 0 0 var(--shadow-color), 1px 1px 0 var(--shadow-color), 2px 2px 0 var(--shadow-color), 3px 3px 0 var(--shadow-color), 4px 4px 0 var(--shadow-color), 5px 5px 0 var(--shadow-color), 6px 6px 0 var(--shadow-color), 7px 7px 0 var(--shadow-color), 8px 8px 0 var(--shadow-color), 9px 9px 0 var(--shadow-color), 10px 10px 0 var(--shadow-color), 11px 11px 0 var(--shadow-color), 12px 12px 0 var(--shadow-color), 13px 13px 0 var(--shadow-color), 14px 14px 0 var(--shadow-color), 15px 15px 0 var(--shadow-color), 16px 16px 0 var(--shadow-color), 17px 17px 0 var(--shadow-color), 18px 18px 0 var(--shadow-color), 19px 19px 0 var(--shadow-color), 20px 20px 0 var(--shadow-color), 21px 21px 0 var(--shadow-color), 22px 22px 0 var(--shadow-color), 23px 23px 0 var(--shadow-color), 24px 24px 0 var(--shadow-color), 25px 25px 0 var(--shadow-color), 26px 26px 0 var(--shadow-color), 27px 27px 0 var(--shadow-color), 28px 28px 0 var(--shadow-color), 29px 29px 0 var(--shadow-color), 30px 30px 0 var(--shadow-color), 31px 31px 0 var(--shadow-color), 32px 32px 0 var(--shadow-color), 33px 33px 0 var(--shadow-color), 34px 34px 0 var(--shadow-color), 35px 35px 0 var(--shadow-color), 36px 36px 0 var(--shadow-color), 37px 37px 0 var(--shadow-color), 38px 38px 0 var(--shadow-color), 39px 39px 0 var(--shadow-color), 40px 40px 0 var(--shadow-color);
+  clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 }
 
 
@@ -416,6 +420,7 @@ html {
   --h-diff: -1;
   --text-strong-color: var(--h3-color);
   --section-padding: .9rem;
+  --section-gap: 1.2rem;
 
   --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
   linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
@@ -424,12 +429,6 @@ html {
   --button-border-color: var(--h3-color);
   --button-hover-border-color: var(--h1-color);
   --button-hover-bg-color: var(--input-bg-color);
-}
-
-@media (max-width: 42rem) {
-  html {
-    --section-padding: .6rem;
-  }
 }
 
 /*<?php ob_start();?>*/
@@ -448,20 +447,29 @@ echo buildThemesStylesheet($body); ?>*/
 
 body { /* Desktop-like */
   display: grid;
-  grid-template-columns: 1fr min(100% - 1.2rem, 42rem) 1fr;
-  grid-template-rows: repeat(4, auto) 1fr auto;
+  box-sizing: border-box;
+  grid-template-columns: 1fr var(--section-padding) min(100% - 2 * var(--section-padding), 42rem) var(--section-padding) 1fr;
+  grid-template-rows: repeat(3, auto) 1fr auto;
+  row-gap: var(--section-padding);
   width: 100%;
   min-height: 100%;
   margin: 0;
-  padding: 0;
-  padding-right: env(safe-area-inset-right, 0);
-  padding-left: env(safe-area-inset-left, 0);
+  padding: var(--section-padding);
+  margin-right: env(safe-area-inset-right, 0);
+  margin-left: env(safe-area-inset-left, 0);
   background-color: var(--body-color);
   color: var(--text-color);
 }
 
 html[data-show-documentation="true"] body {
   grid-template-rows: repeat(4, auto) auto;
+}
+
+@media (max-width: 42rem) {
+  html {
+    --section-padding: .6rem;
+    --section-gap: .6rem;
+  }
 }
 
 
@@ -480,7 +488,7 @@ header {
   position: relative;
   background: var(--section-color);
   padding: 0 var(--section-padding);
-  margin-top: calc(.6rem + env(safe-area-inset-top, 0));
+  margin-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
   font-size: .9rem;
 }
@@ -516,7 +524,7 @@ theme-selector>.selector {
   right: calc(-1 * var(--section-padding));
   background-color: var(--section-color);
   box-shadow: 0 1px .2rem 1px var(--body-color);
-  margin-top: .6rem;
+  margin-top: .9rem;
   border-radius: .6rem;
   overflow: hidden;
   z-index: 100;
@@ -643,42 +651,50 @@ span[data-string=github] {
  */
 
 header,
-section,
 footer {
+  grid-column: 3;
+  z-index: 2;
+}
+
+main {
+  background: var(--section-color);
+  grid-row: 2 / -2;
+  grid-column: 2 / -2;
+  z-index: 1;
+  padding: var(--section-padding);
+  
+  display: grid;
+  grid-template-columns: 1fr min(100%, 42rem) 1fr;
+  row-gap: var(--section-gap);
+  align-content: start;
+}
+
+main > * {
   grid-column: 2;
-  border-radius: .6rem;
 }
 
 header,
+main,
 section,
-.show-documentation {
-  margin-bottom: 1.2rem;
-}
-
-@media (max-width: 42rem) { /* Phone-like */
-  header,
-  section,
-  .show-documentation {
-    margin-bottom: .9rem;
-  }
+footer {
+  border-radius: .6rem;
 }
 
 section {
-  background-color: var(--section-color);
+  background-color: var(--body-color);
   padding: var(--section-padding);
   padding-top: 1.2rem;
-  margin-top: calc(0.71625 * var(--mod) * var(--mod) * var(--mod) * var(--mod) * 1rem + .6rem);
+  margin-top: calc(0.71625 * var(--mod) * var(--mod) * var(--mod) * 1rem);
   position: relative;
   z-index: 1;
 }
 
-#intro {
-  padding-top: var(--section-padding);
+section.no-title {
+  margin-top: 0;
 }
 
-#intro,
-footer {
-  margin-top: .6rem;
+#intro {
+  padding-top: var(--section-padding);
 }
 
 p[data-string="documentation-warning-js"] {
@@ -699,7 +715,8 @@ footer {
   position: relative;
   background: var(--section-color);
   padding: 0 var(--section-padding);
-  margin-bottom: calc(.6rem + env(safe-area-inset-bottom, 0));
+  margin-bottom: env(safe-area-inset-bottom, 0);
+  /*margin-top: calc(-1 * var(--section-gap));*/
 }
 
 remiscan-logo {
