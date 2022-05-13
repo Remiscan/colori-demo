@@ -808,6 +808,7 @@ footer {
 
 remiscan-logo {
   margin: .25rem 0;
+  --width: 4.5rem;
 }
 
 remiscan-logo::part(link) {
