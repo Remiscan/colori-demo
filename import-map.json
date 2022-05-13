@@ -23,7 +23,7 @@
     "theme-selector-template": "/_common/components/theme-selector/template.js",
 
     "remiscan-logo": "/_common/components/remiscan-logo/remiscan-logo.js",
-    "remiscan-logo-styles": "/_common/components/remiscan-logo/styles.css",
-    "remiscan-logo-template": "/_common/components/remiscan-logo/template.js.php"
+    "remiscan-logo-styles": "/_common/components/remiscan-logo/styles.css.php",
+    "remiscan-logo-template": "/_common/components/remiscan-logo/template.js"
   }
 }
