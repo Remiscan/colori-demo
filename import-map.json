@@ -14,7 +14,10 @@
     "colori": "/colori/dist/colori.min.js",
 
     "default-cookies": "/_common/js/cookies.js",
-    "tab-label": "/_common/components/tab-label/tab-label.js.php",
+
+    "tab-label": "/_common/components/tab-label/tab-label.js",
+    "tab-label-styles": "/_common/components/tab-label/styles.css",
+    "tab-label-template": "/_common/components/tab-label/template.js",
 
     "theme-selector": "/_common/components/theme-selector/theme-selector.js",
     "trap-focus": "/_common/js/trap-focus.js",

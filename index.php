@@ -519,7 +519,7 @@ $startColor = new Couleur($namedColors[$r]);
     */ ?>
 
     <footer>
-      <span data-string="made-by"><?=$Textes->getString('made-by')?></span>&nbsp;<remiscan-logo></remiscan-logo>
+      <span data-string="made-by"><?=$Textes->getString('made-by')?></span>&nbsp;<remiscan-logo animate></remiscan-logo>
     </footer>
 
   </body>
