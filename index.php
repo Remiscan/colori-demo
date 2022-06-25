@@ -177,7 +177,7 @@ $startColor = new Couleur($namedColors[$r]);
         <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-PHP-%28English%29" data-tappable lang="en" data-prog-language="php"><?=$Textes->getString('titre-section-documentation')?></a>-->
         <a href="?lang=fr" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</a>
         <a href="?lang=en" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</a>
-        <theme-selector position="bottom"></theme-selector>
+        <theme-selector position="bottom" cookie></theme-selector>
       </div>
     </header>
 
