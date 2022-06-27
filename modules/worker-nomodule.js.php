@@ -10,7 +10,7 @@ function unModule(string $content): string {
 }
 
 ob_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/colori/dist/colori.min.js';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/colori/lib/dist/colori.min.js';
 $colori = ob_get_clean();
 
 echo unModule($colori);

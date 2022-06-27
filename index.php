@@ -1,5 +1,5 @@
 <?php
-require_once '../dist/colori.php';
+require_once '../lib/dist/colori.php';
 
 $commonDir = dirname(__DIR__, 2).'/_common';
 require_once $commonDir.'/php/httpLanguage.php';

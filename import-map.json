@@ -11,7 +11,7 @@
     "color-swatch-strings": "/colori/demo/modules/color-swatch/strings.json",
     "color-swatch-template": "/colori/demo/modules/color-swatch/template.js",
 
-    "colori": "/colori/dist/colori.min.js",
+    "colori": "/colori/lib/dist/colori.min.js",
 
     "default-cookies": "/_common/js/cookies.js",
 
