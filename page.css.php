@@ -436,7 +436,7 @@ html {
   --button-hover-bg-color: var(--input-bg-color);
 }
 
-/*<?php ob_start();?>*/
+/*<?php themeSheetStart(); ?>*/
 html[data-theme="light"] {
   color-scheme: light;
   --error-color: darkred;
@@ -524,9 +524,7 @@ html[data-theme="dark"] {
   hsl(294.66, 100%, 92.87%) 100% 
   );
 }
-/*<?php $body = ob_get_clean();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';
-echo buildThemesStylesheet($body); ?>*/
+/*<?php themeSheetEnd(closeComment: true); ?>*/
 
 body { /* Desktop-like */
   display: grid;

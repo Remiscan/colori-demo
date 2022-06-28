@@ -65,7 +65,8 @@ $startColor = new Couleur($namedColors[$r]);
     <!--<?php versionizeEnd(__DIR__); ?>-->
 
     <style id="theme-variables">
-      <?php ob_start();
+      <?php themeSheetStart();
+
       $colorPreview = Couleur::blend('white', $startColor);
       $cieh = round($startColor->cieh());
 
@@ -137,9 +138,8 @@ $startColor = new Couleur($namedColors[$r]);
         --button-bg-color: <?= (new Couleur("lch(25% ". (.75 * $ciec) ." $cieh)"))->hsl() ?>;
         --button-active-bg-color: <?= (new Couleur("lch(35% ". (1.5 * $ciec) ." $cieh)"))->hsl() ?>;
       }
-      <?php $body = ob_get_clean();
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/components/theme-selector/build-css.php';
-      echo buildThemesStylesheet($body, closeComment: false); ?>
+
+      <?php themeSheetEnd(closeComment: false); ?>
     </style>
 
     <meta name="theme-color" content="<?=($resolvedTheme == 'dark' ? $bodyColorDark->hsl() : $bodyColor->hsl())?>" data-light="<?=$bodyColor->hsl()?>" data-dark="<?=$bodyColorDark->hsl()?>">
