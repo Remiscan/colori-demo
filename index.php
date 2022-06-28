@@ -45,8 +45,8 @@ $startColor = new Couleur($namedColors[$r]);
     <meta name="viewport" content="initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
 
-    <!-- ▼ Fichiers cache-busted grâce à PHP -->
-    <!--<?php ob_start();?>-->
+    <!-- ▼ Cache-busted files -->
+    <!--<?php versionizeStart(); ?>-->
 
     <link rel="icon" type="image/png" href="/colori/demo/icons/icon-192.png">
     <link rel="apple-touch-icon" href="/colori/demo/icons/apple-touch-icon.png">
@@ -62,9 +62,7 @@ $startColor = new Couleur($namedColors[$r]);
 
     <link rel="stylesheet" href="/colori/demo/page.css.php">
 
-    <!--<?php $imports = ob_get_clean();
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
-    echo versionizeFiles($imports, __DIR__); ?>-->
+    <!--<?php versionizeEnd(__DIR__); ?>-->
 
     <style id="theme-variables">
       <?php ob_start();

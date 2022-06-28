@@ -4,7 +4,7 @@ let supports = false; // module workers don't work with import maps yet :(
 try { const w = new Worker('blob://', tester); } catch (e) {}*/
 
 // ▼ ES modules cache-busted grâce à PHP
-/*<?php ob_start();?>*/
+/*<?php versionizeStart(); ?>*/
 
 if (supports) {
   worker = new Worker('/colori/demo/modules/worker.js', { type: 'module' });
@@ -12,9 +12,7 @@ if (supports) {
   worker = new Worker('/colori/demo/modules/worker-nomodule.js.php');
 }
 
-/*<?php $imports = ob_get_clean();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
-echo versionizeFiles($imports, __DIR__); ?>*/
+/*<?php versionizeEnd(__DIR__); ?>*/
 
 export async function messageWorker(instruction, data) {
   const chan = new MessageChannel();
