@@ -43,8 +43,7 @@ remiscan-logo::part(link):focus:not(:focus-visible),
   font-weight: 400;
   font-display: swap;
   src: local(''),
-       url('/_common/fonts/lato/lato-v17-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/_common/fonts/lato/lato-v17-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('/colori/demo/ext/lato-v17-latin-regular.woff2') format('woff2');
 }
 
 /* fira-code-regular */
@@ -54,8 +53,7 @@ remiscan-logo::part(link):focus:not(:focus-visible),
   font-weight: 400;
   font-display: swap;
   src: local(''),
-       url('/_common/fonts/fira-code/FiraCode-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/_common/fonts/fira-code/FiraCode-Regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('/colori/demo/ext/FiraCode-Regular.woff2') format('woff2');
 }
 
 html {
