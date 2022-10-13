@@ -5,6 +5,7 @@
     "computeInterface": "/colori/demo/modules/computeInterface.js",
     "cookies": "/colori/demo/modules/cookies.js",
     "messageWorker": "/colori/demo/modules/messageWorker.js.php",
+    "translation-observer": "/_common/js/translation-observer.js",
 
     "color-swatch": "/colori/demo/modules/color-swatch/colorSwatch.js",
     "color-swatch-styles": "/colori/demo/modules/color-swatch/styles.css",

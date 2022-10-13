@@ -1,6 +1,7 @@
 import strings from 'color-swatch-strings' assert { type: 'json' };
 import sheet from 'color-swatch-styles' assert { type: 'css' };
 import template from 'color-swatch-template';
+import translationObserver from 'translation-observer';
 
 import Couleur from 'colori';
 
@@ -84,15 +85,7 @@ class ColorSwatch extends HTMLElement {
       document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
     this.appendChild(template.content.cloneNode(true));
 
-    // Translate element content
-    const lang = document.documentElement.lang || 'en';
-    for (const e of [...this.querySelectorAll('[data-string]')]) {
-      if (e.tagName == 'IMG') e.alt = strings[lang][e.dataset.string];
-      else                    e.innerHTML = strings[lang][e.dataset.string];
-    }
-    for (const e of [...this.querySelectorAll('[data-label]')]) {
-      e.setAttribute('aria-label', strings[lang][e.dataset.label]);
-    }
+    translationObserver.serve(this);
     
     // Copy the color expression by clicking the copy button
     const copyButton = this.querySelector('.color-swatch-copy');
@@ -130,16 +123,33 @@ class ColorSwatch extends HTMLElement {
 
     const altButton = this.querySelector('.color-swatch-see-alt');
     altButton.removeEventListener('click', this.altHandle);
+
+    translationObserver.unserve(this);
   }
 
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue === newValue) return;
-    this.update(name, oldValue, newValue);
+    if (name === 'lang') {
+      const lang = newValue;
+      const defaultLang = 'en';
+      const getString = id => strings[lang]?.[id] ?? strings[defaultLang]?.[id] ?? 'undefined string';
+
+      // Translate element content
+      for (const e of [...this.querySelectorAll('[data-string]')]) {
+        if (e.tagName == 'IMG') e.alt = getString(e.dataset.string);
+        else                    e.innerHTML = getString(e.dataset.string);
+      }
+      for (const e of [...this.querySelectorAll('[data-label]')]) {
+        e.setAttribute('aria-label', getString(e.dataset.label));
+      }
+    } else {
+      this.update(name, oldValue, newValue);
+    }
   }
 
   static get observedAttributes() {
-    return ['color', 'format'];
+    return ['color', 'format', 'lang'];
   }
 }
 
