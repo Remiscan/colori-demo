@@ -13,6 +13,7 @@ onmessage = event => {
   let returnData;
 
   switch (instruction) {
+    case 'is-ready': returnData = { ready: true }; break;
     case 'compute-interface': returnData = computeInterface(data); break;
     case 'compute-sliders': returnData = computeSliders(data); break;
   }

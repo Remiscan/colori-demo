@@ -4,8 +4,9 @@
     "colorResolution": "/colori/demo/modules/colorResolution.js",
     "computeInterface": "/colori/demo/modules/computeInterface.js",
     "cookies": "/colori/demo/modules/cookies.js",
-    "messageWorker": "/colori/demo/modules/messageWorker.js.php",
-    "translation-observer": "/_common/js/translation-observer.js",
+    "messageWorker": "/colori/demo/modules/messageWorker.js",
+    "interface-worker": "/colori/demo/modules/worker.js",
+    "interface-worker-nomodule": "/colori/demo/modules/worker-nomodule.php",
 
     "color-swatch": "/colori/demo/modules/color-swatch/colorSwatch.js",
     "color-swatch-styles": "/colori/demo/modules/color-swatch/styles.css",
@@ -28,6 +29,10 @@
 
     "remiscan-logo": "/_common/components/remiscan-logo/remiscan-logo.js",
     "remiscan-logo-styles": "/_common/components/remiscan-logo/styles.css.php",
-    "remiscan-logo-template": "/_common/components/remiscan-logo/template.js"
+    "remiscan-logo-template": "/_common/components/remiscan-logo/template.js",
+
+    "translation-observer": "/_common/js/translation-observer.js",
+    "module-worker-shim": "/_common/js/module-worker-shim.js",
+    "es-module-shims-wasm": "/_common/polyfills/es-module-shims.wasm.js"
   }
 }
