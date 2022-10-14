@@ -2,7 +2,6 @@
 require_once '../lib/dist/colori.php';
 
 $commonDir = dirname(__DIR__, 2).'/_common';
-require_once $commonDir.'/php/version.php';
 require_once $commonDir.'/php/Translation.php';
 
 $translation = new Translation(__DIR__.'/strings.json');
