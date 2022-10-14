@@ -12,6 +12,7 @@ class ColorSwatch extends HTMLElement {
     super();
     this.ready = false;
     this.color = null;
+    this.gamut = null;
     this.copyHandle = () => {};
     this.altHandle = () => {};
   }
@@ -44,6 +45,10 @@ class ColorSwatch extends HTMLElement {
 
         const space = ['name', 'hex'].includes(format) ? 'srgb' : format;
         const inGamut = this.color.inGamut(space.replace('color-', ''));
+        let gamut = space.replace('color-', '');
+        if (['rgb', 'hex', 'name', 'hsl', 'hwb'].includes(gamut)) gamut = 'srgb';
+        this.gamut = gamut;
+
         if (!inGamut) {
           this.setAttribute('clipped', '');
           const expressionAlt = this.querySelector('.color-swatch-expression.out-of-gamut');
@@ -53,21 +58,8 @@ class ColorSwatch extends HTMLElement {
           });
           expressionAlt.innerHTML = value;
 
-          let gamut = space.replace('color-', '');
-          switch (gamut) {
-            case 'rgb':
-            case 'hex':
-            case 'name':
-            case 'hsl':
-            case 'hwb':
-              gamut = 'srgb';
-              break;
-
-            default:
-              preview.style.setProperty('--alt-color', CSS.supports(`color: ${value}`) ? value : this.color.rgb);
-          }
-          for (const e of [...this.querySelectorAll('.color-swatch-format')]) {
-            e.innerHTML = gamut.toUpperCase();
+          if (gamut !== 'srgb') {
+            preview.style.setProperty('--alt-color', CSS.supports(`color: ${value}`) ? value : this.color.rgb);
           }
         }
       } break;
@@ -84,8 +76,6 @@ class ColorSwatch extends HTMLElement {
     if (!document.adoptedStyleSheets.includes(sheet))
       document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
     this.appendChild(template.content.cloneNode(true));
-
-    translationObserver.serve(this);
     
     // Copy the color expression by clicking the copy button
     const copyButton = this.querySelector('.color-swatch-copy');
@@ -114,6 +104,8 @@ class ColorSwatch extends HTMLElement {
     for (const attr of ColorSwatch.observedAttributes) {
       this.update(attr, '', this.getAttribute(attr));
     }
+
+    translationObserver.serve(this);
   }
 
 
@@ -133,15 +125,9 @@ class ColorSwatch extends HTMLElement {
     if (name === 'lang') {
       const lang = newValue;
       const defaultLang = 'en';
-      const getString = id => strings[lang]?.[id] ?? strings[defaultLang]?.[id] ?? 'undefined string';
-
-      // Translate element content
-      for (const e of [...this.querySelectorAll('[data-string]')]) {
-        if (e.tagName == 'IMG') e.alt = getString(e.dataset.string);
-        else                    e.innerHTML = getString(e.dataset.string);
-      }
-      for (const e of [...this.querySelectorAll('[data-label]')]) {
-        e.setAttribute('aria-label', getString(e.dataset.label));
+      translationObserver.translate(this, strings, lang, defaultLang);
+      for (const el of [...this.querySelectorAll('.color-swatch-format')]) {
+        el.innerHTML = this.gamut;
       }
     } else {
       this.update(name, oldValue, newValue);
