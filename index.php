@@ -2,14 +2,16 @@
 require_once '../lib/dist/colori.php';
 
 $commonDir = dirname(__DIR__, 2).'/_common';
-require_once $commonDir.'/php/httpLanguage.php';
 require_once $commonDir.'/php/version.php';
-require_once $commonDir.'/php/getStrings.php';
+require_once $commonDir.'/php/Translation.php';
 
-$urlLang = isset($_GET['lang']) ? substr(htmlspecialchars($_GET['lang']), 0, 2) : null;
+$translation = new Translation(__DIR__.'/strings.json');
+$httpLanguage = $translation->getLanguage();
+
+$urlLang = isset($_GET['lang']) ? htmlspecialchars($_GET['lang']) : null;
 $cookieLang = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : null;
-$lang = $urlLang ?: $cookieLang ?: httpLanguage() ?: 'en';
-$Textes = new Textes('colori/demo', $lang);
+$lang = $urlLang ?: $cookieLang ?: $httpLanguage ?: 'en';
+$translation->setLanguage($lang);
 
 $progLanguage = isset($_COOKIE['prog-language']) ? $_COOKIE['prog-language'] : 'js';
 $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'auto';
@@ -33,9 +35,9 @@ $startColor = new Couleur($namedColors[$r]);
     <meta charset="utf-8">
     <title>Colori</title>
 
-    <meta name="description" content="<?=$Textes->getString('description-site')?>">
+    <meta name="description" content="<?=$translation->get('description-site')?>">
     <meta property="og:title" content="Colori">
-    <meta property="og:description" content="<?=$Textes->getString('description-site')?>">
+    <meta property="og:description" content="<?=$translation->get('description-site')?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://remiscan.fr/colori/">
     <meta property="og:image" content="https://remiscan.fr/mon-portfolio/projets/colori/og-preview.png">
@@ -164,15 +166,15 @@ $startColor = new Couleur($namedColors[$r]);
 
       <div class="groupe-langages">
         <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable
-          data-label="github" aria-label="<?=$Textes->getString('github')?>">
+          data-label="github" aria-label="<?=$translation->get('github')?>">
           <svg viewBox="0 0 16 16" class="github-cat"><use href="#github-cat" /></svg>
-          <span data-string="github"><?=$Textes->getString('github')?></span>
+          <span data-string="github"><?=$translation->get('github')?></span>
           <span>GitHub</span>
         </a>
-        <!--<a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-JavaScript-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="js"><?=$Textes->getString('titre-section-documentation')?></a>
-        <a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-PHP-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="php"><?=$Textes->getString('titre-section-documentation')?></a>
-        <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-JavaScript-%28English%29" data-tappable lang="en" data-prog-language="js"><?=$Textes->getString('titre-section-documentation')?></a>
-        <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-PHP-%28English%29" data-tappable lang="en" data-prog-language="php"><?=$Textes->getString('titre-section-documentation')?></a>-->
+        <!--<a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-JavaScript-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="js"><?=$translation->get('titre-section-documentation')?></a>
+        <a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-PHP-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="php"><?=$translation->get('titre-section-documentation')?></a>
+        <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-JavaScript-%28English%29" data-tappable lang="en" data-prog-language="js"><?=$translation->get('titre-section-documentation')?></a>
+        <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-PHP-%28English%29" data-tappable lang="en" data-prog-language="php"><?=$translation->get('titre-section-documentation')?></a>-->
         <a href="?lang=fr" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</a>
         <a href="?lang=en" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</a>
         <theme-selector position="bottom" cookie></theme-selector>
@@ -182,37 +184,37 @@ $startColor = new Couleur($namedColors[$r]);
     <main>
 
       <section id="intro" class="no-title">
-        <p data-string="documentation-intro-p1"><?=$Textes->getString('documentation-intro-p1')?></p>
-        <p data-string="documentation-warning-js"><?=$Textes->getString('documentation-warning-js')?></p>
+        <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
+        <p data-string="documentation-warning-js"><?=$translation->get('documentation-warning-js')?></p>
       </section>
 
       <section id="demo">
-        <h2 data-string="titre-section-demo"><?=$Textes->getString('titre-section-demo')?></h2>
+        <h2 data-string="titre-section-demo"><?=$translation->get('titre-section-demo')?></h2>
 
         <fieldset role="tablist" data-group="tabs-input-method">
           <legend data-string="tabs-input-method-label"></legend>
 
-          <tab-label controls="saisie" data-label-id="tab-label-manuel" label="<?=$Textes->getString('tab-label-manuel')?>" active="true"></tab-label>
-          <tab-label controls="ranges" data-label-id="tab-label-selecteurs" label="<?=$Textes->getString('tab-label-selecteurs')?>"></tab-label>
+          <tab-label controls="saisie" data-label-id="tab-label-manuel" label="<?=$translation->get('tab-label-manuel')?>" active="true"></tab-label>
+          <tab-label controls="ranges" data-label-id="tab-label-selecteurs" label="<?=$translation->get('tab-label-selecteurs')?>"></tab-label>
         </fieldset>
         
         <div id="saisie">
           <h3 class="no-separator">
-            <label for="entree" data-string="demo-input-label"><?=$Textes->getString('demo-input-label')?></label>
+            <label for="entree" data-string="demo-input-label"><?=$translation->get('demo-input-label')?></label>
           </h3>
 
           <div class="exemples-saisie exemples-valeurs">
-            <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
+            <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
             <button type="button" class="exemple">pink</button>
             <button type="button" class="exemple">#4169E1</button>
             <button type="button" class="exemple">rgb(255, 127, 80)</button>
-            <button type="button" class="exemple" data-label="more-examples" aria-label="<?=$Textes->getString('more-examples')?>">&nbsp;+&nbsp;</button>
+            <button type="button" class="exemple" data-label="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
           </div>
 
-          <p class="instructions-exemples-fonctions off" data-hidden="true" data-string="instructions-demo"><?=$Textes->getString('instructions-demo')?></p>
+          <p class="instructions-exemples-fonctions off" data-hidden="true" data-string="instructions-demo"><?=$translation->get('instructions-demo')?></p>
 
           <div class="exemples-saisie exemples-fonctions off" data-hidden="true">
-            <span data-string="exemple-abbr"><?=$Textes->getString('exemple-abbr')?></span>
+            <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
             <button type="button" class="exemple">pink.invert()</button>
             <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
             <button type="button" class="exemple">black.contrast(white)</button>
@@ -220,16 +222,16 @@ $startColor = new Couleur($namedColors[$r]);
             <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
           </div>
 
-          <input id="entree" class="h4" type="text" data-abbr="<?=$Textes->getString('exemple-abbr')?>"
+          <input id="entree" class="h4" type="text" data-abbr="<?=$translation->get('exemple-abbr')?>"
                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                   placeholder="<?=$startColor->name()?>">
         </div>
 
         <div id="ranges" data-format="rgb" hidden>
-          <h3 class="no-separator" data-string="demo-selectors-title"><?=$Textes->getString('demo-selectors-title')?></h3>
+          <h3 class="no-separator" data-string="demo-selectors-title"><?=$translation->get('demo-selectors-title')?></h3>
 
           <div class="choix-format">
-            <span data-string="choix-format-titre"><?=$Textes->getString('choix-format-titre')?></span>
+            <span data-string="choix-format-titre"><?=$translation->get('choix-format-titre')?></span>
 
             <div class="liste-formats">
               <input type="radio" id="choix-format-rgb" name="choix-format" value="rgb" checked>
@@ -256,133 +258,133 @@ $startColor = new Couleur($namedColors[$r]);
           </div>
 
           <label for="range-red" data-format="rgb">
-            <span data-string="prop-r-nom"><?=$Textes->getString('prop-r-nom')?></span>
+            <span data-string="prop-r-nom"><?=$translation->get('prop-r-nom')?></span>
             <span>[0 ; 255]</span>
             <input type="range" id="range-red" data-property="r" min="0" max="255" step="1" value="<?=round(255 * $startColor->r)?>">
             <input type="number" data-property="r" min="0" max="255" step="1" value="<?=round(255 * $startColor->r)?>">
           </label>
 
           <label for="range-green" data-format="rgb">
-            <span data-string="prop-g-nom"><?=$Textes->getString('prop-g-nom')?></span>
+            <span data-string="prop-g-nom"><?=$translation->get('prop-g-nom')?></span>
             <span>[0 ; 255]</span>
             <input type="range" id="range-green" data-property="g" min="0" max="255" step="1" value="<?=round(255 * $startColor->g)?>">
             <input type="number" data-property="g" min="0" max="255" step="1" value="<?=round(255 * $startColor->g)?>">
           </label>
 
           <label for="range-blue" data-format="rgb">
-            <span data-string="prop-b-nom"><?=$Textes->getString('prop-b-nom')?></span>
+            <span data-string="prop-b-nom"><?=$translation->get('prop-b-nom')?></span>
             <span>[0 ; 255]</span>
             <input type="range" id="range-blue" data-property="b" min="0" max="255" step="1" value="<?=round(255 * $startColor->b)?>">
             <input type="number" data-property="b" min="0" max="255" step="1" value="<?=round(255 * $startColor->b)?>">
           </label>
 
           <label for="range-hue" data-format="hsl hwb">
-            <span data-string="prop-h-nom"><?=$Textes->getString('prop-h-nom')?></span>
+            <span data-string="prop-h-nom"><?=$translation->get('prop-h-nom')?></span>
             <span>[0 ; 360]</span>
             <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round($startColor->h())?>">
             <input type="number" data-property="h" min="0" max="360" step="1" value="<?=round($startColor->h())?>">
           </label>
 
           <label for="range-saturation" data-format="hsl">
-            <span data-string="prop-s-nom"><?=$Textes->getString('prop-s-nom')?></span>
+            <span data-string="prop-s-nom"><?=$translation->get('prop-s-nom')?></span>
             <span>[0 ; 100]</span>
             <input type="range" id="range-saturation" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s())?>">
             <input type="number" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s())?>">
           </label>
 
           <label for="range-luminosity" data-format="hsl">
-            <span data-string="prop-l-nom"><?=$Textes->getString('prop-l-nom')?></span>
+            <span data-string="prop-l-nom"><?=$translation->get('prop-l-nom')?></span>
             <span>[0 ; 100]</span>
             <input type="range" id="range-luminosity" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l())?>">
             <input type="number" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l())?>">
           </label>
 
           <label for="range-whiteness" data-format="hwb">
-            <span data-string="prop-w-nom"><?=$Textes->getString('prop-w-nom')?></span>
+            <span data-string="prop-w-nom"><?=$translation->get('prop-w-nom')?></span>
             <span>[0 ; 100]</span>
             <input type="range" id="range-whiteness" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w())?>">
             <input type="number" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w())?>">
           </label>
 
           <label for="range-blackness" data-format="hwb">
-            <span data-string="prop-bk-nom"><?=$Textes->getString('prop-bk-nom')?></span>
+            <span data-string="prop-bk-nom"><?=$translation->get('prop-bk-nom')?></span>
             <span>[0 ; 100]</span>
             <input type="range" id="range-blackness" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk())?>">
             <input type="number" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk())?>">
           </label>
 
           <label for="range-cie-lightness" data-format="lab lch">
-            <span data-string="prop-ciel-nom"><?=$Textes->getString('prop-ciel-nom')?></span>
+            <span data-string="prop-ciel-nom"><?=$translation->get('prop-ciel-nom')?></span>
             <span>[0 ; 100]</span>
             <input type="range" id="range-cie-lightness" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel())?>">
             <input type="number" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel())?>">
           </label>
 
           <label for="range-cie-a-axis" data-format="lab">
-            <span data-string="prop-ciea-nom"><?=$Textes->getString('prop-ciea-nom')?></span>
+            <span data-string="prop-ciea-nom"><?=$translation->get('prop-ciea-nom')?></span>
             <span>[-80 ; 94]</span>
             <input type="range" id="range-cie-a-axis" data-property="ciea" min="-80" max="94" step="1" value="<?=round($startColor->ciea())?>">
             <input type="number" data-property="ciea" min="-80" max="94" step="1" value="<?=round($startColor->ciea())?>">
           </label>
 
           <label for="range-cie-b-axis" data-format="lab">
-            <span data-string="prop-cieb-nom"><?=$Textes->getString('prop-cieb-nom')?></span>
+            <span data-string="prop-cieb-nom"><?=$translation->get('prop-cieb-nom')?></span>
             <span>[-112 ; 94]</span>
             <input type="range" id="range-cie-b-axis" data-property="cieb" min="-112" max="94" step="1" value="<?=round($startColor->cieb())?>">
             <input type="number" data-property="cieb" min="-112" max="94" step="1" value="<?=round($startColor->cieb())?>">
           </label>
 
           <label for="range-cie-chroma" data-format="lch">
-            <span data-string="prop-ciec-nom"><?=$Textes->getString('prop-ciec-nom')?></span>
+            <span data-string="prop-ciec-nom"><?=$translation->get('prop-ciec-nom')?></span>
             <span>[0 ; 132]</span>
             <input type="range" id="range-cie-chroma" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec())?>">
             <input type="number" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec())?>">
           </label>
 
           <label for="range-cie-hue" data-format="lch">
-            <span data-string="prop-cieh-nom"><?=$Textes->getString('prop-cieh-nom')?></span>
+            <span data-string="prop-cieh-nom"><?=$translation->get('prop-cieh-nom')?></span>
             <span>[0 ; 360]</span>
             <input type="range" id="range-cie-hue" data-property="cieh" min="0" max="360" step="1" value="<?=round($startColor->cieh())?>">
             <input type="number" data-property="cieh" min="0" max="360" step="1" value="<?=round($startColor->cieh())?>">
           </label>
 
           <label for="range-ok-lightness" data-format="oklab oklch">
-            <span data-string="prop-okl-nom"><?=$Textes->getString('prop-okl-nom')?></span>
+            <span data-string="prop-okl-nom"><?=$translation->get('prop-okl-nom')?></span>
             <span>[0 ; 100]</span>
             <input type="range" id="range-ok-lightness" data-property="okl" min="0" max="100" step="1" value="<?=round(100 * $startColor->okl())?>">
             <input type="number" data-property="okl" min="0" max="100" step="1" value="<?=round(100 * $startColor->okl())?>">
           </label>
 
           <label for="range-ok-a-axis" data-format="oklab">
-            <span data-string="prop-oka-nom"><?=$Textes->getString('prop-oka-nom')?></span>
+            <span data-string="prop-oka-nom"><?=$translation->get('prop-oka-nom')?></span>
             <span>[-0.24 ; 0.28]</span>
             <input type="range" id="range-ok-a-axis" data-property="oka" min="-0.24" max="0.28" step="0.001" value="<?=round(10**3 * $startColor->oka()) / 10**3?>">
             <input type="number" data-property="oka" min="-0.24" max="0.28" step="0.001" value="<?=round(10**3 * $startColor->oka()) / 10**3?>">
           </label>
 
           <label for="range-ok-b-axis" data-format="oklab">
-            <span data-string="prop-okb-nom"><?=$Textes->getString('prop-okb-nom')?></span>
+            <span data-string="prop-okb-nom"><?=$translation->get('prop-okb-nom')?></span>
             <span>[-0.32 ; 0.20]</span>
             <input type="range" id="range-ok-b-axis" data-property="okb" min="-0.32" max="0.20" step="0.001" value="<?=round(10**3 * $startColor->okb()) / 10**3?>">
             <input type="number" data-property="okb" min="-0.32" max="0.20" step="0.001" value="<?=round(10**3 * $startColor->okb()) / 10**3?>">
           </label>
 
           <label for="range-ok-chroma" data-format="oklch">
-            <span data-string="prop-okc-nom"><?=$Textes->getString('prop-okc-nom')?></span>
+            <span data-string="prop-okc-nom"><?=$translation->get('prop-okc-nom')?></span>
             <span>[0 ; 0.32]</span>
             <input type="range" id="range-ok-chroma" data-property="okc" min="0" max="0.32" step="0.001" value="<?=round(10**3 * $startColor->okc()) / 10**3?>">
             <input type="number" data-property="okc" min="0" max="0.32" step="0.001" value="<?=round(10**3 * $startColor->okc()) / 10**3?>">
           </label>
 
           <label for="range-ok-hue" data-format="oklch">
-            <span data-string="prop-okh-nom"><?=$Textes->getString('prop-okh-nom')?></span>
+            <span data-string="prop-okh-nom"><?=$translation->get('prop-okh-nom')?></span>
             <span>[0 ; 360]</span>
             <input type="range" id="range-ok-hue" data-property="okh" min="0" max="360" step="1" value="<?=round($startColor->okh())?>">
             <input type="number" data-property="okh" min="0" max="360" step="1" value="<?=round($startColor->okh())?>">
           </label>
 
           <label for="range-opacity" data-format="rgb hsl hwb lab lch oklab oklch">
-            <span data-string="prop-a-nom"><?=$Textes->getString('prop-a-nom')?></span>
+            <span data-string="prop-a-nom"><?=$translation->get('prop-a-nom')?></span>
             <span>[0 ; 100]</span>
             <input type="range" id="range-opacity" data-property="a" min="0" max="100" step="1" value="<?=round(100 * $startColor->a)?>">
             <input type="number" data-property="a" min="0" max="100" step="1" value="<?=round(100 * $startColor->a)?>">
@@ -390,17 +392,17 @@ $startColor = new Couleur($namedColors[$r]);
         </div>
 
         <div id="resultats">
-          <h3 class="no-separator" data-string="demo-resultats-titre"><?=$Textes->getString('demo-resultats-titre')?></h3>
+          <h3 class="no-separator" data-string="demo-resultats-titre"><?=$translation->get('demo-resultats-titre')?></h3>
 
           <fieldset role="tablist" data-group="tabs-results">
             <legend data-string="tabs-results-label"></legend>
 
-            <tab-label controls="results-named-formats" data-label-id="tab-label-named-formats" label="<?=$Textes->getString('tab-label-named-formats')?>" active="true"></tab-label>
-            <tab-label controls="results-color-spaces" data-label-id="tab-label-color-spaces" label="<?=$Textes->getString('tab-label-color-spaces')?>"></tab-label>
+            <tab-label controls="results-named-formats" data-label-id="tab-label-named-formats" label="<?=$translation->get('tab-label-named-formats')?>" active="true"></tab-label>
+            <tab-label controls="results-color-spaces" data-label-id="tab-label-color-spaces" label="<?=$translation->get('tab-label-color-spaces')?>"></tab-label>
           </fieldset>
 
           <div class="donnees" id="results-values">
-            <div class="format gradient" data-string="apercu-gradient"><?=$Textes->getString('apercu-gradient')?></div>
+            <div class="format gradient" data-string="apercu-gradient"><?=$translation->get('apercu-gradient')?></div>
 
             <div class="format valeur">
               <pre><code class="language-css"></code></pre>
@@ -482,10 +484,10 @@ $startColor = new Couleur($namedColors[$r]);
     $quicknavPhpEn = prepareNav($docuPhpEn);
     ?>
 
-    <button type="button" class="show-documentation" data-string="button-show-documentation"><?=$Textes->getString('button-show-documentation')?></button>
+    <button type="button" class="show-documentation" data-string="button-show-documentation"><?=$translation->get('button-show-documentation')?></button>
 
     <aside class="nav-documentation nav-rapide" data-label="nav-documentation">
-      <h2 class="titre-nav-rapide" data-string="nav-documentation"><?=$Textes->getString('nav-documentation')?></h2>
+      <h2 class="titre-nav-rapide" data-string="nav-documentation"><?=$translation->get('nav-documentation')?></h2>
       <div lang="fr" data-prog-language="js"><?=$quicknavJsFr?></div>
       <div lang="en" data-prog-language="js"><?=$quicknavJsEn?></div>
       <div lang="fr" data-prog-language="php"><?=$quicknavPhpFr?></div>
@@ -494,7 +496,7 @@ $startColor = new Couleur($namedColors[$r]);
 
     <a id="documentation" aria-hidden="true"></a>
     <section class="documentation">
-      <h1 data-string="titre-section-documentation"><?=$Textes->getString('titre-section-documentation')?></h1>
+      <h1 data-string="titre-section-documentation"><?=$translation->get('titre-section-documentation')?></h1>
 
       <fieldset role="tablist" data-group="tabs-prog-language">
         <legend data-string="tabs-group-language-label"></legend>
@@ -517,7 +519,7 @@ $startColor = new Couleur($namedColors[$r]);
     */ ?>
 
     <footer>
-      <span data-string="made-by"><?=$Textes->getString('made-by')?></span>&nbsp;<remiscan-logo animate></remiscan-logo>
+      <span data-string="made-by"><?=$translation->get('made-by')?></span>&nbsp;<remiscan-logo animate></remiscan-logo>
     </footer>
 
   </body>
