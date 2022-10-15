@@ -29,7 +29,7 @@ async function isWorkerReady() {
           resolve(workerReady = true);
         }
       };
-      chan.port1.onmessageerror(event => reject(event.data));
+      chan.port1.onmessageerror = event => reject(event.data);
       worker.postMessage(
         JSON.stringify({ instruction: 'is-ready' }),
         [chan.port2]
