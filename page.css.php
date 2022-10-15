@@ -592,6 +592,7 @@ header>h1 {
 theme-selector {
   width: 1.8em;
   height: 1.8em;
+  display: grid;
   --margin-right: 0;
   margin-right: var(--margin-right);
   --primary-color: var(--h1-color);
@@ -805,6 +806,8 @@ footer {
 remiscan-logo {
   margin: .25rem 0;
   --width: 4.5rem;
+  width: var(--width);
+  height: calc(0.5 * var(--width));
 }
 
 remiscan-logo::part(link) {
@@ -1780,8 +1783,6 @@ html[data-prog-language="php"] [data-prog-language="js"] {
 .off { display: none; }
 [hidden] { display: none !important; }
 
-theme-selector:not(:defined),
-remiscan-logo:not(:defined),
 tab-label:not(:defined),
 color-swatch:not(:defined) {
   display: none;
