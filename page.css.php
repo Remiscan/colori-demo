@@ -590,8 +590,9 @@ header>h1 {
 /* Theme selector */
 
 theme-selector {
-  width: 1.8em;
-  height: 1.8em;
+  --size: 1.8em;
+  width: var(--size);
+  height: var(--size);
   display: grid;
   --margin-right: 0;
   margin-right: var(--margin-right);
