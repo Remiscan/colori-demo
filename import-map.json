@@ -8,28 +8,19 @@
     "interface-worker": "/colori/demo/modules/worker.js",
     "interface-worker-nomodule": "/colori/demo/modules/worker-nomodule.php",
 
-    "color-swatch": "/colori/demo/modules/color-swatch/colorSwatch.js",
-    "color-swatch-styles": "/colori/demo/modules/color-swatch/styles.css",
-    "color-swatch-strings": "/colori/demo/modules/color-swatch/strings.json",
-    "color-swatch-template": "/colori/demo/modules/color-swatch/template.js",
+    "color-swatch": "/colori/demo/modules/components/colorSwatch.js",
 
     "colori": "/colori/lib/dist/colori.min.js",
 
     "default-cookies": "/_common/js/cookies.js",
 
     "tab-label": "/_common/components/tab-label/tab-label.js",
-    "tab-label-styles": "/_common/components/tab-label/styles.css",
-    "tab-label-template": "/_common/components/tab-label/template.js",
 
     "theme-selector": "/_common/components/theme-selector/theme-selector.js",
     "trap-focus": "/_common/js/trap-focus.js",
-    "theme-selector-styles": "/_common/components/theme-selector/styles.css",
-    "theme-selector-strings": "/_common/components/theme-selector/strings.json",
-    "theme-selector-template": "/_common/components/theme-selector/template.js",
 
     "remiscan-logo": "/_common/components/remiscan-logo/remiscan-logo.js",
-    "remiscan-logo-styles": "/_common/components/remiscan-logo/styles.css.php",
-    "remiscan-logo-template": "/_common/components/remiscan-logo/template.js",
+    "remiscan-logo-svg": "/_common/components/remiscan-logo/logo.svg",
 
     "translation-observer": "/_common/js/translation-observer.js",
     "module-worker-shim": "/_common/js/module-worker-shim.js",
