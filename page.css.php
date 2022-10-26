@@ -529,7 +529,7 @@ body { /* Desktop-like */
   margin: 0;
   margin-right: env(safe-area-inset-right, 0);
   margin-left: env(safe-area-inset-left, 0);
-  background-color: var(--body-color);
+  background-color: var(--surface-2);
   color: var(--text-color);
 }
 
@@ -549,13 +549,13 @@ section {
 .documentation {
   grid-row: 2;
   grid-column: 1;
-  background-color: var(--section-color);
+  background-color: var(--surface-1);
 }
 
 .demo {
   grid-row: 1 / -1;
   grid-column: 2;
-  background-color: var(--body-color);
+  background-color: var(--surface-2);
   position: sticky;
   top: 0;
 }
@@ -594,7 +594,7 @@ header {
   align-items: center;
   gap: 1.2rem;
   position: relative;
-  background: var(--section-color);
+  background: var(--surface-1);
   padding: calc(.5 * var(--section-padding)) var(--section-padding) 0;
   margin-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
@@ -612,28 +612,12 @@ header>h1 {
 
 /* Icon */
 
-picture {
+.app-icon {
   width: 2.4rem;
   height: 2.4rem;
   margin-right: -.6rem;
-}
-
-picture > svg {
-  width: 100%;
-  height: 100%;
   border-radius: 50%;
-}
-
-picture rect.bg {
-  fill: var(--icon-bg-color);
-}
-
-picture .ombres > rect {
-  fill: var(--icon-shadow-color);
-}
-
-picture .croisillon > rect {
-  fill: var(--icon-hash-color);
+  filter: hue-rotate(calc(var(--icon-hue-difference) * 1deg)) saturate(calc(var(--icon-saturation-ratio) * 100%));
 }
 
 

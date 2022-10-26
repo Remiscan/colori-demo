@@ -74,10 +74,8 @@ $startColor = new Couleur($namedColors[$r]);
       ?>
 
       :root {
-        /* Icon colors */
-        --icon-bg-color: <?= (new Couleur("oklch(82.85% $okc $okh)"))->hsl() ?>;
-        --icon-shadow-color: <?= (new Couleur("oklch(90.18% ". (.63 * $okc) ." $okh)"))->hsl() ?>;
-        --icon-hash-color: <?= (new Couleur("oklch(44.8% ". (.75 * $okc) ." $okh)"))->hsl() ?>;
+        --icon-hue-difference: <?= ($startColor->h() - 160) ?>;
+        --icon-saturation-ratio: <?= min($startColor->okc() / 0.1304, 1) ?>;
       }
 
       <?php
@@ -87,8 +85,14 @@ $startColor = new Couleur($namedColors[$r]);
       $bodyColor = new Couleur("lch(75% $ciec $cieh)");
       $sectionColor = new Couleur("lch(85% ". (0.6 * $ciec) ." $cieh)");
       $codeColor = new Couleur("lch(92% ". (0.3 * $ciec) ." $cieh)");
+
+      $clampedOkc = min($startColor->okc(), .09);
       ?>
       :root[data-theme="light"] {
+        /* Surface colors */
+        --surface-1: <?= (new Couleur("oklch(90% ".(.6 * $clampedOkc)." $okh)"))->hsl() ?>;
+        --surface-2: <?= (new Couleur("oklch(85% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
+
         /* Background colors */
         --body-color: <?=$bodyColor->hsl()?>;
         --section-color: <?=$sectionColor->hsl()?>;
@@ -122,8 +126,14 @@ $startColor = new Couleur($namedColors[$r]);
       $bodyColorDark = new Couleur("lch(8% ".(.6 * $ciec)." $cieh)");
       $sectionColor = new Couleur("lch(20% $ciec $cieh)");
       $codeColor = $bodyColorDark;
+
+      $clampedOkc = min($startColor->okc(), .03);
       ?>
       :root[data-theme="dark"] {
+        /* Surface colors */
+        --surface-1: <?= (new Couleur("oklch(25% ".(.4 * $clampedOkc)." $okh)"))->hsl() ?>;
+        --surface-2: <?= (new Couleur("oklch(30% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
+
         /* Background colors */
         --body-color: <?=$bodyColorDark->hsl()?>;
         --section-color: <?=$sectionColor->hsl()?>;
@@ -172,9 +182,7 @@ $startColor = new Couleur($namedColors[$r]);
     </svg>
 
     <header>
-      <picture>
-        <?php include './icons/icon.svg'; ?>
-      </picture>
+      <img class="app-icon" src="/colori/demo/icons/icon.svg" width="38.4" height="38.4">
 
       <h1>colori</h1>
 
