@@ -92,10 +92,13 @@ $startColor = new Couleur($namedColors[$r]);
         /* Surface colors */
         /* Use these with different opacity for interactable elements
               - on surface 1, use surface 2 for interactable elements
-              - and on surface 2, use surface 1 */
+              - and on surface 2, use surface 1
+           but with more chroma */
         /* And use opposite theme colors for text ? */
         --surface-1: <?= (new Couleur("oklch(90% ".(.6 * $clampedOkc)." $okh)"))->hsl() ?>;
+        --vivid-surface-1: <?= (new Couleur("oklch(95% $clampedOkc $okh)"))->hsl() ?>;
         --surface-2: <?= (new Couleur("oklch(85% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
+        --vivid-surface-2: <?= (new Couleur("oklch(80% $clampedOkc $okh)"))->hsl() ?>;
 
         /* Background colors */
         --body-color: <?=$bodyColor->hsl()?>;
@@ -136,7 +139,9 @@ $startColor = new Couleur($namedColors[$r]);
       :root[data-theme="dark"] {
         /* Surface colors */
         --surface-1: <?= (new Couleur("oklch(25% ".(.4 * $clampedOkc)." $okh)"))->hsl() ?>;
+        --vivid-surface-1: <?= (new Couleur("oklch(20% $clampedOkc $okh)"))->hsl() ?>;
         --surface-2: <?= (new Couleur("oklch(30% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
+        --vivid-surface-2: <?= (new Couleur("oklch(35% $clampedOkc $okh)"))->hsl() ?>;
 
         /* Background colors */
         --body-color: <?=$bodyColorDark->hsl()?>;

@@ -550,7 +550,7 @@ section {
 
 header, .documentation {
   --background-color: var(--surface-1);
-  --alt-background-color: var(--surface-2);
+  --alt-background-color: var(--vivid-surface-2);
 }
 
 .demo {
@@ -560,7 +560,7 @@ header, .documentation {
   top: 0;
   background-color: var(--background-color);
   --background-color: var(--surface-2);
-  --alt-background-color: var(--surface-1);
+  --alt-background-color: var(--vivid-surface-1);
 }
 
 @media (max-width: 52rem) {
