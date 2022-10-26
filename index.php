@@ -90,6 +90,10 @@ $startColor = new Couleur($namedColors[$r]);
       ?>
       :root[data-theme="light"] {
         /* Surface colors */
+        /* Use these with different opacity for interactable elements
+              - on surface 1, use surface 2 for interactable elements
+              - and on surface 2, use surface 1 */
+        /* And use opposite theme colors for text ? */
         --surface-1: <?= (new Couleur("oklch(90% ".(.6 * $clampedOkc)." $okh)"))->hsl() ?>;
         --surface-2: <?= (new Couleur("oklch(85% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
 
