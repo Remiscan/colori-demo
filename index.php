@@ -496,8 +496,8 @@ $startColor = new Couleur($namedColors[$r]);
       <fieldset role="tablist" data-group="tabs-prog-language">
         <legend data-string="tabs-group-language-label"></legend>
 
-        <tab-label controls="doc-js" label=".js" active="true"></tab-label>
-        <tab-label controls="doc-php" label=".php" ></tab-label>
+        <tab-label controls="doc-js" label="JavaScript" active="true"></tab-label>
+        <tab-label controls="doc-php" label="PHP" ></tab-label>
       </fieldset>
 
       <article data-prog-language="js" id="doc-js"><?=$docJS?></article>
