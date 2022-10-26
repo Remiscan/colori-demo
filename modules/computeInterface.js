@@ -81,8 +81,14 @@ function makeCSS(userColor) {
 
   // Calculate colors that are the same for both light and dark themes
   const cieh = userColor.cieh;
+  const [okl, okc, okh] = userColor.valuesTo('oklch');
   both: {
-    cssBoth = ``;
+    cssBoth = `
+      /* Icon colors */
+      --icon-bg-color: ${(new Couleur(`oklch(82.85% ${okc} ${okh})`)).hsl};
+      --icon-shadow-color: ${(new Couleur(`oklch(90.18% ${.63 * okc} ${okh})`)).hsl};
+      --icon-hash-color: ${(new Couleur(`oklch(44.8% ${.75 * okc} ${okh})`)).hsl};
+    `;
   }
 
   // Calculate colors for light theme

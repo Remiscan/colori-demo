@@ -213,15 +213,13 @@ input[type="radio"]:focus:not(:focus-visible) + label {
 [role="tablist"] {
   display: flex;
   align-items: flex-end;
+  justify-content: end;
   gap: 2px;
   margin: 0;
   padding: 0;
   border: none;
   box-shadow: none;
-  position: absolute;
   --height: 1.8rem;
-  top: calc(-1 * var(--height));
-  right: var(--section-padding);
 }
 
 .choix-format input[type="radio"][name="choix-format"] + label,
@@ -237,7 +235,7 @@ input[type="radio"][role="tab"] + label {
   font-weight: 600;
   color: var(--h1-color);
   padding: 0 .6rem;
-  border-radius: .6rem .6rem 0 0;
+  border-radius: .6rem;
   border: 1px solid var(--tab-hover-color);
   border-bottom: 0;
   cursor: default;
@@ -252,7 +250,6 @@ input[type="radio"][role="tab"] + label::before {
   box-shadow: none;
   width: 100%;
   height: 100%;
-  border-radius: 0;
   grid-area: unset;
 }
 
@@ -264,13 +261,11 @@ input[type="radio"][role="tab"] + label:hover {
 .choix-format input[type="radio"][name="choix-format"]:focus + label,
 input[type="radio"][role="tab"]:focus + label {
   outline: 2px solid var(--link-color);
-  border-radius: 0;
 }
 
 .choix-format input[type="radio"][name="choix-format"]:focus:not(:focus-visible) + label,
 input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
   outline-style: none;
-  border-radius: .6rem .6rem 0 0;
 }
 
 .choix-format input[type="radio"][name="choix-format"]:active + label,
@@ -300,7 +295,7 @@ h1, h2 {
   display: block;
   color: var(--h1-color);
   font-family: 'Lato';
-  position: absolute;
+  /*position: absolute;
   z-index: -1;
   top: 0;
   left: 0;
@@ -308,7 +303,7 @@ h1, h2 {
   user-select: none;
   --shadow-color: var(--body-color);
   text-shadow: 0 0 0 var(--shadow-color), 1px 1px 0 var(--shadow-color), 2px 2px 0 var(--shadow-color), 3px 3px 0 var(--shadow-color), 4px 4px 0 var(--shadow-color), 5px 5px 0 var(--shadow-color), 6px 6px 0 var(--shadow-color), 7px 7px 0 var(--shadow-color), 8px 8px 0 var(--shadow-color), 9px 9px 0 var(--shadow-color), 10px 10px 0 var(--shadow-color), 11px 11px 0 var(--shadow-color), 12px 12px 0 var(--shadow-color), 13px 13px 0 var(--shadow-color), 14px 14px 0 var(--shadow-color), 15px 15px 0 var(--shadow-color), 16px 16px 0 var(--shadow-color), 17px 17px 0 var(--shadow-color), 18px 18px 0 var(--shadow-color), 19px 19px 0 var(--shadow-color), 20px 20px 0 var(--shadow-color), 21px 21px 0 var(--shadow-color), 22px 22px 0 var(--shadow-color), 23px 23px 0 var(--shadow-color), 24px 24px 0 var(--shadow-color), 25px 25px 0 var(--shadow-color), 26px 26px 0 var(--shadow-color), 27px 27px 0 var(--shadow-color), 28px 28px 0 var(--shadow-color), 29px 29px 0 var(--shadow-color), 30px 30px 0 var(--shadow-color), 31px 31px 0 var(--shadow-color), 32px 32px 0 var(--shadow-color), 33px 33px 0 var(--shadow-color), 34px 34px 0 var(--shadow-color), 35px 35px 0 var(--shadow-color), 36px 36px 0 var(--shadow-color), 37px 37px 0 var(--shadow-color), 38px 38px 0 var(--shadow-color), 39px 39px 0 var(--shadow-color), 40px 40px 0 var(--shadow-color);
-  clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
+  clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);*/
 }
 
 section h2 {
@@ -411,7 +406,7 @@ abbr[title] {
  */
 
 html {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -421,7 +416,7 @@ html {
   --easing-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
   --h-diff: -1;
   --text-strong-color: var(--h3-color);
-  --section-padding: .9rem;
+  --section-padding: 1.8rem;
   --section-gap: 1.2rem;
 
   --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
@@ -527,21 +522,15 @@ html[data-theme="dark"] {
 body { /* Desktop-like */
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: 1fr var(--section-padding) min(100% - 2 * var(--section-padding), 42rem) var(--section-padding) 1fr;
-  grid-template-rows: repeat(3, auto) 1fr auto;
-  row-gap: var(--section-padding);
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto 1fr;
   width: 100%;
   min-height: 100%;
   margin: 0;
-  padding: var(--section-padding);
   margin-right: env(safe-area-inset-right, 0);
   margin-left: env(safe-area-inset-left, 0);
   background-color: var(--body-color);
   color: var(--text-color);
-}
-
-html[data-show-documentation="true"] body {
-  grid-template-rows: repeat(4, auto) auto;
 }
 
 @media (max-width: 42rem) {
@@ -551,6 +540,47 @@ html[data-show-documentation="true"] body {
   }
 }
 
+section {
+  height: fit-content;
+  box-sizing: border-box;
+  padding: var(--section-padding);
+}
+
+.documentation {
+  grid-row: 2;
+  grid-column: 1;
+  background-color: var(--section-color);
+}
+
+.demo {
+  grid-row: 1 / -1;
+  grid-column: 2;
+  background-color: var(--body-color);
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 52rem) {
+  body {
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto;
+  }
+
+  .documentation {
+    grid-row: 3;
+  }
+
+  .demo {
+    grid-row: 2;
+    grid-column: 1;
+    position: static;
+  }
+}
+
+section > h2 {
+  font-size: 0;
+}
+
 
 
 /*
@@ -558,32 +588,52 @@ html[data-show-documentation="true"] body {
  */
 
 header {
-  grid-row: 1 / 2;
-  grid-column: 2 / 5;
-  display: grid;
-  grid-template-columns: [logo-start] 1fr [logo-end github-start] auto [github-end] 1.2rem [options-start] auto [options-end];
-  justify-content: center;
-  align-items: start;
+  grid-row: 1;
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
   position: relative;
   background: var(--section-color);
-  padding: 0 var(--section-padding);
+  padding: calc(.5 * var(--section-padding)) var(--section-padding) 0;
   margin-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
   font-size: .9rem;
 }
 
 header>h1 {
-  grid-column: logo-start / logo-end;
-  grid-row: 1 / 2;
-  justify-self: start;
-  align-self: end;
-  transform: none;
-  position: relative;
-  text-align: center;
-  transform: translateY(17.7%);
-  z-index: 0;
-  font-size: calc(var(--mod) * var(--mod) * var(--mod) * 1rem);
-  --shadow-color: var(--body-color);
+  font-size: calc(var(--mod) * var(--mod) * 1rem);
+}
+
+.flex-spacer {
+  flex-grow: 1;
+}
+
+
+/* Icon */
+
+picture {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-right: -.6rem;
+}
+
+picture > svg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+picture rect.bg {
+  fill: var(--icon-bg-color);
+}
+
+picture .ombres > rect {
+  fill: var(--icon-shadow-color);
+}
+
+picture .croisillon > rect {
+  fill: var(--icon-hash-color);
 }
 
 
@@ -602,7 +652,6 @@ theme-selector {
 
 theme-selector>.selector {
   min-width: 9rem;
-  right: calc(-1 * var(--section-padding));
   background-color: var(--section-color);
   box-shadow: 0 1px .2rem 1px var(--body-color);
   margin-top: .9rem;
@@ -612,6 +661,12 @@ theme-selector>.selector {
   transform: translateY(-.2rem);
   transition: opacity .2s ease,
               transform .2s ease;
+}
+
+@media (max-width: 52rem) {
+  theme-selector>.selector {
+    right: calc(-1 * var(--section-padding));
+  }
 }
 
 theme-selector[open="true"]>.selector {
@@ -728,73 +783,12 @@ span[data-string=github] {
 
 
 /*
- * Sections (démo & présentation)
- */
-
-header,
-footer {
-  grid-column: 3;
-  z-index: 2;
-}
-
-main {
-  grid-row: 2 / -2;
-  grid-column: 2 / -2;
-  z-index: 1;
-  padding: var(--section-padding);
-  
-  display: grid;
-  grid-template-columns: 1fr min(100%, 42rem) 1fr;
-  row-gap: var(--section-gap);
-  align-content: start;
-}
-
-main > * {
-  grid-column: 2;
-}
-
-header,
-main,
-footer {
-  background: var(--bg-color);
-}
-
-header,
-main,
-section,
-footer {
-  border-radius: .6rem;
-}
-
-section {
-  background-color: var(--section-color);
-  padding: var(--section-padding);
-  padding-top: 1.2rem;
-  margin-top: calc(0.71625 * var(--mod) * var(--mod) * var(--mod) * 1rem);
-  position: relative;
-  z-index: 1;
-}
-
-section.no-title {
-  margin-top: 0;
-}
-
-#intro {
-  padding-top: var(--section-padding);
-}
-
-p[data-string="documentation-warning-js"] {
-  display: none;
-}
-
-
-
-/*
  * Footer
  */
 
 footer {
   grid-row: -2;
+  grid-column: 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -907,9 +901,9 @@ input[type="text"]:focus {
   white-space: nowrap;
 }
 
-.exemples-valeurs {
-  grid-row: 1;
-  grid-column: 2;
+.exemples-saisie,
+.instructions-exemples-fonctions {
+  grid-column: 1 / -1;
 }
 
 .exemples-valeurs,
@@ -919,7 +913,6 @@ input[type="text"]:focus {
 
 .instructions-exemples-fonctions,
 .exemples-fonctions {
-  grid-column: 1 / 3;
   margin: 0;
 }
 
@@ -1136,11 +1129,6 @@ input[type="number"][data-property]:active {
 .choix-format input[type="radio"][name="choix-format"] + label:hover,
 #resultats input[type="radio"][role="tab"] + label:hover {
   background-color: var(--button-hover-bg-color);
-}
-
-.choix-format input[type="radio"][name="choix-format"]:focus + label,
-#resultats input[type="radio"][role="tab"]:focus + label {
-  border-radius: 0;
 }
 
 .choix-format input[type="radio"][name="choix-format"]:focus:not(:focus-visible) + label,
@@ -1374,11 +1362,6 @@ p, li {
   line-height: 1.6em;
 }
 
-.documentation>article>*:not(.nav-rapide):not(a) {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 100px;
-}
-
 .documentation p:last-child,
 .documentation div:last-child {
   margin: 0;
@@ -1517,14 +1500,6 @@ aside.nav-documentation>div {
   grid-column: 1;
 }
 
-.documentation .nav-rapide {
-  display: none;
-  padding-bottom: .6rem;
-  background-color: var(--section-color);
-  position: relative;
-  z-index: 2;
-}
-
 .documentation .nav-rapide + .exemple {
   display: none;
   position: sticky;
@@ -1581,11 +1556,6 @@ aside.nav-documentation>div {
   aside.nav-documentation.on {
     width: auto;
     height: auto;
-  }
-
-  .documentation .nav-rapide/*,
-  .documentation .nav-rapide + .exemple*/ {
-    display: block;
   }
 
   .nav-documentation ul {
@@ -1699,31 +1669,6 @@ article>pre:last-child {
 
 .nav-rapide li>ul {
   margin: .3em 0;
-}
-
-
-/*
- * Cacher la documentation
- */
-
-.show-documentation {
-  grid-column: 2;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-top: .6rem;
-  padding: .4em 1.2em;
-  border-radius: 10px;
-  min-height: var(--tap-safe-size);
-}
-
-html:not([data-show-documentation="true"]) .nav-documentation,
-html:not([data-show-documentation="true"]) .documentation {
-  display: none;
-}
-
-html[data-show-documentation="true"] .show-documentation {
-  display: none;
 }
 
 

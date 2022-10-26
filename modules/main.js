@@ -18,7 +18,7 @@ champ.addEventListener('input', event => {
 
 ///////////////////////////////////
 // Detect clicks on example buttons
-for (const exemple of [...document.querySelectorAll('#demo button.exemple')]) {
+for (const exemple of [...document.querySelectorAll('.demo button.exemple')]) {
   exemple.addEventListener('click', () => {
     if (exemple.dataset.label == 'more-examples') {
       for (const hiddenElement of [...document.querySelectorAll('#saisie [data-hidden]')]) {
@@ -102,22 +102,7 @@ docuButton.addEventListener('click', () => {
 // Switch between js and php version of the page
 window.addEventListener('tabchange', event => {
   if (event.detail.group != 'tabs-prog-language') return;
-  switch (event.detail.value) {
-    case 'docu-js-fr':
-    case 'docu-js-en':
-      document.documentElement.dataset.progLanguage = 'js';
-      break;
-    case 'docu-php-fr':
-    case 'docu-php-en':
-      document.documentElement.dataset.progLanguage = 'php';
-      break;
-  }
-
-  const visibleArticle = documentation.querySelector('article:not([hidden]');
-  if (visibleArticle.dataset.highlighted !== 'true') {
-    visibleArticle.dataset.highlighted = 'true';
-    Prism.highlightAllUnder(documentation.querySelector('article:not([hidden]'));
-  }
+  document.documentElement.dataset.progLanguage = event.detail.value.replace('doc-', '');
 });
 
 
