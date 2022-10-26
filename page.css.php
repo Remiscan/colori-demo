@@ -212,39 +212,42 @@ input[type="radio"]:focus:not(:focus-visible) + label {
 
 [role="tablist"] {
   display: flex;
-  align-items: flex-end;
-  justify-content: end;
   gap: 2px;
-  margin: 0;
-  padding: 0;
+  margin: 0 0 0 auto;
+  padding: 3px;
+  width: fit-content;
   border: none;
   box-shadow: none;
   --height: 1.8rem;
+  background-color: var(--alt-background-color);
+  border-radius: var(--height);
 }
 
-.choix-format input[type="radio"][name="choix-format"] + label,
+[role="tablist"]:has(tab-label:not(:defined)) {
+  display: none;
+}
+
 input[type="radio"][role="tab"] + label {
   border: none;
   display: grid;
   grid-template: unset;
   place-items: center;
   box-sizing: border-box;
-  --decalage: 0rem;
   height: var(--height);
   font-size: .8rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--h1-color);
   padding: 0 .6rem;
-  border-radius: .6rem;
-  border: 1px solid var(--tab-hover-color);
-  border-bottom: 0;
+  border-radius: var(--height);
+  border: none;
   cursor: default;
   min-width: var(--tap-safe-size);
-  position: relative;
-  bottom: calc(-1 * var(--decalage));
 }
 
-.choix-format input[type="radio"][name="choix-format"] + label::before,
+input[type="radio"][role="tab"] + input[type="radio"][role="tab"] + label {
+  margin-left: -.6rem;
+}
+
 input[type="radio"][role="tab"] + label::before {
   background: none;
   box-shadow: none;
@@ -253,34 +256,26 @@ input[type="radio"][role="tab"] + label::before {
   grid-area: unset;
 }
 
-.choix-format input[type="radio"][name="choix-format"] + label:hover,
 input[type="radio"][role="tab"] + label:hover {
   background-color: var(--tab-hover-color);
 }
 
-.choix-format input[type="radio"][name="choix-format"]:focus + label,
 input[type="radio"][role="tab"]:focus + label {
   outline: 2px solid var(--link-color);
 }
 
-.choix-format input[type="radio"][name="choix-format"]:focus:not(:focus-visible) + label,
 input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
   outline-style: none;
 }
 
-.choix-format input[type="radio"][name="choix-format"]:active + label,
 input[type="radio"][role="tab"]:active + label {
   background-color: var(--tab-hover-color);
-  box-shadow: -1px -.05rem 0 0 var(--body-color), 1px -.05rem 0 0 var(--body-color);
-  --decalage: .05rem;
 }
 
-.choix-format input[type="radio"][name="choix-format"]:checked + label,
 input[type="radio"][role="tab"]:checked + label {
-  background-color: var(--section-color);
+  background-color: var(--background-color);
+  font-weight: 600;
   color: var(--h1-color);
-  box-shadow: -1px 0 0 0 var(--body-color), 1px 0 0 0 var(--body-color);
-  --decalage: 0rem;
 }
 
 
@@ -549,15 +544,23 @@ section {
 .documentation {
   grid-row: 2;
   grid-column: 1;
-  background-color: var(--surface-1);
+  background-color: var(--background-color);
+  min-height: 100%;
+}
+
+header, .documentation {
+  --background-color: var(--surface-1);
+  --alt-background-color: var(--surface-2);
 }
 
 .demo {
   grid-row: 1 / -1;
   grid-column: 2;
-  background-color: var(--surface-2);
   position: sticky;
   top: 0;
+  background-color: var(--background-color);
+  --background-color: var(--surface-2);
+  --alt-background-color: var(--surface-1);
 }
 
 @media (max-width: 52rem) {
@@ -594,11 +597,11 @@ header {
   align-items: center;
   gap: 1.2rem;
   position: relative;
-  background: var(--surface-1);
   padding: calc(.5 * var(--section-padding)) var(--section-padding) 0;
   margin-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
   font-size: .9rem;
+  background-color: var(--background-color);
 }
 
 header>h1 {
@@ -1092,46 +1095,6 @@ input[type="number"][data-property]:active {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: .6rem;
-}
-
-#resultats [role="tablist"] {
-  grid-column: 2;
-  position: relative;
-  top: unset;
-  right: unset;
-  gap: .3rem;
-  align-items: center;
-}
-
-.choix-format input[type="radio"][name="choix-format"] + label,
-#resultats input[type="radio"][role="tab"] + label {
-  box-shadow: none;
-  border-radius: .6rem;
-  border: 1px solid var(--input-bg-color);
-}
-
-.choix-format input[type="radio"][name="choix-format"] + label:hover,
-#resultats input[type="radio"][role="tab"] + label:hover {
-  background-color: var(--button-hover-bg-color);
-}
-
-.choix-format input[type="radio"][name="choix-format"]:focus:not(:focus-visible) + label,
-#resultats input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
-  border-radius: .6rem;
-}
-
-.choix-format input[type="radio"][name="choix-format"]:active + label,
-#resultats input[type="radio"][role="tab"]:active + label {
-  background-color: var(--button-active-bg-color);
-  box-shadow: none;
-  --decalage: 0rem;
-}
-
-.choix-format input[type="radio"][name="choix-format"]:checked + label,
-#resultats input[type="radio"][role="tab"]:checked + label {
-  background-color: var(--button-hover-bg-color);
-  box-shadow: none;
-  --decalage: 0rem;
 }
 
 #resultats h3 {
