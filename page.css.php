@@ -1455,6 +1455,10 @@ aside.nav-documentation>div {
   z-index: 10;
   border-radius: 0 0 .6rem .6rem;
   padding: .6rem 0;
+  box-sizing: border-box;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .nav-rapide-container > summary {
