@@ -216,6 +216,7 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   margin: 0 0 0 auto;
   padding: 3px;
   width: fit-content;
+  height: fit-content;
   border: none;
   box-shadow: none;
   --height: 1.8rem;
