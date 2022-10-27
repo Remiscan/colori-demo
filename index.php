@@ -98,7 +98,7 @@ $startColor = new Couleur($namedColors[$r]);
         --surface-1: <?= (new Couleur("oklch(90% ".(.6 * $clampedOkc)." $okh)"))->hsl() ?>;
         --vivid-surface-1: <?= (new Couleur("oklch(95% $clampedOkc $okh)"))->hsl() ?>;
         --surface-2: <?= (new Couleur("oklch(85% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
-        --vivid-surface-2: <?= (new Couleur("oklch(80% $clampedOkc $okh)"))->hsl() ?>;
+        --vivid-surface-2: <?= (new Couleur("oklch(80% ".(1.3 * $clampedOkc)." $okh)"))->hsl() ?>;
 
         /* Background colors */
         --body-color: <?=$bodyColor->hsl()?>;
@@ -139,9 +139,9 @@ $startColor = new Couleur($namedColors[$r]);
       :root[data-theme="dark"] {
         /* Surface colors */
         --surface-1: <?= (new Couleur("oklch(25% ".(.4 * $clampedOkc)." $okh)"))->hsl() ?>;
-        --vivid-surface-1: <?= (new Couleur("oklch(20% $clampedOkc $okh)"))->hsl() ?>;
+        --vivid-surface-1: <?= (new Couleur("oklch(20% ".(.7 * $clampedOkc)." $okh)"))->hsl() ?>;
         --surface-2: <?= (new Couleur("oklch(30% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
-        --vivid-surface-2: <?= (new Couleur("oklch(35% $clampedOkc $okh)"))->hsl() ?>;
+        --vivid-surface-2: <?= (new Couleur("oklch(35% ".(1.3 * $clampedOkc)." $okh)"))->hsl() ?>;
 
         /* Background colors */
         --body-color: <?=$bodyColorDark->hsl()?>;
