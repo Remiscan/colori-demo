@@ -100,6 +100,9 @@ $startColor = new Couleur($namedColors[$r]);
         --surface-2: <?= (new Couleur("oklch(85% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
         --vivid-surface-2: <?= (new Couleur("oklch(80% ".(1.3 * $clampedOkc)." $okh)"))->hsl() ?>;
 
+        /* App icon colors*/
+        --icon-hash-color: <?= (new Couleur('#00604a'))->replace('okh', $okh)->replace('okc', $clampedOkc)->hsl() ?>;
+
         /* Background colors */
         --body-color: <?=$bodyColor->hsl()?>;
         --section-color: <?=$sectionColor->hsl()?>;
@@ -142,6 +145,9 @@ $startColor = new Couleur($namedColors[$r]);
         --vivid-surface-1: <?= (new Couleur("oklch(20% ".(.7 * $clampedOkc)." $okh)"))->hsl() ?>;
         --surface-2: <?= (new Couleur("oklch(30% ".(.8 * $clampedOkc)." $okh)"))->hsl() ?>;
         --vivid-surface-2: <?= (new Couleur("oklch(35% ".(1.3 * $clampedOkc)." $okh)"))->hsl() ?>;
+
+        /* App icon colors*/
+        --icon-hash-color: <?= (new Couleur('#55d8af'))->replace('okh', $okh)->replace('okc', $clampedOkc)->hsl() ?>;
 
         /* Background colors */
         --body-color: <?=$bodyColorDark->hsl()?>;
@@ -191,7 +197,9 @@ $startColor = new Couleur($namedColors[$r]);
     </svg>
 
     <header>
-      <img class="app-icon" src="/colori/demo/icons/icon.svg" width="38.4" height="38.4">
+      <picture class="app-icon">
+        <?php include './icons/icon.svg'; ?>
+      </picture>
 
       <h1>Colori</h1>
 

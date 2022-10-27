@@ -615,8 +615,27 @@ header>h1 {
   width: 2.4rem;
   height: 2.4rem;
   margin-right: -.6rem;
-  border-radius: 50%;
-  filter: hue-rotate(calc(var(--icon-hue-difference) * 1deg)) saturate(calc(var(--icon-saturation-ratio) * 100%));
+  clip-path: circle(50%);
+  /*filter: hue-rotate(calc(var(--icon-hue-difference) * 1deg)) saturate(calc(var(--icon-saturation-ratio) * 100%));*/
+  --icon-bg-color: var(--vivid-surface-2);
+  --icon-shadow-color: var(--surface-1);
+}
+
+.app-icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.app-icon > svg .bg {
+  fill: var(--icon-bg-color);
+}
+
+.app-icon > svg .ombres > rect {
+  fill: var(--icon-shadow-color);
+}
+
+.app-icon > svg .croisillon > rect {
+  fill: var(--icon-hash-color);
 }
 
 
