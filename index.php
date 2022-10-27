@@ -215,6 +215,9 @@ $startColor = new Couleur($namedColors[$r]);
       <a href="?lang=en" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</a>
 
       <theme-selector position="bottom" cookie></theme-selector>
+
+      <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
+      <p data-string="documentation-intro-p2"><?=$translation->get('documentation-intro-p2')?></p>
     </header>
 
     <section class="demo">
@@ -484,10 +487,10 @@ $startColor = new Couleur($namedColors[$r]);
           $docu = preg_replace('/\<blockquote\>/', '<div class="note">', $docu);
           $docu = preg_replace('/\<\/blockquote\>/', '</div>', $docu);
 
-          $navRegex = '/(\<ul\>(?:.|\n|\r)*?\<\/ul\>)\n\<p\>/';
+          $navRegex = '/(\<ul\>(?:.|\n|\r)*?\<\/ul\>)\n\<hr\>/';
           preg_match($navRegex, $docu, $matches);
           $nav = $matches[1];
-          $docu = preg_replace($navRegex, '', $docu, 1);
+          $docu = preg_replace($navRegex, '<hr>', $docu, 1);
 
           return [$docu, $nav];
         };
@@ -509,10 +512,6 @@ $startColor = new Couleur($namedColors[$r]);
         [$docPHP, $navPHP] = $prepareDocumentation($Parsedown->text($docPHP), 'php');
       ?>
       <h2 data-string="titre-section-documentation"><?=$translation->get('titre-section-documentation')?></h1>
-
-      <!--<a class="exemple" href="#documentation">▲ Navigation rapide</a>-->
-
-      <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
 
       <details class="nav-rapide-container">
         <summary>

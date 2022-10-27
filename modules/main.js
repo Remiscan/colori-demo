@@ -110,8 +110,11 @@ const docIndex = document.querySelector('.nav-rapide-container');
 ////////////////////////////////////////////////
 // Switch between js and php version of the page
 window.addEventListener('tabchange', event => {
-  if (event.detail.group != 'tabs-prog-language') return;
-  document.documentElement.dataset.progLanguage = event.detail.value.replace('doc-', '');
+  //const previousScroll = document.documentElement.scrollTop;
+  if (event.detail.group == 'tabs-prog-language') {
+    document.documentElement.dataset.progLanguage = event.detail.value.replace('doc-', '');
+  }
+  //requestAnimationFrame(() => document.documentElement.scrollTop = previousScroll);
 });
 
 

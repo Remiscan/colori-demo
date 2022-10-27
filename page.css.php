@@ -321,7 +321,7 @@ hr {
   border-radius: 6px;
   background-color: var(--h3-color);
   height: 4px;
-  margin: 3.6rem 0;
+  margin: 2.4rem 0;
   opacity: .15;
 }
 
@@ -591,6 +591,7 @@ header {
   grid-column: 1;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1.2rem;
   position: relative;
   padding: calc(.5 * var(--section-padding)) var(--section-padding) 0;
@@ -604,6 +605,10 @@ header>h1 {
   font-size: calc(var(--mod) * var(--mod) * 1rem);
 }
 
+header > p {
+  margin: 0;
+}
+
 .flex-spacer {
   flex-grow: 1;
 }
@@ -614,7 +619,7 @@ header>h1 {
 .app-icon {
   width: 2.4rem;
   height: 2.4rem;
-  margin-right: -.6rem;
+  margin-right: -.3rem;
   clip-path: circle(50%);
   /*filter: hue-rotate(calc(var(--icon-hue-difference) * 1deg)) saturate(calc(var(--icon-saturation-ratio) * 100%));*/
   --icon-bg-color: var(--vivid-surface-2);
