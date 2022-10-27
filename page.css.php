@@ -1469,6 +1469,7 @@ aside.nav-documentation>div {
 
 .nav-rapide-container > summary {
   display: flex;
+  align-items: center;
 }
 
 .nav-rapide-container > summary::before {
