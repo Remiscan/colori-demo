@@ -212,7 +212,7 @@ input[type="radio"]:focus:not(:focus-visible) + label {
 
 [role="tablist"] {
   display: flex;
-  gap: 2px;
+  gap: 3px;
   margin: 0 0 0 auto;
   padding: 3px;
   width: fit-content;
@@ -220,7 +220,7 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   box-shadow: none;
   --height: 1.8rem;
   background-color: var(--alt-background-color);
-  border-radius: var(--height);
+  border-radius: .6rem;
 }
 
 [role="tablist"]:has(tab-label:not(:defined)) {
@@ -238,14 +238,10 @@ input[type="radio"][role="tab"] + label {
   font-weight: 400;
   color: var(--h1-color);
   padding: 0 .6rem;
-  border-radius: var(--height);
+  border-radius: .5rem;
   border: none;
   cursor: default;
   min-width: var(--tap-safe-size);
-}
-
-input[type="radio"][role="tab"] + input[type="radio"][role="tab"] + label {
-  margin-left: -.6rem;
 }
 
 input[type="radio"][role="tab"] + label::before {
@@ -944,20 +940,6 @@ input[type="text"]:focus {
   gap: .3rem;
   flex-wrap: wrap;
   min-height: var(--tap-safe-size);
-}
-
-.choix-format input[type="radio"][name="choix-format"] + label {
-  border-radius: .6rem;
-  grid-template-columns: 1fr;
-  gap: 0;
-  place-items: center;
-  height: 1.8rem;
-  font-size: .9rem
-  
-}
-
-input[type="radio"][name="choix-format"] + label::before {
-  display: none;
 }
 
 #ranges label[data-format] {
