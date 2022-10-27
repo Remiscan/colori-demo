@@ -483,9 +483,13 @@ $startColor = new Couleur($namedColors[$r]);
           $docu = preg_replace('/\<a href=\"(.+?)\">/', "<a href=\"$1-$progLang\">", $docu);
           $docu = preg_replace('/\<blockquote\>/', '<div class="note">', $docu);
           $docu = preg_replace('/\<\/blockquote\>/', '</div>', $docu);
-          $docu = preg_replace('/\<ul\>/', '<div class="nav-rapide"><h3>'.$translation->get('nav-documentation').'</h3><ul>', $docu, 1);
-          $docu = preg_replace('/\<\/ul\>\n\<p\>/', '</ul></div><p>', $docu, 1);
-          return $docu;
+
+          $navRegex = '/(\<ul\>(?:.|\n|\r)*?\<\/ul\>)\n\<p\>/';
+          preg_match($navRegex, $docu, $matches);
+          $nav = $matches[1];
+          $docu = preg_replace($navRegex, '', $docu, 1);
+
+          return [$docu, $nav];
         };
 
         $docJSfile = match($lang) {
@@ -499,10 +503,10 @@ $startColor = new Couleur($namedColors[$r]);
         };
 
         $docJS = file_get_contents($docJSfile);
-        $docJS = $prepareDocumentation($Parsedown->text($docJS), 'js');
+        [$docJS, $navJS] = $prepareDocumentation($Parsedown->text($docJS), 'js');
 
         $docPHP = file_get_contents($docPHPfile);
-        $docPHP = $prepareDocumentation($Parsedown->text($docPHP), 'php');
+        [$docPHP, $navPHP] = $prepareDocumentation($Parsedown->text($docPHP), 'php');
       ?>
       <h2 data-string="titre-section-documentation"><?=$translation->get('titre-section-documentation')?></h1>
 
@@ -510,12 +514,20 @@ $startColor = new Couleur($namedColors[$r]);
 
       <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
 
-      <fieldset role="tablist" data-group="tabs-prog-language">
-        <legend data-string="tabs-group-language-label"></legend>
+      <details class="nav-rapide-container">
+        <summary>
+          <h3><?=$translation->get('nav-documentation')?></h3>
+          <fieldset role="tablist" data-group="tabs-prog-language">
+            <legend data-string="tabs-group-language-label"></legend>
 
-        <tab-label controls="doc-js" label="JavaScript" active="true"></tab-label>
-        <tab-label controls="doc-php" label="PHP" ></tab-label>
-      </fieldset>
+            <tab-label controls="doc-js" label="JavaScript" active="true"></tab-label>
+            <tab-label controls="doc-php" label="PHP" ></tab-label>
+          </fieldset>
+        </summary>
+
+        <div class="nav-rapide" data-prog-language="js"><?=$navJS?></div>
+        <div class="nav-rapide" data-prog-language="php"><?=$navPHP?></div>
+      </details>
 
       <article data-prog-language="js" id="doc-js"><?=$docJS?></article>
       <article data-prog-language="php" id="doc-php" hidden><?=$docPHP?></article>

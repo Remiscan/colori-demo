@@ -1448,6 +1448,31 @@ aside.nav-documentation>div {
   grid-column: 1;
 }
 
+.nav-rapide-container {
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+  z-index: 10;
+  border-radius: 0 0 .6rem .6rem;
+  padding: .6rem 0;
+}
+
+.nav-rapide-container > summary {
+  display: flex;
+}
+
+.nav-rapide-container > summary::before {
+  content: '';
+  display: list-item;
+  list-style: inside disclosure-closed;
+  height: fit-content;
+  margin: auto 0;
+}
+
+.nav-rapide-container[open] > summary::before {
+  list-style-type: disclosure-open;
+}
+
 .documentation .nav-rapide + .exemple {
   display: none;
   position: sticky;
@@ -1457,6 +1482,14 @@ aside.nav-documentation>div {
   z-index: 1;
   margin-top: var(--button-height, 0);
   width: fit-content;
+}
+
+.documentation :target {
+  scroll-margin-top: 2rem;
+}
+
+.documentation :target:has(+ h3) {
+  scroll-margin-top: 4rem;
 }
 
 .titre-nav-rapide {

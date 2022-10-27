@@ -97,6 +97,15 @@ docuButton.addEventListener('click', () => {
   }
 });*/
 
+/////////////////////////////////////////////////////
+// Close documentation index on clicking a link in it
+const docIndex = document.querySelector('.nav-rapide-container');
+[...docIndex.querySelectorAll('.nav-rapide a')].forEach(link => {
+  link.addEventListener('click', event => {
+    docIndex.removeAttribute('open');
+  });
+});
+
 
 ////////////////////////////////////////////////
 // Switch between js and php version of the page
