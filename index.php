@@ -193,7 +193,7 @@ $startColor = new Couleur($namedColors[$r]);
     <header>
       <img class="app-icon" src="/colori/demo/icons/icon.svg" width="38.4" height="38.4">
 
-      <h1>colori</h1>
+      <h1>Colori</h1>
 
       <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable
         data-label="github" aria-label="<?=$translation->get('github')?>">
