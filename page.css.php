@@ -595,8 +595,8 @@ header {
   flex-wrap: wrap;
   gap: 1.2rem;
   position: relative;
-  padding: calc(.5 * var(--section-padding)) var(--section-padding) 0;
   margin-top: env(safe-area-inset-top, 0);
+  padding: var(--section-padding);
   min-height: var(--tap-safe-size);
   font-size: .9rem;
   background-color: var(--background-color);
@@ -658,11 +658,13 @@ theme-selector {
   --secondary-color: var(--h1-color);
 }
 
-theme-selector>.selector {
+color-picker::part(selector),
+theme-selector > .selector {
   min-width: 14rem;
   background-color: var(--section-color);
   box-shadow: 0 1px .2rem 1px var(--body-color);
   margin-top: .9rem;
+  border: none;
   border-radius: .6rem;
   overflow: hidden;
   z-index: 100;
@@ -672,15 +674,17 @@ theme-selector>.selector {
 }
 
 @media (max-width: 52rem) {
-  theme-selector>.selector {
+  theme-selector > .selector {
     right: calc(-1 * var(--section-padding));
   }
 }
 
-theme-selector[open="true"]>.selector {
+color-picker[open]::part(selector),
+theme-selector[open="true"] > .selector {
   transform: translateY(0);
 }
 
+color-picker::part(select-label),
 theme-selector .selector-title {
   color: var(--h3-color);
   padding: .6rem .6rem;
@@ -853,11 +857,9 @@ label[for=entree] {
   width: fit-content;
 }
 
+color-picker::part(select),
+color-picker::part(input-number),
 input[type="text"] {
-  grid-row: auto;
-  grid-column: 1 / 3;
-  width: 100%;
-  height: 100%;
   min-height: var(--tap-safe-size);
   border: none;
   box-sizing: border-box;
@@ -869,10 +871,23 @@ input[type="text"] {
   box-shadow: 0 0 0 1px var(--body-color);
 }
 
+input[type="text"] {
+  grid-row: 2;
+  grid-column: 1 / 3;
+  width: 100%;
+  height: 100%;
+}
+
+color-picker::part(select):hover,
+color-picker::part(input-number):hover,
 input[type="text"]:hover {
   box-shadow: 0 0 0 2px var(--h3-color);
 }
 
+color-picker::part(select):active,
+color-picker::part(select):focus,
+color-picker::part(input-number):active,
+color-picker::part(input-number):focus,
 input[type="text"]:active,
 input[type="text"]:focus {
   outline: none;
@@ -882,6 +897,45 @@ input[type="text"]:focus {
 
 ::placeholder {
   color: var(--input-placeholder-color);
+}
+
+color-picker {
+  grid-row: 2;
+  grid-column: 2;
+  justify-self: end;
+  --size: 1.6rem;
+  --slider-height: 15rem;
+  --range-border-width: 2px;
+  --range-border-radius: .6rem;
+}
+
+@supports not (background: paint(worklet)) {
+  color-picker {
+    display: none;
+  }
+}
+
+color-picker::part(selector) {
+  translate: calc(0.5 * var(--size) - 50%);
+  z-index: 3;
+}
+
+color-picker::part(property-name) {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--h3-color);
+}
+
+color-picker::part(select),
+color-picker::part(input-number) {
+  font-size: .9rem;
+  min-width: 5ch;
+  color: var(--text-color);
+}
+
+color-picker::part(input-range) {
+  border-style: solid;
+  border-color: var(--text-color-opposite);
 }
 
 

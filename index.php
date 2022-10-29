@@ -222,13 +222,6 @@ $startColor = new Couleur($namedColors[$r]);
 
     <section class="demo">
       <h2 data-string="titre-section-demo"><?=$translation->get('titre-section-demo')?></h2>
-
-      <fieldset role="tablist" data-group="tabs-input-method">
-        <legend data-string="tabs-input-method-label"></legend>
-
-        <tab-label controls="saisie" data-label-id="tab-label-manuel" label="<?=$translation->get('tab-label-manuel')?>" active="true"></tab-label>
-        <tab-label controls="ranges" data-label-id="tab-label-selecteurs" label="<?=$translation->get('tab-label-selecteurs')?>"></tab-label>
-      </fieldset>
       
       <div id="saisie">
         <h3 class="no-separator">
@@ -238,6 +231,8 @@ $startColor = new Couleur($namedColors[$r]);
         <input  id="entree" class="h4" type="text" data-abbr="<?=$translation->get('exemple-abbr')?>"
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 placeholder="<?=$startColor->name()?>">
+
+        <color-picker format="hsl" color="<?=$startColor->name()?>"></color-picker>
 
         <div class="exemples-saisie exemples-valeurs">
           <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
@@ -257,170 +252,6 @@ $startColor = new Couleur($namedColors[$r]);
           <button type="button" class="exemple">orchid.interpolate(palegreen, 4, oklch)</button>
           <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
         </div>
-      </div>
-
-      <div id="ranges" data-format="rgb" hidden>
-        <h3 class="no-separator" data-string="demo-selectors-title"><?=$translation->get('demo-selectors-title')?></h3>
-
-        <div class="choix-format">
-          <span data-string="choix-format-titre"><?=$translation->get('choix-format-titre')?></span>
-
-          <div class="liste-formats">
-            <input type="radio" id="choix-format-rgb" name="choix-format" value="rgb" checked>
-            <label for="choix-format-rgb" data-tappable="after">RGB</label>
-
-            <input type="radio" id="choix-format-hsl" name="choix-format" value="hsl">
-            <label for="choix-format-hsl" data-tappable="after">HSL</label>
-
-            <input type="radio" id="choix-format-hwb" name="choix-format" value="hwb">
-            <label for="choix-format-hwb" data-tappable="after">HWB</label>
-
-            <input type="radio" id="choix-format-lab" name="choix-format" value="lab">
-            <label for="choix-format-lab" data-tappable="after">LAB</label>
-
-            <input type="radio" id="choix-format-lch" name="choix-format" value="lch">
-            <label for="choix-format-lch" data-tappable="after">LCH</label>
-
-            <input type="radio" id="choix-format-oklab" name="choix-format" value="oklab">
-            <label for="choix-format-oklab" data-tappable="after">OKLAB</label>
-
-            <input type="radio" id="choix-format-oklch" name="choix-format" value="oklch">
-            <label for="choix-format-oklch" data-tappable="after">OKLCH</label>
-          </div>
-        </div>
-
-        <label for="range-red" data-format="rgb">
-          <span data-string="prop-r-nom"><?=$translation->get('prop-r-nom')?></span>
-          <span>[0 ; 255]</span>
-          <input type="range" id="range-red" data-property="r" min="0" max="255" step="1" value="<?=round(255 * $startColor->r)?>">
-          <input type="number" data-property="r" min="0" max="255" step="1" value="<?=round(255 * $startColor->r)?>">
-        </label>
-
-        <label for="range-green" data-format="rgb">
-          <span data-string="prop-g-nom"><?=$translation->get('prop-g-nom')?></span>
-          <span>[0 ; 255]</span>
-          <input type="range" id="range-green" data-property="g" min="0" max="255" step="1" value="<?=round(255 * $startColor->g)?>">
-          <input type="number" data-property="g" min="0" max="255" step="1" value="<?=round(255 * $startColor->g)?>">
-        </label>
-
-        <label for="range-blue" data-format="rgb">
-          <span data-string="prop-b-nom"><?=$translation->get('prop-b-nom')?></span>
-          <span>[0 ; 255]</span>
-          <input type="range" id="range-blue" data-property="b" min="0" max="255" step="1" value="<?=round(255 * $startColor->b)?>">
-          <input type="number" data-property="b" min="0" max="255" step="1" value="<?=round(255 * $startColor->b)?>">
-        </label>
-
-        <label for="range-hue" data-format="hsl hwb">
-          <span data-string="prop-h-nom"><?=$translation->get('prop-h-nom')?></span>
-          <span>[0 ; 360]</span>
-          <input type="range" id="range-hue" data-property="h" min="0" max="360" step="1" value="<?=round($startColor->h())?>">
-          <input type="number" data-property="h" min="0" max="360" step="1" value="<?=round($startColor->h())?>">
-        </label>
-
-        <label for="range-saturation" data-format="hsl">
-          <span data-string="prop-s-nom"><?=$translation->get('prop-s-nom')?></span>
-          <span>[0 ; 100]</span>
-          <input type="range" id="range-saturation" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s())?>">
-          <input type="number" data-property="s" min="0" max="100" step="1" value="<?=round(100 * $startColor->s())?>">
-        </label>
-
-        <label for="range-luminosity" data-format="hsl">
-          <span data-string="prop-l-nom"><?=$translation->get('prop-l-nom')?></span>
-          <span>[0 ; 100]</span>
-          <input type="range" id="range-luminosity" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l())?>">
-          <input type="number" data-property="l" min="0" max="100" step="1" value="<?=round(100 * $startColor->l())?>">
-        </label>
-
-        <label for="range-whiteness" data-format="hwb">
-          <span data-string="prop-w-nom"><?=$translation->get('prop-w-nom')?></span>
-          <span>[0 ; 100]</span>
-          <input type="range" id="range-whiteness" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w())?>">
-          <input type="number" data-property="w" min="0" max="100" step="1" value="<?=round(100 * $startColor->w())?>">
-        </label>
-
-        <label for="range-blackness" data-format="hwb">
-          <span data-string="prop-bk-nom"><?=$translation->get('prop-bk-nom')?></span>
-          <span>[0 ; 100]</span>
-          <input type="range" id="range-blackness" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk())?>">
-          <input type="number" data-property="bk" min="0" max="100" step="1" value="<?=round(100 * $startColor->bk())?>">
-        </label>
-
-        <label for="range-cie-lightness" data-format="lab lch">
-          <span data-string="prop-ciel-nom"><?=$translation->get('prop-ciel-nom')?></span>
-          <span>[0 ; 100]</span>
-          <input type="range" id="range-cie-lightness" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel())?>">
-          <input type="number" data-property="ciel" min="0" max="100" step="1" value="<?=round(100 * $startColor->ciel())?>">
-        </label>
-
-        <label for="range-cie-a-axis" data-format="lab">
-          <span data-string="prop-ciea-nom"><?=$translation->get('prop-ciea-nom')?></span>
-          <span>[-80 ; 94]</span>
-          <input type="range" id="range-cie-a-axis" data-property="ciea" min="-80" max="94" step="1" value="<?=round($startColor->ciea())?>">
-          <input type="number" data-property="ciea" min="-80" max="94" step="1" value="<?=round($startColor->ciea())?>">
-        </label>
-
-        <label for="range-cie-b-axis" data-format="lab">
-          <span data-string="prop-cieb-nom"><?=$translation->get('prop-cieb-nom')?></span>
-          <span>[-112 ; 94]</span>
-          <input type="range" id="range-cie-b-axis" data-property="cieb" min="-112" max="94" step="1" value="<?=round($startColor->cieb())?>">
-          <input type="number" data-property="cieb" min="-112" max="94" step="1" value="<?=round($startColor->cieb())?>">
-        </label>
-
-        <label for="range-cie-chroma" data-format="lch">
-          <span data-string="prop-ciec-nom"><?=$translation->get('prop-ciec-nom')?></span>
-          <span>[0 ; 132]</span>
-          <input type="range" id="range-cie-chroma" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec())?>">
-          <input type="number" data-property="ciec" min="0" max="132" step="1" value="<?=round($startColor->ciec())?>">
-        </label>
-
-        <label for="range-cie-hue" data-format="lch">
-          <span data-string="prop-cieh-nom"><?=$translation->get('prop-cieh-nom')?></span>
-          <span>[0 ; 360]</span>
-          <input type="range" id="range-cie-hue" data-property="cieh" min="0" max="360" step="1" value="<?=round($startColor->cieh())?>">
-          <input type="number" data-property="cieh" min="0" max="360" step="1" value="<?=round($startColor->cieh())?>">
-        </label>
-
-        <label for="range-ok-lightness" data-format="oklab oklch">
-          <span data-string="prop-okl-nom"><?=$translation->get('prop-okl-nom')?></span>
-          <span>[0 ; 100]</span>
-          <input type="range" id="range-ok-lightness" data-property="okl" min="0" max="100" step="1" value="<?=round(100 * $startColor->okl())?>">
-          <input type="number" data-property="okl" min="0" max="100" step="1" value="<?=round(100 * $startColor->okl())?>">
-        </label>
-
-        <label for="range-ok-a-axis" data-format="oklab">
-          <span data-string="prop-oka-nom"><?=$translation->get('prop-oka-nom')?></span>
-          <span>[-0.24 ; 0.28]</span>
-          <input type="range" id="range-ok-a-axis" data-property="oka" min="-0.24" max="0.28" step="0.001" value="<?=round(10**3 * $startColor->oka()) / 10**3?>">
-          <input type="number" data-property="oka" min="-0.24" max="0.28" step="0.001" value="<?=round(10**3 * $startColor->oka()) / 10**3?>">
-        </label>
-
-        <label for="range-ok-b-axis" data-format="oklab">
-          <span data-string="prop-okb-nom"><?=$translation->get('prop-okb-nom')?></span>
-          <span>[-0.32 ; 0.20]</span>
-          <input type="range" id="range-ok-b-axis" data-property="okb" min="-0.32" max="0.20" step="0.001" value="<?=round(10**3 * $startColor->okb()) / 10**3?>">
-          <input type="number" data-property="okb" min="-0.32" max="0.20" step="0.001" value="<?=round(10**3 * $startColor->okb()) / 10**3?>">
-        </label>
-
-        <label for="range-ok-chroma" data-format="oklch">
-          <span data-string="prop-okc-nom"><?=$translation->get('prop-okc-nom')?></span>
-          <span>[0 ; 0.32]</span>
-          <input type="range" id="range-ok-chroma" data-property="okc" min="0" max="0.32" step="0.001" value="<?=round(10**3 * $startColor->okc()) / 10**3?>">
-          <input type="number" data-property="okc" min="0" max="0.32" step="0.001" value="<?=round(10**3 * $startColor->okc()) / 10**3?>">
-        </label>
-
-        <label for="range-ok-hue" data-format="oklch">
-          <span data-string="prop-okh-nom"><?=$translation->get('prop-okh-nom')?></span>
-          <span>[0 ; 360]</span>
-          <input type="range" id="range-ok-hue" data-property="okh" min="0" max="360" step="1" value="<?=round($startColor->okh())?>">
-          <input type="number" data-property="okh" min="0" max="360" step="1" value="<?=round($startColor->okh())?>">
-        </label>
-
-        <label for="range-opacity" data-format="rgb hsl hwb lab lch oklab oklch">
-          <span data-string="prop-a-nom"><?=$translation->get('prop-a-nom')?></span>
-          <span>[0 ; 100]</span>
-          <input type="range" id="range-opacity" data-property="a" min="0" max="100" step="1" value="<?=round(100 * $startColor->a)?>">
-          <input type="number" data-property="a" min="0" max="100" step="1" value="<?=round(100 * $startColor->a)?>">
-        </label>
       </div>
 
       <div id="resultats">
