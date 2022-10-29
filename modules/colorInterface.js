@@ -20,7 +20,6 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   });
 
   if (typeof response.type === 'undefined') return;
-  updateSliders(response.colorValuesClipped, source);
 
   // Hide non-format results by default
   const donnees = document.querySelector('#resultats');
@@ -33,7 +32,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
   if (response.input !== null) document.querySelector('.format.gradient').style.setProperty('--bg', response.input);
   if (response.type.startsWith('array')) {
     document.querySelector('.format.gradient').style.setProperty('--gradient', response.gradient);
-    Prism.highlightElement(valeur);
+    //Prism.highlightElement(valeur);
   }
 
   if (response.type === null) console.log(`${couleur} == ${entree}`);
@@ -49,6 +48,13 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
     // Changes the input field placeholder text
     const champ = document.getElementById('entree');
     champ.placeholder = response.colorName || response.colorHex;
+
+    // Update the color picker
+    if ('paintWorklet' in CSS && source !== 'color-picker') {
+      const colorPicker = document.querySelector('color-picker');
+      const vals = response.colorValues;
+      colorPicker.selectColor(`color(srgb ${vals[0]} ${vals[1]} ${vals[2]} / ${vals[3]})`);
+    }
   }
 
   const nameSwatchRow = document.querySelector('#results-named-formats color-swatch[format="name"]');
@@ -62,60 +68,5 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
 
     const style = document.getElementById('theme-variables');
     style.innerHTML = response.css;
-  }
-}
-
-
-
-/** Updates the color selection sliders to fit a given color. */
-export async function updateSliders(couleur, source = 'text') {
-  if (couleur.length === 0) return;
-  const ranges = [...document.querySelectorAll('input[type="range"][data-property]')];
-  let rangeData = ranges.map(range => {
-    return {
-      prop: range.dataset.property,
-      min: range.min,
-      max: range.max,
-      step: range.step,
-      value: range.value,
-      numericInputPos: null,
-      gradient: null
-    };
-  });
-
-  const rangesContainer = document.querySelector('#ranges');
-  const visibleFormat = rangesContainer.getAttribute('hidden') !== 'hidden' ? rangesContainer.dataset.format : '';
-  let visibleProps;
-
-  [rangeData, visibleProps] = await messageWorker('compute-sliders', {
-    rangeData,
-    couleur,
-    visibleFormat
-  });
-
-  // Loop 3: apply the changes
-  for (const [k, range] of Object.entries(ranges)) {
-    const prop = rangeData[k].prop;
-
-    let shouldUpdate = true;
-    if (source.substring(0, 5) == 'range') {
-      const isVisible = visibleProps.includes(prop);
-      shouldUpdate = !isVisible;
-    }
-
-    // Only update sliders that are not being used
-    if (shouldUpdate && source !== 'init') {
-      // Update slider value
-      range.value = rangeData[k].newValue;
-
-      // Update corresponding numeric input value
-      const numericInput = document.querySelector(`input[type="number"][data-property="${prop}"]`);
-      if (numericInput) numericInput.style.setProperty('--pos', rangeData[k].numericInputPos);
-      numericInput.value = range.value;
-    }
-
-    // Display the new gradients
-    const gradient = rangeData[k].gradient;
-    range.style.setProperty('--couleurs', gradient);
   }
 }
