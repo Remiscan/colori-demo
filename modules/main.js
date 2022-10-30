@@ -8,7 +8,7 @@ import 'theme-selector';
 
 
 if ('paintWorklet' in CSS) {
-  import('color-picker');
+  await import('color-picker');
 }
 
 
