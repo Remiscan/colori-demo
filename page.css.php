@@ -905,7 +905,7 @@ color-picker {
   grid-column: 2;
   justify-self: end;
   --size: 1.6rem;
-  --slider-height: 15rem;
+  --range-height: 15rem;
   --range-border-width: 2px;
   --range-border-radius: .6rem;
 }
