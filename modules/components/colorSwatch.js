@@ -203,7 +203,7 @@ class ColorSwatch extends HTMLElement {
         switch (format) {
           case 'name': value = this.color.name; break;
           case 'hex':  value = this.color.hex; break;
-          default:     value = this.color.expr(this.getAttribute('format'), {
+          default:     value = this.color.toString(this.getAttribute('format'), {
             precision: format.startsWith('color-') ? 4 : 2,
             clamp: true
           });
@@ -221,7 +221,7 @@ class ColorSwatch extends HTMLElement {
         if (!inGamut) {
           this.setAttribute('clipped', '');
           const expressionAlt = this.querySelector('.color-swatch-expression.out-of-gamut');
-          const value = this.color.expr(space, {
+          const value = this.color.toString(space, {
             precision: format.startsWith('color-') ? 4 : 2,
             clamp: false
           });
