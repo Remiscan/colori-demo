@@ -1,5 +1,6 @@
 <?php
 require_once '../lib/dist/colori.php';
+use colori\Couleur;
 
 $commonDir = dirname(__DIR__, 2).'/_common';
 require_once $commonDir.'/php/Translation.php';
