@@ -917,8 +917,11 @@ color-picker {
 }
 
 color-picker::part(selector) {
-  translate: calc(0.5 * var(--size) - 50%);
-  z-index: 3;
+  margin-right: 1.8rem;
+  margin-top: 8rem;
+  z-index: unset;
+  transform: unset;
+  transition: unset;
 }
 
 color-picker::part(property-name) {
