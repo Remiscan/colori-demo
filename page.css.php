@@ -525,7 +525,7 @@ body { /* Desktop-like */
   color: var(--text-color);
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 672px) {
   html {
     --section-padding: .6rem;
     --section-gap: .6rem;
@@ -561,7 +561,7 @@ header, .documentation {
   --alt-background-color: var(--vivid-surface-1);
 }
 
-@media (max-width: 52rem) {
+@media (max-width: 832px) {
   body {
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto;
@@ -674,7 +674,7 @@ theme-selector > .selector {
               transform .2s ease;
 }
 
-@media (max-width: 52rem) {
+@media (max-width: 832px) {
   theme-selector > .selector {
     right: calc(-1 * var(--section-padding));
   }
@@ -1176,7 +1176,7 @@ table.donnees th {
 
 
 
-@media (max-width: 42rem) {
+@media (max-width: 672px) {
   #saisie {
     grid-template-columns: 1fr;
     column-gap: 0;
@@ -1538,7 +1538,7 @@ pre[class*="language-"],
   font-variant-ligatures: none;
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 672px) {
   pre[class*="language-"]>code[class*="language-"] {
     white-space: pre;
   }
