@@ -924,6 +924,13 @@ color-picker::part(selector) {
   transition: unset;
 }
 
+@media (max-width: 832px) {
+  color-picker::part(selector) {
+    margin-right: auto;
+    margin-top: auto;
+  }
+}
+
 color-picker::part(property-name) {
   font-size: .9rem;
   font-weight: 600;
