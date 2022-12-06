@@ -233,7 +233,7 @@ $startColor = new Couleur($namedColors[$r]);
                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                 placeholder="<?=$startColor->name()?>">
 
-        <color-picker format="hsl" color="<?=$startColor->name()?>"></color-picker>
+        <color-picker format="okhsl" color="<?=$startColor->name()?>"></color-picker>
 
         <div class="exemples-saisie exemples-valeurs">
           <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
