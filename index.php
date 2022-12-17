@@ -58,7 +58,6 @@ $startColor = new Couleur($namedColors[$r]);
     <script defer src="/_common/polyfills/adoptedStyleSheets.min.js"></script>
     <script>window.esmsInitOptions = { polyfillEnable: ['css-modules', 'json-modules'], shimMode: true }</script>
     <script defer src="/_common/polyfills/es-module-shims.js"></script>
-    <script defer src="/_common/polyfills/custom-elements.js"></script> <!-- to support "is" attribute -->
     <script type="importmap-shim"><?php include 'import-map.json'; ?></script>
 
     <script src="/colori/demo/modules/main.js" type="module-shim"></script>

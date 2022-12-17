@@ -18,6 +18,7 @@
     "default-cookies": "/_common/js/cookies.js",
 
     "tab-list": "/_common/components/tab-list/tab-list.js",
+    "custom-elements-polyfill": "/_common/polyfills/custom-elements.js",
 
     "theme-selector": "/_common/components/theme-selector/theme-selector.js",
     "trap-focus": "/_common/js/trap-focus.js",
