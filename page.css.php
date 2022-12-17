@@ -1021,10 +1021,9 @@ color-picker::part(input-range) {
 .donnees {
   grid-column: 1 / -1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: stretch;
-  flex-wrap: wrap;
+  align-items: start;
   gap: .3rem;
 }
 
