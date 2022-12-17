@@ -58,6 +58,7 @@ $startColor = new Couleur($namedColors[$r]);
     <script defer src="/_common/polyfills/adoptedStyleSheets.min.js"></script>
     <script>window.esmsInitOptions = { polyfillEnable: ['css-modules', 'json-modules'], shimMode: true }</script>
     <script defer src="/_common/polyfills/es-module-shims.js"></script>
+    <script defer src="/_common/polyfills/custom-elements.js"></script> <!-- to support "is" attribute -->
     <script type="importmap-shim"><?php include 'import-map.json'; ?></script>
 
     <script src="/colori/demo/modules/main.js" type="module-shim"></script>
@@ -258,12 +259,10 @@ $startColor = new Couleur($namedColors[$r]);
       <div id="resultats">
         <h3 class="no-separator" data-string="demo-resultats-titre"><?=$translation->get('demo-resultats-titre')?></h3>
 
-        <fieldset role="tablist" data-group="tabs-results">
-          <legend data-string="tabs-results-label"></legend>
-
-          <tab-label controls="results-named-formats" data-label-id="tab-label-named-formats" label="<?=$translation->get('tab-label-named-formats')?>" active="true"></tab-label>
-          <tab-label controls="results-color-spaces" data-label-id="tab-label-color-spaces" label="<?=$translation->get('tab-label-color-spaces')?>"></tab-label>
-        </fieldset>
+        <div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>">
+          <button role="tab" aria-controls="results-named-formats"><?=$translation->get('tab-label-named-formats')?></button>
+          <button role="tab" aria-controls="results-color-spaces"><?=$translation->get('tab-label-color-spaces')?></button>
+        </div>
 
         <div class="donnees" id="results-values">
           <div class="format gradient" data-string="apercu-gradient"><?=$translation->get('apercu-gradient')?></div>
@@ -348,12 +347,10 @@ $startColor = new Couleur($namedColors[$r]);
       <details class="nav-rapide-container">
         <summary>
           <h3><?=$translation->get('nav-documentation')?></h3>
-          <fieldset role="tablist" data-group="tabs-prog-language">
-            <legend data-string="tabs-group-language-label"></legend>
-
-            <tab-label controls="doc-js" label="JavaScript" active="true"></tab-label>
-            <tab-label controls="doc-php" label="PHP" ></tab-label>
-          </fieldset>
+          <div is="tab-list" group="tabs-prog-language" aria-label="<?=$translation->get('tabs-group-language-label')?>">
+            <button role="tab" aria-controls="doc-js">JavaScript</button>
+            <button role="tab" aria-controls="doc-php">PHP</button>
+          </div>
         </summary>
 
         <div class="nav-rapide" data-prog-language="js"><?=$navJS?></div>

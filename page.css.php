@@ -224,12 +224,18 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   border-radius: .6rem;
 }
 
-[role="tablist"]:has(tab-label:not(:defined)) {
+[is="tab-list"]:not([role="tablist"]) {
   display: none;
 }
 
-input[type="radio"][role="tab"] + label {
+[role="tab"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
   border: none;
+  font: inherit;
+  margin: 0;
+
   display: grid;
   grid-template: unset;
   place-items: center;
@@ -240,12 +246,11 @@ input[type="radio"][role="tab"] + label {
   color: var(--h1-color);
   padding: 0 .6rem;
   border-radius: .5rem;
-  border: none;
   cursor: default;
   min-width: var(--tap-safe-size);
 }
 
-input[type="radio"][role="tab"] + label::before {
+[role="tab"]::before {
   background: none;
   box-shadow: none;
   width: 100%;
@@ -253,23 +258,15 @@ input[type="radio"][role="tab"] + label::before {
   grid-area: unset;
 }
 
-input[type="radio"][role="tab"] + label:hover {
+[role="tab"]:hover {
   background-color: var(--tab-hover-color);
 }
 
-input[type="radio"][role="tab"]:focus + label {
-  outline: 2px solid var(--link-color);
-}
-
-input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
-  outline-style: none;
-}
-
-input[type="radio"][role="tab"]:active + label {
+[role="tab"]:active {
   background-color: var(--tab-hover-color);
 }
 
-input[type="radio"][role="tab"]:checked + label {
+[role="tab"][aria-selected="true"] {
   background-color: var(--background-color);
   font-weight: 600;
   color: var(--h1-color);
@@ -1634,7 +1631,6 @@ html[data-prog-language="php"] [data-prog-language="js"] {
 .off { display: none; }
 [hidden] { display: none !important; }
 
-tab-label:not(:defined),
 color-swatch:not(:defined) {
   display: none;
 }

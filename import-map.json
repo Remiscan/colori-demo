@@ -17,7 +17,7 @@
 
     "default-cookies": "/_common/js/cookies.js",
 
-    "tab-label": "/_common/components/tab-label/tab-label.js",
+    "tab-list": "/_common/components/tab-list/tab-list.js",
 
     "theme-selector": "/_common/components/theme-selector/theme-selector.js",
     "trap-focus": "/_common/js/trap-focus.js",

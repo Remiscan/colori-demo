@@ -2,7 +2,7 @@ import 'color-swatch';
 import { updateInterface } from 'colorInterface';
 import Cookie from 'cookies';
 import 'remiscan-logo';
-import 'tab-label';
+import 'tab-list';
 import 'theme-selector';
 
 
@@ -93,6 +93,6 @@ themeSelector.querySelector('.selector-cookie-notice').classList.add('h6');
 
 
 // Mark tappable custom elements as such
-for (const e of [...document.querySelectorAll('theme-selector button, tab-label label')]) {
+for (const e of [...document.querySelectorAll('theme-selector button, tab-label button')]) {
   e.dataset.tappable = '';
 }
