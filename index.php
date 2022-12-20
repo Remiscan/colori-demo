@@ -215,7 +215,7 @@ $startColor = new Couleur($namedColors[$r]);
       <a href="?lang=fr" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</a>
       <a href="?lang=en" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</a>
 
-      <theme-selector position="bottom" cookie></theme-selector>
+      <theme-selector position="bottom"></theme-selector>
 
       <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
       <p data-string="documentation-intro-p2"><?=$translation->get('documentation-intro-p2')?></p>

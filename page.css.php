@@ -658,7 +658,7 @@ theme-selector {
 
 color-picker::part(selector),
 theme-selector > .selector {
-  min-width: 14rem;
+  min-width: 10rem;
   background-color: var(--section-color);
   box-shadow: 0 1px .2rem 1px var(--body-color);
   margin-top: .9rem;
@@ -710,10 +710,15 @@ theme-selector .selector-cookie-notice {
   hyphens: auto;
 }
 
+theme-selector input[type="radio"] + label {
+  min-height: 2em;
+}
+
 theme-selector input[type="radio"]:focus + label {
   box-shadow: inset 0 0 0 2px var(--link-color);
   outline: none;
 }
+
 theme-selector input[type="radio"]:focus:not(:focus-visible) + label {
   box-shadow: none;
 }
