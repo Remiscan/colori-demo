@@ -408,6 +408,7 @@ abbr[title] {
 html {
   width: 100vw;
   height: 100%;
+  height: 100lvh;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: var(--body-color);
@@ -528,7 +529,7 @@ body { /* Desktop-like */
   width: 100%;
   min-height: 100%;
   margin: 0;
-  padding: var(--section-padding);
+  padding: 0;
   margin-right: env(safe-area-inset-right, 0);
   margin-left: env(safe-area-inset-left, 0);
   background-color: var(--body-color);
@@ -766,6 +767,15 @@ main,
 section,
 footer {
   border-radius: .6rem;
+  grid-column: 3;
+}
+
+header {
+  border-radius: 0 0 .6rem .6rem;
+}
+
+footer {
+  border-radius: .6rem .6rem 0 0;
 }
 
 section {
@@ -803,7 +813,7 @@ footer {
   position: relative;
   padding: 0 var(--section-padding);
   margin-bottom: env(safe-area-inset-bottom, 0);
-  /*margin-top: calc(-1 * var(--section-gap));*/
+  margin-top: calc(-1 * var(--section-gap));
 }
 
 remiscan-logo {
@@ -1244,6 +1254,13 @@ input[type="number"][data-property]:active {
   align-items: stretch;
   flex-wrap: wrap;
   gap: .3rem;
+}
+
+@media (max-width: 672px) {
+  .donnees {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 table.donnees {

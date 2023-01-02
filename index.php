@@ -181,89 +181,86 @@ $startColor = new Couleur($namedColors[$r]);
       </div>
     </header>
 
-    <main>
+    <section id="intro" class="no-title">
+      <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
+      <p data-string="documentation-warning-js"><?=$translation->get('documentation-warning-js')?></p>
+    </section>
 
-      <section id="intro" class="no-title">
-        <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
-        <p data-string="documentation-warning-js"><?=$translation->get('documentation-warning-js')?></p>
-      </section>
+    <section id="demo">
+      <h2 data-string="titre-section-demo"><?=$translation->get('titre-section-demo')?></h2>
+      
+      <div id="saisie">
+        <h3 class="no-separator">
+          <label for="entree" data-string="demo-input-label"><?=$translation->get('demo-input-label')?></label>
+        </h3>
 
-      <section id="demo">
-        <h2 data-string="titre-section-demo"><?=$translation->get('titre-section-demo')?></h2>
-        
-        <div id="saisie">
-          <h3 class="no-separator">
-            <label for="entree" data-string="demo-input-label"><?=$translation->get('demo-input-label')?></label>
-          </h3>
-
-          <div class="exemples-saisie exemples-valeurs">
-            <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
-            <button type="button" class="exemple">pink</button>
-            <button type="button" class="exemple">#4169E1</button>
-            <button type="button" class="exemple">rgb(255, 127, 80)</button>
-            <button type="button" class="exemple" data-label="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
-          </div>
-
-          <p class="instructions-exemples-fonctions off" data-hidden="true" data-string="instructions-demo"><?=$translation->get('instructions-demo')?></p>
-
-          <div class="exemples-saisie exemples-fonctions off" data-hidden="true">
-            <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
-            <button type="button" class="exemple">pink.invert()</button>
-            <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
-            <button type="button" class="exemple">black.contrast(white)</button>
-            <button type="button" class="exemple">orchid.interpolate(palegreen, 4, oklch)</button>
-            <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
-          </div>
-
-          <input id="entree" class="h4" type="text" data-abbr="<?=$translation->get('exemple-abbr')?>"
-                  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                  placeholder="<?=$startColor->name()?>">
-
-          <color-picker format="hsl" color="<?=$startColor->name()?>"></color-picker>
+        <div class="exemples-saisie exemples-valeurs">
+          <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
+          <button type="button" class="exemple">pink</button>
+          <button type="button" class="exemple">#4169E1</button>
+          <button type="button" class="exemple">rgb(255, 127, 80)</button>
+          <button type="button" class="exemple" data-label="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
         </div>
 
-        <div id="resultats">
-          <h3 class="no-separator" data-string="demo-resultats-titre"><?=$translation->get('demo-resultats-titre')?></h3>
+        <p class="instructions-exemples-fonctions off" data-hidden="true" data-string="instructions-demo"><?=$translation->get('instructions-demo')?></p>
 
-          <div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>" style="display: none">
-            <button role="tab" aria-controls="results-named-formats"><?=$translation->get('tab-label-named-formats')?></button>
-            <button role="tab" aria-controls="results-color-spaces"><?=$translation->get('tab-label-color-spaces')?></button>
-          </div>
-
-          <div class="donnees" id="results-values">
-            <div class="format gradient" data-string="apercu-gradient"><?=$translation->get('apercu-gradient')?></div>
-
-            <div class="format valeur">
-              <pre class="language-css"><code class="language-css"></code></pre>
-            </div>
-          </div>
-
-          <div class="donnees" id="results-named-formats">
-            <color-swatch format="name" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="hex" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="rgb" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="hsl" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="hwb" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="lab" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="lch" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="oklab" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="oklch" color="<?=$startColor->name()?>"></color-swatch>
-          </div>
-
-          <div class="donnees" id="results-color-spaces" hidden>
-            <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="color-display-p3" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="color-a98-rgb" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="color-prophoto-rgb" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="color-rec2020" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="color-xyz-d50" color="<?=$startColor->name()?>"></color-swatch>
-            <color-swatch format="color-xyz-d65" color="<?=$startColor->name()?>"></color-swatch>
-          </div>
-
+        <div class="exemples-saisie exemples-fonctions off" data-hidden="true">
+          <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
+          <button type="button" class="exemple">pink.invert()</button>
+          <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
+          <button type="button" class="exemple">black.contrast(white)</button>
+          <button type="button" class="exemple">orchid.interpolate(palegreen, 4, oklch)</button>
+          <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
         </div>
-      </section>
-    </main>
+
+        <input id="entree" class="h4" type="text" data-abbr="<?=$translation->get('exemple-abbr')?>"
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                placeholder="<?=$startColor->name()?>">
+
+        <color-picker format="hsl" color="<?=$startColor->name()?>"></color-picker>
+      </div>
+
+      <div id="resultats">
+        <h3 class="no-separator" data-string="demo-resultats-titre"><?=$translation->get('demo-resultats-titre')?></h3>
+
+        <div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>" style="display: none">
+          <button role="tab" aria-controls="results-named-formats"><?=$translation->get('tab-label-named-formats')?></button>
+          <button role="tab" aria-controls="results-color-spaces"><?=$translation->get('tab-label-color-spaces')?></button>
+        </div>
+
+        <div class="donnees" id="results-values">
+          <div class="format gradient" data-string="apercu-gradient"><?=$translation->get('apercu-gradient')?></div>
+
+          <div class="format valeur">
+            <pre class="language-css"><code class="language-css"></code></pre>
+          </div>
+        </div>
+
+        <div class="donnees" id="results-named-formats">
+          <color-swatch format="name" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="hex" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="rgb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="hsl" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="hwb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="lab" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="lch" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="oklab" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="oklch" color="<?=$startColor->name()?>"></color-swatch>
+        </div>
+
+        <div class="donnees" id="results-color-spaces" hidden>
+          <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-display-p3" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-a98-rgb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-prophoto-rgb" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-rec2020" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-xyz-d50" color="<?=$startColor->name()?>"></color-swatch>
+          <color-swatch format="color-xyz-d65" color="<?=$startColor->name()?>"></color-swatch>
+        </div>
+
+      </div>
+    </section>
 
     <?php /*
     // Préparons la DOCUMENTATION
