@@ -757,7 +757,6 @@ main > * {
 }
 
 header,
-main,
 footer {
   background: var(--bg-color);
 }
