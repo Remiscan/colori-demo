@@ -224,9 +224,13 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   right: var(--section-padding);
 }
 
-.choix-format input[type="radio"][name="choix-format"] + label,
-input[type="radio"][role="tab"] + label {
+[role="tab"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
   border: none;
+  font: inherit;
+  margin: 0;
   display: grid;
   grid-template: unset;
   place-items: center;
@@ -246,8 +250,7 @@ input[type="radio"][role="tab"] + label {
   bottom: calc(-1 * var(--decalage));
 }
 
-.choix-format input[type="radio"][name="choix-format"] + label::before,
-input[type="radio"][role="tab"] + label::before {
+[role="tab"]::before {
   background: none;
   box-shadow: none;
   width: 100%;
@@ -256,32 +259,17 @@ input[type="radio"][role="tab"] + label::before {
   grid-area: unset;
 }
 
-.choix-format input[type="radio"][name="choix-format"] + label:hover,
-input[type="radio"][role="tab"] + label:hover {
+[role="tab"]:hover {
   background-color: var(--tab-hover-color);
 }
 
-.choix-format input[type="radio"][name="choix-format"]:focus + label,
-input[type="radio"][role="tab"]:focus + label {
-  outline: 2px solid var(--link-color);
-  border-radius: 0;
-}
-
-.choix-format input[type="radio"][name="choix-format"]:focus:not(:focus-visible) + label,
-input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
-  outline-style: none;
-  border-radius: .6rem .6rem 0 0;
-}
-
-.choix-format input[type="radio"][name="choix-format"]:active + label,
-input[type="radio"][role="tab"]:active + label {
+[role="tab"]:active {
   background-color: var(--tab-hover-color);
   box-shadow: -1px -.05rem 0 0 var(--body-color), 1px -.05rem 0 0 var(--body-color);
   --decalage: .05rem;
 }
 
-.choix-format input[type="radio"][name="choix-format"]:checked + label,
-input[type="radio"][role="tab"]:checked + label {
+[role="tab"][aria-selected="true"] {
   background-color: var(--section-color);
   color: var(--h1-color);
   box-shadow: -1px 0 0 0 var(--body-color), 1px 0 0 0 var(--body-color);
@@ -544,7 +532,7 @@ html[data-show-documentation="true"] body {
   grid-template-rows: repeat(4, auto) auto;
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 672px) {
   html {
     --section-padding: .6rem;
     --section-gap: .6rem;
@@ -600,12 +588,14 @@ theme-selector {
   --secondary-color: var(--h1-color);
 }
 
+color-picker::part(selector),
 theme-selector>.selector {
-  min-width: 9rem;
+  min-width: 10rem;
   right: calc(-1 * var(--section-padding));
   background-color: var(--section-color);
   box-shadow: 0 1px .2rem 1px var(--body-color);
   margin-top: .9rem;
+  border: none;
   border-radius: .6rem;
   overflow: hidden;
   z-index: 100;
@@ -614,10 +604,12 @@ theme-selector>.selector {
               transform .2s ease;
 }
 
+color-picker[open]::part(selector),
 theme-selector[open="true"]>.selector {
   transform: translateY(0);
 }
 
+color-picker::part(select-label),
 theme-selector .selector-title {
   color: var(--h3-color);
   padding: .6rem .6rem;
@@ -643,6 +635,10 @@ theme-selector .selector-cookie-notice {
   color: var(--secondary-color);
   padding: .6rem;
   hyphens: auto;
+}
+
+theme-selector input[type="radio"] + label {
+  min-height: 2em;
 }
 
 theme-selector input[type="radio"]:focus + label {
@@ -851,10 +847,11 @@ label[for=entree] {
   width: fit-content;
 }
 
+color-picker::part(select),
+color-picker::part(input-number),
 input[type="text"] {
   grid-row: auto;
   grid-column: 1 / 3;
-  width: 100%;
   height: 100%;
   min-height: var(--tap-safe-size);
   border: none;
@@ -867,10 +864,23 @@ input[type="text"] {
   box-shadow: 0 0 0 1px var(--body-color);
 }
 
+input[type="text"] {
+  grid-row: 2;
+  grid-column: 1 / 3;
+  width: 100%;
+  height: 100%;
+}
+
+color-picker::part(select):hover,
+color-picker::part(input-number):hover,
 input[type="text"]:hover {
   box-shadow: 0 0 0 2px var(--h3-color);
 }
 
+color-picker::part(select):active,
+color-picker::part(select):focus,
+color-picker::part(input-number):active,
+color-picker::part(input-number):focus,
 input[type="text"]:active,
 input[type="text"]:focus {
   outline: none;
@@ -880,6 +890,59 @@ input[type="text"]:focus {
 
 ::placeholder {
   color: var(--input-placeholder-color);
+}
+
+color-picker {
+  grid-row: 2;
+  grid-column: 2;
+  justify-self: end;
+  right: .6em;
+  --size: 1.6rem;
+  --range-height: 15rem;
+  --range-border-width: 2px;
+  --range-border-radius: .6rem;
+}
+
+@media (max-width: 672px) {
+  color-picker {
+    grid-column: 1;
+  }
+}
+
+/*@supports not (background: paint(worklet)) {
+  color-picker {
+    display: none;
+  }
+}*/
+
+color-picker::part(selector) {
+  margin-right: auto;
+  margin-top: auto;
+  z-index: unset;
+  transform: unset;
+  transition: unset;
+  max-width: 100vw;
+  overflow: auto;
+}
+
+@media (max-width: 832px) {
+  color-picker::part(selector) {
+    margin-right: auto;
+    margin-top: auto;
+  }
+}
+
+color-picker::part(property-name) {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--h3-color);
+}
+
+color-picker::part(select),
+color-picker::part(input-number) {
+  font-size: .9rem;
+  min-width: 5ch;
+  color: var(--text-color);
 }
 
 
@@ -1321,7 +1384,7 @@ table.donnees th {
 
 
 
-@media (max-width: 42rem) {
+@media (max-width: 672px) {
   #saisie {
     grid-template-columns: 1fr;
     column-gap: 0;
@@ -1663,7 +1726,7 @@ pre[class*="language-"],
   font-variant-ligatures: none;
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 672px) {
   pre[class*="language-"]>code[class*="language-"] {
     white-space: pre;
   }

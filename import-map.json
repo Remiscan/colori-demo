@@ -9,12 +9,16 @@
     "interface-worker-nomodule": "/colori/demo/modules/worker-nomodule.php",
 
     "color-swatch": "/colori/demo/modules/components/colorSwatch.js",
+    "color-picker": "/_common/components/color-picker/color-picker.js",
+    "range-gradient-worklet": "/_common/components/color-picker/worklet.js.php",
+    "input-slider": "/_common/components/input-slider/input-slider.js",
 
     "colori": "/colori/lib/dist/colori.min.js",
 
     "default-cookies": "/_common/js/cookies.js",
 
-    "tab-label": "/_common/components/tab-label/tab-label.js",
+    "tab-list": "/_common/components/tab-list/tab-list.js",
+    "custom-elements-polyfill": "/_common/polyfills/custom-elements.js",
 
     "theme-selector": "/_common/components/theme-selector/theme-selector.js",
     "trap-focus": "/_common/js/trap-focus.js",

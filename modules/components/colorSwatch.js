@@ -8,10 +8,8 @@ template.innerHTML = /*html*/`
   <div class="color-swatch-preview"></div>
   <code class="color-swatch-expression in-gamut"></code>
   <code class="color-swatch-expression out-of-gamut"></code>
-
   <span class="color-swatch-in-gamut-warning" data-string="in-gamut-warning"></span>
   <span class="color-swatch-out-of-gamut-warning" data-string="out-of-gamut-warning"></span>
-
   <button type="button" class="color-swatch-see-alt out-of-gamut">
     <svg viewBox="1 1 22 22">
       <style>.alt-icon { fill: currentColor; }</style>
@@ -20,7 +18,6 @@ template.innerHTML = /*html*/`
     <span class="in-gamut" data-string="switch-to-out"></span>
     <span class="out-of-gamut" data-string="switch-to-in"></span>
   </button>
-
   <button type="button" class="color-swatch-copy" data-label="copy">
     <svg viewBox="0 0 24 24">
       <style>.copy-icon { fill: currentColor; }</style>
@@ -39,33 +36,27 @@ sheet.replaceSync(/*css*/`
     gap: 1ch;
     align-items: center;
     min-height: 2em;
-
     --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
     linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
     linear-gradient(to right, #ddd 0% 100%);
     --warning-color: darkred;
   }
-
   @media (prefers-color-scheme: dark) {
     color-swatch {
       --warning-color: lightpink;
     }
   }
-
   color-swatch[clipped] {
     grid-template-columns: 3em auto auto auto;
     grid-template-rows: auto auto;
     row-gap: 0;
   }
-
   color-swatch[mini] {
     grid-template-columns: 3em;
   }
-
   color-swatch[clipped]:is([format="name"], [format="hex"]) {
     grid-template-columns: 3em auto auto;
   }
-
   color-swatch > .color-swatch-preview {
     --displayed-color: var(--color);
     grid-row: 1 / -1;
@@ -77,11 +68,9 @@ sheet.replaceSync(/*css*/`
     width: 100%;
     height: 100%;
   }
-
   color-swatch[alt] > .color-swatch-preview {
     --displayed-color: var(--alt-color, var(--color));
   }
-
   color-swatch > .color-swatch-expression {
     grid-row: 1;
     overflow-x: auto;
@@ -89,47 +78,38 @@ sheet.replaceSync(/*css*/`
     scrollbar-width: thin;
     white-space: nowrap;
   }
-
   color-swatch > .color-swatch-in-gamut-warning,
   color-swatch > .color-swatch-out-of-gamut-warning {
     grid-row: 2;
     grid-column: 2;
     font-size: .7em;
   }
-
   color-swatch[clipped] > .color-swatch-in-gamut-warning,
   color-swatch[clipped] > .color-swatch-out-of-gamut-warning {
     color: var(--warning-color);
   }
-
   color-swatch > button {
     grid-row: 1 / -1;
     display: inline-grid;
     place-items: center;
   }
-
   color-swatch > button > svg {
     width: 1.5em;
     height: 1.5em;
   }
-
   color-swatch > button > span {
     font-size: 0;
   }
-
   color-swatch > .color-swatch-see-alt > svg {
     transform: scale(-1, 1);
     transition: transform .1s ease;
   }
-
   color-swatch[alt] > .color-swatch-see-alt > svg {
     transform: scale(-1, 1) rotate(-90deg);
   }
-
   color-swatch .color-swatch-format {
     text-transform: uppercase;
   }
-
   color-swatch:not([clipped]) > .color-swatch-see-alt,
   color-swatch[clipped]:is([format="name"], [format="hex"]) > .color-swatch-see-alt,
   color-swatch[alt] > .color-swatch-expression.in-gamut,
@@ -142,12 +122,10 @@ sheet.replaceSync(/*css*/`
   color-swatch[clipped][alt] > .color-swatch-in-gamut-warning {
     display: none;
   }
-
   color-swatch[mini] > .color-swatch-expression,
   color-swatch[mini] > button {
     display: none;
   }
-
   html[lang="fr"] color-swatch [lang="en"],
   html:not([lang="fr"]) color-swatch [lang="fr"] {
     display: none;
@@ -203,7 +181,7 @@ class ColorSwatch extends HTMLElement {
         switch (format) {
           case 'name': value = this.color.name; break;
           case 'hex':  value = this.color.hex; break;
-          default:     value = this.color.expr(this.getAttribute('format'), {
+          default:     value = this.color.toString(this.getAttribute('format'), {
             precision: format.startsWith('color-') ? 4 : 2,
             clamp: true
           });
@@ -221,7 +199,7 @@ class ColorSwatch extends HTMLElement {
         if (!inGamut) {
           this.setAttribute('clipped', '');
           const expressionAlt = this.querySelector('.color-swatch-expression.out-of-gamut');
-          const value = this.color.expr(space, {
+          const value = this.color.toString(space, {
             precision: format.startsWith('color-') ? 4 : 2,
             clamp: false
           });

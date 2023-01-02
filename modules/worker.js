@@ -1,4 +1,4 @@
-import { computeInterface, computeSliders } from 'computeInterface';
+import { computeInterface } from 'computeInterface';
 
 
 
@@ -15,7 +15,6 @@ onmessage = event => {
   switch (instruction) {
     case 'is-ready': returnData = { ready: true }; break;
     case 'compute-interface': returnData = computeInterface(data); break;
-    case 'compute-sliders': returnData = computeSliders(data); break;
   }
 
   if (time === lastMessageTime) port.postMessage(JSON.stringify(returnData));

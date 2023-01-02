@@ -1,8 +1,8 @@
-import { CSSFormats, default as Couleur } from 'colori';
+import { cssFormats as CSSFormats, default as Couleur } from 'colori';
 
 
 
-const RegExps = CSSFormats.RegExps;
+const RegExps = CSSFormats.unitRegExps;
 // RegExp du séparateur entre arguments : virgule puis espace(s) optionnel(s)
 const vSep = '\\,(?: +)?';
 // RegExp des options d'une méthode
