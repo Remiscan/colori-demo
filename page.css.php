@@ -108,6 +108,7 @@ h6, .h6 {
  *Boutons
  */
 
+color-picker::part(button),
 button {
   -webkit-appearance: none;
   appearance: none;
@@ -124,6 +125,11 @@ button {
   text-decoration: none;
 }
 
+color-picker::part(color-preview) {
+  border-radius: .45rem;
+}
+
+color-picker::part(button):is(:hover, :focus, :active),
 button:hover,
 button:focus,
 button:active {
@@ -131,6 +137,7 @@ button:active {
   background: var(--button-hover-bg-color);
 }
 
+color-picker::part(button):active,
 button:active {
   background: var(--button-active-bg-color);
 }
@@ -869,6 +876,7 @@ input[type="text"] {
   grid-column: 1 / 3;
   width: 100%;
   height: 100%;
+  padding-right: calc(.6em + 2rem);
 }
 
 color-picker::part(select):hover,
@@ -897,7 +905,7 @@ color-picker {
   grid-column: 2;
   justify-self: end;
   right: .6em;
-  --size: 1.6rem;
+  --size: 2rem;
   --range-height: 15rem;
   --range-border-width: 2px;
   --range-border-radius: .6rem;
@@ -915,21 +923,21 @@ color-picker {
   }
 }*/
 
+color-picker::part(button) {
+  padding: 0;
+  border: 2px solid transparent;
+  margin: 0;
+}
+
 color-picker::part(selector) {
-  margin-right: auto;
-  margin-top: auto;
+  margin: auto;
   z-index: unset;
   transform: unset;
   transition: unset;
   max-width: 100vw;
   overflow: auto;
-}
-
-@media (max-width: 832px) {
-  color-picker::part(selector) {
-    margin-right: auto;
-    margin-top: auto;
-  }
+  min-width: unset;
+  right: 0;
 }
 
 color-picker::part(property-name) {
