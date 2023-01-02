@@ -624,6 +624,10 @@ theme-selector .selector-title {
   place-self: center;
 }
 
+theme-selector .selector-title-text {
+  border: none;
+}
+
 theme-selector>.selector>label {
   min-height: var(--tap-safe-size);
   box-sizing: border-box;
