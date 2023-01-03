@@ -217,18 +217,22 @@ input[type="radio"]:focus:not(:focus-visible) + label {
  *Tabs
  */
 
-[role="tablist"] {
+ [role="tablist"] {
   display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  margin: 0;
-  padding: 0;
+  gap: 3px;
+  margin: 0 0 0 auto;
+  padding: 3px;
+  width: fit-content;
+  height: fit-content;
   border: none;
   box-shadow: none;
-  position: absolute;
   --height: 1.8rem;
-  top: calc(-1 * var(--height));
-  right: var(--section-padding);
+  background-color: var(--body-color);
+  border-radius: .6rem;
+}
+
+[is="tab-list"]:not([role="tablist"]) {
+  display: none;
 }
 
 [role="tab"] {
@@ -238,23 +242,19 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   border: none;
   font: inherit;
   margin: 0;
+
   display: grid;
   grid-template: unset;
   place-items: center;
   box-sizing: border-box;
-  --decalage: 0rem;
   height: var(--height);
   font-size: .8rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--h1-color);
   padding: 0 .6rem;
-  border-radius: .6rem .6rem 0 0;
-  border: 1px solid var(--tab-hover-color);
-  border-bottom: 0;
+  border-radius: .5rem;
   cursor: default;
   min-width: var(--tap-safe-size);
-  position: relative;
-  bottom: calc(-1 * var(--decalage));
 }
 
 [role="tab"]::before {
@@ -262,25 +262,21 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   box-shadow: none;
   width: 100%;
   height: 100%;
-  border-radius: 0;
   grid-area: unset;
 }
 
 [role="tab"]:hover {
-  background-color: var(--tab-hover-color);
+  background-color: var(--button-hover-bg-color);
 }
 
 [role="tab"]:active {
-  background-color: var(--tab-hover-color);
-  box-shadow: -1px -.05rem 0 0 var(--body-color), 1px -.05rem 0 0 var(--body-color);
-  --decalage: .05rem;
+  background-color: var(--button-active-bg-color);
 }
 
 [role="tab"][aria-selected="true"] {
-  background-color: var(--section-color);
+  background-color: var(--button-bg-color);
+  font-weight: 600;
   color: var(--h1-color);
-  box-shadow: -1px 0 0 0 var(--body-color), 1px 0 0 0 var(--body-color);
-  --decalage: 0rem;
 }
 
 
@@ -1226,11 +1222,8 @@ input[type="number"][data-property]:active {
 
 #resultats [role="tablist"] {
   grid-column: 2;
-  position: relative;
-  top: unset;
-  right: unset;
-  gap: .3rem;
-  align-items: center;
+  margin: auto;
+  margin-left: 0;
 }
 
 .choix-format input[type="radio"][name="choix-format"] + label,

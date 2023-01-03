@@ -228,7 +228,7 @@ $startColor = new Couleur($namedColors[$r]);
       <div id="resultats">
         <h3 class="no-separator" data-string="demo-resultats-titre"><?=$translation->get('demo-resultats-titre')?></h3>
 
-        <div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>" style="display: none">
+        <div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>">
           <button role="tab" aria-controls="results-named-formats"><?=$translation->get('tab-label-named-formats')?></button>
           <button role="tab" aria-controls="results-color-spaces"><?=$translation->get('tab-label-color-spaces')?></button>
         </div>
