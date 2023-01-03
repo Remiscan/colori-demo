@@ -982,7 +982,7 @@ color-picker::part(button):is(:active) {
 }
 
 color-picker::part(color-preview) {
-  border-radius: var(--border-radius);
+  border-radius: calc(.9 * var(--border-radius));
 }
 
 
