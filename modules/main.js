@@ -1,15 +1,10 @@
+import 'color-picker';
 import 'color-swatch';
 import { updateInterface } from 'colorInterface';
 import Cookie from 'cookies';
 import 'remiscan-logo';
 import 'tab-list';
 import 'theme-selector';
-
-
-
-if ('paintWorklet' in CSS) {
-  await import('color-picker');
-}
 
 
 

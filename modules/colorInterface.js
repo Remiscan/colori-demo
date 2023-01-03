@@ -52,7 +52,7 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
 
 
     // Update the color picker
-    if ('paintWorklet' in CSS && source !== 'color-picker') {
+    if (source !== 'color-picker') {
       const colorPicker = document.querySelector('color-picker');
       const vals = response.colorValues;
       colorPicker.selectColor(`color(srgb ${vals[0]} ${vals[1]} ${vals[2]} / ${vals[3]})`);
