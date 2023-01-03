@@ -144,7 +144,7 @@ $startColor = new Couleur($namedColors[$r]);
       <?php themeSheetEnd(closeComment: false); ?>
     </style>
 
-    <meta name="theme-color" content="<?=($resolvedTheme == 'dark' ? $bodyColorDark->hsl() : $bodyColor->hsl())?>" data-light="<?=$bodyColor->hsl()?>" data-dark="<?=$bodyColorDark->hsl()?>">
+    <meta name="theme-color" content="<?=($resolvedTheme == 'dark' ? $bodyColorDark->rgb() : $bodyColor->rgb())?>" data-light="<?=$bodyColor->rgb()?>" data-dark="<?=$bodyColorDark->rgb()?>">
 
     <noscript>
       <link rel="stylesheet" href="/colori/demo/style-noscript.css">

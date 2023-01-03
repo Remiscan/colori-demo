@@ -67,6 +67,8 @@ export async function updateInterface(couleur, source = 'text', delai = 10) {
     const meta = document.querySelector('meta[name=theme-color]');
     meta.dataset.light = response.metaLight;
     meta.dataset.dark = response.metaDark;
+    const currentTheme = document.documentElement.getAttribute('data-resolved-theme');
+    meta.setAttribute('content', response[currentTheme === 'dark' ? 'metaDark' : 'metaLight']);
 
     const style = document.getElementById('theme-variables');
     style.innerHTML = response.css;
