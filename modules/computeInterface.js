@@ -123,7 +123,7 @@ function makeCSS(userColor) {
 
   // Calculate colors for dark theme
   dark: {
-    const okc = Math.min(userColor.okc, 0.023);
+    const okc = Math.min(userColor.okc, 0.03);
     const bodyColor = new Couleur(`oklch(20.5% ${.6 * okc} ${okh})`);
     metaDark = bodyColor.rgb;
     const sectionColor = new Couleur(`oklch(30.7% ${okc} ${okh})`);

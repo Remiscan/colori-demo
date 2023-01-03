@@ -115,7 +115,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
       <?php
       /* Définition des couleurs du thème sombre */
-      $okc = min($startColor->okc(), 0.023);
+      $okc = min($startColor->okc(), 0.03);
       $bodyColorDark = new Couleur("oklch(20.5% ".(.6 * $okc)." $okh)");
       $sectionColor = new Couleur("oklch(30.7% $okc $okh)");
       $codeColor = $bodyColorDark;
