@@ -528,7 +528,7 @@ html[data-show-documentation="true"] body {
 
 @media (max-width: 672px) {
   html {
-    --section-padding: .6rem;
+    --section-padding: 8px;
   }
 }
 
