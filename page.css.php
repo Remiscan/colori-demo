@@ -1146,6 +1146,7 @@ table.donnees th {
 .donnees color-swatch > .color-swatch-preview {
   /*display: none;*/
   border-radius: .4em;
+  box-shadow: inset 0 0 0 2px currentColor;
 }
 
 .donnees color-swatch > button {
