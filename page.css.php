@@ -60,8 +60,6 @@ html {
   font-family: system-ui, 'Roboto', Helvetica, Arial, sans-serif;
   --min-font: 1.0; /* rem */
   --max-font: 1.1; /* rem */
-  --min-screen: 60; /* 960px si 1rem = 16px */
-  --max-screen: 80; /* 1280px si 1rem = 320px */
   font-size: calc(1rem * var(--min-font));
   --mod: 1.250;
 }
@@ -118,7 +116,7 @@ button {
   margin: 0;
   padding: .4em 1.2em;
   border: 1px solid var(--button-border-color);
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   background: var(--button-bg-color);
   white-space: nowrap;
   text-decoration: none;
@@ -221,7 +219,7 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   box-shadow: none;
   --height: 1.8rem;
   background-color: var(--body-color);
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
 }
 
 [is="tab-list"]:not([role="tablist"]) {
@@ -245,7 +243,7 @@ input[type="radio"]:focus:not(:focus-visible) + label {
   font-weight: 400;
   color: var(--h1-color);
   padding: 0 .6rem;
-  border-radius: .5rem;
+  border-radius: calc(.85 * var(--border-radius));
   cursor: default;
   min-width: var(--tap-safe-size);
 }
@@ -341,7 +339,7 @@ a:hover,
 a:focus,
 a:active {
   text-decoration: none;
-  border-radius: .2em;
+  border-radius: calc(.33 * var(--border-radius));
 }
 
 a:hover,
@@ -406,7 +404,7 @@ html {
   --h-diff: -1;
   --text-strong-color: var(--h3-color);
   --section-padding: .9rem;
-  --section-gap: 1.2rem;
+  --border-radius: .6rem;
 
   --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
   linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
@@ -531,7 +529,6 @@ html[data-show-documentation="true"] body {
 @media (max-width: 672px) {
   html {
     --section-padding: .6rem;
-    --section-gap: .6rem;
   }
 }
 
@@ -581,7 +578,7 @@ header>h1 {
   /*clip-path: circle(48%);*/
   /*filter: hue-rotate(calc(var(--icon-hue-difference) * 1deg)) saturate(calc(var(--icon-saturation-ratio) * 100%));*/
   border: 2px solid var(--body-color);
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   overflow: hidden;
   --icon-bg-color: var(--section-color);
   --icon-shadow-color: var(--body-color);
@@ -627,7 +624,7 @@ theme-selector>.selector {
   box-shadow: 0 1px .2rem 1px var(--body-color);
   margin-top: .9rem;
   border: none;
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   overflow: hidden;
   z-index: 100;
   transform: translateY(-.2rem);
@@ -768,32 +765,15 @@ footer {
   z-index: 2;
 }
 
-main {
-  grid-row: 2 / -2;
-  grid-column: 2 / -2;
-  z-index: 1;
-  padding: var(--section-padding);
-  
-  display: grid;
-  grid-template-columns: 1fr min(100%, 42rem) 1fr;
-  row-gap: var(--section-gap);
-  align-content: start;
-}
-
-main > * {
-  grid-column: 2;
-}
-
 header,
 footer {
   background: var(--bg-color);
 }
 
 header,
-main,
 section,
 footer {
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   grid-column: 3;
 }
 
@@ -828,7 +808,7 @@ footer {
   position: relative;
   padding: 0 var(--section-padding);
   margin-bottom: env(safe-area-inset-bottom, 0);
-  margin-top: calc(-2.5 * var(--section-gap));
+  margin-top: calc(-2.5 * var(--section-padding));
 }
 
 remiscan-logo {
@@ -841,7 +821,7 @@ remiscan-logo {
 remiscan-logo::part(link) {
   --text-color: var(--link-color);
   --text-gradient: var(--logo-gradient);
-  border-radius: .2em;
+  border-radius: calc(.33 * var(--border-radius));
 }
 
 remiscan-logo::part(link):hover,
@@ -891,7 +871,7 @@ input[type="text"] {
   font-family: 'Fira Code';
   color: var(--text-color);
   background-color: var(--input-bg-color);
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   box-shadow: 0 0 0 1px var(--body-color);
 }
 
@@ -933,7 +913,7 @@ color-picker {
   --size: 2.5rem;
   --range-height: 15rem;
   --range-border-width: 2px;
-  --range-border-radius: .6rem;
+  --range-border-radius: var(--border-radius);
 }
 
 @media (max-width: 672px) {
@@ -985,7 +965,7 @@ color-picker::part(button) {
   padding: 2px;
   background-color: var(--button-bg-color);
   border: 1px solid var(--button-border-color);
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   white-space: nowrap;
   text-decoration: none;
   overflow: hidden;
@@ -1002,7 +982,7 @@ color-picker::part(button):is(:active) {
 }
 
 color-picker::part(color-preview) {
-  border-radius: .6em;
+  border-radius: var(--border-radius);
 }
 
 
@@ -1056,7 +1036,7 @@ color-picker::part(color-preview) {
   font-weight: normal;
   color: inherit;
   padding: .4em .6em;
-  border-radius: 4px;
+  border-radius: calc(.5 * var(--border-radius));
 }
 
 
@@ -1092,7 +1072,7 @@ color-picker::part(color-preview) {
 .choix-format input[type="radio"][name="choix-format"] + label,
 #resultats input[type="radio"][role="tab"] + label {
   box-shadow: none;
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   border: 1px solid var(--input-bg-color);
 }
 
@@ -1108,7 +1088,7 @@ color-picker::part(color-preview) {
 
 .choix-format input[type="radio"][name="choix-format"]:focus:not(:focus-visible) + label,
 #resultats input[type="radio"][role="tab"]:focus:not(:focus-visible) + label {
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
 }
 
 .choix-format input[type="radio"][name="choix-format"]:active + label,
@@ -1159,19 +1139,19 @@ table.donnees th {
   background-color: var(--frame-color);
   gap: calc(2 * var(--preview-border-width));
   padding: var(--preview-border-width);
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   --color-preview-width: 2em;
 }
 
 .donnees color-swatch > .color-swatch-preview {
-  border-radius: .4em;
+  border-radius: calc(.66 * var(--border-radius));
   box-shadow: inset 0 0 0 2px currentColor;
 }
 
 .donnees color-swatch > button {
   padding: var(--preview-border-width);
   border: none;
-  border-radius: .4em;
+  border-radius: calc(.66 * var(--border-radius));
 }
 
 .donnees color-swatch > button:not(:hover, :focus, :active) {
@@ -1207,7 +1187,7 @@ table.donnees th {
   --border-size: var(--preview-border-width);
   align-self: stretch;
   background-color: var(--frame-color);
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   position: relative;
   font-size: 0;
 }
@@ -1228,7 +1208,7 @@ table.donnees th {
   background-image: var(--echiquier-transparence);
   background-size: 16px 16px;
   background-position: 0 0, 8px 8px;
-  border-radius: .49rem;
+  border-radius: calc(.82 * var(--border-radius));
   position: absolute;
 }
 
@@ -1241,7 +1221,7 @@ table.donnees th {
   top: var(--border-size);
   left: var(--border-size);
   background-color: var(--user-color);
-  border-radius: .4rem;
+  border-radius: calc(.66 * var(--border-radius));
   position: absolute;
 }
 
@@ -1476,7 +1456,7 @@ aside.nav-documentation {
   position: sticky;
   top: 1.8rem;
   background-color: var(--section-color);
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   padding: .6rem;
   display: grid;
   grid-template-rows: 1fr;
@@ -1584,14 +1564,14 @@ pre[class*="language-"] {
 	margin: 1em 0;
 	overflow: auto;
 	border: none;
-	border-radius: .5em;
+	border-radius: calc(.83 * var(--border-radius));
 	box-shadow: none;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	padding: .05em .2em;
-	border-radius: .3em;
+	border-radius: calc(.5 * var(--border-radius));
 	border: none;
 	box-shadow: none;
 	white-space: nowrap;
@@ -1648,7 +1628,7 @@ pre[class*="language-"],
 .note {
   border-right: none;
   border-bottom: none;
-  border-radius: .6rem;
+  border-radius: var(--border-radius);
   background-color: var(--note-color);
   padding: .6em;
   margin: 1em 0;
@@ -1685,7 +1665,7 @@ article>pre:last-child {
   font-weight: 600;
   margin-top: .6rem;
   padding: .4em 1.2em;
-  border-radius: 10px;
+  border-radius: calc(.66 * var(--border-radius));
   min-height: var(--tap-safe-size);
 }
 
