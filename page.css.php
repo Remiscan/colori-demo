@@ -901,6 +901,7 @@ input[type="text"] {
   grid-column: 1 / 3;
   width: 100%;
   height: 100%;
+  min-height: calc(2.5rem + 6px);
   padding-right: calc(.6em + 2.5rem);
 }
 
