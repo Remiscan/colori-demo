@@ -21,8 +21,15 @@ require_once './ext/Parsedown.php';
 $Parsedown = new Parsedown();
 
 $namedColors = array_keys(Couleur::NAMED_COLORS);
-$r = mt_rand(0, count($namedColors) - 1);
-$startColor = new Couleur($namedColors[$r]);
+$tries = 0; $found = false;
+while (!$found && $tries < 5) {
+  $r = mt_rand(0, count($namedColors) - 1);
+  $startColor = new Couleur($namedColors[$r]);
+  if ($startColor->okc() >= 0.05) { $found = true; }
+  $tries++;
+}
+if (!$found) $startColor = new Couleur('aquamarine');
+
 ?>
 <!doctype html>
 <html lang="<?=$lang?>"
