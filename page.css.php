@@ -1261,7 +1261,7 @@ input[type="number"][data-property]:active {
 }
 
 @media (max-width: 672px) {
-  .donnees {
+  .donnees:is(#results-named-formats, #results-color-spaces) {
     flex-direction: column;
     align-items: start;
   }
