@@ -70,47 +70,47 @@ $startColor = new Couleur($namedColors[$r]);
       <?php themeSheetStart();
 
       $colorPreview = Couleur::blend('white', $startColor);
-      $cieh = round($startColor->cieh());
+      $okh = round($startColor->okh());
 
       /* Définition des couleurs du thème clair */
-      $ciec = min($startColor->ciec(), 75/sqrt(3));
-      $bodyColor = new Couleur("lch(75% $ciec $cieh)");
-      $sectionColor = new Couleur("lch(85% ". (0.6 * $ciec) ." $cieh)");
-      $codeColor = new Couleur("lch(92% ". (0.3 * $ciec) ." $cieh)");
+      $okc = min($startColor->okc(), 0.1236);
+      $bodyColor = new Couleur("oklch(77% $okc $okh)");
+      $sectionColor = new Couleur("oklch(86.2% ". (0.6 * $okc) ." $okh)");
+      $codeColor = new Couleur("oklch(92.7% ". (0.3 * $okc) ." $okh)");
       ?>
       :root[data-theme="light"] {
         /* Background colors */
         --body-color: <?=$bodyColor->hsl()?>;
         --section-color: <?=$sectionColor->hsl()?>;
-        --frame-color: <?=$codeColor->improveContrast($colorPreview, 2.5, as: 'background')->hsl()?>;
+        --frame-color: <?=$codeColor->hsl()?>;
         --code-color: <?=$codeColor->hsl()?>;
         --tab-hover-color: <?=$sectionColor->replace('a', .7)->hsl()?>;
         --note-color: <?=Couleur::blend($sectionColor, $bodyColor->replace('a', .3))->hsl()?>;
         /* Text colors */
-        --h1-color: <?= (new Couleur("lch(30% ". (0.6 * $ciec) ." $cieh)"))->hsl() ?>;
-        --h3-color: <?= (new Couleur("lch(45% $ciec $cieh)"))->hsl() ?>;
+        --h1-color: <?= (new Couleur("oklch(38.8% ". (0.6 * $okc) ." $okh)"))->hsl() ?>;
+        --h3-color: <?= (new Couleur("oklch(51.2% $okc $okh)"))->hsl() ?>;
         --text-color: black;
-        --link-color: <?= (new Couleur("lch(30% $ciec $cieh)"))->hsl() ?>;
-        --link-underline-color: <?= (new Couleur("lch(30% ". (2 * $ciec) ." $cieh / .5)"))->hsl() ?>;
+        --link-color: <?= (new Couleur("oklch(38.3% $okc $okh)"))->hsl() ?>;
+        --link-underline-color: <?= (new Couleur("oklch(37.3% ". (2 * $okc) ." $okh / .5)"))->hsl() ?>;
         /* Input colors */
-        --input-bg-color: <?= (new Couleur("lch(95% ". (0.3 * $ciec) ." $cieh)"))->hsl() ?>;
-        --input-active-bg-color: <?= (new Couleur("lch(99% ". (0.1 * $ciec) ." $cieh)"))->hsl() ?>;
-        --input-placeholder-color: <?= (new Couleur("lch(25% ". (0.5 * $ciec) ." $cieh / .5)"))->hsl() ?>;
+        --input-bg-color: <?= (new Couleur("oklch(95.3% ". (0.3 * $okc) ." $okh)"))->hsl() ?>;
+        --input-active-bg-color: <?= (new Couleur("oklch(99% ". (0.1 * $okc) ." $okh)"))->hsl() ?>;
+        --input-placeholder-color: <?= (new Couleur("oklch(34.6% ". (0.5 * $okc) ." $okh / .5)"))->hsl() ?>;
         /* Syntax coloring colors */
-        --token-number: <?= (new Couleur("lch(50% 70 ". ($cieh - 90) .")"))->hsl() ?>;
-        --token-string: <?= (new Couleur("lch(50% 70 ". ($cieh + 45) .")"))->hsl() ?>;
-        --token-operator: <?= (new Couleur("lch(50% 70 ". ($cieh - 45) .")"))->hsl() ?>;
-        --token-keyword: <?= (new Couleur("lch(50% 70 ". ($cieh + 135) .")"))->hsl() ?>;
+        --token-number: <?= (new Couleur("oklch(55% 0.1876 ". ($okh - 90) .")"))->hsl() ?>;
+        --token-string: <?= (new Couleur("oklch(55% 0.1876 ". ($okh + 45) .")"))->hsl() ?>;
+        --token-operator: <?= (new Couleur("oklch(55% 0.1876 ". ($okh - 45) .")"))->hsl() ?>;
+        --token-keyword: <?= (new Couleur("oklch(55% 0.1876 ". ($okh + 135) .")"))->hsl() ?>;
         /* Button colors */
-        --button-bg-color: <?= (new Couleur("lch(90% ". (0.6 * $ciec) ." $cieh)"))->hsl() ?>;
-        --button-active-bg-color: <?= (new Couleur("lch(98% ". (0.3 * $ciec) ." $cieh)"))->hsl() ?>;
+        --button-bg-color: <?= (new Couleur("oklch(90.5% ". (0.6 * $okc) ." $okh)"))->hsl() ?>;
+        --button-active-bg-color: <?= (new Couleur("oklch(97.8% ". (0.3 * $okc) ." $okh)"))->hsl() ?>;
       }
 
       <?php
       /* Définition des couleurs du thème sombre */
-      $ciec = min($startColor->ciec(), 8/sqrt(1.040816));
-      $bodyColorDark = new Couleur("lch(8% ".(.6 * $ciec)." $cieh)");
-      $sectionColor = new Couleur("lch(20% $ciec $cieh)");
+      $okc = min($startColor->okc(), 0.023);
+      $bodyColorDark = new Couleur("oklch(20.5% ".(.6 * $okc)." $okh)");
+      $sectionColor = new Couleur("oklch(30.7% $okc $okh)");
       $codeColor = $bodyColorDark;
       ?>
       :root[data-theme="dark"] {
@@ -122,23 +122,23 @@ $startColor = new Couleur($namedColors[$r]);
         --tab-hover-color: <?=$sectionColor->replace('a', .7)->hsl()?>;
         --note-color: <?=Couleur::blend($sectionColor, $bodyColorDark->replace('a', .5))->hsl()?>;
         /* Text colors */
-        --h1-color: <?= (new Couleur("lch(80% $ciec $cieh)"))->hsl() ?>;
-        --h3-color: <?= (new Couleur("lch(70% ". (1.7 * $ciec) ." $cieh)"))->hsl() ?>;
-        --text-color: <?= (new Couleur("lch(90% ". (0.2 * $ciec) ." $cieh)"))->hsl() ?>;
-        --link-color: <?= (new Couleur("lch(80% ". (1.7 * $ciec) ." $cieh)"))->hsl() ?>;
-        --link-underline-color: <?= (new Couleur("lch(80% ". (2 * 1.7 * $ciec) ." $cieh / .5)"))->hsl() ?>;
+        --h1-color: <?= (new Couleur("oklch(82.5% $okc $okh)"))->hsl() ?>;
+        --h3-color: <?= (new Couleur("oklch(73.7% ". (1.7 * $okc) ." $okh)"))->hsl() ?>;
+        --text-color: <?= (new Couleur("oklch(91.3% ". (0.2 * $okc) ." $okh)"))->hsl() ?>;
+        --link-color: <?= (new Couleur("oklch(82.3% ". (1.7 * $okc) ." $okh)"))->hsl() ?>;
+        --link-underline-color: <?= (new Couleur("oklch(81.9% ". (2 * 1.7 * $okc) ." $okh / .5)"))->hsl() ?>;
         /* Input colors */
-        --input-bg-color: <?= (new Couleur("lch(30% ". (1.5 * $ciec) ." $cieh)"))->hsl() ?>;
-        --input-active-bg-color: <?= (new Couleur("lch(10% ". (0.6 * $ciec) ." $cieh)"))->hsl() ?>;
-        --input-placeholder-color: <?= (new Couleur("lch(90% ". (0.5 * $ciec) ." $cieh / .5)"))->hsl() ?>;
+        --input-bg-color: <?= (new Couleur("oklch(39.3% ". (1.5 * $okc) ." $okh)"))->hsl() ?>;
+        --input-active-bg-color: <?= (new Couleur("oklch(22.3% ". (0.6 * $okc) ." $okh)"))->hsl() ?>;
+        --input-placeholder-color: <?= (new Couleur("oklch(91.3% ". (0.5 * $okc) ." $okh / .5)"))->hsl() ?>;
         /* Syntax coloring colors */
-        --token-number: <?= (new Couleur("lch(80% 70 ". ($cieh - 90) .")"))->hsl() ?>;
-        --token-string: <?= (new Couleur("lch(80% 70 ". ($cieh + 45) .")"))->hsl() ?>;
-        --token-operator: <?= (new Couleur("lch(80% 70 ". ($cieh - 45) .")"))->hsl() ?>;
-        --token-keyword: <?= (new Couleur("lch(80% 70 ". ($cieh + 135) .")"))->hsl() ?>;
+        --token-number: <?= (new Couleur("oklch(80.6% 0.1941 ". ($okh - 90) .")"))->hsl() ?>;
+        --token-string: <?= (new Couleur("oklch(80.6% 0.1941 ". ($okh + 45) .")"))->hsl() ?>;
+        --token-operator: <?= (new Couleur("oklch(80.6% 0.1941 ". ($okh - 45) .")"))->hsl() ?>;
+        --token-keyword: <?= (new Couleur("oklch(80.6% 0.1941 ". ($okh + 135) .")"))->hsl() ?>;
         /* Button colors */
-        --button-bg-color: <?= (new Couleur("lch(25% ". (.75 * $ciec) ." $cieh)"))->hsl() ?>;
-        --button-active-bg-color: <?= (new Couleur("lch(35% ". (1.5 * $ciec) ." $cieh)"))->hsl() ?>;
+        --button-bg-color: <?= (new Couleur("oklch(35.2% ". (.75 * $okc) ." $okh)"))->hsl() ?>;
+        --button-active-bg-color: <?= (new Couleur("oklch(43.6% ". (1.5 * $okc) ." $okh)"))->hsl() ?>;
       }
 
       <?php themeSheetEnd(closeComment: false); ?>
