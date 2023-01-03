@@ -162,7 +162,7 @@ $startColor = new Couleur($namedColors[$r]);
     </svg>
 
     <header>
-      <h1>colori</h1>
+      <h1>Colori</h1>
 
       <div class="groupe-langages">
         <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable
