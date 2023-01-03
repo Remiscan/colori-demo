@@ -32,7 +32,7 @@ const sheet = new CSSStyleSheet();
 sheet.replaceSync(/*css*/`
   color-swatch {
     display: inline-grid;
-    grid-template-columns: 3em auto auto;
+    grid-template-columns: var(--color-preview-width) auto auto;
     gap: 1ch;
     align-items: center;
     min-height: 2em;
@@ -40,6 +40,7 @@ sheet.replaceSync(/*css*/`
     linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
     linear-gradient(to right, #ddd 0% 100%);
     --warning-color: darkred;
+    --color-preview-width: 3em;
   }
   @media (prefers-color-scheme: dark) {
     color-swatch {
@@ -47,15 +48,15 @@ sheet.replaceSync(/*css*/`
     }
   }
   color-swatch[clipped] {
-    grid-template-columns: 3em auto auto auto;
+    grid-template-columns: var(--color-preview-width) auto auto auto;
     grid-template-rows: auto auto;
     row-gap: 0;
   }
   color-swatch[mini] {
-    grid-template-columns: 3em;
+    grid-template-columns: var(--color-preview-width);
   }
   color-swatch[clipped]:is([format="name"], [format="hex"]) {
-    grid-template-columns: 3em auto auto;
+    grid-template-columns: var(--color-preview-width) auto auto;
   }
   color-swatch > .color-swatch-preview {
     --displayed-color: var(--color);

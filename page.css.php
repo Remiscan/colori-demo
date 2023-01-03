@@ -1160,11 +1160,10 @@ table.donnees th {
   gap: calc(2 * var(--preview-border-width));
   padding: var(--preview-border-width);
   border-radius: .6rem;
-  /*grid-template-columns: auto auto;*/
+  --color-preview-width: 2em;
 }
 
 .donnees color-swatch > .color-swatch-preview {
-  /*display: none;*/
   border-radius: .4em;
   box-shadow: inset 0 0 0 2px currentColor;
 }
