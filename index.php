@@ -162,6 +162,10 @@ $startColor = new Couleur($namedColors[$r]);
     </svg>
 
     <header>
+      <picture class="app-icon">
+        <?php include './icons/icon.svg'; ?>
+      </picture>
+
       <h1>Colori</h1>
 
       <div class="groupe-langages">
@@ -181,7 +185,8 @@ $startColor = new Couleur($namedColors[$r]);
       </div>
     </header>
 
-    <section id="intro" class="no-title">
+    <section id="intro">
+      <h2 data-string="titre-section-intro"><?=$translation->get('titre-section-intro')?></h2>
       <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
       <p data-string="documentation-warning-js"><?=$translation->get('documentation-warning-js')?></p>
     </section>

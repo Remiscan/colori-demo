@@ -525,7 +525,7 @@ body { /* Desktop-like */
   box-sizing: border-box;
   grid-template-columns: 1fr var(--section-padding) min(100% - 2 * var(--section-padding), 42rem) var(--section-padding) 1fr;
   grid-template-rows: repeat(3, auto) 1fr auto;
-  row-gap: var(--section-padding);
+  row-gap: calc(2 * var(--section-padding));
   width: 100%;
   min-height: 100%;
   margin: 0;
@@ -557,12 +557,14 @@ header {
   grid-row: 1 / 2;
   grid-column: 2 / 5;
   display: grid;
-  grid-template-columns: [logo-start] 1fr [logo-end github-start] auto [github-end] 1.2rem [options-start] auto [options-end];
+  grid-template-columns: [icon-start] auto [icon-end logo-start] auto [logo-end] 1fr [options-start] auto [options-end];
+  gap: .6rem;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   position: relative;
   background: var(--section-color);
   padding: 0 var(--section-padding);
+  padding-left: 0;
   margin-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
   font-size: .9rem;
@@ -571,15 +573,48 @@ header {
 header>h1 {
   grid-column: logo-start / logo-end;
   grid-row: 1 / 2;
-  justify-self: start;
-  align-self: end;
   transform: none;
   position: relative;
-  text-align: center;
-  transform: translateY(17.7%);
+  /*transform: translateY(17.7%);*/
   z-index: 0;
-  font-size: calc(var(--mod) * var(--mod) * var(--mod) * 1rem);
+  font-size: calc(var(--mod) * var(--mod) * 1rem);
+  color: var(--h3-color);
   --shadow-color: var(--body-color);
+  text-shadow: none;
+}
+
+
+/* Icon */
+
+.app-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin: 3px;
+  /*clip-path: circle(48%);*/
+  /*filter: hue-rotate(calc(var(--icon-hue-difference) * 1deg)) saturate(calc(var(--icon-saturation-ratio) * 100%));*/
+  border: 2px solid var(--body-color);
+  border-radius: .6rem;
+  overflow: hidden;
+  --icon-bg-color: var(--section-color);
+  --icon-shadow-color: var(--body-color);
+  --icon-hash-color: var(--h3-color);
+}
+
+.app-icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.app-icon > svg .bg {
+  fill: var(--icon-bg-color);
+}
+
+.app-icon > svg .ombres > rect {
+  fill: var(--icon-shadow-color);
+}
+
+.app-icon > svg .croisillon > rect {
+  fill: var(--icon-hash-color);
 }
 
 
@@ -817,7 +852,7 @@ footer {
   position: relative;
   padding: 0 var(--section-padding);
   margin-bottom: env(safe-area-inset-bottom, 0);
-  margin-top: calc(-1 * var(--section-gap));
+  margin-top: calc(-2.5 * var(--section-gap));
 }
 
 remiscan-logo {
