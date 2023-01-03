@@ -880,7 +880,7 @@ input[type="text"] {
   grid-column: 1 / 3;
   width: 100%;
   height: 100%;
-  min-height: calc(2.5rem + 6px);
+  min-height: calc(2.5rem + 4px);
   padding-right: calc(.6em + 2.5rem);
 }
 
@@ -928,12 +928,6 @@ color-picker {
   }
 }*/
 
-color-picker::part(button) {
-  padding: 0;
-  border: 2px solid transparent;
-  margin: 0;
-}
-
 color-picker::part(selector) {
   margin: auto;
   z-index: unset;
@@ -964,7 +958,8 @@ color-picker::part(button) {
   margin: 0;
   padding: 2px;
   background-color: var(--button-bg-color);
-  border: 1px solid var(--button-border-color);
+  border: none;
+  box-shadow: 0 0 0 1px var(--button-border-color);
   border-radius: var(--border-radius);
   white-space: nowrap;
   text-decoration: none;
@@ -973,12 +968,12 @@ color-picker::part(button) {
 
 color-picker::part(button):is(:hover, :focus) {
   background-color: var(--button-hover-bg-color);
-  border-color: var(--button-hover-border-color);
+  --button-border-color: var(--button-hover-border-color);
 }
 
 color-picker::part(button):is(:active) {
   background-color: var(--button-active-bg-color);
-  border-color: var(--button-hover-border-color);
+  --button-border-color: var(--button-hover-border-color);
 }
 
 color-picker::part(color-preview) {
