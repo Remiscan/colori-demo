@@ -108,7 +108,6 @@ h6, .h6 {
  *Boutons
  */
 
-color-picker::part(button),
 button {
   -webkit-appearance: none;
   appearance: none;
@@ -125,11 +124,6 @@ button {
   text-decoration: none;
 }
 
-color-picker::part(color-preview) {
-  border-radius: .45rem;
-}
-
-color-picker::part(button):is(:hover, :focus, :active),
 button:hover,
 button:focus,
 button:active {
@@ -137,7 +131,6 @@ button:active {
   background: var(--button-hover-bg-color);
 }
 
-color-picker::part(button):active,
 button:active {
   background: var(--button-active-bg-color);
 }
@@ -908,7 +901,7 @@ input[type="text"] {
   grid-column: 1 / 3;
   width: 100%;
   height: 100%;
-  padding-right: calc(.6em + 2rem);
+  padding-right: calc(.6em + 2.5rem);
 }
 
 color-picker::part(select):hover,
@@ -936,8 +929,8 @@ color-picker {
   grid-row: 2;
   grid-column: 2;
   justify-self: end;
-  right: .6em;
-  --size: 2rem;
+  right: 0;
+  --size: 2.5rem;
   --range-height: 15rem;
   --range-border-width: 2px;
   --range-border-radius: .6rem;
@@ -983,6 +976,33 @@ color-picker::part(input-number) {
   font-size: .9rem;
   min-width: 5ch;
   color: var(--text-color);
+}
+
+color-picker::part(button) {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 2px;
+  background-color: var(--button-bg-color);
+  border: 1px solid var(--button-border-color);
+  border-radius: .6rem;
+  white-space: nowrap;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+color-picker::part(button):is(:hover, :focus) {
+  background-color: var(--button-hover-bg-color);
+  border-color: var(--button-hover-border-color);
+}
+
+color-picker::part(button):is(:active) {
+  background-color: var(--button-active-bg-color);
+  border-color: var(--button-hover-border-color);
+}
+
+color-picker::part(color-preview) {
+  border-radius: .6em;
 }
 
 
