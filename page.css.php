@@ -529,7 +529,7 @@ body { /* Desktop-like */
   width: 100%;
   min-height: 100%;
   margin: 0;
-  padding: 0;
+  padding: var(--section-padding) 0;
   margin-right: env(safe-area-inset-right, 0);
   margin-left: env(safe-area-inset-left, 0);
   background-color: var(--body-color);
@@ -807,14 +807,6 @@ section,
 footer {
   border-radius: .6rem;
   grid-column: 3;
-}
-
-header {
-  border-radius: 0 0 .6rem .6rem;
-}
-
-footer {
-  border-radius: .6rem .6rem 0 0;
 }
 
 section {
