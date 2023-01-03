@@ -206,7 +206,21 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <label for="entree"><?=$translation->get('demo-input-label')?></label>
         </h3>
 
-        <div class="exemples-saisie exemples-valeurs">
+        <div class="exemples-saisie exemples-valeurs only-pc">
+          <span><?=$translation->get('exemple-abbr')?></span>
+          <button type="button" class="exemple">pink</button>
+          <button type="button" class="exemple">#4169E1</button>
+          <button type="button" class="exemple">rgb(255, 127, 80)</button>
+          <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
+        </div>
+
+        <input id="entree" class="h4" type="text" data-abbr="<?=$translation->get('exemple-abbr')?>"
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                placeholder="<?=$startColor->name()?>">
+
+        <color-picker format="hsl" color="<?=$startColor->name()?>"></color-picker>
+
+        <div class="exemples-saisie exemples-valeurs only-mobile">
           <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple">pink</button>
           <button type="button" class="exemple">#4169E1</button>
@@ -224,12 +238,6 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <button type="button" class="exemple">orchid.interpolate(palegreen, 4, oklch)</button>
           <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
         </div>
-
-        <input id="entree" class="h4" type="text" data-abbr="<?=$translation->get('exemple-abbr')?>"
-                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                placeholder="<?=$startColor->name()?>">
-
-        <color-picker format="hsl" color="<?=$startColor->name()?>"></color-picker>
       </div>
 
       <div id="resultats">

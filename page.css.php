@@ -1291,6 +1291,16 @@ table.donnees th {
     grid-row: auto;
     grid-column: 1;
   }
+
+  .only-pc {
+    display: none;
+  }
+}
+
+@media (min-width: 673px) {
+  .only-mobile {
+    display: none;
+  }
 }
 
 
