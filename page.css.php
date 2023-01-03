@@ -830,10 +830,6 @@ section.no-title {
   margin-top: 0;
 }
 
-#intro {
-  padding-top: var(--section-padding);
-}
-
 p[data-string="documentation-warning-js"] {
   display: none;
 }
