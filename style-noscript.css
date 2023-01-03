@@ -25,7 +25,7 @@ pre, :not(pre) > code {
   background: rgba(0, 0, 0, .8);
 }
 
-p[data-string="documentation-warning-js"] {
+p.warning-js {
   display: block;
   margin-top: .6rem;
 }

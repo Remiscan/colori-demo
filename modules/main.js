@@ -36,7 +36,7 @@ colorPicker.addEventListener('input', event => {
 // Detect clicks on example buttons
 for (const exemple of [...document.querySelectorAll('#demo button.exemple')]) {
   exemple.addEventListener('click', () => {
-    if (exemple.dataset.label == 'more-examples') {
+    if (exemple.dataset.action == 'more-examples') {
       for (const hiddenElement of [...document.querySelectorAll('#saisie [data-hidden]')]) {
         hiddenElement.classList.toggle('off');
       }

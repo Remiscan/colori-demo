@@ -170,9 +170,9 @@ $startColor = new Couleur($namedColors[$r]);
 
       <div class="groupe-langages">
         <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable
-          data-label="github" aria-label="<?=$translation->get('github')?>">
+          aria-label="<?=$translation->get('github')?>">
           <svg viewBox="0 0 16 16" class="github-cat"><use href="#github-cat" /></svg>
-          <span data-string="github"><?=$translation->get('github')?></span>
+          <span class="github-string"><?=$translation->get('github')?></span>
           <span>GitHub</span>
         </a>
         <!--<a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-JavaScript-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="js"><?=$translation->get('titre-section-documentation')?></a>
@@ -186,31 +186,31 @@ $startColor = new Couleur($namedColors[$r]);
     </header>
 
     <section id="intro">
-      <h2 data-string="titre-section-intro"><?=$translation->get('titre-section-intro')?></h2>
-      <p data-string="documentation-intro-p1"><?=$translation->get('documentation-intro-p1')?></p>
-      <p data-string="documentation-warning-js"><?=$translation->get('documentation-warning-js')?></p>
+      <h2><?=$translation->get('titre-section-intro')?></h2>
+      <p><?=$translation->get('documentation-intro-p1')?></p>
+      <p class="warning-js"><?=$translation->get('documentation-warning-js')?></p>
     </section>
 
     <section id="demo">
-      <h2 data-string="titre-section-demo"><?=$translation->get('titre-section-demo')?></h2>
+      <h2><?=$translation->get('titre-section-demo')?></h2>
       
       <div id="saisie">
         <h3 class="no-separator">
-          <label for="entree" data-string="demo-input-label"><?=$translation->get('demo-input-label')?></label>
+          <label for="entree"><?=$translation->get('demo-input-label')?></label>
         </h3>
 
         <div class="exemples-saisie exemples-valeurs">
-          <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
+          <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple">pink</button>
           <button type="button" class="exemple">#4169E1</button>
           <button type="button" class="exemple">rgb(255, 127, 80)</button>
-          <button type="button" class="exemple" data-label="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
+          <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
         </div>
 
-        <p class="instructions-exemples-fonctions off" data-hidden="true" data-string="instructions-demo"><?=$translation->get('instructions-demo')?></p>
+        <p class="instructions-exemples-fonctions off" data-hidden="true"><?=$translation->get('instructions-demo')?></p>
 
         <div class="exemples-saisie exemples-fonctions off" data-hidden="true">
-          <span data-string="exemple-abbr"><?=$translation->get('exemple-abbr')?></span>
+          <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple">pink.invert()</button>
           <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
           <button type="button" class="exemple">black.contrast(white)</button>
@@ -226,7 +226,7 @@ $startColor = new Couleur($namedColors[$r]);
       </div>
 
       <div id="resultats">
-        <h3 class="no-separator" data-string="demo-resultats-titre"><?=$translation->get('demo-resultats-titre')?></h3>
+        <h3 class="no-separator"><?=$translation->get('demo-resultats-titre')?></h3>
 
         <div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>">
           <button role="tab" aria-controls="results-named-formats"><?=$translation->get('tab-label-named-formats')?></button>
@@ -234,7 +234,7 @@ $startColor = new Couleur($namedColors[$r]);
         </div>
 
         <div class="donnees" id="results-values">
-          <div class="format gradient" data-string="apercu-gradient"><?=$translation->get('apercu-gradient')?></div>
+          <div class="format gradient"><?=$translation->get('apercu-gradient')?></div>
 
           <div class="format valeur">
             <pre class="language-css"><code class="language-css"></code></pre>
@@ -315,10 +315,10 @@ $startColor = new Couleur($namedColors[$r]);
     $quicknavPhpEn = prepareNav($docuPhpEn);
     ?>
 
-    <button type="button" class="show-documentation" data-string="button-show-documentation"><?=$translation->get('button-show-documentation')?></button>
+    <button type="button" class="show-documentation"><?=$translation->get('button-show-documentation')?></button>
 
-    <aside class="nav-documentation nav-rapide" data-label="nav-documentation">
-      <h2 class="titre-nav-rapide" data-string="nav-documentation"><?=$translation->get('nav-documentation')?></h2>
+    <aside class="nav-documentation nav-rapide">
+      <h2 class="titre-nav-rapide"><?=$translation->get('nav-documentation')?></h2>
       <div lang="fr" data-prog-language="js"><?=$quicknavJsFr?></div>
       <div lang="en" data-prog-language="js"><?=$quicknavJsEn?></div>
       <div lang="fr" data-prog-language="php"><?=$quicknavPhpFr?></div>
@@ -327,7 +327,7 @@ $startColor = new Couleur($namedColors[$r]);
 
     <a id="documentation" aria-hidden="true"></a>
     <section class="documentation">
-      <h1 data-string="titre-section-documentation"><?=$translation->get('titre-section-documentation')?></h1>
+      <h1><?=$translation->get('titre-section-documentation')?></h1>
 
       <div is="tab-list" group="tabs-prog-language" aria-label="<?=$translation->get('tabs-group-language-label')?>">
         <button role="tab" aria-controls="doc-js">JavaScript</button>
@@ -346,7 +346,7 @@ $startColor = new Couleur($namedColors[$r]);
     */ ?>
 
     <footer>
-      <span data-string="made-by"><?=$translation->get('made-by')?></span>&nbsp;<remiscan-logo animate></remiscan-logo>
+      <span><?=$translation->get('made-by')?></span>&nbsp;<remiscan-logo animate></remiscan-logo>
     </footer>
 
   </body>
