@@ -289,7 +289,6 @@ h1, h2 {
   top: 0;
   left: 0;
   transform: translate(var(--section-padding), calc(-100% + 17.71%));
-  user-select: none;
   --shadow-color: var(--body-color);
   text-shadow: 0 0 0 var(--shadow-color), 1px 1px 0 var(--shadow-color), 2px 2px 0 var(--shadow-color), 3px 3px 0 var(--shadow-color), 4px 4px 0 var(--shadow-color), 5px 5px 0 var(--shadow-color), 6px 6px 0 var(--shadow-color), 7px 7px 0 var(--shadow-color), 8px 8px 0 var(--shadow-color), 9px 9px 0 var(--shadow-color), 10px 10px 0 var(--shadow-color), 11px 11px 0 var(--shadow-color), 12px 12px 0 var(--shadow-color), 13px 13px 0 var(--shadow-color), 14px 14px 0 var(--shadow-color), 15px 15px 0 var(--shadow-color), 16px 16px 0 var(--shadow-color), 17px 17px 0 var(--shadow-color), 18px 18px 0 var(--shadow-color), 19px 19px 0 var(--shadow-color), 20px 20px 0 var(--shadow-color), 21px 21px 0 var(--shadow-color), 22px 22px 0 var(--shadow-color), 23px 23px 0 var(--shadow-color), 24px 24px 0 var(--shadow-color), 25px 25px 0 var(--shadow-color), 26px 26px 0 var(--shadow-color), 27px 27px 0 var(--shadow-color), 28px 28px 0 var(--shadow-color), 29px 29px 0 var(--shadow-color), 30px 30px 0 var(--shadow-color), 31px 31px 0 var(--shadow-color), 32px 32px 0 var(--shadow-color), 33px 33px 0 var(--shadow-color), 34px 34px 0 var(--shadow-color), 35px 35px 0 var(--shadow-color), 36px 36px 0 var(--shadow-color), 37px 37px 0 var(--shadow-color), 38px 38px 0 var(--shadow-color), 39px 39px 0 var(--shadow-color), 40px 40px 0 var(--shadow-color);
   clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
