@@ -1000,6 +1000,10 @@ color-picker::part(color-preview) {
   border-radius: calc(.5 * var(--border-radius));
 }
 
+.exemple kbd {
+  font-family: inherit;
+}
+
 [data-action="more-examples"] {
   padding-inline: 1.5ch;
 }

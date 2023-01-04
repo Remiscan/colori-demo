@@ -209,9 +209,9 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
         <div class="exemples-saisie exemples-valeurs only-pc">
           <span><?=$translation->get('exemple-abbr')?></span>
-          <button type="button" class="exemple">pink</button>
-          <button type="button" class="exemple">#4169E1</button>
-          <button type="button" class="exemple">rgb(255, 99, 71)</button>
+          <button type="button" class="exemple"><kbd>pink</kbd></button>
+          <button type="button" class="exemple"><kbd>#4169E1</kbd></button>
+          <button type="button" class="exemple"><kbd>rgb(255, 99, 71)</kbd></button>
           <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>"></button>
         </div>
 
@@ -223,9 +223,9 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
         <div class="exemples-saisie exemples-valeurs only-mobile">
           <span><?=$translation->get('exemple-abbr')?></span>
-          <button type="button" class="exemple">pink</button>
-          <button type="button" class="exemple">#4169E1</button>
-          <button type="button" class="exemple">rgb(255, 99, 71)</button>
+          <button type="button" class="exemple"><kbd>pink</kbd></button>
+          <button type="button" class="exemple"><kbd>#4169E1</kbd></button>
+          <button type="button" class="exemple"><kbd>rgb(255, 99, 71)</kbd></button>
           <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>"></button>
         </div>
 
@@ -233,11 +233,11 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
         <div class="exemples-saisie exemples-fonctions off" data-hidden="true">
           <span><?=$translation->get('exemple-abbr')?></span>
-          <button type="button" class="exemple">pink.invert()</button>
-          <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
-          <button type="button" class="exemple">black.contrast(white)</button>
-          <button type="button" class="exemple">orchid.interpolate(palegreen, 4, oklch)</button>
-          <button type="button" class="exemple">rgb(255, 99, 71).scale(s, .5).blend(blue.replace(a, .2))</button>
+          <button type="button" class="exemple"><kbd>pink.invert()</kbd></button>
+          <button type="button" class="exemple"><kbd>#4169E1.scale(l, .5)</kbd></button>
+          <button type="button" class="exemple"><kbd>black.contrast(white)</kbd></button>
+          <button type="button" class="exemple"><kbd>orchid.interpolate(palegreen, 4, oklch)</kbd></button>
+          <button type="button" class="exemple"><kbd>rgb(255, 99, 71).scale(s, .5).blend(blue.replace(a, .2))</kbd></button>
         </div>
       </div>
 
