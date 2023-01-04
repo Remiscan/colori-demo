@@ -380,6 +380,8 @@ html {
   linear-gradient(to right, #ddd 0% 100%);
 
   --bg-color: var(--section-color);
+  --link-underline-color: var(--link-muted-color);
+  --input-placeholder-color: var(--link-muted-color);
   --button-border-color: var(--h3-color);
   --button-hover-border-color: var(--h1-color);
   --button-hover-bg-color: var(--input-bg-color);

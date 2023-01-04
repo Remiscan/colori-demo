@@ -88,72 +88,76 @@ function makeCSS(userColor) {
   // Calculate colors for light theme
   light: {
     const okc = Math.min(userColor.okc, 0.1236);
+
     const bodyColor = new Couleur(`oklch(77% ${okc} ${okh})`);
-    metaLight = bodyColor.rgb;
     const sectionColor = new Couleur(`oklch(86.2% ${.6 * okc} ${okh})`);
-    const codeColor = new Couleur(`oklch(92.7% ${.3 * okc} ${okh})`);
+    const frameColor = new Couleur(`oklch(92.7% ${.3 * okc} ${okh})`);
+    const h1Color = new Couleur(`oklch(38.8% ${.6 * okc} ${okh})`);
+    const h3Color = new Couleur(`oklch(51.2% ${okc} ${okh})`);
+    const textColor = new Couleur(`black`);
+    const linkColor = new Couleur(`oklch(38.8% ${okc} ${okh})`);
+    const linkMutedColor = linkColor.replace('a', .6);
+    const inputColor = new Couleur(`oklch(95.3% ${.3 * okc} ${okh})`);
+    const inputActiveColor = new Couleur(`oklch(99% ${.1 * okc} ${okh})`);
+    const buttonColor = new Couleur(`oklch(90.5% ${.6 * okc} ${okh})`);
+    const buttonActiveColor = new Couleur(`oklch(97.8% ${.3 * okc} ${okh})`);
+
+    metaLight = bodyColor.rgb;
     cssLight = `
       /* Background colors */
       --body-color: ${bodyColor.hsl};
       --section-color: ${sectionColor.hsl};
-      --frame-color: ${codeColor.hsl};
-      --code-color: ${codeColor.hsl};
-      --tab-hover-color: ${sectionColor.replace('a', .7).hsl};
-      --note-color: ${Couleur.blend(sectionColor, bodyColor.replace('a', .3)).hsl};
+      --frame-color: ${frameColor.hsl};
       /* Text colors */
-      --h1-color: ${(new Couleur(`oklch(38.8% ${.6 * okc} ${okh})`)).hsl};
-      --h3-color: ${(new Couleur(`oklch(51.2% ${okc} ${okh})`)).hsl};
-      --text-color: black;
-      --link-color: ${(new Couleur(`oklch(38.3% ${okc} ${okh})`)).hsl};
-      --link-underline-color: ${(new Couleur(`oklch(37.3% ${2 * okc} ${okh} / .5)`)).hsl};
+      --h1-color: ${h1Color.hsl};
+      --h3-color: ${h3Color.hsl};
+      --text-color: ${textColor.hsl};
+      --link-color: ${linkColor.hsl};
+      --link-muted-color: ${linkMutedColor.hsl};
       /* Input colors */
-      --input-bg-color: ${(new Couleur(`oklch(95.3% ${.3 * okc} ${okh})`)).hsl};
-      --input-active-bg-color: ${(new Couleur(`oklch(99% ${.1 * okc} ${okh})`)).hsl};
-      --input-placeholder-color: ${(new Couleur(`oklch(34.6% ${.5 * okc} ${okh} / .5)`)).hsl};
-      /* Syntax coloring colors */
-      --token-number: ${(new Couleur(`oklch(55% 0.1876 ${okh - 90})`)).hsl};
-      --token-string: ${(new Couleur(`oklch(55% 0.1876 ${okh + 45})`)).hsl};
-      --token-operator: ${(new Couleur(`oklch(55% 0.1876 ${okh - 45})`)).hsl};
-      --token-keyword: ${(new Couleur(`oklch(55% 0.1876 ${okh + 135})`)).hsl};
+      --input-bg-color: ${inputColor.hsl};
+      --input-active-bg-color: ${inputActiveColor.hsl};
       /* Button colors */
-      --button-bg-color: ${(new Couleur(`oklch(90.5% ${.6 * okc} ${okh})`)).hsl};
-      --button-active-bg-color: ${(new Couleur(`oklch(97.8% ${.3 * okc} ${okh})`)).hsl};
+      --button-bg-color: ${buttonColor.hsl};
+      --button-active-bg-color: ${buttonActiveColor.hsl};
     `;
   }
 
   // Calculate colors for dark theme
   dark: {
     const okc = Math.min(userColor.okc, 0.023);
+
     const bodyColor = new Couleur(`oklch(20.5% ${.6 * okc} ${okh})`);
-    metaDark = bodyColor.rgb;
     const sectionColor = new Couleur(`oklch(30.7% ${okc} ${okh})`);
-    const codeColor = bodyColor;
+    const frameColor = bodyColor;
+    const h1Color = new Couleur(`oklch(82.5% ${okc} ${okh})`);
+    const h3Color = new Couleur(`oklch(73.7% ${1.7 * okc} ${okh})`);
+    const textColor = new Couleur(`oklch(91.3% ${.2 * okc} ${okh})`);
+    const linkColor = new Couleur(`oklch(82.5% ${1.7 * okc} ${okh})`);
+    const linkMutedColor = linkColor.replace('a', .6);
+    const inputColor = new Couleur(`oklch(39.3% ${1.5 * okc} ${okh})`);
+    const inputActiveColor = new Couleur(`oklch(22.3% ${.6 * okc} ${okh})`);
+    const buttonColor = new Couleur(`oklch(35.2% ${.75 * okc} ${okh})`);
+    const buttonActiveColor = new Couleur(`oklch(43.6% ${1.5 * okc} ${okh})`);
+
+    metaDark = bodyColor.rgb;
     cssDark = `
       /* Background colors */
       --body-color: ${bodyColor.hsl};
       --section-color: ${sectionColor.hsl};
-      --frame-color: ${codeColor.hsl};
-      --code-color: ${codeColor.hsl};
-      --tab-hover-color: ${sectionColor.replace('a', .7).hsl};
-      --note-color: ${Couleur.blend(bodyColor, sectionColor.replace('a', .5)).hsl};
+      --frame-color: ${frameColor.hsl};
       /* Text colors */
-      --h1-color: ${(new Couleur(`oklch(82.5% ${okc} ${okh})`)).hsl};
-      --h3-color: ${(new Couleur(`oklch(73.7% ${1.7 * okc} ${okh})`)).hsl};
-      --text-color: ${(new Couleur(`oklch(91.3% ${.2 * okc} ${okh})`)).hsl};
-      --link-color: ${(new Couleur(`oklch(82.3% ${1.7 * okc} ${okh})`)).hsl};
-      --link-underline-color: ${(new Couleur(`oklch(81.9% ${2 * 1.7 * okc} ${okh} / .5)`)).hsl};
+      --h1-color: ${h1Color.hsl};
+      --h3-color: ${h3Color.hsl};
+      --text-color: ${textColor.hsl};
+      --link-color: ${linkColor.hsl};
+      --link-muted-color: ${linkMutedColor.hsl};
       /* Input colors */
-      --input-bg-color: ${(new Couleur(`oklch(39.3% ${1.5 * okc} ${okh})`)).hsl};
-      --input-active-bg-color: ${(new Couleur(`oklch(22.3% ${.6 * okc} ${okh})`)).hsl};
-      --input-placeholder-color: ${(new Couleur(`oklch(91.3% ${.5 * okc} ${okh} / .5)`)).hsl};
-      /* Syntax coloring colors */
-      --token-number: ${(new Couleur(`oklch(80.6% 0.1941 ${okh - 90})`)).hsl};
-      --token-string: ${(new Couleur(`oklch(80.6% 0.1941 ${okh + 45})`)).hsl};
-      --token-operator: ${(new Couleur(`oklch(80.6% 0.1941 ${okh - 45})`)).hsl};
-      --token-keyword: ${(new Couleur(`oklch(80.6% 0.1941 ${okh + 135})`)).hsl};
+      --input-bg-color: ${inputColor.hsl};
+      --input-active-bg-color: ${inputActiveColor.hsl};
       /* Button colors */
-      --button-bg-color: ${(new Couleur(`oklch(35.2% ${.75 * okc} ${okh})`)).hsl};
-      --button-active-bg-color: ${(new Couleur(`oklch(43.6% ${1.5 * okc} ${okh})`)).hsl};
+      --button-bg-color: ${buttonColor.hsl};
+      --button-active-bg-color: ${buttonActiveColor.hsl};
     `;
   }
 
