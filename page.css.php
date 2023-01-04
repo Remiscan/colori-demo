@@ -1050,31 +1050,29 @@ color-picker::part(color-preview) {
   }
 }
 
-.donnees color-swatch {
+.donnees .format,
+color-swatch {
   background-color: var(--frame-color);
   gap: calc(2 * var(--preview-border-width));
   padding: var(--preview-border-width);
   border-radius: var(--border-radius);
   --color-preview-width: 2em;
+  --warning-color: var(--error-color);
 }
 
-.donnees color-swatch > .color-swatch-preview {
+color-swatch > .color-swatch-preview {
   border-radius: calc(.66 * var(--border-radius));
   box-shadow: inset 0 0 0 2px currentColor;
 }
 
-.donnees color-swatch > button {
+color-swatch > button {
   padding: var(--preview-border-width);
   border: none;
   border-radius: calc(.66 * var(--border-radius));
 }
 
-.donnees color-swatch > button:not(:hover, :focus, :active) {
+color-swatch > button:not(:hover, :focus, :active) {
   background: none;
-}
-
-.donnees color-swatch {
-  --warning-color: var(--error-color);
 }
 
 .format {
