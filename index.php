@@ -237,7 +237,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <button type="button" class="exemple"><kbd>#4169E1.scale(l, .5)</kbd></button>
           <button type="button" class="exemple"><kbd>black.contrast(white)</kbd></button>
           <button type="button" class="exemple"><kbd>orchid.interpolate(palegreen, 4, oklch)</kbd></button>
-          <button type="button" class="exemple"><kbd>rgb(255, 99, 71).scale(s, .5).blend(blue.replace(a, .2))</kbd></button>
+          <button type="button" class="exemple"><kbd>red.scale(s, .5).blend(blue.replace(a, .2))</kbd></button>
         </div>
       </div>
 
