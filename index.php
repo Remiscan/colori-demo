@@ -201,7 +201,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
     <section id="demo">
       <h2><?=$translation->get('titre-section-demo')?></h2>
       
-      <div id="saisie">
+      <div id="saisie" class="subsection">
         <h3 class="no-separator">
           <label for="entree"><?=$translation->get('demo-input-label')?></label>
         </h3>
@@ -210,7 +210,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple">pink</button>
           <button type="button" class="exemple">#4169E1</button>
-          <button type="button" class="exemple">rgb(255, 127, 80)</button>
+          <button type="button" class="exemple">rgb(255, 99, 71)</button>
           <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
         </div>
 
@@ -224,7 +224,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple">pink</button>
           <button type="button" class="exemple">#4169E1</button>
-          <button type="button" class="exemple">rgb(255, 127, 80)</button>
+          <button type="button" class="exemple">rgb(255, 99, 71)</button>
           <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
         </div>
 
@@ -236,11 +236,11 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <button type="button" class="exemple">#4169E1.scale(l, .5)</button>
           <button type="button" class="exemple">black.contrast(white)</button>
           <button type="button" class="exemple">orchid.interpolate(palegreen, 4, oklch)</button>
-          <button type="button" class="exemple">rgb(255, 127, 80).scale(s, .5).blend(red.replace(a, .2))</button>
+          <button type="button" class="exemple">rgb(255, 99, 71).scale(s, .5).blend(blue.replace(a, .2))</button>
         </div>
       </div>
 
-      <div id="resultats">
+      <div id="resultats" class="subsection">
         <h3 class="no-separator"><?=$translation->get('demo-resultats-titre')?></h3>
 
         <div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>">
