@@ -770,7 +770,7 @@ footer {
   padding: min(8px, var(--section-padding));
   display: grid;
   place-items: center;
-  --icon-size: max(2.6rem, var(--tap-safe-size));
+  --icon-size: 2.4rem;
   grid-template-columns: [icon-start] var(--icon-size) [icon-end] 1fr [link-start] auto [link-end] 1fr var(--icon-size);
   gap: var(--section-padding);
 }
