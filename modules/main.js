@@ -32,6 +32,7 @@ colorPicker.addEventListener('input', event => {
 for (const exemple of [...document.querySelectorAll('#demo button.exemple')]) {
   exemple.addEventListener('click', () => {
     if (exemple.dataset.action == 'more-examples') {
+      exemple.classList.toggle('open');
       for (const hiddenElement of [...document.querySelectorAll('#saisie [data-hidden]')]) {
         hiddenElement.classList.toggle('off');
       }

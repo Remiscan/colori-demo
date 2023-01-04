@@ -1003,6 +1003,18 @@ color-picker::part(color-preview) {
   border-radius: calc(.5 * var(--border-radius));
 }
 
+[data-action="more-examples"] {
+  padding-inline: 1.5ch;
+}
+
+[data-action="more-examples"]::before {
+  content: '+';
+}
+
+[data-action="more-examples"].open::before {
+  content: '-';
+}
+
 
 
 /*

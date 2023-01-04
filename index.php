@@ -212,7 +212,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <button type="button" class="exemple">pink</button>
           <button type="button" class="exemple">#4169E1</button>
           <button type="button" class="exemple">rgb(255, 99, 71)</button>
-          <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
+          <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>"></button>
         </div>
 
         <input id="entree" class="h4" type="text" data-abbr="<?=$translation->get('exemple-abbr')?>"
@@ -226,7 +226,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <button type="button" class="exemple">pink</button>
           <button type="button" class="exemple">#4169E1</button>
           <button type="button" class="exemple">rgb(255, 99, 71)</button>
-          <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>">&nbsp;+&nbsp;</button>
+          <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>"></button>
         </div>
 
         <p class="instructions-exemples-fonctions off" data-hidden="true"><?=$translation->get('instructions-demo')?></p>
