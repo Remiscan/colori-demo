@@ -4,11 +4,11 @@
   /* Empêche le font scaling auto moche sous chrome Android */
   max-height: 1000000px;
 }
-remiscan-logo::part(link):focus,
+/*remiscan-logo::part(link):focus,
 *:focus { outline: 2px solid var(--link-color); }
 remiscan-logo::part(link):focus:not(:focus-visible),
 *:focus:not(:focus-visible) { outline-style: none; }
-::-moz-focus-inner { border: 0; }
+::-moz-focus-inner { border: 0; }*/
 
 :root { --tap-safe-size: 44px; }
 [data-tappable] { position: relative; z-index: 1; }
@@ -133,10 +133,6 @@ button:active {
   background: var(--button-active-bg-color);
 }
 
-button:focus-visible {
-  border-radius: 0;
-}
-
 
 
 /*
@@ -198,10 +194,8 @@ input[type="radio"] + label>span {
 }
 
 input[type="radio"]:focus + label {
-  outline: 2px solid var(--link-color);
-}
-input[type="radio"]:focus:not(:focus-visible) + label {
-  outline: none;
+  outline: 5px auto Highlight;
+  outline: 5px auto -webkit-focus-ring-color;
 }
 
 
@@ -630,11 +624,13 @@ theme-selector .selector-title-text {
 }
 
 theme-selector input[type="radio"]:focus + label {
-  box-shadow: inset 0 0 0 2px var(--link-color);
-  outline: none;
+  outline: 5px auto Highlight;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -5px;
 }
+
 theme-selector input[type="radio"]:focus:not(:focus-visible) + label {
-  box-shadow: none;
+  outline: none;
 }
 
 
@@ -848,6 +844,7 @@ input[type="text"] {
   background-color: var(--input-bg-color);
   border-radius: var(--border-radius);
   box-shadow: 0 0 0 1px var(--body-color);
+  outline-offset: 2px;
 }
 
 input[type="text"] {
