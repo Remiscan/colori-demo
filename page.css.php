@@ -155,9 +155,11 @@ input[type="radio"] {
 input[type="radio"] + label {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: var(--section-padding);
-  padding: var(--section-padding);
+  gap: max(var(--section-padding), 1rem);
+  padding: var(--section-padding) max(var(--section-padding), 1rem);
   min-width: var(--tap-safe-size);
+  min-height: var(--tap-safe-size);
+  box-sizing: border-box;
 }
 
 input[type="radio"] + label:hover,
@@ -625,31 +627,6 @@ theme-selector .selector-title {
 
 theme-selector .selector-title-text {
   border: none;
-}
-
-theme-selector>.selector>label {
-  min-height: var(--tap-safe-size);
-  box-sizing: border-box;
-}
-
-theme-selector>.selector>label[for="theme-light"],
-theme-selector>.selector>label[for="theme-dark"] {
-  grid-template-columns: auto 1fr auto;
-}
-
-theme-selector>.selector>label>.theme-cookie-star {
-  grid-column: 3;
-  color: var(--secondary-color);
-}
-
-theme-selector .selector-cookie-notice {
-  color: var(--secondary-color);
-  padding: var(--section-padding);
-  hyphens: auto;
-}
-
-theme-selector input[type="radio"] + label {
-  min-height: 2em;
 }
 
 theme-selector input[type="radio"]:focus + label {
