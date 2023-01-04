@@ -59,7 +59,7 @@ remiscan-logo::part(link):focus:not(:focus-visible),
 html {
   font-family: system-ui, 'Roboto', Helvetica, Arial, sans-serif;
   --min-font: 1.0; /* rem */
-  --max-font: 1.1; /* rem */
+  --max-font: 1.125; /* rem */
   font-size: calc(1rem * var(--min-font));
   --mod: 1.250;
 }
@@ -542,12 +542,16 @@ header>h1 {
 .app-icon {
   width: 2.4rem;
   height: 2rem;
-  margin: 3px;
+  margin: 0;
   /*clip-path: circle(48%);*/
   /*filter: hue-rotate(calc(var(--icon-hue-difference) * 1deg)) saturate(calc(var(--icon-saturation-ratio) * 100%));*/
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
   border: 2px solid var(--body-color);
   border-radius: var(--border-radius);
-  overflow: hidden;
+  background-color: var(--icon-shadow-color);
   --icon-bg-color: var(--section-color);
   --icon-shadow-color: var(--body-color);
   --icon-hash-color: var(--h3-color);
@@ -558,8 +562,10 @@ header .app-icon {
 }
 
 .app-icon > svg {
-  width: 100%;
-  height: 100%;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  margin: -1px;
+  overflow: visible;
 }
 
 .app-icon > svg .bg {
@@ -688,7 +694,7 @@ span.github-string {
 .github-cat {
   width: 1.1rem;
   height: 1.1rem;
-  margin-right: .2em;
+  margin-right: .3em;
 }
 
 
@@ -757,20 +763,16 @@ p.warning-js {
 
 footer {
   grid-row: -2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   padding: 0 var(--section-padding);
   margin-bottom: env(safe-area-inset-bottom, 0);
   margin-top: calc(-2.5 * var(--section-padding));
+  padding: min(8px, var(--section-padding));
   display: grid;
-  grid-template-columns: [icon-start] 2.4rem [icon-end] 1fr [link-start] auto [link-end] 1fr 2.4rem;
+  place-items: center;
+  --icon-size: max(2.6rem, var(--tap-safe-size));
+  grid-template-columns: [icon-start] var(--icon-size) [icon-end] 1fr [link-start] auto [link-end] 1fr var(--icon-size);
   gap: var(--section-padding);
-  justify-content: center;
-  align-items: center;
-  padding: 0 var(--section-padding);
-  padding-left: 0;
 }
 
 footer .app-icon {
@@ -786,7 +788,6 @@ footer .made-by {
 }
 
 remiscan-logo {
-  margin: .25em 0;
   --width: 4.5em;
   width: var(--width);
   height: calc(0.5 * var(--width));
