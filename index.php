@@ -57,7 +57,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
     <!-- ▼ Cache-busted files -->
     <!--<?php versionizeStart(); ?>-->
 
-    <link rel="icon" type="image/png" href="/colori/demo/icons/icon-192.png">
+    <link rel="icon" type="image/svg+xml" href="/colori/demo/icons/icon.svg">
     <link rel="apple-touch-icon" href="/colori/demo/icons/apple-touch-icon.png">
     <link rel="manifest" href="/colori/demo/manifest.json">
 
