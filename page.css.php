@@ -528,9 +528,13 @@ header>h1 {
   /*transform: translateY(17.7%);*/
   z-index: 0;
   font-size: calc(var(--mod) * var(--mod) * 1rem);
-  color: var(--h3-color);
+  /*color: var(--h3-color);*/
   --shadow-color: var(--body-color);
-  text-shadow: none;
+  /*text-shadow: none;*/
+  color: var(--h1-color);
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 
@@ -538,7 +542,7 @@ header>h1 {
 
 .app-icon {
   width: 2.4rem;
-  height: 2.4rem;
+  height: 2rem;
   margin: 3px;
   /*clip-path: circle(48%);*/
   /*filter: hue-rotate(calc(var(--icon-hue-difference) * 1deg)) saturate(calc(var(--icon-saturation-ratio) * 100%));*/
@@ -548,6 +552,10 @@ header>h1 {
   --icon-bg-color: var(--section-color);
   --icon-shadow-color: var(--body-color);
   --icon-hash-color: var(--h3-color);
+}
+
+header .app-icon {
+  display: none;
 }
 
 .app-icon > svg {
@@ -591,10 +599,13 @@ theme-selector>.selector {
   border-radius: var(--border-radius);
   overflow: hidden;
   z-index: 100;
-  top: calc(1.8rem + .5 * (2.4rem + 6px + 4px - 1.8rem) + 2px); /* theme-selector + .5 * (app-icon + padding + border - theme-selector) + space */
   transform: translateY(-.2rem);
   transition: opacity .2s ease,
               transform .2s ease;
+}
+
+theme-selector > .selector {
+  top: calc(1.8rem + .5 * (var(--tap-safe-size) - 1.8rem) + 2px); /* theme-selector + .5 * (header - theme-selector) + space */
 }
 
 color-picker[open]::part(selector),
@@ -777,6 +788,25 @@ footer {
   padding: 0 var(--section-padding);
   margin-bottom: env(safe-area-inset-bottom, 0);
   margin-top: calc(-2.5 * var(--section-padding));
+  display: grid;
+  grid-template-columns: [icon-start] 2.4rem [icon-end] 1fr [link-start] auto [link-end] 1fr 2.4rem;
+  gap: var(--section-padding);
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--section-padding);
+  padding-left: 0;
+}
+
+footer .app-icon {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+footer .made-by {
+  grid-column: link-start / link-end;
+  display: flex;
+  align-items: center;
 }
 
 remiscan-logo {

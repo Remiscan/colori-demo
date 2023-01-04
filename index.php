@@ -170,7 +170,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
     <header>
       <picture class="app-icon">
-        <?php include './icons/icon.svg'; ?>
+        <?php //include './icons/icon.svg'; ?>
       </picture>
 
       <h1>Colori</h1>
@@ -361,7 +361,13 @@ if (!$found) $startColor = new Couleur('aquamarine');
     */ ?>
 
     <footer>
-      <span><?=$translation->get('made-by')?></span>&nbsp;<remiscan-logo animate></remiscan-logo>
+      <picture class="app-icon">
+        <?php include './icons/icon.svg'; ?>
+      </picture>
+      
+      <span class="made-by">
+        <span><?=$translation->get('made-by')?></span>&nbsp;<remiscan-logo animate></remiscan-logo>
+      </span>
     </footer>
 
   </body>
