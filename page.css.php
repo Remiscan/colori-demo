@@ -855,7 +855,7 @@ input[type="text"] {
   grid-column: 1 / 3;
   width: 100%;
   height: 100%;
-  min-height: calc(2.5rem + 4px);
+  min-height: calc(2.4rem + 8px);
   padding-right: calc(.6em + 2.5rem);
 }
 
@@ -885,7 +885,7 @@ color-picker {
   grid-column: 2;
   justify-self: end;
   right: 0;
-  --size: 2.5rem;
+  --size: 2.4rem;
   --range-height: 15rem;
   --range-border-width: 2px;
   --range-border-radius: var(--border-radius);
@@ -925,7 +925,7 @@ color-picker::part(button) {
   -webkit-appearance: none;
   appearance: none;
   margin: 0;
-  padding: 2px;
+  padding: 4px;
   background-color: var(--button-bg-color);
   border: none;
   box-shadow: 0 0 0 1px var(--button-border-color);
@@ -946,7 +946,7 @@ color-picker::part(button):is(:active) {
 }
 
 color-picker::part(color-preview) {
-  border-radius: calc(.9 * var(--border-radius));
+  border-radius: calc(.83 * var(--border-radius));
 }
 
 
