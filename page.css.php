@@ -532,7 +532,8 @@ header>h1 {
   --shadow-color: var(--body-color);
   /*text-shadow: none;*/
   color: var(--h1-color);
-  height: 100%;
+  height: calc(100% + 2px); /* fixes shadow leaving half a pixel */
+  margin: -1px 0;           /* not reached at the bottom of the header */
   display: flex;
   align-items: center;
 }
