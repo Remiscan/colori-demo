@@ -96,7 +96,7 @@ function makeCSS(userColor) {
     const h3Color = new Couleur(`oklch(51.2% ${okc} ${okh})`);
     const textColor = new Couleur(`black`);
     const linkColor = new Couleur(`oklch(38.8% ${okc} ${okh})`);
-    const linkMutedColor = linkColor.replace('a', .6);
+    const linkMutedColor = linkColor.scale('okc', .5).replace('a', .6);
     const inputColor = new Couleur(`oklch(95.3% ${.3 * okc} ${okh})`);
     const inputActiveColor = new Couleur(`oklch(99% ${.1 * okc} ${okh})`);
     const buttonColor = new Couleur(`oklch(90.5% ${.6 * okc} ${okh})`);
@@ -134,7 +134,7 @@ function makeCSS(userColor) {
     const h3Color = new Couleur(`oklch(73.7% ${1.7 * okc} ${okh})`);
     const textColor = new Couleur(`oklch(91.3% ${.2 * okc} ${okh})`);
     const linkColor = new Couleur(`oklch(82.5% ${1.7 * okc} ${okh})`);
-    const linkMutedColor = linkColor.replace('a', .6);
+    const linkMutedColor = linkColor.scale('okc', .5).replace('a', .6);
     const inputColor = new Couleur(`oklch(39.3% ${1.5 * okc} ${okh})`);
     const inputActiveColor = new Couleur(`oklch(22.3% ${.6 * okc} ${okh})`);
     const buttonColor = new Couleur(`oklch(35.2% ${.75 * okc} ${okh})`);
