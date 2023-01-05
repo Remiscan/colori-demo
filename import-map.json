@@ -7,6 +7,7 @@
     "messageWorker": "/colori/demo/modules/messageWorker.js",
     "interface-worker": "/colori/demo/modules/worker.js",
     "interface-worker-nomodule": "/colori/demo/modules/worker-nomodule.php",
+    "resolveInput": "/colori/demo/modules/resolveInput.js",
 
     "color-swatch": "/colori/demo/modules/components/colorSwatch.js",
     "color-picker": "/_common/components/color-picker/color-picker.js",
