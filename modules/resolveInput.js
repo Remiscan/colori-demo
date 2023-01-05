@@ -259,6 +259,28 @@ export function parseArgumentsList(string) {
  * @returns {string} The properly transformed string.
  */
 export function parseColorsInString(string) {
+  const fragments = parseStringWithBrackets(string, '()');
+  //const fragments = [string];
+
+  /**
+   * Takes a string with fragment references (i.e. ${f[id]})
+   * and replaces them with the actual fragments.
+   * @param {string} string - The string with fragment references.
+   * @returns {string} The string with actual fragments inserted.
+   */
+  const insertFragments = (string) => {
+    let modifiedString = string;
+    let lastModifiedString = null;
+    while (true) {
+      for (let id = 0; id < fragments.length; id++) {
+        modifiedString = modifiedString.replace(`\${f[${id}]}`, fragments[id]);
+      }
+      if (lastModifiedString === modifiedString) break;
+      lastModifiedString = modifiedString;
+    }
+    return modifiedString;
+  }
+
   /**
    * Checks if an argument is an actual value (like a color or number).
    * If it is, return it as it is.
@@ -271,27 +293,13 @@ export function parseColorsInString(string) {
     try {
       eval(`value = ${arg}`);
     } catch (e) {
-      return `"${arg}"`
+      // If the argument is not an actual value, check if it can itself be parsed
+      // into a valid JS expression.
+      const parsedArg = parseColorsInString(arg);
+      return parsedArg !== arg ? parsedArg : `"${arg}"`
     }
     return arg;
   };
-
-  const fragments = parseStringWithBrackets(string, '()');
-  //const fragments = [string];
-
-  /**
-   * Takes a string with fragment references (i.e. ${f[id]})
-   * and replaces them with the actual fragments.
-   * @param {string} string - The string with fragment references.
-   * @returns {string} The string with actual fragments inserted.
-   */
-  const insertFragments = (string) => {
-    let modifiedString = string;
-    for (let id = 0; id < fragments.length; id++) {
-      modifiedString = modifiedString.replace(`\${f[${id}]}`, fragments[id]);
-    }
-    return modifiedString;
-  }
 
   // For each fragment of the original string, check if it's an interesting form,
   // i.e. something like Couleur.method() or object.method() or object.getter

@@ -63,6 +63,10 @@
     {
       string: 'red.scale(s, .5).blend(blue.replace(a, .2))',
       expected: (new Couleur('red')).scale('s', .5).blend((new Couleur('blue')).replace('a', .2))
+    },
+    {
+      string: 'Couleur.blend(red.invert(), indigo)',
+      expected: (new Couleur('indigo'))
     }
   ];
 
