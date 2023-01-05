@@ -69,7 +69,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
     <script src="/colori/demo/modules/main.js" type="module-shim"></script>
 
-    <link rel="stylesheet" href="/colori/demo/page.css.php">
+    <link rel="stylesheet" href="/colori/demo/page.css">
 
     <!--<?php versionizeEnd(__DIR__); ?>-->
 
@@ -149,6 +149,22 @@ if (!$found) $startColor = new Couleur('aquamarine');
         --button-active-bg-color: <?= $buttonActiveColor->hsl() ?>;
       }
 
+      <?php themeSheetEnd(closeComment: false); ?>
+    </style>
+
+    <style>
+      <?php themeSheetStart(); ?>
+      html[data-theme="light"] {
+        color-scheme: light dark;
+        --error-color: darkred;
+        --logo-gradient: var(--logo-gradient-light);
+      }
+
+      html[data-theme="dark"] {
+        color-scheme: dark light;
+        --error-color: lightpink;
+        --logo-gradient: var(--logo-gradient-dark);
+      }
       <?php themeSheetEnd(closeComment: false); ?>
     </style>
 

@@ -374,21 +374,7 @@ html {
   --echiquier-transparence: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
   linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%),
   linear-gradient(to right, #ddd 0% 100%);
-
-  --bg-color: var(--section-color);
-  --link-underline-color: var(--link-muted-color);
-  --input-placeholder-color: var(--link-muted-color);
-  --button-border-color: var(--h3-color);
-  --button-hover-border-color: var(--h1-color);
-  --button-hover-bg-color: var(--input-bg-color);
-}
-
-/*<?php themeSheetStart(); ?>*/
-html[data-theme="light"] {
-  color-scheme: light;
-  --error-color: darkred;
-
-  --logo-gradient: repeating-linear-gradient(to right,
+  --logo-gradient-light: repeating-linear-gradient(to right,
   hsl(262.38, 49.25%, 65.39%) 0%,
   hsl(277.6, 42.76%, 62.44%) 2.8571428571429%,
   hsl(295.08, 35.4%, 59.13%) 5.7142857142857%,
@@ -426,13 +412,8 @@ html[data-theme="light"] {
   hsl(247.56, 54.1%, 67.88%) 97.142857142857%,
   hsl(262.38, 49.25%, 65.39%) 100%
   );
-}
 
-html[data-theme="dark"] {
-  color-scheme: dark;
-  --error-color: lightpink;
-
-  --logo-gradient: repeating-linear-gradient(to right,
+  --logo-gradient-dark: repeating-linear-gradient(to right,
   hsl(294.66, 100%, 92.87%) 0%,
   hsl(300, 100%, 91.8%) 2.8571428571429%,
   hsl(300, 100%, 90.89%) 5.7142857142857%,
@@ -470,8 +451,14 @@ html[data-theme="dark"] {
   hsl(258.14, 100%, 94.06%) 97.142857142857%,
   hsl(294.66, 100%, 92.87%) 100% 
   );
+
+  --bg-color: var(--section-color);
+  --link-underline-color: var(--link-muted-color);
+  --input-placeholder-color: var(--link-muted-color);
+  --button-border-color: var(--h3-color);
+  --button-hover-border-color: var(--h1-color);
+  --button-hover-bg-color: var(--input-bg-color);
 }
-/*<?php themeSheetEnd(closeComment: true); ?>*/
 
 body { /* Desktop-like */
   display: grid;
