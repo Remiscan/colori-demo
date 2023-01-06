@@ -121,7 +121,7 @@ export class ArgumentList {
       } break;
 
       case 'number': {
-        currentArg = parseFloat(currentArg);
+        currentArg = Number(currentArg);
       } break;
 
       case 'string': {
