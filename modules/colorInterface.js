@@ -24,6 +24,13 @@ function* updateInterface(couleur, source = 'text', delai = 10) {
     // Create color-swatches in #results-multiple
     const colorsContainer = document.querySelector('#results-multiple');
     let html = '';
+    const kMax = response.colors.length - 1;
+    const gradient = `${response.colorsClamped?.map((c, k) => `${c} ${100*k/kMax}%`).join(', ')}`;
+    html += /*html*/`
+      <div class="format">
+        <div class="gradient" style="--gradient: linear-gradient(to bottom, ${gradient})"></div>
+      </div>
+    `;
     for (const color of response.colors) {
       const hasName = !(color.startsWith('color'));
       const format = hasName ? 'name' : 'rgb';

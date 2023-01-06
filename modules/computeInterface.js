@@ -37,12 +37,12 @@ export function computeInterface({ colorString, placeholder }) {
   const response = {
     type: responseType,
     colors: colors.map(c => c.exactName ?? c.toString('color-srgb', { precision: 4 })),
+    colorsClamped: colors.map(c => c.toGamut('srgb').rgb),
     value: value,
   };
 
   if (interfaceColor instanceof Couleur) {
     response.interfaceColorExpr = interfaceColor.toString('color-srgb', { precision: 4 });
-    response.interfaceColorExprClipped = interfaceColor.toGamut('srgb').rgb;
     response.interfaceColorName = interfaceColor.name || '';
     response.interfaceColorHex = interfaceColor.hex;
     [response.css, response.metaLight, response.metaDark] = makeCSS(interfaceColor);

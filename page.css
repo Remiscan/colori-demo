@@ -1117,9 +1117,27 @@ color-swatch > button:not(:hover, :focus, :active) {
 
 #results-multiple {
   flex-direction: column;
-  flex-wrap: nowrap;
   align-items: start;
+  align-content: start;
+  justify-content: center;
 }
+
+#results-multiple .format:first-of-type {
+  flex-basis: 100%;
+  display: none;
+}
+
+#results-multiple .gradient {
+  width: 2em;
+  height: 100%;
+  box-shadow: inset 0 0 0 2px currentColor;
+  border-radius: calc(.66 * var(--border-radius));
+  background-image: var(--gradient, none);
+}
+
+/*#results-multiple color-swatch {
+  max-width: calc(100% - 2em - 6px - 3 * 2 * var(--preview-border-width));
+}*/
 
 .format.valeur code {
   white-space: normal;
