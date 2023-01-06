@@ -1,3 +1,4 @@
+import { CanceledAsyncWarning } from 'cancelable-async';
 import 'color-picker';
 import 'color-swatch';
 import { updateInterface } from 'colorInterface';
@@ -11,19 +12,29 @@ import 'theme-selector';
 ////////////////////////////////////////////////
 // Detect user input in the "type a color" field
 const champ = document.getElementById('entree');
-champ.addEventListener('input', event => {
-  updateInterface(event.target.value.replace(/'/g, ''));
+champ.addEventListener('input', async event => {
+  try {
+    await updateInterface(event.target.value);
+  } catch (e) {
+    if (e instanceof CanceledAsyncWarning) {}
+    else console.error(e);
+  }
 });
 
 
 ////////////////////////////////////
 // Detect user input in color picker
 const colorPicker = document.querySelector('color-picker');
-colorPicker.addEventListener('input', event => {
+colorPicker.addEventListener('input', async event => {
   const colorExpr = event.detail?.color;
   if (!colorExpr) return;
   champ.value = colorExpr;
-  updateInterface(colorExpr, 'color-picker');
+  try {
+    await updateInterface(colorExpr, 'color-picker');
+  } catch (e) {
+    if (e instanceof CanceledAsyncWarning) {}
+    else console.error(e);
+  }
 });
 
 

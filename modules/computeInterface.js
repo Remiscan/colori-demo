@@ -1,70 +1,50 @@
-import { resolveColor } from 'colorResolution';
 import Couleur from 'colori';
+import { resolveInput } from 'resolveInput';
 
 
 
 /** Compute all color data from the new user input color. */
-export function computeInterface({ colorString }) {
-  const colorData = resolveColor(colorString);
-  let userColor, method, input;
-  if (Array.isArray(colorData) && colorData.length === 3) {
-    [userColor, method, input] = colorData;
+export function computeInterface({ colorString, placeholder }) {
+  let result;
+  try {
+    result = resolveInput(colorString || placeholder);
+  } catch (e) {
+    return {};
   }
 
-  // If the user input resolves to a color, adapt the interface
-  let responseType;
-  let interfaceColor = null;
-  let interfaceColorClipped = null;
-  let value = null;
-  let gradient = null;
-  let name, hex;
+  let colors = [];
+  let responseType = '';
+  let value = '';
 
-  if (userColor instanceof Couleur) {
+  if (result instanceof Couleur) {
     responseType = 'Couleur';
-    interfaceColor = userColor;
-    interfaceColorClipped = userColor.toGamut('srgb');
+    colors = [result];
   }
 
-  else if (typeof userColor === 'number' || typeof userColor === 'boolean' || typeof userColor === 'string') {
+  else if (Array.isArray(result) && result.length > 0 && result.every(r => r instanceof Couleur)) {
+    responseType = 'multiple';
+    colors = [...result];
+  }
+
+  else if (['number', 'string', 'boolean'].includes(typeof result)) {
     responseType = 'value';
-    value = userColor;
+    value = String(result);
   }
 
-  else if (Array.isArray(userColor) && userColor.length > 0 && userColor.reduce((sum, e) => sum + (e instanceof Couleur), 0)) {
-    responseType = 'array,value';
-    interfaceColor = userColor[0];
-    interfaceColorClipped = userColor[0].toGamut('srgb');
-    gradient = `linear-gradient(to right,  ${userColor.map(c => c.name || c.rgb).join(',  ')})`;
-    if (method === 'interpolate') {
-      responseType += ',gradient';
-      //value = `linear-gradient(to right,\n  ${userColor.map(c => c.name || c.rgb).join(',\n  ')}\n)`;
-      value = `[\n  ${userColor.map(c => c.name || c.rgb).join(',\n  ')}\n]`;
-    }
-    else if (method === 'whatToBlend') {
-      responseType += ',gradient,whatToBlend';
-      value = `[\n  ${userColor.map(c => c.name || c.rgb).join(',\n  ')}\n]`;
-    }
-  }
+  else return {};
 
-  else if (typeof userColor !== 'undefined') {
-    console.log(`${colorString} == ${userColor}`);
-  }
-
+  const interfaceColor = colors[0];
   const response = {
     type: responseType,
-    colorValues: interfaceColor instanceof Couleur ? [...interfaceColor.values, interfaceColor.a] : [],
-    colorValuesClipped: interfaceColorClipped instanceof Couleur ? [...interfaceColorClipped.values, interfaceColorClipped.a] : [],
-    colorName: interfaceColor instanceof Couleur ? interfaceColor.name : '',
-    colorHex: interfaceColor instanceof Couleur ? interfaceColor.hex : '',
-    value,
-    input,
-    gradient,
-    css: null,
-    metaLight: null,
-    metaDark: null,
+    colors: colors.map(c => c.exactName ?? c.toString('color-srgb', { precision: 4 })),
+    value: value,
   };
 
-  if (interfaceColor instanceof Couleur) {   
+  if (interfaceColor instanceof Couleur) {
+    response.interfaceColorExpr = interfaceColor.toString('color-srgb', { precision: 4 });
+    response.interfaceColorExprClipped = interfaceColor.toGamut('srgb').rgb;
+    response.interfaceColorName = interfaceColor.name || '';
+    response.interfaceColorHex = interfaceColor.hex;
     [response.css, response.metaLight, response.metaDark] = makeCSS(interfaceColor);
   }
 

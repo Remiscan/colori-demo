@@ -103,6 +103,25 @@ h6, .h6 {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 /*
+ * Espacement des paragraphes
+ */
+
+p {
+  margin: 0 0 1em 0;
+}
+
+p:last-child,
+#intro > p {
+  margin-bottom: 0;
+}
+
+p, li {
+  line-height: 1.6em;
+}
+
+
+
+/*
  *Boutons
  */
 
@@ -1054,8 +1073,9 @@ color-picker::part(color-preview) {
 .donnees .format,
 color-swatch {
   background-color: var(--frame-color);
-  gap: calc(2 * var(--preview-border-width));
+  column-gap: calc(2 * var(--preview-border-width));
   padding: var(--preview-border-width);
+  max-height: 2em;
   border-radius: var(--border-radius);
   --color-preview-width: 2em;
   --warning-color: var(--error-color);
@@ -1085,64 +1105,20 @@ color-swatch > button:not(:hover, :focus, :active) {
   margin: 0;
 }
 
-.format.gradient,
-.format.couleur {
-  display: flex;
-  flex-basis: 100%;
-  height: 3rem;
-  --border-size: var(--preview-border-width);
-  align-self: stretch;
-  background-color: var(--frame-color);
-  border-radius: var(--border-radius);
-  position: relative;
-  font-size: 0;
-}
-
-.format.couleur {
-  flex-basis: 3rem;
-  height: auto;
-}
-
-.format.couleur::before,
-.format.gradient::before {
-  content: '';
-  display: block;
-  width: calc(100% - 2 * var(--border-size));
-  height: calc(100% - 2 * var(--border-size));
-  top: var(--border-size);
-  left: var(--border-size);
-  background-image: var(--echiquier-transparence);
-  background-size: 16px 16px;
-  background-position: 0 0, 8px 8px;
-  border-radius: calc(.82 * var(--border-radius));
-  position: absolute;
-}
-
-.format.couleur::after,
-.format.gradient::after {
-  content: '';
-  display: block;
-  width: calc(100% - 2 * var(--border-size));
-  height: calc(100% - 2 * var(--border-size));
-  top: var(--border-size);
-  left: var(--border-size);
-  background-color: var(--user-color);
-  border-radius: calc(.66 * var(--border-radius));
-  position: absolute;
-}
-
-.format.gradient::after {
-  background-color: transparent;
-  background-image: var(--gradient);
-}
-
-#resultats:not([data-type*="value"]):not([data-type*="gradient"]) .donnees#results-values,
-#resultats:not([data-type*="value"]) .format.valeur,
-#resultats:not([data-type*="gradient"]) .format.gradient,
-#resultats[data-type*="value"] [role="tablist"],
-#resultats[data-type*="value"] .donnees#results-named-formats,
-#resultats[data-type*="value"] .donnees#results-color-spaces {
+#resultats:not([data-type="value"]) .donnees#results-values,
+#resultats:not([data-type="multiple"]) .donnees#results-multiple,
+#resultats:is([data-type="value"], [data-type="multiple"]) :is(
+  #resultats > [is="tab-list"],
+  .donnees#results-named-formats,
+  .donnees#results-color-spaces
+) {
   display: none;
+}
+
+#results-multiple {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: start;
 }
 
 .format.valeur code {
@@ -1151,30 +1127,6 @@ color-swatch > button:not(:hover, :focus, :active) {
 
 [data-type*="value"][data-type*="gradient"] .format.valeur code {
   white-space: pre-wrap;
-}
-[data-type*="value"][data-type*="whatToBlend"] .format.gradient {
-  height: 4rem;
-}
-[data-type*="value"][data-type*="whatToBlend"] .format.gradient::after {
-  background-image: var(--gradient),
-                    linear-gradient(to bottom, transparent 0 50%, var(--bg) 50% 100%);
-  background-position: top center, bottom center;
-  background-size: 100% 100%;
-  background-repeat-y: no-repeat;
-  animation: moveBlend var(--easing-standard) 3s infinite alternate;
-}
-
-@keyframes moveBlend {
-  0%   { background-position: top center, bottom center; }
-  10%  { background-position: top center, bottom center; }
-  90%  { background-position: center calc(-4rem + var(--border-size)), bottom center; }
-  100% { background-position: center calc(-4rem + var(--border-size)), bottom center; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-type*="value"][data-type*="whatToBlend"]>.format.gradient::after {
-    animation: none;
-  }
 }
 
 
@@ -1207,31 +1159,6 @@ color-swatch > button:not(:hover, :focus, :active) {
   .only-mobile {
     display: none;
   }
-}
-
-
-
-
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!! SECTION DOCUMENTATION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-/*
- * Espacement des paragraphes
- */
-
-p {
-  margin: 0 0 1em 0;
-}
-
-p:last-child,
-#intro > p {
-  margin-bottom: 0;
-}
-
-p, li {
-  line-height: 1.6em;
 }
 
 

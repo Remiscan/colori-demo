@@ -265,14 +265,6 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <button role="tab" aria-controls="results-color-spaces"><?=$translation->get('tab-label-color-spaces')?></button>
         </div>
 
-        <div class="donnees" id="results-values">
-          <div class="format gradient"><?=$translation->get('apercu-gradient')?></div>
-
-          <div class="format valeur">
-            <pre class="language-css"><code class="language-css"></code></pre>
-          </div>
-        </div>
-
         <div class="donnees" id="results-named-formats">
           <color-swatch format="name" color="<?=$startColor->name()?>"></color-swatch>
           <color-swatch format="hex" color="<?=$startColor->name()?>"></color-swatch>
@@ -295,6 +287,14 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <color-swatch format="color-xyz-d50" color="<?=$startColor->name()?>"></color-swatch>
           <color-swatch format="color-xyz-d65" color="<?=$startColor->name()?>"></color-swatch>
         </div>
+
+        <div class="donnees" id="results-values">
+          <div class="format valeur">
+            <pre class="language-css"><code class="language-css" data-result="value"></code></pre>
+          </div>
+        </div>
+
+        <div class="donnees" id="results-multiple"></div>
 
       </div>
     </section>

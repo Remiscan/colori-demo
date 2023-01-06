@@ -399,5 +399,9 @@ export function parseColorsInString(string) {
  */
 export function resolveInput(string) {
   const parsedString = parseColorsInString(string);
-  return eval(parsedString);
+  let value;
+  try {
+    value = eval(parsedString);
+  } catch (e) {}
+  return value;
 }
