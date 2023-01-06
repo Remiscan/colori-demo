@@ -99,7 +99,7 @@ export class ArgumentList {
     let type;
     if (currentArg.startsWith('[') && currentArg.endsWith(']')) type = 'array';
     else if (currentArg.startsWith('{') && currentArg.endsWith('}')) type = 'object';
-    else if (!isNaN(parseFloat(currentArg))) type = 'number';
+    else if (!isNaN(Number(currentArg))) type = 'number';
     else type = 'string';
 
     // If the argument is an array or object, check its contents and return them as their own arguments list
