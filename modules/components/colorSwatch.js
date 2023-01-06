@@ -139,7 +139,7 @@ sheet.replaceSync(/*css*/`
 
 const strings = {
   "fr": {
-    "in-gamut-warning": "Mappé vers le gamut <span class=\"color-swatch-format\"></span>",
+    "in-gamut-warning": "Projeté sur le gamut <span class=\"color-swatch-format\"></span>",
     "out-of-gamut-warning": "Hors du gamut <span class=\"color-swatch-format\"></span>",
     "switch-to-out": "Voir l'expression hors du gamut",
     "switch-to-in": "Voir l'expression dans le gamut",
@@ -147,7 +147,7 @@ const strings = {
   },
   
   "en": {
-    "in-gamut-warning": "Mapped to <span class=\"color-swatch-format\"></span> gamut",
+    "in-gamut-warning": "Mapped onto <span class=\"color-swatch-format\"></span> gamut",
     "out-of-gamut-warning": "Out of <span class=\"color-swatch-format\"></span> gamut",
     "switch-to-out": "See out-of-gamut expression",
     "switch-to-in": "See in-gamut expression",
