@@ -251,9 +251,9 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple"><kbd>pink.invert()</kbd></button>
           <button type="button" class="exemple"><kbd>#4169E1.scale(l, .5)</kbd></button>
-          <button type="button" class="exemple"><kbd>black.contrast(white)</kbd></button>
           <button type="button" class="exemple"><kbd>orchid.interpolate(palegreen, 4, oklch)</kbd></button>
-          <button type="button" class="exemple"><kbd>red.scale(s, .5).blend(blue.replace(a, .2))</kbd></button>
+          <button type="button" class="exemple"><kbd>Couleur.contrast(black, white, { method: apca })</kbd></button>
+          <button type="button" class="exemple"><kbd>red.scale(s, .5).blend(blue.replace(a, .2).blend(salmon, .2))</kbd></button>
         </div>
       </div>
 
