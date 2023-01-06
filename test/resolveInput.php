@@ -14,7 +14,22 @@
 <script type="module">
   import Couleur from 'colori';
   import { BracketPairList, BracketFragments } from 'bracket-pairs';
-  import { parseColorsInString, resolveInput } from 'resolveInput';
+  import { parseColorsInString, resolveInput, ArgumentList } from 'resolveInput';
+
+  const argTests = [
+    '',
+    's, .5',
+    'black, white',
+    'palegreen, 4, oklch',
+    'red.invert(), indigo',
+    '4, [ word, 2 ]',
+    '4, { precision: 2 }',
+  ];
+
+  for (const test of argTests) {
+    const list = new ArgumentList(test);
+    console.log(test, list.arguments, list.toString());
+  }
 
   //console.log(bracketPairs('()'));
   //console.log(bracketPairs('red.scale(s, .5).blend(blue.replace(a, .2))'));
@@ -68,6 +83,10 @@
     {
       string: 'Couleur.blend(red.invert(), indigo)',
       expected: (new Couleur('indigo'))
+    },
+    {
+      string: 'cadetblue.replace(a, .5).toString(color-srgb, { precision: 4 })',
+      expected: 'color(srgb 0.3725 0.6196 0.6275 / 0.5)'
     }
   ];
 

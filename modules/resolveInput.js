@@ -42,10 +42,10 @@ const regexps = {
  * built from a string that is supposed to be an arguments list,
  * i.e. of shape "arg1, arg2, arg3".
  */
-class ArgumentStringList {
+export class ArgumentList {
   arguments = [];
 
-  constructor(string) {
+  constructor(string, separator = ',') {
     let currentArg = '';
 
     // Checks if a potential argument is bracket-balanced.
@@ -59,10 +59,11 @@ class ArgumentStringList {
       const char = string[k];
 
       // If the current character is a comma, check if the previous characters form a bracket-balanced string.
-      if (char === ',') {
+      if (char === separator) {
         // If the current potential argument is bracket-balanced, it's an actual argument.
         if (isBalanced(currentArg)) {
-          this.arguments.push(currentArg.trim());
+          currentArg = ArgumentList.parseArgument(currentArg);
+          this.arguments.push(currentArg);
           currentArg = '';
           continue;
         }
@@ -73,21 +74,60 @@ class ArgumentStringList {
 
       // If the string is over, stop and check the last argument.
       if (k === string.length - 1 && isBalanced(currentArg)) {
-        this.arguments.push(currentArg.trim());
+        currentArg = ArgumentList.parseArgument(currentArg);
+        this.arguments.push(currentArg);
       }
     }
   }
+
+
+  toString() {
+    return this.arguments.map(arg => JSON.stringify(arg)).join(', ');
+  }
+
+
+  toStringArray() {
+    return this.arguments.map(arg => JSON.stringify(arg));
+  }
+
+
+  /** Parse an argument string into its correct type. */
+  static parseArgument(arg) {
+    let currentArg = arg.trim();
+
+    // Check if the argument is a Couleur, an array or an object
+    let type;
+    if (currentArg.startsWith('[') && currentArg.endsWith(']')) type = 'array';
+    else if (currentArg.startsWith('{') && currentArg.endsWith('}')) type = 'object';
+    else if (!isNaN(parseFloat(currentArg))) type = 'number';
+    else type = 'string';
+
+    // If the argument is an array or object, check its contents and return them as their own arguments list
+    switch (type) {
+      case 'array': {
+        const contents = new ArgumentList(currentArg.slice(1, -1));
+        currentArg = contents.arguments;
+      } break;
+
+      case 'object': {
+        const contents = new ArgumentList(currentArg.slice(1, -1));
+        currentArg = {};
+        for (let j = 0; j < contents.arguments.length; j++) {
+          const keyvalue = (new ArgumentList(contents.arguments[j], ':')).arguments;
+          if (keyvalue.length !== 2) throw new Error(`Incorrect object syntax in ${contents[j]}`);
+          const [key, value] = keyvalue;
+          currentArg[key] = value;
+        }
+      } break;
+
+      case 'number': {
+        currentArg = parseFloat(currentArg);
+      } break;
+    }
+
+    return currentArg;
+  }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -104,24 +144,28 @@ export function parseColorsInString(string) {
   const fragments = fragmentsObj.fragments;
 
   /**
-   * Checks if an argument is an actual value (like a color or number).
-   * If it is, return it as it is.
-   * If it is not, return a string containing that argument.
-   * @param {string} arg - The argument to check.
-   * @returns {string} The transformed argument.
+   * Checks if a javascript-like argument is a color expression,
+   * and returns that expression modified into correct JavaScript.
+   * If it is not, return null.
+   * @param {string} arg - The JSON-stringified argument to check.
+   * @returns {string|null} The transformed argument.
    */
-  const stringifyArg = arg => {
-    let value;
+  const stringifyColorArg = arg => {
+    let color;
+    const parsedArg = JSON.parse(arg);
     try {
-      eval(`value = ${arg}`);
+      eval(`color = ${parsedArg}`);
+      if (color instanceof Couleur) return parsedArg;
+      else throw new Error('Not a color');
     } catch (e) {
-      // If the argument is not an actual value, check if it can itself be parsed
-      // into a valid JS expression.
-      const parsedArg = parseColorsInString(arg);
-      return parsedArg !== arg ? parsedArg : `"${arg}"`
+      try {
+        const doubleParsedArg = parseColorsInString(parsedArg) ?? null;
+        return doubleParsedArg !== parsedArg ? doubleParsedArg : null;
+      } catch (e) {
+        return null;
+      }
     }
-    return arg;
-  };
+  }
 
   // For each fragment of the original string, check if it's an interesting form,
   // i.e. something like Couleur.method() or object.method() or object.getter
@@ -147,11 +191,7 @@ export function parseColorsInString(string) {
     if (match) {
       const methodName = fragmentsObj.insertInto(match[1]);
       const methodArgs = fragmentsObj.insertInto(match[2]);
-      const parsedMethodArgs = (new ArgumentStringList(methodArgs)).arguments.map(arg => {
-        return stringifyArg(
-          arg.trim()
-        )
-      });
+      const parsedMethodArgs = (new ArgumentList(methodArgs)).toStringArray().map(arg => stringifyColorArg(arg) ?? arg);
       // Replace the fragment by a valid JS expression that applies the method.
       fragments[k] = `Couleur.${methodName}(${parsedMethodArgs.join(', ')})`;
       continue;
@@ -164,11 +204,7 @@ export function parseColorsInString(string) {
       const methodName = fragmentsObj.insertInto(match[2]);
       const methodArgs = fragmentsObj.insertInto(match[3]);
       // Parse the method arguments, to determine if they need to be replaced by valid JS expressions.
-      const parsedMethodArgs = (new ArgumentStringList(methodArgs)).arguments.map(arg => {
-        return stringifyArg(
-          arg.trim()
-        )
-      });
+      const parsedMethodArgs = (new ArgumentList(methodArgs)).toStringArray().map(arg => stringifyColorArg(arg) ?? arg);
 
       let color;
       try {
