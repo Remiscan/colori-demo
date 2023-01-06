@@ -510,21 +510,19 @@ header {
   grid-row: 1 / 2;
   grid-column: 2 / 5;
   display: grid;
-  grid-template-columns: [icon-start] auto [icon-end logo-start] auto [logo-end] 1fr [options-start] auto [options-end];
+  grid-template-columns: auto 1fr [options-start] auto [options-end];
   gap: var(--section-padding);
   justify-content: center;
   align-items: center;
   position: relative;
   background: var(--section-color);
   padding: 0 var(--section-padding);
-  padding-left: 0;
   margin-top: env(safe-area-inset-top, 0);
   min-height: var(--tap-safe-size);
   font-size: .9rem;
 }
 
 header>h1 {
-  grid-column: logo-start / logo-end;
   grid-row: 1 / 2;
   transform: none;
   position: relative;
@@ -676,15 +674,22 @@ theme-selector input[type="radio"]:focus:not(:focus-visible) + label {
 
 /* Lien vers GitHub */
 
+.intro-links {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: var(--section-padding);
+}
+
+.intro-links .separator {
+  color: var(--link-muted-color);
+}
+
 .lien-github {
   grid-column: github-start / github-end;
   grid-row: 1;
-  justify-self: start;
-  align-self: center;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: inherit;
 }
 
 .lien-github svg {
@@ -700,23 +705,9 @@ span.github-string {
   width: 1.1rem;
   height: 1.1rem;
   margin-right: .3em;
-}
-
-
-@media (max-width: 30rem) {
-  span.github-string {
-    display: none;
-  }
-}
-
-.intro-links {
+  margin-block: -5px;
   display: flex;
-  gap: var(--section-padding);
-  margin-bottom: var(--section-padding);
-}
-
-.intro-links .separator {
-  color: var(--link-muted-color);
+  align-self: center;
 }
 
 

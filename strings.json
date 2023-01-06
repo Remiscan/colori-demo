@@ -1,8 +1,8 @@
 {
   "fr": {
     "description-site": "Module JS pour manipuler les couleurs (aussi disponible en PHP)",
-    "github": "Colori sur GitHub",
-    "github-wiki": "Documentation",
+    "github": "GitHub",
+    "github-wiki": "Docu.",
     "change-theme": "Changer le thème (auto, sombre ou clair)",
     "theme-selector-title": "Apparence",
     "theme-auto": "Automatique",
@@ -35,8 +35,8 @@
   },
   "en": {
     "description-site": "JS module to manipulate colours (also available in PHP)",
-    "github": "Colori on GitHub",
-    "github-wiki": "Documentation",
+    "github": "GitHub",
+    "github-wiki": "Docs",
     "change-theme": "Change theme (auto, dark or light)",
     "theme-selector-title": "Theme",
     "theme-auto": "Automatic",

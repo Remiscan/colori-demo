@@ -186,11 +186,16 @@ if (!$found) $startColor = new Couleur('aquamarine');
     </svg>
 
     <header>
-      <picture class="app-icon">
-        <?php //include './icons/icon.svg'; ?>
-      </picture>
-
       <h1>Colori</h1>
+
+      <div class="intro-links">
+        <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable>
+          <svg viewBox="0 0 16 16" class="github-cat" aria-hidden="true"><use href="#github-cat" /></svg>
+          <span><?=$translation->get('github')?></span>
+        </a>
+        <!--<span class="separator"> - </span>-->
+        <a href="https://github.com/Remiscan/colori/wiki" data-tappable><?=$translation->get('github-wiki')?></a>
+      </div>
 
       <div class="groupe-langages">
         <a href="?lang=fr" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</a>
@@ -201,15 +206,6 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
     <section id="intro">
       <h2><?=$translation->get('titre-section-intro')?></h2>
-
-      <div class="intro-links">
-        <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable>
-          <svg viewBox="0 0 16 16" class="github-cat" aria-hidden="true"><use href="#github-cat" /></svg>
-          <span><?=$translation->get('github')?></span>
-        </a>
-        <span class="separator"> - </span>
-        <a href="https://github.com/Remiscan/colori/wiki" data-tappable><?=$translation->get('github-wiki')?></a>
-      </div>
 
       <p><?=$translation->get('documentation-intro-p1')?></p>
       <p class="warning-js"><?=$translation->get('documentation-warning-js')?></p>
