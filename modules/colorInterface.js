@@ -4,8 +4,13 @@ import { messageWorker } from 'messageWorker';
 
 
 /** Update the interface with the newly detected color. */
-function* updateInterface(couleur, source = 'text', delai = 10) {
-  yield new Promise(resolve => setTimeout(resolve, delai));
+function* updateInterface(couleur, source = 'text') {
+  // Wait until next frame
+  yield new Promise(resolve =>
+    requestAnimationFrame(t1 =>
+      requestAnimationFrame(t2 => resolve(t2 - t1))
+    )
+  );
 
   // Send all the data to the worker and wait for its response
   const response = yield messageWorker('compute-interface', {

@@ -3,13 +3,23 @@ import { resolveInput } from 'resolveInput';
 
 
 
+let lastInterfaceColorExpr;
+
+
+
 /** Compute all color data from the new user input color. */
 export function computeInterface({ colorString, placeholder }) {
   let result;
   try {
     result = resolveInput(colorString || placeholder);
+    if (!result) throw 'Invalid input';
   } catch (e) {
-    return {};
+    try {
+      result = resolveInput(placeholder);
+      if (!result) throw 'Invalid placeholder input';
+    } catch(e) {
+      return {};
+    }
   }
 
   let colors = [];
@@ -34,6 +44,7 @@ export function computeInterface({ colorString, placeholder }) {
   else return {};
 
   const interfaceColor = colors[0];
+  const interfaceColorExpr = interfaceColor?.toString('color-srgb', { precision: 4 });
   const response = {
     type: responseType,
     colors: colors.map(c => c.exactName ?? c.toString('color-srgb', { precision: 4 })),
@@ -41,8 +52,14 @@ export function computeInterface({ colorString, placeholder }) {
     value: value,
   };
 
+  // Don't recalculate styles
+  if (lastInterfaceColorExpr && lastInterfaceColorExpr === interfaceColorExpr) {
+    return {};
+  }
+  lastInterfaceColorExpr = interfaceColorExpr;
+
   if (interfaceColor instanceof Couleur) {
-    response.interfaceColorExpr = interfaceColor.toString('color-srgb', { precision: 4 });
+    response.interfaceColorExpr = interfaceColorExpr;
     response.interfaceColorName = interfaceColor.name || '';
     response.interfaceColorHex = interfaceColor.hex;
     [response.css, response.metaLight, response.metaDark] = makeCSS(interfaceColor);
