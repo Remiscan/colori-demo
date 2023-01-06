@@ -53,7 +53,7 @@ export function computeInterface({ colorString, placeholder }) {
   };
 
   // Don't recalculate styles
-  if (lastInterfaceColorExpr && lastInterfaceColorExpr === interfaceColorExpr) {
+  if (result instanceof Couleur && lastInterfaceColorExpr && lastInterfaceColorExpr === interfaceColorExpr) {
     return {};
   }
   lastInterfaceColorExpr = interfaceColorExpr;
