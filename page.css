@@ -781,7 +781,7 @@ footer {
   position: relative;
   padding: 0 var(--section-padding);
   margin-bottom: env(safe-area-inset-bottom, 0);
-  margin-top: calc(-2.5 * var(--section-padding));
+  margin-top: calc(-2 * var(--section-padding));
   padding: min(8px, var(--section-padding));
   display: grid;
   place-items: center;
