@@ -193,16 +193,6 @@ if (!$found) $startColor = new Couleur('aquamarine');
       <h1>Colori</h1>
 
       <div class="groupe-langages">
-        <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable
-          aria-label="<?=$translation->get('github')?>">
-          <svg viewBox="0 0 16 16" class="github-cat"><use href="#github-cat" /></svg>
-          <span class="github-string"><?=$translation->get('github')?></span>
-          <span>GitHub</span>
-        </a>
-        <!--<a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-JavaScript-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="js"><?=$translation->get('titre-section-documentation')?></a>
-        <a href="https://github.com/Remiscan/colori/wiki/Documentation-pour-PHP-%28Fran%C3%A7ais%29" data-tappable lang="fr" data-prog-language="php"><?=$translation->get('titre-section-documentation')?></a>
-        <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-JavaScript-%28English%29" data-tappable lang="en" data-prog-language="js"><?=$translation->get('titre-section-documentation')?></a>
-        <a href="https://github.com/Remiscan/colori/wiki/Documentation-for-PHP-%28English%29" data-tappable lang="en" data-prog-language="php"><?=$translation->get('titre-section-documentation')?></a>-->
         <a href="?lang=fr" class="bouton-langage" data-tappable lang="fr" data-lang="fr" <?=($lang == 'fr' ? 'disabled' : '')?>>Français</a>
         <a href="?lang=en" class="bouton-langage" data-tappable lang="en" data-lang="en" <?=($lang == 'en' ? 'disabled' : '')?>>English</a>
         <theme-selector position="bottom"></theme-selector>
@@ -211,6 +201,16 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
     <section id="intro">
       <h2><?=$translation->get('titre-section-intro')?></h2>
+
+      <div class="intro-links">
+        <a href="https://github.com/Remiscan/colori" class="lien-github" data-tappable>
+          <svg viewBox="0 0 16 16" class="github-cat" aria-hidden="true"><use href="#github-cat" /></svg>
+          <span><?=$translation->get('github')?></span>
+        </a>
+        <span class="separator"> - </span>
+        <a href="https://github.com/Remiscan/colori/wiki" data-tappable><?=$translation->get('github-wiki')?></a>
+      </div>
+
       <p><?=$translation->get('documentation-intro-p1')?></p>
       <p class="warning-js"><?=$translation->get('documentation-warning-js')?></p>
     </section>
