@@ -245,9 +245,9 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <button type="button" class="exemple" data-action="more-examples" aria-label="<?=$translation->get('more-examples')?>"></button>
         </div>
 
-        <p class="instructions-exemples-fonctions off" data-hidden="true"><?=$translation->get('instructions-demo')?></p>
+        <p class="instructions-exemples-fonctions"><?=$translation->get('instructions-demo')?></p>
 
-        <div class="exemples-saisie exemples-fonctions off" data-hidden="true">
+        <div class="exemples-saisie exemples-fonctions">
           <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple"><kbd>pink.invert()</kbd></button>
           <button type="button" class="exemple"><kbd>#4169E1.scale(l, .5)</kbd></button>

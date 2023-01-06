@@ -994,6 +994,10 @@ color-picker::part(color-preview) {
   margin: 0;
 }
 
+#saisie:not([data-details]) :is(.instructions-exemples-fonctions, .exemples-fonctions) {
+  display: none;
+}
+
 .instructions-exemples-fonctions {
   font-size: .9em;
 }
@@ -1019,7 +1023,7 @@ color-picker::part(color-preview) {
   content: '+';
 }
 
-[data-action="more-examples"].open::before {
+#saisie[data-details] [data-action="more-examples"]::before {
   content: '-';
 }
 

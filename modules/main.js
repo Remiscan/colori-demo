@@ -43,10 +43,10 @@ colorPicker.addEventListener('input', async event => {
 for (const exemple of [...document.querySelectorAll('#demo button.exemple')]) {
   exemple.addEventListener('click', () => {
     if (exemple.dataset.action == 'more-examples') {
-      exemple.classList.toggle('open');
-      for (const hiddenElement of [...document.querySelectorAll('#saisie [data-hidden]')]) {
-        hiddenElement.classList.toggle('off');
-      }
+      const container = document.querySelector('#saisie');
+      const isOpen = container.getAttribute('data-details') != null;
+      if (isOpen) container.removeAttribute('data-details');
+      else        container.setAttribute('data-details', '');
     } else {
       champ.value = exemple.textContent;
       champ.dispatchEvent(new Event('input'), { bubbles: true });
