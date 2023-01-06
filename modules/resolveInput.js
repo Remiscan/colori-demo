@@ -123,6 +123,15 @@ export class ArgumentList {
       case 'number': {
         currentArg = parseFloat(currentArg);
       } break;
+
+      case 'string': {
+        const stringChars = `'"\``;
+        for (const char of stringChars) {
+          if (currentArg.startsWith(char) && currentArg.endsWith(char)) {
+            currentArg = currentArg.slice(1, -1);
+          }
+        }
+      } break;
     }
 
     return currentArg;
