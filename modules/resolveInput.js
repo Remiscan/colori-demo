@@ -1,3 +1,4 @@
+import { BracketFragments, BracketPairList } from 'bracket-pairs';
 import Couleur from 'colori';
 
 
@@ -36,217 +37,57 @@ const regexps = {
 
 
 
-/**
- * The index of a bracket in a string.
- * @typedef { { index: number, type: string } } BracketIndex
- */
 /** 
- * A pair of brackets in a string.
- * @typedef { { start: BracketIndex, end: BracketIndex } } BracketPair 
+ * List of bracket-balanced argument strings 
+ * built from a string that is supposed to be an arguments list,
+ * i.e. of shape "arg1, arg2, arg3".
  */
+class ArgumentStringList {
+  arguments = [];
 
-/** 
- * An array of bracket pairs at a given depth.
- * @typedef {BracketPair[]} BracketDepth 
- */
+  constructor(string) {
+    let currentArg = '';
 
-/** 
- * An array where:
- * - the keys are the current depth
- * - the value if an array of bracket pairs at that depth.
- * @typedef {BracketDepth[]} BracketData 
- */
+    // Checks if a potential argument is bracket-balanced.
+    const isBalanced = arg => {
+      const brackets = new BracketPairList(arg, '()[]{}');
+      return brackets.balanced;
+    };
 
+    // For each character of the string, check if it's a comma that could be separating arguments.
+    for (let k = 0; k < string.length; k++) {
+      const char = string[k];
 
-
-/**
- * Analyzes a string and returns data about its bracket pairs.
- * The second element in the returned array is the remaining stack at the end of the function.
- * If stack.length === 0, the brackets are balanced (i.e. every open bracket is closed).
- * @param {string} string - The string to analyze.
- * @param {string} bracketTypes - Bracket characters to check
- * @returns {[BracketData, number[]]} The bracket pair data.
- */
-export function bracketPairs(string, bracketTypes = '()[]{}') {
-  const stack = [];
-  const pairs = [];
-
-  // For each character in the string, check if it's a bracket
-  stringLoop: for (const [index, character] of Object.entries(string)) {
-    // For each bracket type, check if the current character is it
-    typeLoop: for (let charIndex = 0; charIndex < bracketTypes.length; charIndex++) {
-      // If the current character is an opening bracket
-      if (charIndex % 2 === 0 && character === bracketTypes[charIndex]) {
-        const depth = stack.length;
-        stack.push({ index: Number(index), type: bracketTypes[charIndex] });
-        if (!pairs[depth]) pairs.push([]);
-        continue stringLoop;
-      }
-      
-      // If the current character is a closing bracket
-      else if (charIndex % 1 === 0 && character === bracketTypes[charIndex]) {
-        const lastOpen = stack.pop();
-
-        // If no bracket was open before, ignore the current closing bracket
-        if (typeof lastOpen === 'undefined') continue stringLoop;
-
-        // If the current closing bracket corresponds to the previous opening bracket
-        if (lastOpen.type === bracketTypes[charIndex - 1]) {
-          const depth = stack.length;
-          pairs[depth].push({
-            start: lastOpen,
-            end: { index: Number(index), type: bracketTypes[charIndex] },
-          });
-          continue stringLoop;
-        } else {
-          continue typeLoop;
+      // If the current character is a comma, check if the previous characters form a bracket-balanced string.
+      if (char === ',') {
+        // If the current potential argument is bracket-balanced, it's an actual argument.
+        if (isBalanced(currentArg)) {
+          this.arguments.push(currentArg.trim());
+          currentArg = '';
+          continue;
         }
       }
-    }
-  }
-  return [pairs, stack];
-}
 
+      // Build the current potential argument.
+      currentArg = `${currentArg}${char}`;
 
-
-/**
- * Gets the ancestor bracket pair of a bracket pair, i.e. the pair containing it.
- * @param {BracketPair} pair - The pair whose ancestors we want.
- * @param {number} depth - The depth of the pair.
- * @param {BracketData} reversedDepths - The bracket data.
- * @returns {BracketPair|null} The ancestor bracket pair if there is one, null if not.
- */
-export function getAncestorPair(pair, depth, reversedDepths) {
-  const start = pair.start.index;
-  const end = pair.end.index;
-
-  // If we're already at the last depth level, there's no way to look for an ancestor deeper.
-  if (depth + 1 >= reversedDepths.length) return null;
-
-  for (const potentialAncestor of reversedDepths[depth + 1]) {
-    const pStart = potentialAncestor.start.index;
-    const pEnd = potentialAncestor.end.index;
-    // If the potential ancestor contains the current pair, then it's the actual ancestor!
-    if (pStart < start && pEnd > end) {
-      return potentialAncestor;
-    }
-  }
-  return null;
-}
-
-
-
-/**
- * Parses a string containing bracket pairs, and returns an array of ordered string fragments contained in those pairs.
- * The last element of the returned array is the full string.
- * @param {string} string - The string to parse.
- * @returns {string[]} An array of string fragments.
- */
-export function parseStringWithBrackets(string, bracketTypes = undefined) {
-  const [pairsOfBrackets, stack] = bracketPairs(string, bracketTypes);
-  if (stack.length > 0) throw 'Unbalanced bracket pairs';
-
-  const reversedDepths = [...pairsOfBrackets].reverse();
-  let modifiedString = string;
-  const stringFragments = [];
-
-  let id = 0;
-
-  //const logPairs = () => console.log([...reversedDepths].map(d => { return [...d].map(p => { return { start: {...(p.start)}, end: {...(p.end)} } })}));
-
-  // For each depth level, extract the string fragments into an array,
-  // and replace the fragment in the original string by ${f[id]} where id
-  // is the key of the associated fragment in the fragments array.
-  for (let depth = 0; depth < reversedDepths.length; depth++) {
-    const pairs = reversedDepths[depth];
-
-    // For each pair of brackets, extract the fragment that is between the brackets
-    // and replace it in the original string.
-    for (let k = 0; k < pairs.length; k++) {
-      const pair = pairs[k];
-      
-      // Extract the fragment
-      const fragment = modifiedString.slice(pair.start.index + 1, pair.end.index);
-      stringFragments.push(fragment);
-
-      // Replace it in the original string
-      const replacement = `\${f[${id}]}`;
-      id++;
-      const prefix = modifiedString.slice(0, pair.start.index);
-      const suffix = modifiedString.slice(pair.end.index + 1);
-      modifiedString = `${prefix}${pair.start.type}${replacement}${pair.end.type}${suffix}`;
-      
-      // Compute the length difference between the fragment and its replacement,
-      // and then shift all bracket pair indexes accordingly.
-      const shiftBy = replacement.length - fragment.length;
-
-      // Shift the end index of ancestor pairs
-      let editedPair = pair;
-      for (let subDepth = depth + 1; subDepth < reversedDepths.length; subDepth++) {
-        const ancestor = getAncestorPair(editedPair, subDepth - 1, reversedDepths);
-        if (!ancestor) break;
-        ancestor.end.index += shiftBy;
-        editedPair = ancestor;
-      }
-
-      // Shift the start and end indexes of following sibling pairs
-      for (const p of pairs) {
-        if (p.start.index <= pair.start.index) continue;
-        p.start.index += shiftBy;
-        p.end.index += shiftBy;
-      }
-
-      // Shift the end index of the current pair,
-      // after shifting the ancestors and siblings so that they compare their old indexes.
-      pair.end.index += shiftBy;
-    }
-  }
-
-  return [...stringFragments, modifiedString];
-}
-
-
-/**
- * Takes a string that's supposed to be an arguments list "arg1, arg2, arg3...",
- * and returns an array of bracket-balanced arguments.
- * @param {string} string - The string of the list of arguments.
- * @returns {string[]} The array of bracket-balanced arguments.
- */
-export function parseArgumentsList(string) {
-  const args = [];
-  let currentArg = '';
-
-  // Checks if a potential argument is bracket-balanced.
-  const isBalanced = arg => {
-    const [pairs, stack] = bracketPairs(arg, '()[]{}');
-    return stack.length === 0;
-  };
-
-  // For each character of the string, check if it's a comma that could be separating arguments.
-  for (let k = 0; k < string.length; k++) {
-    const char = string[k];
-
-    // If the current character is a comma, check if the previous characters form a bracket-balanced string.
-    if (char === ',') {
-      // If the current potential argument is bracket-balanced, it's an actual argument.
-      if (isBalanced(currentArg)) {
-        args.push(currentArg.trim());
-        currentArg = '';
-        continue;
+      // If the string is over, stop and check the last argument.
+      if (k === string.length - 1 && isBalanced(currentArg)) {
+        this.arguments.push(currentArg.trim());
       }
     }
-
-    // Build the current potential argument.
-    currentArg = `${currentArg}${char}`;
-
-    // If the string is over, stop and check the last argument.
-    if (k === string.length - 1 && isBalanced(currentArg)) {
-      args.push(currentArg.trim());
-    }
   }
-
-  return args;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -259,27 +100,8 @@ export function parseArgumentsList(string) {
  * @returns {string} The properly transformed string.
  */
 export function parseColorsInString(string) {
-  const fragments = parseStringWithBrackets(string, '()');
-  //const fragments = [string];
-
-  /**
-   * Takes a string with fragment references (i.e. ${f[id]})
-   * and replaces them with the actual fragments.
-   * @param {string} string - The string with fragment references.
-   * @returns {string} The string with actual fragments inserted.
-   */
-  const insertFragments = (string) => {
-    let modifiedString = string;
-    let lastModifiedString = null;
-    while (true) {
-      for (let id = 0; id < fragments.length; id++) {
-        modifiedString = modifiedString.replace(`\${f[${id}]}`, fragments[id]);
-      }
-      if (lastModifiedString === modifiedString) break;
-      lastModifiedString = modifiedString;
-    }
-    return modifiedString;
-  }
+  const fragmentsObj = new BracketFragments(string, '()');
+  const fragments = fragmentsObj.fragments;
 
   /**
    * Checks if an argument is an actual value (like a color or number).
@@ -309,7 +131,7 @@ export function parseColorsInString(string) {
 
     // Check if the whole fragment is a color expression
     let color;
-    const modifiedFragment = insertFragments(originalFragment);
+    const modifiedFragment = fragmentsObj.insertInto(originalFragment);
     try {
       color = new Couleur(modifiedFragment);
     } catch (e) {}
@@ -323,9 +145,9 @@ export function parseColorsInString(string) {
     let match;
     match = originalFragment.match(regexps.staticMethods);
     if (match) {
-      const methodName = insertFragments(match[1]);
-      const methodArgs = insertFragments(match[2]);
-      const parsedMethodArgs = parseArgumentsList(methodArgs).map(arg => {
+      const methodName = fragmentsObj.insertInto(match[1]);
+      const methodArgs = fragmentsObj.insertInto(match[2]);
+      const parsedMethodArgs = (new ArgumentStringList(methodArgs)).arguments.map(arg => {
         return stringifyArg(
           arg.trim()
         )
@@ -338,11 +160,11 @@ export function parseColorsInString(string) {
     // Test if the whole fragment is couleurObject.{a method}
     match = originalFragment.match(regexps.methods);
     if (match) {
-      const colorString = insertFragments(match[1]);
-      const methodName = insertFragments(match[2]);
-      const methodArgs = insertFragments(match[3]);
+      const colorString = fragmentsObj.insertInto(match[1]);
+      const methodName = fragmentsObj.insertInto(match[2]);
+      const methodArgs = fragmentsObj.insertInto(match[3]);
       // Parse the method arguments, to determine if they need to be replaced by valid JS expressions.
-      const parsedMethodArgs = parseArgumentsList(methodArgs).map(arg => {
+      const parsedMethodArgs = (new ArgumentStringList(methodArgs)).arguments.map(arg => {
         return stringifyArg(
           arg.trim()
         )
@@ -366,8 +188,8 @@ export function parseColorsInString(string) {
     // Test if the whole fragment is couleurObject.{a getter}
     match = originalFragment.match(regexps.getters);
     if (match) {
-      const colorString = insertFragments(match[1]);
-      const getterName = insertFragments(match[2]);
+      const colorString = fragmentsObj.insertInto(match[1]);
+      const getterName = fragmentsObj.insertInto(match[2]);
       let color;
       try {
         color = new Couleur(colorString);

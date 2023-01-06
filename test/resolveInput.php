@@ -13,7 +13,8 @@
 
 <script type="module">
   import Couleur from 'colori';
-  import { bracketPairs, parseStringWithBrackets, parseArgumentsList, parseColorsInString, resolveInput } from 'resolveInput';
+  import { BracketPairList, BracketFragments } from 'bracket-pairs';
+  import { parseColorsInString, resolveInput } from 'resolveInput';
 
   //console.log(bracketPairs('()'));
   //console.log(bracketPairs('red.scale(s, .5).blend(blue.replace(a, .2))'));
