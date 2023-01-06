@@ -1047,6 +1047,7 @@ color-picker::part(color-preview) {
   grid-column: 2;
   margin: auto;
   margin-left: 0;
+  margin-block: -3px;
 }
 
 #resultats h3 {
