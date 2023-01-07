@@ -31,7 +31,7 @@ export function computeInterface({ colorString, placeholder }) {
     colors = [result];
   }
 
-  else if (Array.isArray(result) && result.length > 0 && result.every(r => r instanceof Couleur)) {
+  else if (Array.isArray(result) && result.every(r => r instanceof Couleur)) {
     responseType = 'multiple';
     colors = [...result];
   }
@@ -43,18 +43,21 @@ export function computeInterface({ colorString, placeholder }) {
 
   else return {};
 
+  const response = {};
+
   const interfaceColor = colors[0];
   const interfaceColorExpr = interfaceColor?.toString('color-srgb', { precision: 4 });
-  const response = {
-    type: responseType,
-    colors: colors.map(c => c.exactName ?? c.toString('color-srgb', { precision: 4 })),
-    colorsClamped: colors.map(c => c.toGamut('srgb').rgb),
-    value: value,
-  };
+  response.type = responseType;
+  response.colors = colors.map(c => c.exactName ?? c.toString('color-srgb', { precision: 4 }));
+  response.colorsClamped = colors.map(c => c.toGamut('srgb').rgb);
+  response.value = value;
 
   // Don't recalculate styles
-  if (result instanceof Couleur && lastInterfaceColorExpr && lastInterfaceColorExpr === interfaceColorExpr) {
-    return {};
+  if (
+    (result instanceof Couleur && lastInterfaceColorExpr && lastInterfaceColorExpr === interfaceColorExpr)
+    || (Array.isArray(result) && result.length === 0)
+  ) {
+    return response;
   }
   lastInterfaceColorExpr = interfaceColorExpr;
 

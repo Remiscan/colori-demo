@@ -25,7 +25,7 @@ function* updateInterface(couleur, source = 'text') {
   container.removeAttribute('data-type');
   container.dataset.type = response.type ?? '';
 
-  if (response.colors.length > 0) {
+  if (response.colors.length >= 0) {
     // Create color-swatches in #results-multiple
     const colorsContainer = document.querySelector('#results-multiple');
     let html = '';
@@ -42,7 +42,9 @@ function* updateInterface(couleur, source = 'text') {
       html += `<color-swatch format="${format}" color="${color}"></color-swatch>`;
     }
     colorsContainer.innerHTML = html;
+  }
 
+  if (response.interfaceColorExpr) {
     // Update color-swatches in #results-named-formats & #results-color-spaces
     const swatches = document.querySelectorAll('#results-named-formats color-swatch, #results-color-spaces color-swatch');
     for (const swatch of swatches) {
