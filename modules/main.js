@@ -126,3 +126,11 @@ themeSelector.querySelector('.selector-cookie-notice').classList.add('h6');
 for (const e of [...document.querySelectorAll('theme-selector button, tab-list button')]) {
   e.dataset.tappable = '';
 }
+
+
+
+// Make colori accessible from dev tools
+try {
+  window.Couleur = (await import('colori')).default;
+  console.log('You can use the Couleur class here in the console to try it out!');
+} catch (error) {}

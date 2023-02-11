@@ -8,10 +8,10 @@ try { const w = new Worker('blob://', tester); } catch (e) {}
 
 let worker;
 if (supports) {
-  console.log('Using module worker');
+  //console.log('Using module worker');
   worker = new ModuleWorkerShim(import.meta.resolve('interface-worker'));
 } else {
-  console.log('Using classic worker');
+  //console.log('Using classic worker');
   worker = new Worker(import.meta.resolve('interface-worker-nomodule'));
 }
 
