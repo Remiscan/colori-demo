@@ -1084,7 +1084,7 @@ color-picker::part(color-preview) {
 }
 
 @media (max-width: 672px) {
-  .donnees:is(#results-named-formats, #results-color-spaces) {
+  .donnees.liste-couleurs {
     flex-direction: column;
     align-items: start;
   }
@@ -1128,8 +1128,8 @@ color-swatch > button:not(:hover, :focus, :active) {
 #resultats:not([data-type="multiple"]) .donnees#results-multiple,
 #resultats:is([data-type="value"], [data-type="multiple"]) :is(
   #resultats > [is="tab-list"],
-  .donnees#results-named-formats,
-  .donnees#results-color-spaces
+  #results-named-formats,
+  #results-color-spaces
 ) {
   display: none;
 }

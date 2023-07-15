@@ -261,7 +261,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <button role="tab" aria-controls="results-color-spaces"><?=$translation->get('tab-label-color-spaces')?></button>
         </div>-->
 
-        <div class="donnees" id="results-named-formats">
+        <div class="donnees liste-couleurs" id="results-named-formats">
           <color-swatch format="name" color="<?=$startColor->name()?>"></color-swatch>
           <color-swatch format="hex" color="<?=$startColor->name()?>"></color-swatch>
           <color-swatch format="rgb" color="<?=$startColor->name()?>"></color-swatch>
@@ -273,9 +273,9 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <color-swatch format="oklch" color="<?=$startColor->name()?>"></color-swatch>
         </div>
 
-        <details>
+        <details id="results-color-spaces">
           <summary class="button exemple"><?=$translation->get('tab-label-color-spaces')?></summary>
-          <div class="donnees" id="results-color-spaces">
+          <div class="donnees liste-couleurs">
             <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
             <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>
             <color-swatch format="color-display-p3" color="<?=$startColor->name()?>"></color-swatch>
