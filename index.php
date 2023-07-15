@@ -219,7 +219,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <label for="entree"><?=$translation->get('demo-input-label')?></label>
         </h3>
 
-        <div class="exemples-saisie exemples-valeurs only-pc">
+        <div class="exemples-saisie exemples-valeurs only-pc liste-exemples">
           <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple"><kbd>pink</kbd></button>
           <button type="button" class="exemple"><kbd>#4169E1</kbd></button>
@@ -233,7 +233,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
         <color-picker format="hsl" color="<?=$startColor->name()?>"></color-picker>
 
-        <div class="exemples-saisie exemples-valeurs only-mobile">
+        <div class="exemples-saisie exemples-valeurs only-mobile liste-exemples">
           <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple"><kbd>pink</kbd></button>
           <button type="button" class="exemple"><kbd>#4169E1</kbd></button>
@@ -243,7 +243,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
 
         <p class="instructions-exemples-fonctions"><?=$translation->get('instructions-demo')?></p>
 
-        <div class="exemples-saisie exemples-fonctions">
+        <div class="exemples-saisie exemples-fonctions liste-exemples">
           <span><?=$translation->get('exemple-abbr')?></span>
           <button type="button" class="exemple"><kbd>pink.invert()</kbd></button>
           <button type="button" class="exemple"><kbd>#4169E1.scale(l, .5)</kbd></button>
@@ -256,10 +256,10 @@ if (!$found) $startColor = new Couleur('aquamarine');
       <div id="resultats" class="subsection">
         <h3 class="no-separator"><?=$translation->get('demo-resultats-titre')?></h3>
 
-        <div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>">
+        <!--<div is="tab-list" group="tabs-results" aria-label="<?=$translation->get('tabs-results-label')?>">
           <button role="tab" aria-controls="results-named-formats"><?=$translation->get('tab-label-named-formats')?></button>
           <button role="tab" aria-controls="results-color-spaces"><?=$translation->get('tab-label-color-spaces')?></button>
-        </div>
+        </div>-->
 
         <div class="donnees" id="results-named-formats">
           <color-swatch format="name" color="<?=$startColor->name()?>"></color-swatch>
@@ -273,16 +273,19 @@ if (!$found) $startColor = new Couleur('aquamarine');
           <color-swatch format="oklch" color="<?=$startColor->name()?>"></color-swatch>
         </div>
 
-        <div class="donnees" id="results-color-spaces" hidden>
-          <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
-          <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>
-          <color-swatch format="color-display-p3" color="<?=$startColor->name()?>"></color-swatch>
-          <color-swatch format="color-a98-rgb" color="<?=$startColor->name()?>"></color-swatch>
-          <color-swatch format="color-prophoto-rgb" color="<?=$startColor->name()?>"></color-swatch>
-          <color-swatch format="color-rec2020" color="<?=$startColor->name()?>"></color-swatch>
-          <color-swatch format="color-xyz-d50" color="<?=$startColor->name()?>"></color-swatch>
-          <color-swatch format="color-xyz-d65" color="<?=$startColor->name()?>"></color-swatch>
-        </div>
+        <details>
+          <summary class="button exemple"><?=$translation->get('tab-label-color-spaces')?></summary>
+          <div class="donnees" id="results-color-spaces">
+            <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
+            <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>
+            <color-swatch format="color-display-p3" color="<?=$startColor->name()?>"></color-swatch>
+            <color-swatch format="color-a98-rgb" color="<?=$startColor->name()?>"></color-swatch>
+            <color-swatch format="color-prophoto-rgb" color="<?=$startColor->name()?>"></color-swatch>
+            <color-swatch format="color-rec2020" color="<?=$startColor->name()?>"></color-swatch>
+            <color-swatch format="color-xyz-d50" color="<?=$startColor->name()?>"></color-swatch>
+            <color-swatch format="color-xyz-d65" color="<?=$startColor->name()?>"></color-swatch>
+          </div>
+        </details>
 
         <div class="donnees" id="results-values">
           <div class="format valeur">

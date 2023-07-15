@@ -4,7 +4,6 @@ import 'color-swatch';
 import { updateInterface } from 'colorInterface';
 import Cookie from 'cookies';
 import 'remiscan-logo';
-import 'tab-list';
 import 'theme-selector';
 
 
@@ -40,7 +39,7 @@ colorPicker.addEventListener('input', async event => {
 
 ///////////////////////////////////
 // Detect clicks on example buttons
-for (const exemple of [...document.querySelectorAll('#demo button.exemple')]) {
+for (const exemple of [...document.querySelectorAll('.liste-exemples button.exemple')]) {
   exemple.addEventListener('click', () => {
     if (exemple.dataset.action == 'more-examples') {
       const container = document.querySelector('#saisie');

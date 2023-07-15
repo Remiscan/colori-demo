@@ -124,6 +124,7 @@ p, li {
  *Boutons
  */
 
+ .button,
 button {
   -webkit-appearance: none;
   appearance: none;
@@ -140,13 +141,13 @@ button {
   text-decoration: none;
 }
 
-button:hover,
-button:focus,
-button:active {
+button:is(:hover, :focus, :active),
+.button:is(:hover, :focus, :active) {
   border-color: var(--button-hover-border-color);
   background: var(--button-hover-bg-color);
 }
 
+.button:active,
 button:active {
   background: var(--button-active-bg-color);
 }
@@ -360,6 +361,20 @@ a:active {
 strong, em, th {
   color: var(--text-strong-color);
   font-weight: 600;
+}
+
+details {
+  display: flex;
+  grid-column: 1 / -1;
+}
+
+details > summary.button {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+details[open] > summary.button {
+  margin-bottom: var(--section-padding);
 }
 
 
