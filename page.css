@@ -1166,6 +1166,10 @@ color-swatch > button:not(:hover, :focus, :active) {
   white-space: pre-wrap;
 }
 
+details:has(:not(:defined)) {
+  display: none;
+}
+
 
 
 @media (max-width: 672px) {
