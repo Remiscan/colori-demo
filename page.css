@@ -11,7 +11,7 @@ remiscan-logo::part(link):focus:not(:focus-visible),
 ::-moz-focus-inner { border: 0; }*/
 
 :root { --tap-safe-size: 44px; }
-@media (pointer: coarse) {
+@media (any-pointer: coarse) {
   [data-tappable] { position: relative; z-index: 1; }
   [data-tappable]:not([data-tappable="after"])::before,
   [data-tappable][data-tappable="after"]::after {
@@ -1029,7 +1029,7 @@ color-picker::part(color-preview) {
   flex-shrink: 0;
 }
 
-@media (pointer: coarse) {
+@media (any-pointer: coarse) {
   .exemple {
     padding-block: .6em;
     min-width: 44px;
