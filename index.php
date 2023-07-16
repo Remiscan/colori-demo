@@ -274,7 +274,7 @@ if (!$found) $startColor = new Couleur('aquamarine');
         </div>
 
         <details id="results-color-spaces">
-          <summary class="button exemple"><?=$translation->get('tab-label-color-spaces')?></summary>
+          <summary class="button exemple" data-tappable><?=$translation->get('tab-label-color-spaces')?></summary>
           <div class="donnees liste-couleurs">
             <color-swatch format="color-srgb" color="<?=$startColor->name()?>"></color-swatch>
             <color-swatch format="color-srgb-linear" color="<?=$startColor->name()?>"></color-swatch>

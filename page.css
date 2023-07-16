@@ -11,20 +11,22 @@ remiscan-logo::part(link):focus:not(:focus-visible),
 ::-moz-focus-inner { border: 0; }*/
 
 :root { --tap-safe-size: 44px; }
-[data-tappable] { position: relative; z-index: 1; }
-[data-tappable]:not([data-tappable="after"])::before,
-[data-tappable][data-tappable="after"]::after {
-  content: '';
-  display: block;
-  width: 100%;
-  min-width: 44px;
-  height: 100%;
-  min-height: 44px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
+@media (pointer: coarse) {
+  [data-tappable] { position: relative; z-index: 1; }
+  [data-tappable]:not([data-tappable="after"])::before,
+  [data-tappable][data-tappable="after"]::after {
+    content: '';
+    display: block;
+    width: 100%;
+    min-width: 44px;
+    height: 100%;
+    min-height: 44px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
 }
 
 
@@ -1024,6 +1026,13 @@ color-picker::part(color-preview) {
   color: inherit;
   padding: .4em .6em;
   border-radius: calc(.5 * var(--border-radius));
+}
+
+@media (pointer: coarse) {
+  .exemple {
+    padding-block: .6em;
+    min-width: 44px;
+  }
 }
 
 .exemple kbd {
