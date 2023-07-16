@@ -8,7 +8,7 @@
     "interface-worker-nomodule": "/colori/demo/modules/worker-nomodule.php",
     "resolveInput": "/colori/demo/modules/resolveInput.js",
 
-    "color-swatch": "/colori/demo/modules/components/colorSwatch.js",
+    "color-swatch": "/_common/components/color-swatch/color-swatch.js",
     "color-picker": "/_common/components/color-picker/color-picker.js",
     "range-gradient-worklet": "/_common/components/color-picker/worklet.js.php",
     "input-slider": "/_common/components/input-slider/input-slider.js",
