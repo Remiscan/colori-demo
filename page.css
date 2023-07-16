@@ -1026,6 +1026,7 @@ color-picker::part(color-preview) {
   color: inherit;
   padding: .4em .6em;
   border-radius: calc(.5 * var(--border-radius));
+  flex-shrink: 0;
 }
 
 @media (pointer: coarse) {
