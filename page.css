@@ -977,11 +977,12 @@ color-picker::part(color-preview) {
  */
 
 .exemples-saisie {
+  align-self: end;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: calc(.5 * var(--section-padding));
-  align-items: flex-end;
+  align-items: baseline;
   overflow-x: auto;
   overflow-y: visible;
   scrollbar-width: thin;
