@@ -15,7 +15,7 @@
 
     "colori": "/colori/lib/dist/colori.min.js",
 
-    "default-cookies": "/_common/js/cookies.js",
+    "default-cookies": "/_common/js/cookies/mod.js",
 
     "tab-list": "/_common/components/tab-list/tab-list.js",
     "custom-elements-polyfill": "/_common/polyfills/custom-elements.js",
@@ -24,12 +24,12 @@
     "remiscan-logo-svg": "/_common/components/remiscan-logo/logo.svg",
 
     "theme-selector": "/_common/components/theme-selector/theme-selector.js",
-    "trap-focus": "/_common/js/trap-focus.js",
+    "trap-focus": "/_common/js/trap-focus/mod.js",
 
-    "bracket-pairs": "/_common/js/bracket-pairs.js",
-    "cancelable-async": "/_common/js/cancelable-async.js",
-    "translation-observer": "/_common/js/translation-observer.js",
-    "module-worker-shim": "/_common/js/module-worker-shim.js",
+    "bracket-pairs": "/_common/js/bracket-pairs/mod.js",
+    "cancelable-async": "/_common/js/cancelable-async/mod.js",
+    "translation-observer": "/_common/js/translation-observer/mod.js",
+    "module-worker-shim": "/_common/js/module-worker-shim/mod.js",
     "es-module-shims-wasm": "/_common/polyfills/es-module-shims.wasm.js"
   }
 }
