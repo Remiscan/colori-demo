@@ -85,6 +85,7 @@ h2 {
 h3, .h2 {
   font-size: calc(var(--mod) * var(--mod) * 1rem);
 }
+theme-selector-list::part(selector-title),
 h4, .h3, h5, .h4 {
   font-size: calc(var(--mod) * 1rem);
 }
@@ -92,6 +93,7 @@ h4, .h3, h5, .h4 {
   font-size: 1rem;
   line-height: 1.6em;
 }*/
+theme-selector-list::part(selector-cookie-notice),
 h6, .h6 {
   font-size: calc(1rem / var(--mod));
 }
@@ -126,7 +128,7 @@ p, li {
  *Boutons
  */
 
- .button,
+.button,
 button {
   -webkit-appearance: none;
   appearance: none;
@@ -160,6 +162,7 @@ button:active {
  *Input radio
  */
 
+theme-selector-list::part(input-radio),
 input[type="radio"] {
   height: 0;
   width: 0;
@@ -169,6 +172,7 @@ input[type="radio"] {
   position: absolute;
 }
 
+theme-selector-list::part(input-label),
 input[type="radio"] + label {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -179,15 +183,19 @@ input[type="radio"] + label {
   box-sizing: border-box;
 }
 
+theme-selector-list::part(input-label):hover,
+theme-selector-list::part(input-label input-checked),
 input[type="radio"] + label:hover,
 input[type="radio"]:checked + label {
   background: var(--button-hover-bg-color);
 }
 
+theme-selector-list::part(input-label):active,
 input[type="radio"]:active + label {
   background: var(--button-active-bg-color);
 }
 
+theme-selector-list::part(input-label)::before,
 input[type="radio"] + label::before {
   content: '';
   display: block;
@@ -204,16 +212,19 @@ input[type="radio"] + label::before {
   transform: rotate3D(0, 0, 1, 360deg);
 }
 
+theme-selector-list::part(input-label input-checked)::before,
 input[type="radio"]:checked + label::before {
   background-color: var(--h1-color);
   box-shadow: inset 0 0 0 .1rem var(--h1-color),
               inset 0 0 0 .2rem var(--input-bg-color);
 }
 
+theme-selector-list::part(theme-name),
 input[type="radio"] + label>span {
   margin: auto 0;
 }
 
+theme-selector-list::part(input-label):has(:focus-visible),
 input[type="radio"]:focus + label {
   outline: 5px auto Highlight;
   outline: 5px auto -webkit-focus-ring-color;
@@ -510,6 +521,7 @@ body { /* Desktop-like */
   margin-left: env(safe-area-inset-left, 0);
   background-color: var(--body-color);
   color: var(--text-color);
+  color-scheme: inherit;
 }
 
 @media (max-width: 672px) {
@@ -604,6 +616,11 @@ header .app-icon {
 
 /* Theme selector */
 
+@keyframes selector-appears {
+  from { opacity: 0; transform: translateY(-.2rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 theme-selector {
   --size: 1.8em;
   width: var(--size);
@@ -615,7 +632,14 @@ theme-selector {
   --secondary-color: var(--h1-color);
 }
 
+theme-selector > button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
 color-picker::part(selector),
+theme-selector-list,
 theme-selector>.selector {
   min-width: 11rem;
   right: calc(-1 * var(--section-padding));
@@ -634,28 +658,61 @@ theme-selector > .selector {
   top: calc(1.8rem + .5 * (var(--tap-safe-size) - 1.8rem) + 2px); /* theme-selector + .5 * (header - theme-selector) + space */
 }
 
+theme-selector-list {
+  position-fallback: unset;
+  max-width: 11rem;
+  top: calc(1.8rem + .5 * (var(--tap-safe-size) - 1.8rem) + 2px); /* theme-selector + .5 * (header - theme-selector) + space */
+  right: calc(0);
+  padding: 0;
+  animation: selector-appears .2s ease;
+  transform: none;
+  transition: opacity .2s ease,
+              transform .2s ease,
+              display .2s ease;
+}
+
+@supports (top: anchor(implicit bottom)) {
+  theme-selector-list {
+    top: calc(anchor(implicit bottom) + .5 * (var(--tap-safe-size) - 1.8rem) + 2px); /* theme-selector + .5 * (header - theme-selector) + space */
+    right: calc(anchor(implicit right) - var(--section-padding));
+  }
+}
+
+theme-selector-list:open-popover {
+  transform: translateY(0);
+}
+
+theme-selector-list.\:open-popover {
+  transform: translateY(0);
+}
+
 color-picker[open]::part(selector),
 theme-selector[open="true"]>.selector {
   transform: translateY(0);
 }
 
 color-picker::part(select-label),
+theme-selector-list::part(selector-title),
 theme-selector .selector-title {
   color: var(--h3-color);
   padding: var(--section-padding);
   place-self: center;
 }
 
+theme-selector-list::part(selector-title-text),
 theme-selector .selector-title-text {
   border: none;
+  padding: 10px;
 }
 
+theme-selector-list::part(input):focus + theme-selector-list::part(input-label),
 theme-selector input[type="radio"]:focus + label {
   outline: 5px auto Highlight;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -5px;
 }
 
+theme-selector-list::part(input):focus:not(:focus-visible) + theme-selector-list::part(input-label),
 theme-selector input[type="radio"]:focus:not(:focus-visible) + label {
   outline: none;
 }

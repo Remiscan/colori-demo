@@ -16,6 +16,8 @@ $translation->setLanguage($lang);
 $progLanguage = isset($_COOKIE['prog-language']) ? $_COOKIE['prog-language'] : 'js';
 $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'auto';
 $resolvedTheme = isset($_COOKIE['resolvedTheme']) ? $_COOKIE['resolvedTheme'] : 'light';
+$colorScheme = isset($_COOKIE['colorScheme']) ? $_COOKIE['colorScheme'] : 'auto';
+$resolvedColorScheme = isset($_COOKIE['resolvedColorScheme']) ? $_COOKIE['resolvedColorScheme'] : 'light';
 
 require_once './ext/Parsedown.php';
 $Parsedown = new Parsedown();
@@ -36,6 +38,8 @@ if (!$found) $startColor = new Couleur('aquamarine');
       data-prog-language="<?=$progLanguage?>"
       data-theme="<?=$theme?>"
       data-resolved-theme="<?=$resolvedTheme?>"
+      data-color-scheme="<?=$colorScheme?>"
+      data-resolved-color-scheme="<?=$resolvedColorScheme?>"
       data-start-color="<?=$startColor->name()?>"
       style="--user-color: <?=$startColor->name()?>;">
   <head>

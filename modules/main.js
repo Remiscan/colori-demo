@@ -108,9 +108,13 @@ window.addEventListener('themechange', event => {
   if (event.detail.theme != 'auto') {
     new Cookie('theme', event.detail.theme);
     new Cookie('resolvedTheme', event.detail.resolvedTheme);
+    new Cookie('colorScheme', event.detail.colorScheme);
+    new Cookie('resolvedColorScheme', event.detail.resolvedColorScheme);
   } else {
     Cookie.delete('theme');
     Cookie.delete('resolvedTheme');
+    Cookie.delete('colorScheme');
+    Cookie.delete('resolvedColorScheme');
   }
 });
 

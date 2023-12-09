@@ -25,8 +25,13 @@
     "remiscan-logo-svg-horizontal": "/_common/components/remiscan-logo/logo-horizontal.svg",
     "remiscan-logo-svg-square": "/_common/components/remiscan-logo/logo-square.svg",
 
-    "theme-selector": "/_common/components/theme-selector/theme-selector.js",
+    "theme-selector": "/_common/components/theme-selector/theme-selector.v1.js",
+    "theme-icon": "/_common/components/theme-selector/theme-icon.js",
+    "theme-selector-list": "/_common/components/theme-selector/theme-selector-list.js",
+    "theme-utils": "/_common/components/theme-selector/theme-utils.js",
     "trap-focus": "/_common/js/trap-focus/mod.js",
+    "popover-polyfill": "/_common/polyfills/popover.min.js",
+    "css-anchor-polyfill": "/_common/polyfills/css-anchor-positioning.js",
 
     "bracket-pairs": "/_common/js/bracket-pairs/mod.js",
     "cancelable-async": "/_common/js/cancelable-async/mod.js",
