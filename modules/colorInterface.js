@@ -3,6 +3,19 @@ import { messageWorker } from 'messageWorker';
 
 
 
+function updateThemeCss(css, metaLightColor, metaDarkColor) {
+  const meta = document.querySelector('meta[name=theme-color]');
+  meta.dataset.light = metaLightColor;
+  meta.dataset.dark = metaDarkColor;
+  const currentTheme = document.documentElement.getAttribute('data-resolved-theme');
+  meta.setAttribute('content', currentTheme === 'dark' ? metaDarkColor : metaLightColor);
+
+  const style = document.getElementById('theme-variables');
+  style.innerHTML = css;
+}
+
+
+
 /** Update the interface with the newly detected color. */
 function* updateInterface(couleur, source = 'text') {
   // Wait until next frame
@@ -72,14 +85,13 @@ function* updateInterface(couleur, source = 'text') {
   }
 
   if (response.css) {
-    const meta = document.querySelector('meta[name=theme-color]');
-    meta.dataset.light = response.metaLight;
-    meta.dataset.dark = response.metaDark;
-    const currentTheme = document.documentElement.getAttribute('data-resolved-theme');
-    meta.setAttribute('content', response[currentTheme === 'dark' ? 'metaDark' : 'metaLight']);
-
-    const style = document.getElementById('theme-variables');
-    style.innerHTML = response.css;
+    if (source === 'text' && 'startViewTransition' in document) {
+      document.startViewTransition(() => {
+        updateThemeCss(response.css, response.metaLight, response.metaDark);
+      });
+    } else {
+      updateThemeCss(response.css, response.metaLight, response.metaDark);
+    }
   }
 }
 
